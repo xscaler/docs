@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-docusaurus@3 . classic --typescript --skip-install)",
+      "Bash(npx create-docusaurus@3 /tmp/xscaler-docs-scaffold classic --typescript --skip-install)",
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "WebFetch(domain:xscalerlabs.com)",
+      "Bash(gh auth:*)",
+      "Bash(git init:*)",
+      "Bash(git checkout:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m 'Initial commit: xScaler Labs docs site:*)"
+    ]
+  }
+}
