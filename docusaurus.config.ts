@@ -11,11 +11,11 @@ const config: Config = {
     v4: true,
   },
 
-  url: 'https://pathumf.github.io',
-  baseUrl: '/xscaler-docs/',
+  url: 'https://xscaler.github.io',
+  baseUrl: '/docs/',
 
-  organizationName: 'pathumf',
-  projectName: 'xscaler-docs',
+  organizationName: 'xscaler',
+  projectName: 'docs',
   trailingSlash: false,
 
   onBrokenLinks: 'throw',
