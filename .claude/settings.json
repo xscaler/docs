@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git remote:*)",
+      "Bash(git commit -m 'config: point to xscaler org and correct baseUrl:*)",
+      "Bash(git push:*)",
+      "Bash(gh run:*)",
+      "WebFetch(domain:bindplane.com)",
+      "Bash(npx docusaurus:*)",
+      "Bash(node node_modules/@docusaurus/core/bin/docusaurus.mjs build)"
+    ]
+  }
+}
