@@ -22,7 +22,7 @@ X-Scope-OrgID: <tenant-id>
 | `X-Scope-OrgID: <tenant-id>` | Selects the tenant data namespace. This is the **tenant isolation header** — without it the backend cannot route the request to the correct data store. |
 
 :::danger Both headers are mandatory
-There are no exceptions. Every `remote_write`, every query, every rules API call must include both headers. A missing `X-Scope-OrgID` returns **400**. A missing or invalid `Authorization` returns **401**.
+There are no exceptions. Every `remote_write` and every query must include both headers. A missing `X-Scope-OrgID` returns **400**. A missing or invalid `Authorization` returns **401**.
 :::
 
 ### Example — curl

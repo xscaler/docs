@@ -45,12 +45,6 @@ Replace `<region>` with your region ID (e.g. `euw1-01`) in every URL below.
 | Active alerts | `GET https://<region>.m.xscalerlabs.com/prometheus/api/v1/alerts` |
 | Rules list | `GET https://<region>.m.xscalerlabs.com/prometheus/api/v1/rules` |
 
-### Rules API (CRUD)
-
-| Operation | Endpoint |
-|-----------|----------|
-| Get / create / delete rule group | `GET\|POST\|DELETE https://<region>.m.xscalerlabs.com/api/v1/rules/<namespace>/<group>` |
-
 ### Grafana data source URL
 
 When configuring a Prometheus data source in Grafana, set the **Prometheus server URL** to:

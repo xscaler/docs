@@ -40,7 +40,7 @@ All queries time out after **2 minutes**. If your query hits this limit:
 1. Narrow the time range.
 2. Increase the `step` value to reduce the number of data points evaluated.
 3. Add label selectors to reduce the number of series scanned.
-4. Break long aggregations into recording rules (see [Rules & Alerts](/rules-and-alerts)).
+4. Add label selectors to further narrow the series scanned.
 
 ---
 
@@ -64,5 +64,5 @@ If a metric has a disproportionately high series count, review which labels are 
 If you are approaching your series limit, consider:
 
 - **Drop unused metrics at the source** — use `write_relabel_configs` in Prometheus or Alloy to drop metrics before they leave the scrape host (see [Prometheus remote_write](/ingest/prometheus-remote-write#drop-noisy-metrics-before-sending)).
-- **Aggregate before shipping** — use recording rules to pre-aggregate high-cardinality metrics and ship only the aggregated series.
+- **Aggregate before shipping** — use `write_relabel_configs` or Alloy `prometheus.relabel` blocks to pre-aggregate high-cardinality metrics and ship only the aggregated series.
 - **Review label cardinality** — replace high-cardinality label values (e.g. pod IDs) with coarser ones (e.g. deployment name).
