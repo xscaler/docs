@@ -7,7 +7,9 @@
       "Bash(gh run:*)",
       "WebFetch(domain:bindplane.com)",
       "Bash(npx docusaurus:*)",
-      "Bash(node node_modules/@docusaurus/core/bin/docusaurus.mjs build)"
+      "Bash(node node_modules/@docusaurus/core/bin/docusaurus.mjs build)",
+      "Bash(git commit -m ':*)",
+      "Bash(rm /Users/pathum.fernando/Documents/Projects/xscaler/docs/.git/index.lock)"
     ]
   }
 }
