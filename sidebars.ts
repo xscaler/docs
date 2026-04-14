@@ -15,6 +15,21 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      label: 'Portal',
+      collapsed: false,
+      items: [
+        'portal/portal',
+        'portal/create-tenant',
+        'portal/suspend-tenant',
+        'portal/tenant-usage',
+        'portal/api-tokens',
+        'portal/change-plan',
+        'portal/notifications',
+        'portal/activity',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Sending Metrics',
       collapsed: false,
       items: [
