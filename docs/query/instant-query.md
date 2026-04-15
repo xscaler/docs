@@ -9,7 +9,7 @@ slug: /query/instant-query
 
 An instant query evaluates a PromQL expression at a **single point in time** and returns a vector of results — one value per matching time series.
 
-**Endpoint:** `GET https://euw1-01.m.xscalerlabs.com/prometheus/api/v1/query`
+**Endpoint:** `GET https://euw1-01.m.xscalerlabs.com/api/v1/query`
 
 ---
 
@@ -28,7 +28,7 @@ An instant query evaluates a PromQL expression at a **single point in time** and
 ### Request rate
 
 ```bash
-curl "https://euw1-01.m.xscalerlabs.com/prometheus/api/v1/query" \
+curl "https://euw1-01.m.xscalerlabs.com/api/v1/query" \
   -H "Authorization: Bearer <token>" \
   -H "X-Scope-OrgID: <tenant-id>" \
   --data-urlencode 'query=rate(http_requests_total[5m])'
@@ -37,7 +37,7 @@ curl "https://euw1-01.m.xscalerlabs.com/prometheus/api/v1/query" \
 ### Error rate percentage
 
 ```bash
-curl "https://euw1-01.m.xscalerlabs.com/prometheus/api/v1/query" \
+curl "https://euw1-01.m.xscalerlabs.com/api/v1/query" \
   -H "Authorization: Bearer <token>" \
   -H "X-Scope-OrgID: <tenant-id>" \
   --data-urlencode 'query=sum(rate(http_requests_total{status=~"5.."}[5m])) / sum(rate(http_requests_total[5m])) * 100'
@@ -46,7 +46,7 @@ curl "https://euw1-01.m.xscalerlabs.com/prometheus/api/v1/query" \
 ### Query at a specific timestamp
 
 ```bash
-curl "https://euw1-01.m.xscalerlabs.com/prometheus/api/v1/query" \
+curl "https://euw1-01.m.xscalerlabs.com/api/v1/query" \
   -H "Authorization: Bearer <token>" \
   -H "X-Scope-OrgID: <tenant-id>" \
   --data-urlencode 'query=up' \

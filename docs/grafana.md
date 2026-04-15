@@ -26,11 +26,11 @@ Works with **Grafana 9+** — both self-hosted and Grafana Cloud.
 In the **Prometheus server URL** field, enter:
 
 ```
-https://euw1-01.m.xscalerlabs.com/prometheus
+https://euw1-01.m.xscalerlabs.com
 ```
 
-:::warning Include the `/prometheus` path
-The `/prometheus` path prefix is required. Without it, Grafana will receive a `404` or empty results.
+:::tip
+Use the host root only — Grafana appends `/api/v1/query` automatically. Do not add any path suffix.
 :::
 
 ---
@@ -101,7 +101,7 @@ job_queue_depth
 ## Troubleshooting
 
 **"Bad Gateway" on Save & Test**
-- Verify the URL is `https://euw1-01.m.xscalerlabs.com/prometheus` (HTTPS, with `/prometheus` path).
+- Verify the URL is `https://euw1-01.m.xscalerlabs.com` (HTTPS, host root only — no path suffix).
 - Check that both `Authorization` and `X-Scope-OrgID` headers are in the **HTTP Headers** section, not the Authentication section.
 
 **Empty results after connecting**

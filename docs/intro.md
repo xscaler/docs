@@ -40,7 +40,7 @@ Your instrumented application or infrastructure emits metrics through an OTel SD
 
 ## Supported query methods
 
-xScaler exposes the **full Prometheus HTTP API** at `/prometheus/api/v1/...`, so any tool that supports PromQL works — Grafana, Prometheus-compatible dashboards, custom scripts using `curl`, and more.
+xScaler exposes the **full Prometheus HTTP API** at `/api/v1/...`, so any tool that supports PromQL works — Grafana, Prometheus-compatible dashboards, custom scripts using `curl`, and more.
 
 ## Multi-tenancy
 

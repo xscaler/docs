@@ -37,23 +37,23 @@ Replace `<region>` with your region ID (e.g. `euw1-01`) in every URL below.
 
 | Operation | Endpoint |
 |-----------|----------|
-| Instant query | `GET https://<region>.m.xscalerlabs.com/prometheus/api/v1/query` |
-| Range query | `GET https://<region>.m.xscalerlabs.com/prometheus/api/v1/query_range` |
-| Label names | `GET https://<region>.m.xscalerlabs.com/prometheus/api/v1/labels` |
-| Label values | `GET https://<region>.m.xscalerlabs.com/prometheus/api/v1/label/<name>/values` |
-| Series | `POST https://<region>.m.xscalerlabs.com/prometheus/api/v1/series` |
-| Active alerts | `GET https://<region>.m.xscalerlabs.com/prometheus/api/v1/alerts` |
-| Rules list | `GET https://<region>.m.xscalerlabs.com/prometheus/api/v1/rules` |
+| Instant query | `GET https://<region>.m.xscalerlabs.com/api/v1/query` |
+| Range query | `GET https://<region>.m.xscalerlabs.com/api/v1/query_range` |
+| Label names | `GET https://<region>.m.xscalerlabs.com/api/v1/labels` |
+| Label values | `GET https://<region>.m.xscalerlabs.com/api/v1/label/<name>/values` |
+| Series | `POST https://<region>.m.xscalerlabs.com/api/v1/series` |
+| Active alerts | `GET https://<region>.m.xscalerlabs.com/api/v1/alerts` |
+| Rules list | `GET https://<region>.m.xscalerlabs.com/api/v1/rules` |
 
 ### Grafana data source URL
 
 When configuring a Prometheus data source in Grafana, set the **Prometheus server URL** to:
 
 ```
-https://<region>.m.xscalerlabs.com/prometheus
+https://<region>.m.xscalerlabs.com
 ```
 
-The `/prometheus` path prefix is required. Do not omit it.
+Grafana appends `/api/v1/query` automatically — use the host root only.
 
 ---
 
@@ -76,5 +76,5 @@ Using region `euw1-01`:
 |-------------|------------------|
 | `<region>.m.xscalerlabs.com` | `euw1-01.m.xscalerlabs.com` |
 | Ingest URL | `https://euw1-01.m.xscalerlabs.com/api/v1/push` |
-| Query base URL | `https://euw1-01.m.xscalerlabs.com/prometheus` |
-| Grafana data source | `https://euw1-01.m.xscalerlabs.com/prometheus` |
+| Query base URL | `https://euw1-01.m.xscalerlabs.com` |
+| Grafana data source | `https://euw1-01.m.xscalerlabs.com` |

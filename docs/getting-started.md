@@ -37,7 +37,7 @@ If `X-Scope-OrgID` is missing, the backend returns **400 Bad Request** ("no org 
 Send a test query to confirm your credentials and endpoint work:
 
 ```bash
-curl "https://euw1-01.m.xscalerlabs.com/prometheus/api/v1/query" \
+curl "https://euw1-01.m.xscalerlabs.com/api/v1/query" \
   -H "Authorization: Bearer <token>" \
   -H "X-Scope-OrgID: <tenant-id>" \
   --data-urlencode 'query=up'
@@ -78,7 +78,7 @@ Pick the method that matches your stack:
 
 Once metrics are flowing, visualise them in Grafana:
 
-- Set the **Prometheus server URL** to `https://euw1-01.m.xscalerlabs.com/prometheus`
+- Set the **Prometheus server URL** to `https://euw1-01.m.xscalerlabs.com`
 - Add `Authorization: Bearer <token>` and `X-Scope-OrgID: <tenant-id>` as custom HTTP headers
 
 See the full walkthrough in [Grafana Integration](/grafana).

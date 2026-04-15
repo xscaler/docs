@@ -12,7 +12,7 @@ xScaler exposes the **full Prometheus HTTP API**, so any tool that speaks PromQL
 ## Base URL
 
 ```
-https://euw1-01.m.xscalerlabs.com/prometheus
+https://euw1-01.m.xscalerlabs.com
 ```
 
 All query endpoints are relative to this base. Replace `euw1-01` with your [region](/regions).
@@ -34,13 +34,13 @@ A missing `X-Scope-OrgID` returns `400`. A missing or invalid `Authorization` re
 
 | Operation | Method | Path |
 |-----------|--------|------|
-| [Instant query](/query/instant-query) | `GET` | `/prometheus/api/v1/query` |
-| [Range query](/query/range-query) | `GET` | `/prometheus/api/v1/query_range` |
-| [Label names](/query/label-exploration) | `GET` | `/prometheus/api/v1/labels` |
-| [Label values](/query/label-exploration) | `GET` | `/prometheus/api/v1/label/<name>/values` |
-| [Series search](/query/label-exploration) | `POST` | `/prometheus/api/v1/series` |
-| Active alerts | `GET` | `/prometheus/api/v1/alerts` |
-| Rules list | `GET` | `/prometheus/api/v1/rules` |
+| [Instant query](/query/instant-query) | `GET` | `/api/v1/query` |
+| [Range query](/query/range-query) | `GET` | `/api/v1/query_range` |
+| [Label names](/query/label-exploration) | `GET` | `/api/v1/labels` |
+| [Label values](/query/label-exploration) | `GET` | `/api/v1/label/<name>/values` |
+| [Series search](/query/label-exploration) | `POST` | `/api/v1/series` |
+| Active alerts | `GET` | `/api/v1/alerts` |
+| Rules list | `GET` | `/api/v1/rules` |
 
 ---
 

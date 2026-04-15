@@ -49,7 +49,7 @@ All queries time out after **2 minutes**. If your query hits this limit:
 Unexpectedly high active series counts are usually caused by labels with unbounded values (user IDs, request IDs, session tokens). Use this query to identify the top offenders:
 
 ```bash
-curl "https://euw1-01.m.xscalerlabs.com/prometheus/api/v1/query" \
+curl "https://euw1-01.m.xscalerlabs.com/api/v1/query" \
   -H "Authorization: Bearer <token>" \
   -H "X-Scope-OrgID: <tenant-id>" \
   --data-urlencode 'query=topk(10, count by (__name__)({__name__=~".+"}))'

@@ -73,7 +73,7 @@ This header is mandatory on every write and read request. See [Authentication](/
 
 1. **Check the failure counter:**
    ```bash
-   curl "https://euw1-01.m.xscalerlabs.com/prometheus/api/v1/query" \
+   curl "https://euw1-01.m.xscalerlabs.com/api/v1/query" \
      -H "Authorization: Bearer <token>" \
      -H "X-Scope-OrgID: <tenant-id>" \
      --data-urlencode 'query=prometheus_remote_storage_failed_samples_total'
@@ -157,9 +157,9 @@ This header is mandatory on every write and read request. See [Authentication](/
 
 ## Grafana "Bad Gateway" or empty results
 
-1. **Check the data source URL** — it must include the `/prometheus` path:
+1. **Check the data source URL** — use the host root, no path suffix:
    ```
-   https://euw1-01.m.xscalerlabs.com/prometheus
+   https://euw1-01.m.xscalerlabs.com
    ```
 
 2. **Check both headers** are in the **HTTP Headers** section in Grafana, not in Basic Auth:

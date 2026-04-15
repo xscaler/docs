@@ -9,7 +9,7 @@ slug: /query/range-query
 
 A range query evaluates a PromQL expression over a **time range** at regular intervals, returning a matrix of results suitable for graphing.
 
-**Endpoint:** `GET https://euw1-01.m.xscalerlabs.com/prometheus/api/v1/query_range`
+**Endpoint:** `GET https://euw1-01.m.xscalerlabs.com/api/v1/query_range`
 
 ---
 
@@ -30,7 +30,7 @@ A range query evaluates a PromQL expression over a **time range** at regular int
 Request rate over a 1-hour window with 60-second resolution:
 
 ```bash
-curl "https://euw1-01.m.xscalerlabs.com/prometheus/api/v1/query_range" \
+curl "https://euw1-01.m.xscalerlabs.com/api/v1/query_range" \
   -H "Authorization: Bearer <token>" \
   -H "X-Scope-OrgID: <tenant-id>" \
   --data-urlencode 'query=rate(http_requests_total[5m])' \

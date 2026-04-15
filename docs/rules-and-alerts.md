@@ -21,7 +21,7 @@ In Grafana, go to **Connections → Data sources → Add data source → Prometh
 
 | Field | Value |
 |-------|-------|
-| URL | `https://euw1-01.m.xscalerlabs.com/prometheus` |
+| URL | `https://euw1-01.m.xscalerlabs.com` |
 | Authorization header | `Bearer <token>` |
 | Custom header `X-Scope-OrgID` | `<tenant-id>` |
 

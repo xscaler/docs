@@ -24,7 +24,7 @@ X-Scope-OrgID: <tenant-id>
 Returns every label key present across all series in your namespace.
 
 ```bash
-curl "https://euw1-01.m.xscalerlabs.com/prometheus/api/v1/labels" \
+curl "https://euw1-01.m.xscalerlabs.com/api/v1/labels" \
   -H "Authorization: Bearer <token>" \
   -H "X-Scope-OrgID: <tenant-id>"
 ```
@@ -45,7 +45,7 @@ curl "https://euw1-01.m.xscalerlabs.com/prometheus/api/v1/labels" \
 Returns all values for a given label key.
 
 ```bash
-curl "https://euw1-01.m.xscalerlabs.com/prometheus/api/v1/label/job/values" \
+curl "https://euw1-01.m.xscalerlabs.com/api/v1/label/job/values" \
   -H "Authorization: Bearer <token>" \
   -H "X-Scope-OrgID: <tenant-id>"
 ```
@@ -68,7 +68,7 @@ Replace `job` in the URL path with any label name returned by the labels endpoin
 Use `POST /series` with a `match[]` selector to find all time series that match a given label set.
 
 ```bash
-curl -X POST "https://euw1-01.m.xscalerlabs.com/prometheus/api/v1/series" \
+curl -X POST "https://euw1-01.m.xscalerlabs.com/api/v1/series" \
   -H "Authorization: Bearer <token>" \
   -H "X-Scope-OrgID: <tenant-id>" \
   --data-urlencode 'match[]=http_requests_total{job="api-server"}'
@@ -103,7 +103,7 @@ curl -X POST "https://euw1-01.m.xscalerlabs.com/prometheus/api/v1/series" \
 Both `/labels` and `/series` accept optional `start` and `end` parameters to restrict results to a time range:
 
 ```bash
-curl "https://euw1-01.m.xscalerlabs.com/prometheus/api/v1/labels" \
+curl "https://euw1-01.m.xscalerlabs.com/api/v1/labels" \
   -H "Authorization: Bearer <token>" \
   -H "X-Scope-OrgID: <tenant-id>" \
   --data-urlencode 'start=2024-01-01T00:00:00Z' \
@@ -117,7 +117,7 @@ curl "https://euw1-01.m.xscalerlabs.com/prometheus/api/v1/labels" \
 High cardinality — too many unique label value combinations — is a common cause of performance issues. Use this query to identify the top offenders:
 
 ```bash
-curl "https://euw1-01.m.xscalerlabs.com/prometheus/api/v1/query" \
+curl "https://euw1-01.m.xscalerlabs.com/api/v1/query" \
   -H "Authorization: Bearer <token>" \
   -H "X-Scope-OrgID: <tenant-id>" \
   --data-urlencode 'query=topk(10, count by (__name__)({__name__=~".+"}))'

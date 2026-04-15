@@ -28,7 +28,7 @@ There are no exceptions. Every `remote_write` and every query must include both 
 ### Example — curl
 
 ```bash
-curl "https://euw1-01.m.xscalerlabs.com/prometheus/api/v1/query" \
+curl "https://euw1-01.m.xscalerlabs.com/api/v1/query" \
   -H "Authorization: Bearer eyJhbGc..." \
   -H "X-Scope-OrgID: my-org-123" \
   --data-urlencode 'query=up'
