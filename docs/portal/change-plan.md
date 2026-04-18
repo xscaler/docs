@@ -15,9 +15,9 @@ You can upgrade or downgrade your xScaler subscription from the Billing page. Pl
 
 | Plan | Active series | Retention | SLA | Price |
 |------|--------------|-----------|-----|-------|
-| **Pro** | Up to 250K | 30 days | — | $299/mo |
-| **Scale** | Up to 750K | 90 days | 99.9% | $599/mo |
-| **Enterprise** | Unlimited | Custom | 99.99% | Contact sales |
+| **Free** | Up to 10K | Limited | — | $0/mo |
+| **Scale** | Up to 20K | Up to 90 days | 99.9% | $19/mo + usage |
+| **Enterprise** | Custom | Up to 1 year | 99.99% | Contact sales |
 
 ---
 
