@@ -117,7 +117,6 @@ const sidebars: SidebarsConfig = {
       label: 'Legal',
       collapsed: false,
       items: [
-        'legal',
         'privacy',
         'terms',
         'security',
