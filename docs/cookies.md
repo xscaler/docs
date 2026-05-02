@@ -2,6 +2,7 @@
 id: cookies
 title: Cookie Policy
 sidebar_label: Cookie Policy
+displayed_sidebar: mainSidebar
 ---
 
 # Cookie Policy

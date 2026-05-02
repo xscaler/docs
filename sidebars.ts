@@ -112,17 +112,6 @@ const sidebars: SidebarsConfig = {
         'troubleshooting',
       ],
     },
-    {
-      type: 'category',
-      label: 'Legal',
-      collapsed: false,
-      items: [
-        'privacy',
-        'terms',
-        'security',
-        'cookies',
-      ],
-    },
   ],
 };
 

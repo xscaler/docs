@@ -2,6 +2,7 @@
 id: privacy
 title: Privacy Policy
 sidebar_label: Privacy Policy
+displayed_sidebar: mainSidebar
 ---
 
 # Privacy Policy

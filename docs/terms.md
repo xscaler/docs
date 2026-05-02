@@ -2,6 +2,7 @@
 id: terms
 title: Terms & Conditions
 sidebar_label: Terms & Conditions
+displayed_sidebar: mainSidebar
 ---
 
 # Terms & Conditions
