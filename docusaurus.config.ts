@@ -109,6 +109,16 @@ const config: Config = {
             { label: 'Support', href: 'https://xscalerlabs.com/support' },
           ],
         },
+        {
+          title: 'Legal',
+          items: [
+            { label: 'Legal & Open Source Notices', to: '/legal' },
+            { label: 'Privacy Policy', to: '/privacy' },
+            { label: 'Terms & Conditions', to: '/terms' },
+            { label: 'Security', to: '/security' },
+            { label: 'Cookie Policy', to: '/cookies' },
+          ],
+        },
       ],
       copyright: `Copyright © ${new Date().getFullYear()} xScaler Labs. Built with Docusaurus.`,
     },
