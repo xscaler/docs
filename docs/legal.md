@@ -12,10 +12,10 @@ This platform provides a managed observability service for monitoring and analyz
 
 For full details on how we handle your data and your rights, please refer to our dedicated policy pages:
 
-- [Privacy Policy](/privacy)
-- [Terms & Conditions](/terms)
-- [Security](/security)
-- [Cookie Policy](/cookies)
+- [Privacy Policy](https://xscalerlabs.com/privacy)
+- [Terms & Conditions](https://xscalerlabs.com/terms)
+- [Security](https://xscalerlabs.com/security)
+- [Cookie Policy](https://xscalerlabs.com/cookies)
 
 ---
 
