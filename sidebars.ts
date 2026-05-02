@@ -112,6 +112,18 @@ const sidebars: SidebarsConfig = {
         'troubleshooting',
       ],
     },
+    {
+      type: 'category',
+      label: 'Legal',
+      collapsed: false,
+      items: [
+        'legal',
+        'privacy',
+        'terms',
+        'security',
+        'cookies',
+      ],
+    },
   ],
 };
 
