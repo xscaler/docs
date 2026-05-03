@@ -10,7 +10,11 @@
       "Bash(git init:*)",
       "Bash(git checkout:*)",
       "Bash(git add:*)",
-      "Bash(git commit -m 'Initial commit: xScaler Labs docs site:*)"
+      "Bash(git commit -m 'Initial commit: xScaler Labs docs site:*)",
+      "Bash(npm start *)",
+      "Bash(node_modules/.bin/docusaurus start *)",
+      "WebFetch(domain:localhost)",
+      "Bash(curl -s http://localhost:3002/legal)"
     ]
   }
 }
