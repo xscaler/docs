@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkxscaler_labs_docs=self.webpackChunkxscaler_labs_docs||[]).push([["819"],{5390(e,s,c){c.d(s,{createArchitectureServices:()=>a.S});var a=c(5530);c(3345)}}]);

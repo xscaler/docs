@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkxscaler_labs_docs=self.webpackChunkxscaler_labs_docs||[]).push([["5528"],{1947(e,s,a){a.d(s,{createWardleyServices:()=>c.J});var c=a(2295);a(3345)}}]);
