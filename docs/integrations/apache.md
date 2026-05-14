@@ -13,6 +13,12 @@ Collect request rate, worker utilisation, scoreboard state, and traffic metrics 
 
 ---
 
+## Dashboard
+
+![Dashboard](https://grafana.com/api/dashboards/3894/images/2427/image)
+
+---
+
 ## Prerequisites
 
 - Apache HTTP Server 2.4 or later with `mod_status` enabled
@@ -115,6 +121,38 @@ prometheus.remote_write "xscaler" {
     headers = { "X-Scope-OrgID" = "<tenant-id>" }
   }
 }
+```
+
+---
+
+### OpenTelemetry Collector
+
+```yaml
+receivers:
+  apache:
+    endpoint: http://localhost/server-status?auto
+    collection_interval: 15s
+
+processors:
+  memory_limiter:
+    check_interval: 1s
+    limit_mib: 256
+  batch:
+    timeout: 10s
+
+exporters:
+  otlphttp/xscaler:
+    endpoint: https://euw1-01.m.xscalerlabs.com
+    headers:
+      Authorization: "Bearer <token>"
+      X-Scope-OrgID: "<tenant-id>"
+
+service:
+  pipelines:
+    metrics:
+      receivers:  [apache]
+      processors: [memory_limiter, batch]
+      exporters:  [otlphttp/xscaler]
 ```
 
 ---

@@ -13,6 +13,12 @@ Collect command throughput, memory usage, keyspace hit ratio, connected clients,
 
 ---
 
+## Dashboard
+
+![Dashboard](https://grafana.com/api/dashboards/763/images/502/image)
+
+---
+
 ## Prerequisites
 
 - Redis 4.0 or later
@@ -91,6 +97,41 @@ prometheus.remote_write "xscaler" {
     headers = { "X-Scope-OrgID" = "<tenant-id>" }
   }
 }
+```
+
+---
+
+### OpenTelemetry Collector
+
+```yaml
+receivers:
+  redis:
+    endpoint: localhost:6379
+    password: ""
+    collection_interval: 15s
+    tls:
+      insecure: true
+
+processors:
+  memory_limiter:
+    check_interval: 1s
+    limit_mib: 256
+  batch:
+    timeout: 10s
+
+exporters:
+  otlphttp/xscaler:
+    endpoint: https://euw1-01.m.xscalerlabs.com
+    headers:
+      Authorization: "Bearer <token>"
+      X-Scope-OrgID: "<tenant-id>"
+
+service:
+  pipelines:
+    metrics:
+      receivers:  [redis]
+      processors: [memory_limiter, batch]
+      exporters:  [otlphttp/xscaler]
 ```
 
 ---

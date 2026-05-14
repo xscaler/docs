@@ -13,6 +13,12 @@ Collect query throughput, connection pool, InnoDB buffer pool, replication statu
 
 ---
 
+## Dashboard
+
+![Dashboard](https://grafana.com/api/dashboards/7362/images/4691/image)
+
+---
+
 ## Prerequisites
 
 - MySQL 5.7 or later (or MariaDB 10.3+)
@@ -94,6 +100,40 @@ prometheus.remote_write "xscaler" {
     headers = { "X-Scope-OrgID" = "<tenant-id>" }
   }
 }
+```
+
+---
+
+### OpenTelemetry Collector
+
+```yaml
+receivers:
+  mysql:
+    endpoint: localhost:3306
+    username: xscaler_monitor
+    password: strongpassword
+    collection_interval: 15s
+
+processors:
+  memory_limiter:
+    check_interval: 1s
+    limit_mib: 256
+  batch:
+    timeout: 10s
+
+exporters:
+  otlphttp/xscaler:
+    endpoint: https://euw1-01.m.xscalerlabs.com
+    headers:
+      Authorization: "Bearer <token>"
+      X-Scope-OrgID: "<tenant-id>"
+
+service:
+  pipelines:
+    metrics:
+      receivers:  [mysql]
+      processors: [memory_limiter, batch]
+      exporters:  [otlphttp/xscaler]
 ```
 
 ---

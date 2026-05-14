@@ -13,6 +13,12 @@ Collect container-level metrics from a Docker host — CPU, memory, network I/O,
 
 ---
 
+## Dashboard
+
+![Dashboard](https://grafana.com/api/dashboards/893/images/730/image)
+
+---
+
 ## Prerequisites
 
 - Docker Engine running on the host
@@ -74,6 +80,33 @@ docker run --rm \
 :::info Docker socket access
 The collector needs read access to `/var/run/docker.sock` to query container stats. The `:ro` flag mounts it read-only.
 :::
+
+---
+
+## Grafana Alloy
+
+```river
+discovery.docker "containers" {
+  host = "unix:///var/run/docker.sock"
+}
+
+prometheus.scrape "docker" {
+  targets    = discovery.docker.containers.targets
+  forward_to = [prometheus.remote_write.xscaler.receiver]
+  scrape_interval = "15s"
+}
+
+prometheus.remote_write "xscaler" {
+  endpoint {
+    url = "https://euw1-01.m.xscalerlabs.com/api/v1/push"
+    authorization {
+      type        = "Bearer"
+      credentials = "<token>"
+    }
+    headers = { "X-Scope-OrgID" = "<tenant-id>" }
+  }
+}
+```
 
 ---
 

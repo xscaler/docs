@@ -13,6 +13,26 @@ Collect metrics from your Kubernetes cluster — node resource usage, pod CPU/me
 
 ---
 
+## Dashboards
+
+### Overview
+
+![Kubernetes Global Overview dashboard](/img/integrations/k8s-global.png)
+
+![Kubernetes Global Overview dashboard 2](/img/integrations/k8s-global-2.png)
+
+### Pods
+
+![Kubernetes Pods dashboard](/img/integrations/k8s-pods.png)
+
+![Kubernetes Pods dashboard 2](/img/integrations/k8s-pods-2.png)
+
+### Nodes
+
+![Kubernetes Nodes dashboard](/img/integrations/k8s-nodes.png)
+
+---
+
 ## Prerequisites
 
 - Kubernetes cluster (any version ≥ 1.21)
@@ -108,6 +128,47 @@ prometheus.remote_write "xscaler" {
     headers = { "X-Scope-OrgID" = env("XSCALER_TENANT_ID") }
   }
 }
+```
+
+---
+
+### Option C — OpenTelemetry Collector
+
+```yaml
+receivers:
+  k8s_cluster:
+    collection_interval: 15s
+    node_conditions_to_report: [Ready, MemoryPressure, DiskPressure]
+    allocatable_types_to_report: [cpu, memory, storage]
+  kubeletstats:
+    collection_interval: 15s
+    auth_type: serviceAccount
+    endpoint: https://${K8S_NODE_NAME}:10250
+    insecure_skip_verify: true
+    metric_groups: [node, pod, container, volume]
+
+processors:
+  memory_limiter:
+    check_interval: 1s
+    limit_mib: 512
+  batch:
+    timeout: 10s
+  k8sattributes:
+    passthrough: false
+
+exporters:
+  otlphttp/xscaler:
+    endpoint: https://euw1-01.m.xscalerlabs.com
+    headers:
+      Authorization: "Bearer <token>"
+      X-Scope-OrgID: "<tenant-id>"
+
+service:
+  pipelines:
+    metrics:
+      receivers:  [k8s_cluster, kubeletstats]
+      processors: [memory_limiter, k8sattributes, batch]
+      exporters:  [otlphttp/xscaler]
 ```
 
 ---

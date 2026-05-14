@@ -13,6 +13,12 @@ Pull metrics from Azure Monitor into xScaler using the OpenTelemetry Collector's
 
 ---
 
+## Dashboard
+
+![Dashboard](https://grafana.com/api/dashboards/10532/images/6786/image)
+
+---
+
 ## Prerequisites
 
 - Azure subscription with Azure Monitor enabled

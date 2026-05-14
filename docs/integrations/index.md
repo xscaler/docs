@@ -1,8 +1,8 @@
 ---
-id: integrations
-title: Integrations
-sidebar_label: Overview
-slug: /integrations
+id: integrations-legacy
+title: Integrations (legacy)
+sidebar_label: Overview (legacy)
+slug: /integrations-legacy
 ---
 
 # Integrations

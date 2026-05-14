@@ -13,6 +13,12 @@ Collect operation throughput, connection pool, replication lag, WiredTiger cache
 
 ---
 
+## Dashboard
+
+![Dashboard](https://grafana.com/api/dashboards/2583/images/1596/image)
+
+---
+
 ## Prerequisites
 
 - MongoDB 4.4 or later (replica set or standalone)
@@ -98,6 +104,43 @@ prometheus.remote_write "xscaler" {
     headers = { "X-Scope-OrgID" = "<tenant-id>" }
   }
 }
+```
+
+---
+
+### OpenTelemetry Collector
+
+```yaml
+receivers:
+  mongodb:
+    hosts:
+      - endpoint: localhost:27017
+    username: xscaler_monitor
+    password: strongpassword
+    collection_interval: 15s
+    tls:
+      insecure: true
+
+processors:
+  memory_limiter:
+    check_interval: 1s
+    limit_mib: 256
+  batch:
+    timeout: 10s
+
+exporters:
+  otlphttp/xscaler:
+    endpoint: https://euw1-01.m.xscalerlabs.com
+    headers:
+      Authorization: "Bearer <token>"
+      X-Scope-OrgID: "<tenant-id>"
+
+service:
+  pipelines:
+    metrics:
+      receivers:  [mongodb]
+      processors: [memory_limiter, batch]
+      exporters:  [otlphttp/xscaler]
 ```
 
 ---

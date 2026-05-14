@@ -13,6 +13,18 @@ Collect system-level metrics from Linux hosts — CPU, memory, disk, network, fi
 
 ---
 
+## Dashboards
+
+### Linux Node Overview
+
+![Linux Node Overview dashboard](/img/integrations/linux-overview.png)
+
+### Linux Fleet Overview
+
+![Linux Fleet Overview dashboard](/img/integrations/linux-fleet.png)
+
+---
+
 ## Prerequisites
 
 - Linux host (any distribution)
@@ -107,6 +119,46 @@ prometheus.remote_write "xscaler" {
 :::tip
 The `prometheus.exporter.unix` component in Alloy is a built-in wrapper around node_exporter — no separate binary needed.
 :::
+
+---
+
+### Option C — OpenTelemetry Collector
+
+```yaml
+receivers:
+  hostmetrics:
+    collection_interval: 15s
+    scrapers:
+      cpu: {}
+      disk: {}
+      filesystem: {}
+      load: {}
+      memory: {}
+      network: {}
+      paging: {}
+      processes: {}
+
+processors:
+  memory_limiter:
+    check_interval: 1s
+    limit_mib: 256
+  batch:
+    timeout: 10s
+
+exporters:
+  otlphttp/xscaler:
+    endpoint: https://euw1-01.m.xscalerlabs.com
+    headers:
+      Authorization: "Bearer <token>"
+      X-Scope-OrgID: "<tenant-id>"
+
+service:
+  pipelines:
+    metrics:
+      receivers:  [hostmetrics]
+      processors: [memory_limiter, batch]
+      exporters:  [otlphttp/xscaler]
+```
 
 ---
 

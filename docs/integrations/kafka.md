@@ -13,6 +13,12 @@ Collect broker throughput, consumer group lag, partition leadership, and JVM met
 
 ---
 
+## Dashboard
+
+![Dashboard](https://grafana.com/api/dashboards/7589/images/4802/image)
+
+---
+
 ## Prerequisites
 
 - Apache Kafka 2.0 or later
@@ -92,6 +98,43 @@ prometheus.remote_write "xscaler" {
     headers = { "X-Scope-OrgID" = "<tenant-id>" }
   }
 }
+```
+
+---
+
+### OpenTelemetry Collector
+
+```yaml
+receivers:
+  kafka_metrics:
+    brokers: [localhost:9092]
+    protocol_version: 2.0.0
+    scrapers:
+      brokers: {}
+      topics: {}
+      consumers: {}
+    collection_interval: 15s
+
+processors:
+  memory_limiter:
+    check_interval: 1s
+    limit_mib: 256
+  batch:
+    timeout: 10s
+
+exporters:
+  otlphttp/xscaler:
+    endpoint: https://euw1-01.m.xscalerlabs.com
+    headers:
+      Authorization: "Bearer <token>"
+      X-Scope-OrgID: "<tenant-id>"
+
+service:
+  pipelines:
+    metrics:
+      receivers:  [kafka_metrics]
+      processors: [memory_limiter, batch]
+      exporters:  [otlphttp/xscaler]
 ```
 
 ---

@@ -13,6 +13,12 @@ Pull metrics from Google Cloud Monitoring (formerly Stackdriver) into xScaler us
 
 ---
 
+## Dashboard
+
+![Dashboard](https://grafana.com/api/dashboards/14078/images/9982/image)
+
+---
+
 ## Prerequisites
 
 - Google Cloud project with Cloud Monitoring enabled

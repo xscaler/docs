@@ -13,6 +13,12 @@ Collect query performance, connection pool, replication lag, table bloat, and lo
 
 ---
 
+## Dashboard
+
+![Dashboard](https://grafana.com/api/dashboards/9628/images/6026/image)
+
+---
+
 ## Prerequisites
 
 - PostgreSQL 11 or later
@@ -89,6 +95,44 @@ prometheus.remote_write "xscaler" {
     headers = { "X-Scope-OrgID" = "<tenant-id>" }
   }
 }
+```
+
+---
+
+### OpenTelemetry Collector
+
+```yaml
+receivers:
+  postgresql:
+    endpoint: localhost:5432
+    transport: tcp
+    username: xscaler_monitor
+    password: strongpassword
+    databases: [postgres]
+    collection_interval: 15s
+    tls:
+      insecure: true
+
+processors:
+  memory_limiter:
+    check_interval: 1s
+    limit_mib: 256
+  batch:
+    timeout: 10s
+
+exporters:
+  otlphttp/xscaler:
+    endpoint: https://euw1-01.m.xscalerlabs.com
+    headers:
+      Authorization: "Bearer <token>"
+      X-Scope-OrgID: "<tenant-id>"
+
+service:
+  pipelines:
+    metrics:
+      receivers:  [postgresql]
+      processors: [memory_limiter, batch]
+      exporters:  [otlphttp/xscaler]
 ```
 
 ---

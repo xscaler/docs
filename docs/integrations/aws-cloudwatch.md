@@ -13,6 +13,12 @@ Pull metrics from AWS CloudWatch into xScaler using the OpenTelemetry Collector'
 
 ---
 
+## Dashboard
+
+![Dashboard](https://grafana.com/api/dashboards/139/images/17754/image)
+
+---
+
 ## Prerequisites
 
 - AWS account with CloudWatch metrics

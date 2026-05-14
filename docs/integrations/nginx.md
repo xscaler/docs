@@ -13,6 +13,12 @@ Collect request rate, active connections, upstream health, and error rate metric
 
 ---
 
+## Dashboard
+
+![Dashboard](https://grafana.com/api/dashboards/13407/images/9369/image)
+
+---
+
 ## Prerequisites
 
 - NGINX with `ngx_http_stub_status_module` enabled (included in most builds)
@@ -113,6 +119,40 @@ prometheus.remote_write "xscaler" {
     headers = { "X-Scope-OrgID" = "<tenant-id>" }
   }
 }
+```
+
+---
+
+### OpenTelemetry Collector
+
+> Requires `ngx_http_stub_status_module` enabled in your NGINX build.
+
+```yaml
+receivers:
+  nginx:
+    endpoint: http://localhost/status
+    collection_interval: 15s
+
+processors:
+  memory_limiter:
+    check_interval: 1s
+    limit_mib: 256
+  batch:
+    timeout: 10s
+
+exporters:
+  otlphttp/xscaler:
+    endpoint: https://euw1-01.m.xscalerlabs.com
+    headers:
+      Authorization: "Bearer <token>"
+      X-Scope-OrgID: "<tenant-id>"
+
+service:
+  pipelines:
+    metrics:
+      receivers:  [nginx]
+      processors: [memory_limiter, batch]
+      exporters:  [otlphttp/xscaler]
 ```
 
 ---
