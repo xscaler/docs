@@ -5,9 +5,9 @@ sidebar_label: Introduction
 slug: /
 ---
 
-# xScaler Managed Metrics Backend
+# xScaler Managed Observability Backend
 
-**xScaler Managed Metrics Backend** is a fully managed, Prometheus-compatible metrics backend built for teams that need reliable, scalable observability without the overhead of running infrastructure themselves.
+**xScaler Managed Observability Backend** is a fully managed, Prometheus-compatible observability backend built for teams that need reliable, scalable observability without the overhead of running infrastructure themselves.
 
 ## What it is
 

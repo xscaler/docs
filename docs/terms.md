@@ -17,7 +17,7 @@ By accessing or using the xScaler Labs platform, you agree to be bound by these 
 
 ## 2. Description of Service
 
-xScaler Labs provides a managed, Prometheus-compatible metrics backend for storing, querying, and visualizing observability data.
+xScaler Labs provides a managed, Prometheus-compatible observability backend for storing, querying, and visualizing observability data.
 
 ---
 
