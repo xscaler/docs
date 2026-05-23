@@ -11,9 +11,9 @@ xScaler is deployed in geographically distributed regions. All traffic is **TLS-
 
 ## Available regions
 
-| Region ID | Location | Metrics base URL | Logs base URL |
-|-----------|----------|-----------------|---------------|
-| `euw1-01` | Europe West 1 | `euw1-01.m.xscalerlabs.com` | `euw1-01.l.xscalerlabs.com` |
+| Region ID | Location | Metrics | Logs | Traces |
+|-----------|----------|---------|------|--------|
+| `euw1-01` | Europe West 1 | `euw1-01.m.xscalerlabs.com` | `euw1-01.l.xscalerlabs.com` | `euw1-01.t.xscalerlabs.com` |
 
 :::info More regions coming soon
 Additional regions are in the roadmap. Contact [support](https://xscalerlabs.com/support) if you need a specific region.
@@ -39,8 +39,16 @@ Replace `<region>` with your region ID (e.g. `euw1-01`) in every URL below.
 |----------|----------|
 | Push (native) | `POST https://<region>.l.xscalerlabs.com/api/v1/logs/push` |
 | OTLP/HTTP | `POST https://<region>.l.xscalerlabs.com/otlp/v1/logs` |
+| OTLP/gRPC | `<region>.l.xscalerlabs.com:443` (TLS, headers as gRPC metadata) |
 
-### Metrics query (Prometheus HTTP API)
+### Traces ingest
+
+| Protocol | Endpoint |
+|----------|----------|
+| OTLP/HTTP | `POST https://<region>.t.xscalerlabs.com/otlp/v1/traces` |
+| OTLP/gRPC | `<region>.t.xscalerlabs.com:443` (TLS, headers as gRPC metadata) |
+
+### Metrics query (PromQL)
 
 | Operation | Endpoint |
 |-----------|----------|
@@ -52,7 +60,7 @@ Replace `<region>` with your region ID (e.g. `euw1-01`) in every URL below.
 | Active alerts | `GET https://<region>.m.xscalerlabs.com/api/v1/alerts` |
 | Rules list | `GET https://<region>.m.xscalerlabs.com/api/v1/rules` |
 
-### Logs query (LogQL HTTP API)
+### Logs query (LogQL)
 
 | Operation | Endpoint |
 |-----------|----------|
@@ -63,14 +71,22 @@ Replace `<region>` with your region ID (e.g. `euw1-01`) in every URL below.
 | Series | `GET https://<region>.l.xscalerlabs.com/api/v1/logs/series` |
 | Live tail | `wss://<region>.l.xscalerlabs.com/api/v1/logs/tail` (WebSocket) |
 
+### Traces query (TraceQL)
+
+| Operation | Endpoint |
+|-----------|----------|
+| Search traces | `GET https://<region>.t.xscalerlabs.com/api/search` |
+| Fetch trace by ID | `GET https://<region>.t.xscalerlabs.com/api/traces/<traceID>` |
+| Tag names | `GET https://<region>.t.xscalerlabs.com/api/search/tags` |
+| Tag values | `GET https://<region>.t.xscalerlabs.com/api/search/tag/<tag>/values` |
+
 ### Grafana data source URLs
 
-When configuring data sources in Grafana:
-
-| Data source type | URL |
-|-----------------|-----|
-| Prometheus | `https://<region>.m.xscalerlabs.com` |
-| Logs (LogQL-compatible) | `https://<region>.l.xscalerlabs.com` |
+| Signal | Data source type | URL |
+|--------|-----------------|-----|
+| Metrics | Prometheus | `https://<region>.m.xscalerlabs.com` |
+| Logs | Loki | `https://<region>.l.xscalerlabs.com` |
+| Traces | Tempo | `https://<region>.t.xscalerlabs.com` |
 
 ---
 
@@ -79,7 +95,7 @@ When configuring data sources in Grafana:
 | Transport | Port | Notes |
 |-----------|------|-------|
 | HTTPS | `443` | All HTTP endpoints |
-| gRPC over TLS | `443` | OTLP/gRPC ingest |
+| gRPC over TLS | `443` | OTLP/gRPC ingest (all signals) |
 
 Self-signed certificates are **not** accepted. `insecure_skip_verify` should remain `false` in all client configurations.
 
@@ -93,7 +109,7 @@ Using region `euw1-01`:
 |-------------|------------------|
 | `<region>.m.xscalerlabs.com` | `euw1-01.m.xscalerlabs.com` |
 | `<region>.l.xscalerlabs.com` | `euw1-01.l.xscalerlabs.com` |
-| Metrics ingest URL | `https://euw1-01.m.xscalerlabs.com/api/v1/push` |
-| Logs ingest URL | `https://euw1-01.l.xscalerlabs.com/api/v1/logs/push` |
-| Metrics query base URL | `https://euw1-01.m.xscalerlabs.com` |
-| Logs query base URL | `https://euw1-01.l.xscalerlabs.com` |
+| `<region>.t.xscalerlabs.com` | `euw1-01.t.xscalerlabs.com` |
+| Metrics ingest | `https://euw1-01.m.xscalerlabs.com/api/v1/push` |
+| Logs ingest | `https://euw1-01.l.xscalerlabs.com/api/v1/logs/push` |
+| Traces ingest | `https://euw1-01.t.xscalerlabs.com/otlp/v1/traces` |

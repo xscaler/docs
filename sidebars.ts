@@ -99,6 +99,37 @@ const sidebars: SidebarsConfig = {
       ],
     },
 
+    // ── Traces ───────────────────────────────────────────────────────────────
+    {
+      type: 'category',
+      label: 'Traces',
+      collapsed: false,
+      items: [
+        {
+          type: 'category',
+          label: 'Sending Traces',
+          collapsed: false,
+          items: [
+            'traces/grafana-alloy',
+            'traces/opentelemetry-collector',
+            'traces/otel-sdk-python',
+            'traces/otel-sdk-nodejs',
+            'traces/otel-sdk-go',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Querying',
+          collapsed: false,
+          items: [
+            'trace-query/overview',
+            'trace-query/search',
+          ],
+        },
+        'grafana-traces',
+      ],
+    },
+
     // ── Alerting ─────────────────────────────────────────────────────────────
     'rules-and-alerts',
 
