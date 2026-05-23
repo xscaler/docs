@@ -114,6 +114,55 @@ service:
 
 ---
 
+## Logs
+
+Collect CoreDNS query log and error log from the container. Add the following to your Alloy config:
+
+```river
+discovery.docker "coredns_containers" {
+  host = "unix:///var/run/docker.sock"
+  filter {
+    name   = "name"
+    values = ["coredns"]
+  }
+}
+
+discovery.relabel "coredns_logs" {
+  targets = discovery.docker.coredns_containers.targets
+  rule {
+    source_labels = ["__meta_docker_container_name"]
+    regex         = "/(.*)"
+    target_label  = "container"
+  }
+  rule {
+    replacement  = "integrations/coredns"
+    target_label = "job"
+  }
+}
+
+loki.source.docker "coredns_logs" {
+  host       = "unix:///var/run/docker.sock"
+  targets    = discovery.relabel.coredns_logs.output
+  forward_to = [loki.write.xscaler.receiver]
+  labels     = { instance = constants.hostname }
+}
+
+loki.write "xscaler" {
+  endpoint {
+    url = "https://euw1-01.l.xscalerlabs.com/api/v1/logs/push"
+
+    http_client_config {
+      authorization {
+        type        = "Bearer"
+        credentials = env("XSCALER_TOKEN")
+      }
+    }
+
+    headers = { "X-Scope-OrgID" = env("XSCALER_TENANT_ID") }
+  }
+}
+```
+
 ## Key metrics
 
 | Metric | Description |

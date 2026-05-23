@@ -116,6 +116,10 @@ On GCE or GKE with Workload Identity, credentials are picked up automatically â€
 
 ---
 
+## Logs
+
+Cloud Logging â€” export log sinks to Pub/Sub and forward to xScaler using an OTel Collector with the `googlecloudpubsub` receiver.
+
 ## Key metrics
 
 | Service | Metric type | Description |

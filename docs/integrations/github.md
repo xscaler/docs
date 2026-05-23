@@ -105,6 +105,10 @@ service:
 
 ---
 
+## Logs
+
+GitHub audit log — stream via the GitHub Audit Log API and forward to xScaler using an OTel Collector.
+
 ## Key metrics
 
 | Metric | Description |

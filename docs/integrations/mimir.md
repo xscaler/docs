@@ -95,6 +95,55 @@ service:
 
 ---
 
+## Logs
+
+Collect Mimir component logs from the container. Add the following to your Alloy config:
+
+```river
+discovery.docker "mimir_containers" {
+  host = "unix:///var/run/docker.sock"
+  filter {
+    name   = "name"
+    values = ["mimir"]
+  }
+}
+
+discovery.relabel "mimir_logs" {
+  targets = discovery.docker.mimir_containers.targets
+  rule {
+    source_labels = ["__meta_docker_container_name"]
+    regex         = "/(.*)"
+    target_label  = "container"
+  }
+  rule {
+    replacement  = "integrations/mimir"
+    target_label = "job"
+  }
+}
+
+loki.source.docker "mimir_logs" {
+  host       = "unix:///var/run/docker.sock"
+  targets    = discovery.relabel.mimir_logs.output
+  forward_to = [loki.write.xscaler.receiver]
+  labels     = { instance = constants.hostname }
+}
+
+loki.write "xscaler" {
+  endpoint {
+    url = "https://euw1-01.l.xscalerlabs.com/api/v1/logs/push"
+
+    http_client_config {
+      authorization {
+        type        = "Bearer"
+        credentials = env("XSCALER_TOKEN")
+      }
+    }
+
+    headers = { "X-Scope-OrgID" = env("XSCALER_TENANT_ID") }
+  }
+}
+```
+
 ## Key metrics
 
 | Metric | Description |

@@ -173,6 +173,55 @@ remote_write:
 
 ---
 
+## Logs
+
+Collect ktranslate container log for flow processing errors and status. Add the following to your Alloy config:
+
+```river
+discovery.docker "netflow_containers" {
+  host = "unix:///var/run/docker.sock"
+  filter {
+    name   = "name"
+    values = ["ktranslate"]
+  }
+}
+
+discovery.relabel "netflow_logs" {
+  targets = discovery.docker.netflow_containers.targets
+  rule {
+    source_labels = ["__meta_docker_container_name"]
+    regex         = "/(.*)"
+    target_label  = "container"
+  }
+  rule {
+    replacement  = "integrations/netflow"
+    target_label = "job"
+  }
+}
+
+loki.source.docker "netflow_logs" {
+  host       = "unix:///var/run/docker.sock"
+  targets    = discovery.relabel.netflow_logs.output
+  forward_to = [loki.write.xscaler.receiver]
+  labels     = { instance = constants.hostname }
+}
+
+loki.write "xscaler" {
+  endpoint {
+    url = "https://euw1-01.l.xscalerlabs.com/api/v1/logs/push"
+
+    http_client_config {
+      authorization {
+        type        = "Bearer"
+        credentials = env("XSCALER_TOKEN")
+      }
+    }
+
+    headers = { "X-Scope-OrgID" = env("XSCALER_TENANT_ID") }
+  }
+}
+```
+
 ## Key metrics
 
 | Metric | Description |

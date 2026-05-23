@@ -112,6 +112,10 @@ service:
 
 ---
 
+## Logs
+
+Snowflake query history and login history — query `SNOWFLAKE.ACCOUNT_USAGE` views and forward to xScaler using the OTel Collector.
+
 ## Key metrics
 
 | Metric | Description |

@@ -112,3 +112,36 @@ service:
       receivers: [hostmetrics]
       exporters: [prometheusremotewrite]
 ```
+
+## Logs
+
+Collect Windows Event Log (Application, System, Security channels). Add the following to your Alloy config:
+
+```river
+loki.source.windowseventlog "windows_eventlog" {
+  eventlog_name    = "Application"
+  forward_to       = [loki.write.xscaler.receiver]
+  labels = {
+    job      = "integrations/windows",
+    instance = constants.hostname,
+  }
+}
+
+// Repeat for "System" and "Security" channels as needed.
+
+loki.write "xscaler" {
+  endpoint {
+    url = "https://euw1-01.l.xscalerlabs.com/api/v1/logs/push"
+
+    http_client_config {
+      authorization {
+        type        = "Bearer"
+        credentials = env("XSCALER_TOKEN")
+      }
+    }
+
+    headers = { "X-Scope-OrgID" = env("XSCALER_TENANT_ID") }
+  }
+}
+```
+

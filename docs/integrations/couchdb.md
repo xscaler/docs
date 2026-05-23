@@ -102,6 +102,41 @@ service:
 
 ---
 
+## Logs
+
+Collect CouchDB server and access logs. Add the following to your Alloy config:
+
+```river
+local.file_match "couchdb_logs" {
+  path_targets = [{
+    __address__ = "localhost",
+    __path__    = "/var/log/couchdb/*.log",
+    instance    = constants.hostname,
+    job         = "integrations/couchdb",
+  }]
+}
+
+loki.source.file "couchdb_logs" {
+  targets    = local.file_match.couchdb_logs.targets
+  forward_to = [loki.write.xscaler.receiver]
+}
+
+loki.write "xscaler" {
+  endpoint {
+    url = "https://euw1-01.l.xscalerlabs.com/api/v1/logs/push"
+
+    http_client_config {
+      authorization {
+        type        = "Bearer"
+        credentials = env("XSCALER_TOKEN")
+      }
+    }
+
+    headers = { "X-Scope-OrgID" = env("XSCALER_TENANT_ID") }
+  }
+}
+```
+
 ## Key metrics
 
 | Metric | Description |

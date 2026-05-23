@@ -108,6 +108,10 @@ otelcol.exporter.otlphttp "xscaler" {
 
 ---
 
+## Logs
+
+Catchpoint test results — available via the Catchpoint REST API. Forward to xScaler using an OTel Collector.
+
 ## Key metrics
 
 | Metric | Description |

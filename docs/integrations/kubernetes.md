@@ -173,6 +173,62 @@ service:
 
 ---
 
+## Logs
+
+Collect all container stdout/stderr across the cluster, enriched with pod, namespace, and node labels. Add the following to your Alloy config (run on each node or deploy as a DaemonSet):
+
+```river
+discovery.kubernetes "kubernetes_pods" {
+  role = "pod"
+}
+
+discovery.relabel "kubernetes_logs" {
+  targets = discovery.kubernetes.kubernetes_pods.targets
+  rule {
+    source_labels = ["__meta_kubernetes_namespace"]
+    target_label  = "namespace"
+  }
+  rule {
+    source_labels = ["__meta_kubernetes_pod_name"]
+    target_label  = "pod"
+  }
+  rule {
+    source_labels = ["__meta_kubernetes_pod_container_name"]
+    target_label  = "container"
+  }
+  rule {
+    replacement  = "integrations/kubernetes"
+    target_label = "job"
+  }
+  rule {
+    source_labels = ["__meta_kubernetes_pod_uid", "__meta_kubernetes_pod_container_name"]
+    separator     = "/"
+    target_label  = "__path__"
+    replacement   = "/var/log/pods/*$1/*.log"
+  }
+}
+
+loki.source.file "kubernetes_logs" {
+  targets    = discovery.relabel.kubernetes_logs.output
+  forward_to = [loki.write.xscaler.receiver]
+}
+
+loki.write "xscaler" {
+  endpoint {
+    url = "https://euw1-01.l.xscalerlabs.com/api/v1/logs/push"
+
+    http_client_config {
+      authorization {
+        type        = "Bearer"
+        credentials = env("XSCALER_TOKEN")
+      }
+    }
+
+    headers = { "X-Scope-OrgID" = env("XSCALER_TENANT_ID") }
+  }
+}
+```
+
 ## Key metrics
 
 | Metric | Description |

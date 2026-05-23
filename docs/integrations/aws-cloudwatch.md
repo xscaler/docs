@@ -166,6 +166,10 @@ Attach the IAM policy to the EC2 instance profile or ECS task role. The collecto
 
 ---
 
+## Logs
+
+CloudWatch Logs — stream log groups to xScaler using the CloudWatch Logs subscription filter or Kinesis Firehose with an OTel Collector forwarder.
+
 ## Key metrics
 
 | AWS Service | Metric | Description |

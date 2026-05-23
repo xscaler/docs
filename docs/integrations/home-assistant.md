@@ -120,6 +120,41 @@ service:
 
 ---
 
+## Logs
+
+Collect Home Assistant log. Add the following to your Alloy config:
+
+```river
+local.file_match "home_assistant_logs" {
+  path_targets = [{
+    __address__ = "localhost",
+    __path__    = "/config/home-assistant.log",
+    instance    = constants.hostname,
+    job         = "integrations/home_assistant",
+  }]
+}
+
+loki.source.file "home_assistant_logs" {
+  targets    = local.file_match.home_assistant_logs.targets
+  forward_to = [loki.write.xscaler.receiver]
+}
+
+loki.write "xscaler" {
+  endpoint {
+    url = "https://euw1-01.l.xscalerlabs.com/api/v1/logs/push"
+
+    http_client_config {
+      authorization {
+        type        = "Bearer"
+        credentials = env("XSCALER_TOKEN")
+      }
+    }
+
+    headers = { "X-Scope-OrgID" = env("XSCALER_TENANT_ID") }
+  }
+}
+```
+
 ## Key metrics
 
 | Metric | Description |

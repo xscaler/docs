@@ -127,6 +127,58 @@ service:
 
 ---
 
+## Logs
+
+Collect syslog and journal entries from the Raspberry Pi OS. Add the following to your Alloy config:
+
+```river
+loki.source.journal "raspberry_pi_journal" {
+  forward_to    = [loki.write.xscaler.receiver]
+  relabel_rules = loki.relabel.raspberry_pi_journal.rules
+  labels = {
+    job      = "integrations/raspberry_pi",
+    instance = constants.hostname,
+  }
+}
+
+loki.relabel "raspberry_pi_journal" {
+  forward_to = []
+  rule {
+    source_labels = ["__journal__systemd_unit"]
+    target_label  = "unit"
+  }
+}
+
+local.file_match "raspberry_pi_files" {
+  path_targets = [{
+    __address__ = "localhost",
+    __path__    = "/var/log/{syslog,messages,*.log}",
+    instance    = constants.hostname,
+    job         = "integrations/raspberry_pi",
+  }]
+}
+
+loki.source.file "raspberry_pi_files" {
+  targets    = local.file_match.raspberry_pi_files.targets
+  forward_to = [loki.write.xscaler.receiver]
+}
+
+loki.write "xscaler" {
+  endpoint {
+    url = "https://euw1-01.l.xscalerlabs.com/api/v1/logs/push"
+
+    http_client_config {
+      authorization {
+        type        = "Bearer"
+        credentials = env("XSCALER_TOKEN")
+      }
+    }
+
+    headers = { "X-Scope-OrgID" = env("XSCALER_TENANT_ID") }
+  }
+}
+```
+
 ## Key metrics
 
 | Metric | Description |

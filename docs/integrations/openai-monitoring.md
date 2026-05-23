@@ -117,6 +117,10 @@ token_counter = meter.create_counter("openai.tokens.total")
 
 ---
 
+## Logs
+
+OpenAI API usage — there are no local log files to collect. Use the API-based metrics exporter to monitor request counts, latency, and token usage.
+
 ## Key metrics
 
 | Metric | Description |

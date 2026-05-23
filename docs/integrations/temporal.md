@@ -115,6 +115,55 @@ service:
 
 ---
 
+## Logs
+
+Collect Temporal server (frontend, history, matching, worker) container logs. Add the following to your Alloy config:
+
+```river
+discovery.docker "temporal_containers" {
+  host = "unix:///var/run/docker.sock"
+  filter {
+    name   = "name"
+    values = ["temporal"]
+  }
+}
+
+discovery.relabel "temporal_logs" {
+  targets = discovery.docker.temporal_containers.targets
+  rule {
+    source_labels = ["__meta_docker_container_name"]
+    regex         = "/(.*)"
+    target_label  = "container"
+  }
+  rule {
+    replacement  = "integrations/temporal"
+    target_label = "job"
+  }
+}
+
+loki.source.docker "temporal_logs" {
+  host       = "unix:///var/run/docker.sock"
+  targets    = discovery.relabel.temporal_logs.output
+  forward_to = [loki.write.xscaler.receiver]
+  labels     = { instance = constants.hostname }
+}
+
+loki.write "xscaler" {
+  endpoint {
+    url = "https://euw1-01.l.xscalerlabs.com/api/v1/logs/push"
+
+    http_client_config {
+      authorization {
+        type        = "Bearer"
+        credentials = env("XSCALER_TOKEN")
+      }
+    }
+
+    headers = { "X-Scope-OrgID" = env("XSCALER_TENANT_ID") }
+  }
+}
+```
+
 ## Key metrics
 
 | Metric | Description |

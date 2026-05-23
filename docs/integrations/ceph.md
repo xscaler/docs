@@ -107,6 +107,41 @@ service:
 
 ---
 
+## Logs
+
+Collect Ceph cluster log including OSD, MON, and MDS events. Add the following to your Alloy config:
+
+```river
+local.file_match "ceph_logs" {
+  path_targets = [{
+    __address__ = "localhost",
+    __path__    = "/var/log/ceph/ceph.log",
+    instance    = constants.hostname,
+    job         = "integrations/ceph",
+  }]
+}
+
+loki.source.file "ceph_logs" {
+  targets    = local.file_match.ceph_logs.targets
+  forward_to = [loki.write.xscaler.receiver]
+}
+
+loki.write "xscaler" {
+  endpoint {
+    url = "https://euw1-01.l.xscalerlabs.com/api/v1/logs/push"
+
+    http_client_config {
+      authorization {
+        type        = "Bearer"
+        credentials = env("XSCALER_TOKEN")
+      }
+    }
+
+    headers = { "X-Scope-OrgID" = env("XSCALER_TENANT_ID") }
+  }
+}
+```
+
 ## Key metrics
 
 | Metric | Description |

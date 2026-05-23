@@ -11,9 +11,9 @@ xScaler is deployed in geographically distributed regions. All traffic is **TLS-
 
 ## Available regions
 
-| Region ID | Location | Base URL |
-|-----------|----------|----------|
-| `euw1-01` | Europe West 1 | `euw1-01.m.xscalerlabs.com` |
+| Region ID | Location | Metrics base URL | Logs base URL |
+|-----------|----------|-----------------|---------------|
+| `euw1-01` | Europe West 1 | `euw1-01.m.xscalerlabs.com` | `euw1-01.l.xscalerlabs.com` |
 
 :::info More regions coming soon
 Additional regions are in the roadmap. Contact [support](https://xscalerlabs.com/support) if you need a specific region.
@@ -25,7 +25,7 @@ Additional regions are in the roadmap. Contact [support](https://xscalerlabs.com
 
 Replace `<region>` with your region ID (e.g. `euw1-01`) in every URL below.
 
-### Ingest
+### Metrics ingest
 
 | Protocol | Endpoint |
 |----------|----------|
@@ -33,7 +33,14 @@ Replace `<region>` with your region ID (e.g. `euw1-01`) in every URL below.
 | OTLP/HTTP | `POST https://<region>.m.xscalerlabs.com/otlp/v1/metrics` |
 | OTLP/gRPC | `<region>.m.xscalerlabs.com:443` (TLS, headers as gRPC metadata) |
 
-### Query (Prometheus HTTP API)
+### Logs ingest
+
+| Protocol | Endpoint |
+|----------|----------|
+| Push (native) | `POST https://<region>.l.xscalerlabs.com/api/v1/logs/push` |
+| OTLP/HTTP | `POST https://<region>.l.xscalerlabs.com/otlp/v1/logs` |
+
+### Metrics query (Prometheus HTTP API)
 
 | Operation | Endpoint |
 |-----------|----------|
@@ -45,15 +52,25 @@ Replace `<region>` with your region ID (e.g. `euw1-01`) in every URL below.
 | Active alerts | `GET https://<region>.m.xscalerlabs.com/api/v1/alerts` |
 | Rules list | `GET https://<region>.m.xscalerlabs.com/api/v1/rules` |
 
-### Grafana data source URL
+### Logs query (LogQL HTTP API)
 
-When configuring a Prometheus data source in Grafana, set the **Prometheus server URL** to:
+| Operation | Endpoint |
+|-----------|----------|
+| Instant query | `GET https://<region>.l.xscalerlabs.com/api/v1/logs/query` |
+| Range query | `GET https://<region>.l.xscalerlabs.com/api/v1/logs/query_range` |
+| Label names | `GET https://<region>.l.xscalerlabs.com/api/v1/logs/labels` |
+| Label values | `GET https://<region>.l.xscalerlabs.com/api/v1/logs/label/<name>/values` |
+| Series | `GET https://<region>.l.xscalerlabs.com/api/v1/logs/series` |
+| Live tail | `wss://<region>.l.xscalerlabs.com/api/v1/logs/tail` (WebSocket) |
 
-```
-https://<region>.m.xscalerlabs.com
-```
+### Grafana data source URLs
 
-Grafana appends `/api/v1/query` automatically — use the host root only.
+When configuring data sources in Grafana:
+
+| Data source type | URL |
+|-----------------|-----|
+| Prometheus | `https://<region>.m.xscalerlabs.com` |
+| Logs (LogQL-compatible) | `https://<region>.l.xscalerlabs.com` |
 
 ---
 
@@ -75,6 +92,8 @@ Using region `euw1-01`:
 | Placeholder | Substituted value |
 |-------------|------------------|
 | `<region>.m.xscalerlabs.com` | `euw1-01.m.xscalerlabs.com` |
-| Ingest URL | `https://euw1-01.m.xscalerlabs.com/api/v1/push` |
-| Query base URL | `https://euw1-01.m.xscalerlabs.com` |
-| Grafana data source | `https://euw1-01.m.xscalerlabs.com` |
+| `<region>.l.xscalerlabs.com` | `euw1-01.l.xscalerlabs.com` |
+| Metrics ingest URL | `https://euw1-01.m.xscalerlabs.com/api/v1/push` |
+| Logs ingest URL | `https://euw1-01.l.xscalerlabs.com/api/v1/logs/push` |
+| Metrics query base URL | `https://euw1-01.m.xscalerlabs.com` |
+| Logs query base URL | `https://euw1-01.l.xscalerlabs.com` |

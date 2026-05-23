@@ -102,6 +102,10 @@ service:
 
 ---
 
+## Logs
+
+Cloudflare Logpush — configure a Logpush job to deliver logs to an HTTPS endpoint backed by an OTel Collector.
+
 ## Key metrics
 
 | Metric | Description |

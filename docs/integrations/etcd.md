@@ -88,3 +88,42 @@ service:
       receivers: [prometheus]
       exporters: [prometheusremotewrite]
 ```
+
+## Logs
+
+Collect etcd server log via systemd journal. Add the following to your Alloy config:
+
+```river
+loki.source.journal "etcd_journal" {
+  forward_to    = [loki.write.xscaler.receiver]
+  relabel_rules = loki.relabel.etcd_journal.rules
+  labels = {
+    job      = "integrations/etcd",
+    instance = constants.hostname,
+  }
+}
+
+loki.relabel "etcd_journal" {
+  forward_to = []
+  rule {
+    source_labels = ["__journal__systemd_unit"]
+    target_label  = "unit"
+  }
+}
+
+loki.write "xscaler" {
+  endpoint {
+    url = "https://euw1-01.l.xscalerlabs.com/api/v1/logs/push"
+
+    http_client_config {
+      authorization {
+        type        = "Bearer"
+        credentials = env("XSCALER_TOKEN")
+      }
+    }
+
+    headers = { "X-Scope-OrgID" = env("XSCALER_TENANT_ID") }
+  }
+}
+```
+

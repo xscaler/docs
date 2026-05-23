@@ -2,6 +2,7 @@ import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
 
 const sidebars: SidebarsConfig = {
   mainSidebar: [
+    // ── Getting Started ──────────────────────────────────────────────────────
     {
       type: 'category',
       label: 'Getting Started',
@@ -13,6 +14,8 @@ const sidebars: SidebarsConfig = {
         'regions',
       ],
     },
+
+    // ── Portal ───────────────────────────────────────────────────────────────
     {
       type: 'category',
       label: 'Portal',
@@ -28,32 +31,78 @@ const sidebars: SidebarsConfig = {
         'portal/activity',
       ],
     },
+
+    // ── Metrics ──────────────────────────────────────────────────────────────
     {
       type: 'category',
-      label: 'Sending Metrics',
+      label: 'Metrics',
       collapsed: false,
       items: [
-        'ingest/prometheus-remote-write',
-        'ingest/grafana-alloy',
-        'ingest/opentelemetry-collector',
-        'ingest/otel-sdk-python',
-        'ingest/otel-sdk-nodejs',
-        'ingest/otel-sdk-go',
+        {
+          type: 'category',
+          label: 'Sending Metrics',
+          collapsed: false,
+          items: [
+            'ingest/prometheus-remote-write',
+            'ingest/grafana-alloy',
+            'ingest/opentelemetry-collector',
+            'ingest/otel-sdk-python',
+            'ingest/otel-sdk-nodejs',
+            'ingest/otel-sdk-go',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Querying',
+          collapsed: false,
+          items: [
+            'query/overview',
+            'query/instant-query',
+            'query/range-query',
+            'query/label-exploration',
+          ],
+        },
+        'grafana-metrics',
       ],
     },
+
+    // ── Logs ─────────────────────────────────────────────────────────────────
     {
       type: 'category',
-      label: 'Querying',
+      label: 'Logs',
       collapsed: false,
       items: [
-        'query/overview',
-        'query/instant-query',
-        'query/range-query',
-        'query/label-exploration',
+        {
+          type: 'category',
+          label: 'Sending Logs',
+          collapsed: false,
+          items: [
+            'logs/grafana-alloy',
+            'logs/opentelemetry-collector',
+            'logs/otel-sdk-python',
+            'logs/otel-sdk-nodejs',
+            'logs/otel-sdk-go',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Querying',
+          collapsed: false,
+          items: [
+            'log-query/overview',
+            'log-query/instant-query',
+            'log-query/range-query',
+            'log-query/label-exploration',
+          ],
+        },
+        'grafana-logs',
       ],
     },
-    'grafana',
+
+    // ── Alerting ─────────────────────────────────────────────────────────────
     'rules-and-alerts',
+
+    // ── Integrations ─────────────────────────────────────────────────────────
     {
       type: 'category',
       label: 'Integrations',
@@ -243,6 +292,8 @@ const sidebars: SidebarsConfig = {
         },
       ],
     },
+
+    // ── Reference ─────────────────────────────────────────────────────────────
     {
       type: 'category',
       label: 'Reference',

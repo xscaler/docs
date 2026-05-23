@@ -98,6 +98,44 @@ service:
 
 ---
 
+## Logs
+
+Collect Grafana Agent service log via systemd journal. Add the following to your Alloy config:
+
+```river
+loki.source.journal "grafana_agent_journal" {
+  forward_to    = [loki.write.xscaler.receiver]
+  relabel_rules = loki.relabel.grafana_agent_journal.rules
+  labels = {
+    job      = "integrations/grafana_agent",
+    instance = constants.hostname,
+  }
+}
+
+loki.relabel "grafana_agent_journal" {
+  forward_to = []
+  rule {
+    source_labels = ["__journal__systemd_unit"]
+    target_label  = "unit"
+  }
+}
+
+loki.write "xscaler" {
+  endpoint {
+    url = "https://euw1-01.l.xscalerlabs.com/api/v1/logs/push"
+
+    http_client_config {
+      authorization {
+        type        = "Bearer"
+        credentials = env("XSCALER_TOKEN")
+      }
+    }
+
+    headers = { "X-Scope-OrgID" = env("XSCALER_TENANT_ID") }
+  }
+}
+```
+
 ## Key metrics
 
 | Metric | Description |

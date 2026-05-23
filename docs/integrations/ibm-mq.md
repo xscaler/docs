@@ -107,6 +107,41 @@ service:
 
 ---
 
+## Logs
+
+Collect IBM MQ error logs and queue manager error logs. Add the following to your Alloy config:
+
+```river
+local.file_match "ibm_mq_logs" {
+  path_targets = [{
+    __address__ = "localhost",
+    __path__    = "/var/mqm/errors/*.log",
+    instance    = constants.hostname,
+    job         = "integrations/ibm_mq",
+  }]
+}
+
+loki.source.file "ibm_mq_logs" {
+  targets    = local.file_match.ibm_mq_logs.targets
+  forward_to = [loki.write.xscaler.receiver]
+}
+
+loki.write "xscaler" {
+  endpoint {
+    url = "https://euw1-01.l.xscalerlabs.com/api/v1/logs/push"
+
+    http_client_config {
+      authorization {
+        type        = "Bearer"
+        credentials = env("XSCALER_TOKEN")
+      }
+    }
+
+    headers = { "X-Scope-OrgID" = env("XSCALER_TENANT_ID") }
+  }
+}
+```
+
 ## Key metrics
 
 | Metric | Description |

@@ -105,6 +105,10 @@ service:
 
 ---
 
+## Logs
+
+Confluent Cloud audit logs — export via the Confluent Audit Log API and forward to xScaler using an OTel Collector.
+
 ## Key metrics
 
 | Metric | Description |

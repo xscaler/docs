@@ -95,6 +95,55 @@ service:
 
 ---
 
+## Logs
+
+Collect Loki ingester, distributor, and query-frontend logs. Add the following to your Alloy config:
+
+```river
+discovery.docker "loki_containers" {
+  host = "unix:///var/run/docker.sock"
+  filter {
+    name   = "name"
+    values = ["loki"]
+  }
+}
+
+discovery.relabel "loki_logs" {
+  targets = discovery.docker.loki_containers.targets
+  rule {
+    source_labels = ["__meta_docker_container_name"]
+    regex         = "/(.*)"
+    target_label  = "container"
+  }
+  rule {
+    replacement  = "integrations/loki"
+    target_label = "job"
+  }
+}
+
+loki.source.docker "loki_logs" {
+  host       = "unix:///var/run/docker.sock"
+  targets    = discovery.relabel.loki_logs.output
+  forward_to = [loki.write.xscaler.receiver]
+  labels     = { instance = constants.hostname }
+}
+
+loki.write "xscaler" {
+  endpoint {
+    url = "https://euw1-01.l.xscalerlabs.com/api/v1/logs/push"
+
+    http_client_config {
+      authorization {
+        type        = "Bearer"
+        credentials = env("XSCALER_TOKEN")
+      }
+    }
+
+    headers = { "X-Scope-OrgID" = env("XSCALER_TENANT_ID") }
+  }
+}
+```
+
 ## Key metrics
 
 | Metric | Description |

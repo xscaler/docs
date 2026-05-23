@@ -114,6 +114,10 @@ service:
 
 ---
 
+## Logs
+
+Azure Monitor Logs — route diagnostic logs to an Event Hub and forward to xScaler using an OTel Collector with the `azureeventhub` receiver.
+
 ## Key metrics
 
 | Service | Metric | Description |

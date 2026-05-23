@@ -151,6 +151,62 @@ service:
 
 ---
 
+## Logs
+
+Collect Cilium agent and operator logs from Kubernetes pods. Add the following to your Alloy config (run on each node or deploy as a DaemonSet):
+
+```river
+discovery.kubernetes "cilium_pods" {
+  role = "pod"
+}
+
+discovery.relabel "cilium_logs" {
+  targets = discovery.kubernetes.cilium_pods.targets
+  rule {
+    source_labels = ["__meta_kubernetes_namespace"]
+    target_label  = "namespace"
+  }
+  rule {
+    source_labels = ["__meta_kubernetes_pod_name"]
+    target_label  = "pod"
+  }
+  rule {
+    source_labels = ["__meta_kubernetes_pod_container_name"]
+    target_label  = "container"
+  }
+  rule {
+    replacement  = "integrations/cilium"
+    target_label = "job"
+  }
+  rule {
+    source_labels = ["__meta_kubernetes_pod_uid", "__meta_kubernetes_pod_container_name"]
+    separator     = "/"
+    target_label  = "__path__"
+    replacement   = "/var/log/pods/*$1/*.log"
+  }
+}
+
+loki.source.file "cilium_logs" {
+  targets    = discovery.relabel.cilium_logs.output
+  forward_to = [loki.write.xscaler.receiver]
+}
+
+loki.write "xscaler" {
+  endpoint {
+    url = "https://euw1-01.l.xscalerlabs.com/api/v1/logs/push"
+
+    http_client_config {
+      authorization {
+        type        = "Bearer"
+        credentials = env("XSCALER_TOKEN")
+      }
+    }
+
+    headers = { "X-Scope-OrgID" = env("XSCALER_TENANT_ID") }
+  }
+}
+```
+
 ## Key metrics
 
 | Metric | Description |

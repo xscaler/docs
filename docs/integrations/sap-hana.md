@@ -110,6 +110,41 @@ service:
 
 ---
 
+## Logs
+
+Collect SAP HANA alert trace and error trace files. Add the following to your Alloy config:
+
+```river
+local.file_match "sap_hana_logs" {
+  path_targets = [{
+    __address__ = "localhost",
+    __path__    = "/usr/sap/*/HDB*/trace/alert_*.trc",
+    instance    = constants.hostname,
+    job         = "integrations/sap_hana",
+  }]
+}
+
+loki.source.file "sap_hana_logs" {
+  targets    = local.file_match.sap_hana_logs.targets
+  forward_to = [loki.write.xscaler.receiver]
+}
+
+loki.write "xscaler" {
+  endpoint {
+    url = "https://euw1-01.l.xscalerlabs.com/api/v1/logs/push"
+
+    http_client_config {
+      authorization {
+        type        = "Bearer"
+        credentials = env("XSCALER_TOKEN")
+      }
+    }
+
+    headers = { "X-Scope-OrgID" = env("XSCALER_TENANT_ID") }
+  }
+}
+```
+
 ## Key metrics
 
 | Metric | Description |

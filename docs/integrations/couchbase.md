@@ -102,6 +102,41 @@ service:
 
 ---
 
+## Logs
+
+Collect Couchbase server logs including babysitter, error, and info logs. Add the following to your Alloy config:
+
+```river
+local.file_match "couchbase_logs" {
+  path_targets = [{
+    __address__ = "localhost",
+    __path__    = "/opt/couchbase/var/lib/couchbase/logs/*.log",
+    instance    = constants.hostname,
+    job         = "integrations/couchbase",
+  }]
+}
+
+loki.source.file "couchbase_logs" {
+  targets    = local.file_match.couchbase_logs.targets
+  forward_to = [loki.write.xscaler.receiver]
+}
+
+loki.write "xscaler" {
+  endpoint {
+    url = "https://euw1-01.l.xscalerlabs.com/api/v1/logs/push"
+
+    http_client_config {
+      authorization {
+        type        = "Bearer"
+        credentials = env("XSCALER_TOKEN")
+      }
+    }
+
+    headers = { "X-Scope-OrgID" = env("XSCALER_TENANT_ID") }
+  }
+}
+```
+
 ## Key metrics
 
 | Metric | Description |

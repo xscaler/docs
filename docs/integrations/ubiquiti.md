@@ -129,6 +129,39 @@ service:
 
 ---
 
+## Logs
+
+Collect syslog messages from UniFi devices. Configure your device to send syslog to UDP 514 on the Alloy host, then add the following to your Alloy config:
+
+```river
+loki.source.syslog "ubiquiti_syslog" {
+  listener {
+    address  = "0.0.0.0:514"
+    protocol = "udp"
+    labels = {
+      job      = "integrations/ubiquiti",
+      instance = constants.hostname,
+    }
+  }
+  forward_to = [loki.write.xscaler.receiver]
+}
+
+loki.write "xscaler" {
+  endpoint {
+    url = "https://euw1-01.l.xscalerlabs.com/api/v1/logs/push"
+
+    http_client_config {
+      authorization {
+        type        = "Bearer"
+        credentials = env("XSCALER_TOKEN")
+      }
+    }
+
+    headers = { "X-Scope-OrgID" = env("XSCALER_TENANT_ID") }
+  }
+}
+```
+
 ## Key metrics
 
 | Metric | Description |

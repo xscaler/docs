@@ -178,3 +178,39 @@ service:
 | `Gauge` | Values that go up and down: queue depth, memory, active connections |
 | `Histogram` | Measured distributions: request duration, payload size |
 | `Summary` | Quantiles over a sliding window: p50, p95, p99 latency |
+
+## Logs
+
+Collect application log — tail the log file for the service exposing the `/metrics` endpoint. Add the following to your Alloy config, adjusting `__path__` to match your application's log file location:
+
+```river
+local.file_match "metrics_endpoint_logs" {
+  path_targets = [{
+    __address__ = "localhost",
+    __path__    = "/var/log/metrics_endpoint/app.log",
+    instance    = constants.hostname,
+    job         = "integrations/metrics_endpoint",
+  }]
+}
+
+loki.source.file "metrics_endpoint_logs" {
+  targets    = local.file_match.metrics_endpoint_logs.targets
+  forward_to = [loki.write.xscaler.receiver]
+}
+
+loki.write "xscaler" {
+  endpoint {
+    url = "https://euw1-01.l.xscalerlabs.com/api/v1/logs/push"
+
+    http_client_config {
+      authorization {
+        type        = "Bearer"
+        credentials = env("XSCALER_TOKEN")
+      }
+    }
+
+    headers = { "X-Scope-OrgID" = env("XSCALER_TENANT_ID") }
+  }
+}
+```
+
