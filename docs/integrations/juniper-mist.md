@@ -142,13 +142,7 @@ Your webhook receiver is now listening at `http://<your-host>:4320/mist/webhook`
 | **Secret** | A strong random string — used to sign payloads (see [Signature verification](#signature-verification)) |
 | **Verify Certificate** | Enabled (use HTTPS in production) |
 
-4. Under **Custom Headers**, add:
-
-| Header | Value |
-|--------|-------|
-| `X-Pipeline-Source` | `mist-ai` |
-
-5. Under **Topics**, select the topics for the signals you want:
+4. Under **Topics**, select the topics for the signals you want:
 
 **Metrics:**
 - `minis-application`
@@ -187,9 +181,6 @@ curl -X POST "https://api.mist.com/api/v1/orgs/<org-id>/webhooks" \
     "secret": "<webhook-secret>",
     "verify_cert": true,
     "enabled": true,
-    "headers": {
-      "X-Pipeline-Source": "mist-ai"
-    },
     "topics": [
       "minis-application",
       "minis-network",
