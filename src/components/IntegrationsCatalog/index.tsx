@@ -135,6 +135,7 @@ const integrations: Integration[] = [
   { name: 'CoreDNS', category: 'Networking', grafanaSlug: 'integration-coredns', color: '#2B8FBF', internalSlug: 'coredns' },
   { name: 'Cilium Enterprise', category: 'Networking', grafanaSlug: 'integration-cilium-enterprise', siIcon: 'cilium', color: '#F8C517', internalSlug: 'cilium' },
   { name: 'Ubiquiti EdgeRouter', category: 'Networking', grafanaSlug: 'integration-ubiquiti-edgerouter', siIcon: 'ubiquiti', color: '#0559C9', internalSlug: 'ubiquiti' },
+  { name: 'Juniper MIST AI', category: 'Networking', grafanaSlug: 'integration-juniper-mist', color: '#0F9E4E', internalSlug: 'juniper-mist' },
   { name: 'Dnsmasq', category: 'Networking', grafanaSlug: 'integration-dnsmasq', color: '#48A546', internalSlug: 'dnsmasq' },
   { name: 'SNMP', category: 'Networking', grafanaSlug: 'integration-snmp', color: '#1BA0D7', internalSlug: 'snmp' },
 
