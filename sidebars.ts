@@ -238,6 +238,7 @@ const sidebars: SidebarsConfig = {
             'integrations/coredns',
             'integrations/cilium',
             'integrations/ubiquiti',
+            'integrations/juniper-mist',
             'integrations/dnsmasq',
             'integrations/snmp',
           ],
