@@ -20,7 +20,7 @@ Use suspension to:
 
 **From the tenant list:**
 
-1. Go to **Tenants** in the sidebar.
+1. Go to **Tenants** in the sidebar (under **Organization**).
 2. Find the tenant you want to suspend.
 3. Click the **···** (more) menu on the right side of the tenant row.
 4. The action panel opens on the right. Click **Suspend tenant**.
@@ -30,7 +30,7 @@ The tenant status changes to **Suspended** (amber badge). Any `remote_write` req
 
 **From the tenant detail page:**
 
-1. Go to **Tenants** → click the tenant name.
+1. Go to **Organization** → **Tenants** → click the tenant name.
 2. Click the **Suspend tenant** button in the top-right corner (amber).
 3. Confirm the action.
 
@@ -40,14 +40,14 @@ The tenant status changes to **Suspended** (amber badge). Any `remote_write` req
 
 **From the tenant list:**
 
-1. Go to **Tenants** in the sidebar.
+1. Go to **Tenants** in the sidebar (under **Organization**).
 2. Find the suspended tenant (filter by **Suspended** status if needed).
 3. Click the **···** (more) menu on the right side of the row.
 4. In the action panel, click **Resume tenant** (green button).
 
 **From the tenant detail page:**
 
-1. Go to **Tenants** → click the tenant name.
+1. Go to **Organization** → **Tenants** → click the tenant name.
 2. Click **Resume tenant** in the top-right corner (green).
 
 The tenant status returns to **Active** and ingestion resumes immediately.

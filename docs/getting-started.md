@@ -11,13 +11,15 @@ Get telemetry flowing into xScaler in a few steps. xScaler accepts **metrics, lo
 
 ## Prerequisites
 
-Before you begin, locate the following in your **xScaler portal → Settings → API Tokens**:
+Before you begin, locate the following in your **xScaler portal**:
 
-| Value | Description |
-|-------|-------------|
-| **Region** | e.g. `euw1-01` |
-| **Tenant ID** | Your `X-Scope-OrgID` value |
-| **API token** | Your `Authorization: Bearer` token |
+| Value | Where to find it | Description |
+|-------|-----------------|-------------|
+| **Region** | Shown in write endpoint URLs | e.g. `euw1-01` |
+| **Tenant ID** | Organization → Tenants → click tenant | Your `X-Scope-OrgID` value |
+| **API token** | Organization → Tenants → click tenant → API keys | Your `Authorization: Bearer` token |
+
+See [Manage API Tokens](/portal/api-tokens) for step-by-step instructions on finding or creating a token.
 
 :::warning Both headers are required on every request
 Every request to xScaler — reads and writes, all signals — must include:

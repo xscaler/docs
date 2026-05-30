@@ -55,6 +55,6 @@ Triggered when a tenant sends data at a scrape interval shorter than the minimum
 
 ## In-portal notifications
 
-In addition to email, active notifications appear as a banner in the portal header. The **Overview** page shows active alert count and the most recent notification timestamp.
+In addition to email, active notifications appear as a banner in the portal sidebar. The bell icon shows the active alert count, and clicking it opens the full notification list.
 
 To see the full list of events that triggered or resolved a notification, check the [Activity log](/portal/activity) and filter by event type `notification.*`.

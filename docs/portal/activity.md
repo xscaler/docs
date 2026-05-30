@@ -13,7 +13,7 @@ The Activity log is an audit trail of every action taken in your organisation â€
 
 ## View the activity log
 
-1. Go to **Activity** in the sidebar.
+1. Go to **Activity** in the sidebar (under **Insights**).
 2. All recent events are listed in reverse chronological order.
 3. Click any row to open a detail panel with the full event record.
 

@@ -124,6 +124,14 @@ const sdk = new NodeSDK({
 
 ---
 
+## Verify in the portal
+
+Once traces are flowing, open the **Traces** section of the [xScaler portal](https://portal.xscalerlabs.com) and click the **Overview** tab. You should see live values for **Ingest rate** and **Spans/s** within a minute of starting your app.
+
+To inspect a specific tenant, click the **Tenants** tab, select the tenant, then open the **Monitoring** tab for per-tenant ingest rate charts, bytes ingested, and discard reasons.
+
+---
+
 ## Troubleshooting
 
 **Traces not arriving**

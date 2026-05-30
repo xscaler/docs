@@ -44,7 +44,7 @@ If you are on a trial, you can end the trial early and start paying by clicking 
 5. The downgrade takes effect at the end of your current billing period.
 
 :::warning Check your series count before downgrading
-If your current active series count exceeds the limit on the new plan, ingestion will be throttled after the downgrade takes effect. Check your current usage on the [Overview](/portal/tenant-usage) page first.
+If your current active series count exceeds the limit on the new plan, ingestion will be throttled after the downgrade takes effect. Check your current usage on the [Metrics → Overview](/portal/tenant-usage) tab first.
 :::
 
 ---

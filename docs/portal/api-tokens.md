@@ -13,7 +13,7 @@ API tokens (access keys) authenticate `remote_write` and query requests for a sp
 
 ## View API tokens for a tenant
 
-1. Go to **Tenants** in the sidebar.
+1. Go to **Tenants** in the sidebar (under **Organization**).
 2. Click the tenant name.
 3. Scroll to the **API keys** section at the bottom of the detail page.
 
@@ -23,7 +23,7 @@ The table shows each key's name, status, last used time, and creation date.
 
 ## Create a new API token
 
-1. Open the tenant detail page (Tenants → click tenant name).
+1. Open the tenant detail page (Organization → Tenants → click tenant name).
 2. In the **API keys** section, click **New key**.
 3. Enter a **name** for the key (e.g. `prometheus-prod`, `alloy-staging`).
 4. Click **Create**.
@@ -39,7 +39,7 @@ The full token value is displayed only at creation time. Store it securely (e.g.
 
 Rotating a key generates a new token and invalidates the old one. Do this if a token may have been exposed, or as part of a regular credential rotation policy.
 
-1. Open the tenant detail page (Tenants → click tenant name).
+1. Open the tenant detail page (Organization → Tenants → click tenant name).
 2. In the **API keys** table, find the key to rotate.
 3. Click the **rotate** icon (circular arrow) on that row.
 4. Copy the new token — it is only shown once.
@@ -55,7 +55,7 @@ Update your metrics collector config with the new token **before** closing the r
 
 Revoking permanently deletes a token. Requests using that token will receive HTTP 401 immediately.
 
-1. Open the tenant detail page (Tenants → click tenant name).
+1. Open the tenant detail page (Organization → Tenants → click tenant name).
 2. In the **API keys** table, find the key to revoke.
 3. Click the **revoke** icon (trash / X) on that row.
 4. Confirm the action.

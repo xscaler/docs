@@ -114,6 +114,38 @@ This adds a **Metrics** button on spans that opens the related RED metrics panel
 
 ---
 
+## Monitor traces in the portal
+
+The xScaler portal has a dedicated **Traces** section (marked **Beta**) for monitoring ingest health without leaving the portal.
+
+### Traces → Overview tab
+
+Go to **Traces** in the sidebar and open the **Overview** tab to see workspace-wide KPIs:
+
+| KPI | Description |
+|-----|-------------|
+| **GB ingested · period** | Total bytes ingested in the current billing month |
+| **Ingest rate** | Live bytes/s across all tenants |
+| **Spans/s** | Spans being received per second |
+| **DPT** | Spans per minute (data points for traces) |
+
+The **Ingest and query load** chart lets you visualise throughput over time (1h – 90d). The right panel shows your **Monthly ingest quota** ring gauge and a **Throttle gauge** for the highest-utilisation tenant.
+
+The bottom row shows **Top tenants by ingest**, **Discards by reason**, and **Query health**.
+
+### Traces → Tenants tab
+
+Click the **Tenants** tab to see per-tenant ingest rates and bytes ingested. Click a tenant name to open its detail page.
+
+### Traces tenant detail page
+
+The tenant detail page has two tabs:
+
+- **Setup** — write endpoint (OTLP/HTTP and gRPC), Tenant ID, and API keys.
+- **Monitoring** — live KPI cards (ingest rate, bytes ingested, retention), monthly ingest quota card, time-range charts for ingest rate, span rate, bytes ingested, discarded spans, and query traffic.
+
+---
+
 ## Troubleshooting
 
 **"Bad Gateway" on Save & Test**
@@ -125,4 +157,4 @@ This adds a **Metrics** button on spans that opens the related RED metrics panel
 - Check the time range picker — it must cover the period when traces were sent.
 
 **"Forbidden" error**
-- Your token may be `write`-scoped. Generate a `read` or `read+write` token from the xScaler portal.
+- Your token may be `write`-scoped. Generate a `read` or `read+write` token: go to **Organization → Tenants** in the portal, open the tenant, and create a new API key in the **API keys** section.

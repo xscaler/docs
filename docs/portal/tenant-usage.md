@@ -13,55 +13,96 @@ The portal shows real-time and historical usage metrics for every tenant. Use th
 
 ## Organisation-wide usage
 
-The **Overview** page (home) shows aggregate metrics across all tenants:
+Each signal section (**Metrics**, **Logs**, **Traces**) has an **Overview** tab that shows live aggregate metrics across all tenants. Use the **time range selector** (1h / 6h / 24h / 7d / 14d / 30d / 60d / 90d) to view trends over time.
+
+### Metrics Overview
 
 | Metric | What it tells you |
 |--------|------------------|
-| **Active series** | Total series being ingested across all tenants, with a per-tenant breakdown (pie chart) |
-| **Queries/s** | 5-minute rolling query rate |
-| **Avg latency** | Average query latency across the organisation |
-| **Error rate** | Ingestion failure rate |
-| **Scrape interval** | Organisation-wide aggregate scrape interval |
+| **Active series** | Total series being ingested across all tenants |
+| **DPM** | Datapoints per minute, workspace total |
+| **Query QPS** | 5-minute rolling query request rate |
+| **Scrape interval** | Weighted-average scrape interval across all tenants |
 
-Use the **time range selector** (1h / 6h / 24h / 7d / 14d / 30d) to view trends over time.
+Toggle the chart view between **Series**, **DPM**, and **Req/s**.
 
-Toggle the chart view between **Series**, **DPM** (data points per minute), and **Req/s**.
+The right panel shows **Series capacity** (ring gauge of active series vs your plan limit) and a **Live throttle gauge** showing the highest-utilisation tenant relative to its per-tenant cap.
+
+The bottom row shows **Top tenants by active series**, **Discards by reason**, and **Query health**.
+
+### Logs Overview
+
+| Metric | What it tells you |
+|--------|------------------|
+| **GB ingested · period** | Total bytes ingested in the current billing month |
+| **Ingest rate** | Live ingest rate across all tenants (MB/s) |
+| **Lines/s** | Log lines per second, live |
+| **DPL** | Log bytes per minute (auto-scaled to KiB/MiB) |
+
+Toggle the chart view between the available throughput signals.
+
+The right panel shows **Monthly ingest quota** (ring gauge of GB used vs your plan cap) and a **Throttle gauge** showing the highest-utilisation tenant relative to the runtime rate limit.
+
+The bottom row shows **Top tenants**, **Discards by reason**, and **Query health**.
+
+### Traces Overview
+
+| Metric | What it tells you |
+|--------|------------------|
+| **GB ingested · period** | Total bytes ingested in the current billing month |
+| **Ingest rate** | Live ingest rate across all tenants (MB/s) |
+| **Spans/s** | Spans per second, live |
+| **DPT** | Spans per minute (k/M abbreviated) |
+
+Toggle the chart view between the available throughput signals.
+
+The right panel and bottom row follow the same layout as Logs (quota ring, throttle gauge, top tenants, discards, query health).
 
 ---
 
 ## Per-tenant usage
 
-1. Go to **Tenants** in the sidebar.
-2. Click a tenant name to open its detail page.
+Each signal section has its own tenant detail page. To open one:
 
-### Summary metrics
+1. Go to **Metrics**, **Logs**, or **Traces** in the sidebar.
+2. Click the **Tenants** tab.
+3. Click a tenant name to open its detail page.
 
-The top of the tenant detail page shows current values:
+Each detail page has two tabs: **Setup** (credentials and write endpoint) and **Monitoring** (live stats and usage charts).
+
+### Metrics tenant — summary stats
 
 | Metric | Description |
 |--------|-------------|
-| **Active series** | Number of unique time series currently being ingested |
+| **Active series** | Unique time series currently being ingested |
 | **Samples/s** | Current ingestion rate in samples per second |
 | **DPM** | Data points per minute |
 | **Scrape interval** | Detected scrape interval for this tenant |
-| **API keys** | Number of API keys associated with this tenant |
 | **Query QPS** | Query requests per second |
 | **Query avg latency** | Average query response time |
 | **Query error rate** | Percentage of queries returning errors |
 
-### Usage charts
+Charts show historical trends with a time range selector (1h / 6h / 24h / 7d). Toggle between **Series**, **DPM**, and **Req/s** for ingestion; toggle between **QPS**, **Error %**, and **Latency** for query health.
 
-Two charts show historical trends with time range tabs (1h / 6h / 24h / 7d):
+### Logs tenant — summary stats
 
-**Ingestion chart** — toggle between:
-- Series over time
-- Samples per second
-- DPM
+| Metric | Description |
+|--------|-------------|
+| **Ingest rate** | Live bytes per second across all log streams |
+| **Lines/s** | Log lines being ingested per second |
+| **GB ingested** | Total bytes ingested in the current billing period |
 
-**Query chart** — toggle between:
-- Requests per second
-- Error percentage
-- Average latency
+Charts show ingest rate and lines/s over time with a time range selector (1h / 6h / 24h / 7d).
+
+### Traces tenant — summary stats
+
+| Metric | Description |
+|--------|-------------|
+| **Ingest rate** | Live bytes per second |
+| **Spans/s** | Spans being ingested per second |
+| **GB ingested** | Total bytes ingested in the current billing period |
+
+Charts show bytes/s, spans/s, bytes ingested, discards, and query RPS with a time range selector (1h / 6h / 24h / 7d).
 
 ---
 
@@ -77,7 +118,7 @@ Your plan defines the maximum number of **active series** allowed across all ten
 
 To check how close you are to the limit:
 
-1. Go to **Overview** — the series usage chart shows total active series.
+1. Go to **Metrics → Overview** — the **Series capacity** ring gauge and progress bar show total active series vs your plan limit.
 2. A warning notification appears in the portal when you approach your limit (configurable in [Notification preferences](/portal/notifications)).
 3. If you exceed the limit, new series are throttled. The tenant's health badge changes to **Needs attention**.
 

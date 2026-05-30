@@ -13,7 +13,7 @@ A tenant is an isolated metrics namespace. Each tenant gets its own write endpoi
 
 ## Steps
 
-1. Go to **Tenants** in the sidebar.
+1. Go to **Tenants** in the sidebar (under **Organization**).
 
 2. Click **New tenant** in the top-right corner.
 
