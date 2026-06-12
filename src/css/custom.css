@@ -233,6 +233,11 @@ html {
 /* Category (section) labels */
 .menu__list-item-collapsible {
   border-radius: 0;
+  background: transparent !important;
+}
+
+.menu__list-item-collapsible:hover {
+  background: transparent !important;
 }
 
 .menu__list-item-collapsible .menu__link {
@@ -245,12 +250,22 @@ html {
   padding-top: 0;
   padding-bottom: 9px;
   margin-bottom: 0;
-  cursor: default;
-  pointer-events: none;
+  cursor: pointer;
+  flex: 1;
 }
 
 .menu__list-item-collapsible .menu__caret {
-  display: none;
+  color: var(--xs-text-faint);
+  border-radius: 6px;
+  background: transparent !important;
+}
+
+.menu__list-item-collapsible:hover .menu__caret {
+  color: var(--ifm-color-primary);
+}
+
+.menu__list-item-collapsible .menu__caret:hover {
+  background: var(--ifm-menu-color-background-hover) !important;
 }
 
 /* Sidebar links */
