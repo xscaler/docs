@@ -32,7 +32,19 @@ const config: Config = {
     },
   },
 
-  themes: ['@docusaurus/theme-mermaid'],
+  themes: [
+    '@docusaurus/theme-mermaid',
+    [
+      require.resolve('@easyops-cn/docusaurus-search-local'),
+      {
+        hashed: true,
+        language: ['en'],
+        indexBlog: false,
+        docsRouteBasePath: '/',
+        searchBarPosition: 'auto',
+      },
+    ],
+  ],
 
   presets: [
     [
@@ -71,12 +83,16 @@ const config: Config = {
           label: 'Documentation',
         },
         {
-          href: 'https://xscalerlabs.com',
-          label: 'Dashboard',
+          type: 'search',
+          position: 'left',
+        },
+        {
+          href: 'https://portal.xscalerlabs.com',
+          label: 'Portal',
           position: 'right',
         },
         {
-          href: 'https://xscalerlabs.com/support',
+          href: 'https://portal.xscalerlabs.com/support',
           label: 'Support',
           position: 'right',
         },
@@ -105,8 +121,8 @@ const config: Config = {
         {
           title: 'Links',
           items: [
-            { label: 'Dashboard', href: 'https://xscalerlabs.com' },
-            { label: 'Support', href: 'https://xscalerlabs.com/support' },
+            { label: 'Portal', href: 'https://portal.xscalerlabs.com' },
+            { label: 'Support', href: 'https://portal.xscalerlabs.com/support' },
           ],
         },
         {

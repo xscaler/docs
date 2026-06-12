@@ -27,6 +27,7 @@ Each signal has its own page with two tabs — **Overview** (live dashboard) and
 | **Logs** *(Beta)* | Logs Overview + Tenants — ingest rate, GB ingested, discards, per-tenant usage |
 | **Traces** *(Beta)* | Traces Overview + Tenants — span ingest rate, GB ingested, discards, per-tenant usage |
 | **Grafana** | Access your managed Grafana instance |
+| **Fleet Management** | Enroll OpenTelemetry agents, view fleet health, manage config templates, assignments, and secrets |
 
 ### Insights *(admins only)*
 

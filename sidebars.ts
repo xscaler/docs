@@ -32,6 +32,20 @@ const sidebars: SidebarsConfig = {
       ],
     },
 
+    // ── Fleet Management ────────────────────────────────────────────────────
+    {
+      type: 'category',
+      label: 'Fleet Management',
+      collapsed: false,
+      items: [
+        'fleet-management/fleet-management',
+        'fleet-management/enroll-agents',
+        'fleet-management/configure-agents',
+        'fleet-management/secrets',
+        'fleet-management/fleet-troubleshooting',
+      ],
+    },
+
     // ── Metrics ──────────────────────────────────────────────────────────────
     {
       type: 'category',

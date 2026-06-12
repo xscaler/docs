@@ -9,6 +9,10 @@ slug: /ingest/opentelemetry-collector
 
 The [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/) is a vendor-neutral agent that receives, processes, and exports telemetry. Use it to forward metrics to xScaler over OTLP/HTTP.
 
+:::tip Managed collectors
+If you manage collectors through [xScaler Fleet Management](/fleet-management), create and assign collector config in the portal instead of editing each host manually.
+:::
+
 :::warning Required headers
 Both headers must be present in the `exporters.otlphttp/xscaler.headers` block:
 - `Authorization: "Bearer <token>"`

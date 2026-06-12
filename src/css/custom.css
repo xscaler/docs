@@ -1,87 +1,693 @@
 /**
- * xScaler Labs Docs
- * Brand primary: #FF4F00 (xScaler orange)
- *
- * Infima shade scale generated from #FF4F00:
- *   darkest  #992F00
- *   darker   #CC3E00
- *   dark     #E64700
- *   base     #FF4F00
- *   light    #FF621A
- *   lighter  #FF7A3D
- *   lightest #FF9966
- *
- * Dark-mode scale is lifted slightly for readability on dark backgrounds.
+ * xScaler Labs Docs — Custom Theme
+ * Fonts: Source Sans 3 (body/headings) + IBM Plex Mono (code)
+ * Brand accent: #FF4F00
  */
 
-/* ── Light mode ────────────────────────────────────────────── */
-:root {
-  --ifm-color-primary:         #FF4F00;
-  --ifm-color-primary-dark:    #E64700;
-  --ifm-color-primary-darker:  #CC3E00;
-  --ifm-color-primary-darkest: #992F00;
-  --ifm-color-primary-light:   #FF621A;
-  --ifm-color-primary-lighter: #FF7A3D;
-  --ifm-color-primary-lightest:#FF9966;
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap');
 
-  --ifm-code-font-size: 93%;
-  --ifm-font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+/* ─── Global ──────────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(255, 79, 0, 0.22);
+}
+
+/* ─── Light mode ──────────────────────────────────────────────── */
+
+:root {
+  /* Accent scale */
+  --ifm-color-primary:          #e64700;
+  --ifm-color-primary-dark:     #cc3e00;
+  --ifm-color-primary-darker:   #b33600;
+  --ifm-color-primary-darkest:  #992f00;
+  --ifm-color-primary-light:    #ff6219;
+  --ifm-color-primary-lighter:  #ff7a3d;
+  --ifm-color-primary-lightest: #ff9966;
+
+  /* Typography */
+  --ifm-font-family-base:       'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --ifm-font-family-monospace:  'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --ifm-font-size-base:         17px;
+  --ifm-line-height-base:       1.75;
+  --ifm-code-font-size:         85%;
+
+  /* Heading scale */
+  --ifm-h1-font-size:           2.41rem;  /* 41px */
+  --ifm-h2-font-size:           1.59rem;  /* 27px */
+  --ifm-h3-font-size:           1.18rem;  /* 20px */
+  --ifm-h4-font-size:           1rem;
+  --ifm-heading-font-weight:    600;
+  --ifm-heading-line-height:    1.2;
+  --ifm-heading-color:          #111113;
+
+  /* Colors */
+  --ifm-background-color:           #ffffff;
+  --ifm-background-surface-color:   #fbfbfa;
+  --ifm-color-content:              #2b2b2e;
+  --ifm-color-content-secondary:    #5c5c63;
+
+  /* Custom tokens */
+  --xs-surface-2:               #f4f4f3;
+  --xs-border:                  rgba(17, 17, 17, 0.09);
+  --xs-border-strong:           rgba(17, 17, 17, 0.14);
+  --xs-text-faint:              #9a9aa1;
+  --xs-accent-soft:             rgba(255, 79, 0, 0.07);
+  --xs-accent-line:             rgba(255, 79, 0, 0.32);
+  --xs-inline-bg:               rgba(255, 79, 0, 0.06);
+  --xs-inline-text:             #c23e00;
+  --xs-info-bg:                 rgba(37, 99, 235, 0.05);
+  --xs-info-border:             #2563eb;
+  --xs-info-text:               #1d4ed8;
+  --xs-warn-bg:                 rgba(217, 119, 6, 0.06);
+  --xs-warn-border:             #d97706;
+  --xs-warn-text:               #b45309;
+
+  /* Navbar */
+  --ifm-navbar-height:          57px;
+  --ifm-navbar-background-color: rgba(255, 255, 255, 0.82);
+  --ifm-navbar-shadow:          0 1px 0 rgba(17, 17, 17, 0.09);
+  --ifm-navbar-link-color:      #5c5c63;
+  --ifm-navbar-link-hover-color: #111113;
+
+  /* Sidebar */
+  --doc-sidebar-width:          296px;
+  --ifm-menu-color:             #5c5c63;
+  --ifm-menu-color-active:      #e64700;
+  --ifm-menu-color-background-active: rgba(255, 79, 0, 0.07);
+  --ifm-menu-color-background-hover:  rgba(17, 17, 17, 0.045);
+
+  /* TOC */
+  --ifm-toc-border-color:       rgba(17, 17, 17, 0.09);
+  --ifm-toc-link-color:         #5c5c63;
+
+  /* Code */
   --docusaurus-highlighted-code-line-bg: rgba(255, 79, 0, 0.08);
 
-  /* Navbar gets a clean white treatment in light mode */
-  --ifm-navbar-background-color: #ffffff;
-  --ifm-navbar-shadow: 0 1px 0 0 rgba(0,0,0,0.08);
+  /* Footer */
+  --ifm-footer-background-color: #fbfbfa;
+  --ifm-footer-color:           #5c5c63;
+
+  /* Link */
+  --ifm-link-color:             #e64700;
+  --ifm-link-hover-color:       #cc3e00;
+
+  /* Borders */
+  --ifm-color-emphasis-200:     rgba(17, 17, 17, 0.07);
+  --ifm-color-emphasis-300:     rgba(17, 17, 17, 0.09);
+  --ifm-color-emphasis-400:     rgba(17, 17, 17, 0.14);
+
+  /* Table */
+  --ifm-table-border-color:     rgba(17, 17, 17, 0.09);
+  --ifm-table-stripe-background: rgba(17, 17, 17, 0.025);
+
+  /* Card */
+  --ifm-card-border-radius:     11px;
 }
 
-/* ── Dark mode ──────────────────────────────────────────────── */
-[data-theme='dark'] {
-  --ifm-color-primary:         #FF6B2B;
-  --ifm-color-primary-dark:    #FF5714;
-  --ifm-color-primary-darker:  #FF4F00;
-  --ifm-color-primary-darkest: #E64700;
-  --ifm-color-primary-light:   #FF8047;
-  --ifm-color-primary-lighter: #FF9966;
-  --ifm-color-primary-lightest:#FFB38A;
+/* ─── Dark mode ───────────────────────────────────────────────── */
 
+[data-theme='dark'] {
+  /* Accent scale */
+  --ifm-color-primary:          #ff6b2b;
+  --ifm-color-primary-dark:     #ff5714;
+  --ifm-color-primary-darker:   #ff4f00;
+  --ifm-color-primary-darkest:  #e64700;
+  --ifm-color-primary-light:    #ff8047;
+  --ifm-color-primary-lighter:  #ff9966;
+  --ifm-color-primary-lightest: #ffb38a;
+
+  /* Colors */
+  --ifm-background-color:           #0c0c0d;
+  --ifm-background-surface-color:   #141416;
+  --ifm-color-content:              #e7e7e4;
+  --ifm-color-content-secondary:    #9c9c98;
+  --ifm-heading-color:              #ffffff;
+
+  /* Custom tokens */
+  --xs-surface-2:               #1a1a1d;
+  --xs-border:                  rgba(255, 255, 255, 0.085);
+  --xs-border-strong:           rgba(255, 255, 255, 0.15);
+  --xs-text-faint:              #6a6a67;
+  --xs-accent-soft:             rgba(255, 107, 43, 0.13);
+  --xs-accent-line:             rgba(255, 107, 43, 0.4);
+  --xs-inline-bg:               rgba(255, 255, 255, 0.06);
+  --xs-inline-text:             #ffb38a;
+  --xs-info-bg:                 rgba(56, 139, 253, 0.08);
+  --xs-info-border:             #3b82f6;
+  --xs-info-text:               #93c5fd;
+  --xs-warn-bg:                 rgba(255, 159, 10, 0.08);
+  --xs-warn-border:             #f59e0b;
+  --xs-warn-text:               #fcd34d;
+
+  /* Navbar */
+  --ifm-navbar-background-color: rgba(14, 14, 16, 0.78);
+  --ifm-navbar-shadow:          0 1px 0 rgba(255, 255, 255, 0.085);
+  --ifm-navbar-link-color:      #9c9c98;
+  --ifm-navbar-link-hover-color: #ffffff;
+
+  /* Sidebar */
+  --ifm-menu-color:             #9c9c98;
+  --ifm-menu-color-active:      #ff6b2b;
+  --ifm-menu-color-background-active: rgba(255, 107, 43, 0.13);
+  --ifm-menu-color-background-hover:  rgba(255, 255, 255, 0.05);
+
+  /* TOC */
+  --ifm-toc-border-color:       rgba(255, 255, 255, 0.085);
+  --ifm-toc-link-color:         #9c9c98;
+
+  /* Code */
   --docusaurus-highlighted-code-line-bg: rgba(255, 107, 43, 0.15);
 
-  /* Deep near-black background — premium feel */
-  --ifm-background-color:      #0D0D0D;
-  --ifm-background-surface-color: #161616;
-  --ifm-navbar-background-color: #111111;
-  --ifm-footer-background-color: #0D0D0D;
-  --ifm-toc-border-color:      rgba(255, 79, 0, 0.25);
-  --ifm-sidebar-background:    #111111;
+  /* Footer */
+  --ifm-footer-background-color: #0c0c0d;
+
+  /* Link */
+  --ifm-link-color:             #ff6b2b;
+  --ifm-link-hover-color:       #ff8047;
+
+  /* Borders */
+  --ifm-color-emphasis-200:     rgba(255, 255, 255, 0.06);
+  --ifm-color-emphasis-300:     rgba(255, 255, 255, 0.085);
+  --ifm-color-emphasis-400:     rgba(255, 255, 255, 0.15);
+
+  /* Table */
+  --ifm-table-border-color:     rgba(255, 255, 255, 0.085);
+  --ifm-table-stripe-background: rgba(255, 255, 255, 0.035);
 }
 
-/* ── Typography ─────────────────────────────────────────────── */
-h1 code, h2 code, h3 code {
-  font-size: 0.88em;
+/* ─── Navbar ──────────────────────────────────────────────────── */
+
+.navbar {
+  backdrop-filter: saturate(160%) blur(12px);
+  -webkit-backdrop-filter: saturate(160%) blur(12px);
 }
 
-/* ── Navbar logo sizing ──────────────────────────────────────── */
+.navbar__title {
+  font-weight: 600;
+  font-size: 15.5px;
+  letter-spacing: -0.01em;
+  color: var(--ifm-heading-color);
+  white-space: nowrap;
+}
+
 .navbar__logo {
-  height: 28px;
-  width:  28px;
+  height: 26px;
+  width: 26px;
 }
 
-/* ── Active sidebar item accent ─────────────────────────────── */
-.menu__link--active {
-  border-left: 2px solid var(--ifm-color-primary);
+.navbar__link {
+  font-size: 14.5px;
+  font-weight: 500;
+  border-radius: 7px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.navbar__link--active,
+.navbar__link:hover {
+  color: var(--ifm-color-primary);
+  background: var(--xs-accent-soft);
+}
+
+/* ─── Sidebar ─────────────────────────────────────────────────── */
+
+.theme-doc-sidebar-container {
+  border-right: 1px solid var(--xs-border) !important;
+}
+
+.menu {
+  padding: 26px 16px 60px 22px;
+}
+
+/* Category (section) labels */
+.menu__list-item-collapsible {
+  border-radius: 0;
+}
+
+.menu__list-item-collapsible .menu__link {
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.09em !important;
+  text-transform: uppercase !important;
+  color: var(--xs-text-faint) !important;
+  background: transparent !important;
+  padding-top: 0;
+  padding-bottom: 9px;
+  margin-bottom: 0;
+  cursor: default;
+  pointer-events: none;
+}
+
+.menu__list-item-collapsible .menu__caret {
+  display: none;
+}
+
+/* Sidebar links */
+.menu__link {
+  font-size: 14.5px;
+  border-radius: 7px;
+  transition: color 0.15s, background 0.15s;
+}
+
+.menu__link:hover:not(.menu__link--sublist):not([aria-current]) {
+  background: var(--ifm-menu-color-background-hover);
+  color: var(--ifm-color-content);
+}
+
+/* Active sidebar item */
+.menu__link--active:not(.menu__link--sublist) {
+  font-weight: 600;
+  color: var(--ifm-color-primary) !important;
+  background: var(--ifm-menu-color-background-active) !important;
+  box-shadow: inset 2px 0 0 var(--ifm-color-primary);
   padding-left: calc(var(--ifm-menu-link-padding-horizontal) - 2px);
 }
 
-/* ── Code block tweaks ──────────────────────────────────────── */
+/* Nested sidebar items (sub-pages) */
+.menu__list .menu__list .menu__link {
+  font-size: 13.5px;
+}
+
+/* ─── Doc content typography ──────────────────────────────────── */
+
+.markdown {
+  --ifm-h2-vertical-rhythm-top: 3;
+}
+
+/* Lead paragraph style for first paragraph after h1 */
+article > header + p,
+article > .theme-doc-markdown > p:first-of-type {
+  font-size: 19px;
+  line-height: 1.6;
+  color: var(--ifm-color-content-secondary);
+  max-width: 42ch;
+}
+
+h1 {
+  font-size: var(--ifm-h1-font-size);
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  color: var(--ifm-heading-color);
+  margin-bottom: 22px;
+}
+
+h2 {
+  font-size: var(--ifm-h2-font-size);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ifm-heading-color);
+  padding-bottom: 11px;
+  border-bottom: 1px solid var(--xs-border);
+  margin-top: 52px;
+  margin-bottom: 16px;
+}
+
+h3 {
+  font-size: var(--ifm-h3-font-size);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ifm-heading-color);
+  margin-top: 30px;
+  margin-bottom: 14px;
+}
+
+.markdown p {
+  text-wrap: pretty;
+  margin-bottom: 18px;
+}
+
+/* Custom bullet list */
+.markdown ul:not(.contains-task-list):not(.breadcrumbs__list):not(.tabs__container) li {
+  position: relative;
+  padding-left: 22px;
+  list-style: none;
+  margin-bottom: 11px;
+}
+
+.markdown ul:not(.contains-task-list):not(.breadcrumbs__list):not(.tabs__container) > li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ifm-color-primary);
+}
+
+/* ─── Inline code ─────────────────────────────────────────────── */
+
+.markdown code:not([class*='codeBlock']):not([class*='prism']) {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.85em;
+  background: var(--xs-inline-bg);
+  color: var(--xs-inline-text);
+  padding: 2px 6px;
+  border-radius: 5px;
+  border: 1px solid var(--xs-border);
+  font-weight: 400;
+}
+
+/* ─── Code blocks ─────────────────────────────────────────────── */
+
+/* Always dark background regardless of theme */
+.theme-code-block {
+  border: 1px solid var(--xs-border-strong);
+  border-radius: 11px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+div[class*='codeBlockContainer'] {
+  background: #0d0f12 !important;
+  border-radius: 11px;
+  overflow: hidden;
+}
+
+div[class*='codeBlockTitle'] {
+  background: #15171b !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07) !important;
+  color: #8b949e !important;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  padding: 9px 14px;
+}
+
+div[class*='codeBlockContent'] {
+  background: #0d0f12 !important;
+}
+
 .prism-code {
-  border-radius: 6px;
+  background: #0d0f12 !important;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 13.5px !important;
+  line-height: 1.75 !important;
+  padding: 18px !important;
+  border-radius: 0 !important;
 }
 
-/* ── Admonition code transparency ──────────────────────────── */
-.alert code {
-  background: transparent;
+button[class*='copyButton'] {
+  color: #8b949e;
 }
 
-/* ── Footer brand strip ─────────────────────────────────────── */
+button[class*='copyButton']:hover {
+  color: #e7e7e4;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Code block language label row */
+div[class*='buttonGroup'] {
+  background: #15171b;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* ─── Tables ──────────────────────────────────────────────────── */
+
+.markdown table {
+  border: 1px solid var(--xs-border);
+  border-radius: 10px;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  font-size: 14.5px;
+  margin-bottom: 18px;
+  display: table;
+  width: 100%;
+}
+
+.markdown table thead tr {
+  background: var(--ifm-table-stripe-background);
+}
+
+.markdown table thead th {
+  font-weight: 600;
+  color: var(--ifm-heading-color);
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--xs-border);
+  border-right: none;
+}
+
+.markdown table tbody td {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--xs-border);
+  border-right: none;
+  color: var(--ifm-color-content);
+}
+
+.markdown table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* ─── Admonitions ─────────────────────────────────────────────── */
+
+.admonition {
+  border-radius: 9px;
+  border-left-width: 3px;
+  padding: 15px 18px;
+  margin-bottom: 24px;
+}
+
+.admonition-icon {
+  margin-right: 8px;
+}
+
+.admonition-heading h5 {
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 0 0 7px;
+  display: flex;
+  align-items: center;
+}
+
+.admonition p {
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Info */
+.admonition-info,
+.alert--info {
+  background: var(--xs-info-bg) !important;
+  border-color: var(--xs-info-border) !important;
+}
+
+.admonition-info .admonition-heading h5,
+.alert--info .admonition-heading h5 {
+  color: var(--xs-info-text);
+}
+
+.admonition-info svg,
+.alert--info svg {
+  fill: none;
+  stroke: var(--xs-info-border);
+}
+
+/* Warning / Caution */
+.admonition-warning,
+.admonition-caution,
+.alert--warning {
+  background: var(--xs-warn-bg) !important;
+  border-color: var(--xs-warn-border) !important;
+}
+
+.admonition-warning .admonition-heading h5,
+.admonition-caution .admonition-heading h5,
+.alert--warning .admonition-heading h5 {
+  color: var(--xs-warn-text);
+}
+
+.admonition-warning svg,
+.admonition-caution svg,
+.alert--warning svg {
+  fill: none;
+  stroke: var(--xs-warn-border);
+}
+
+/* Tip / Note */
+.admonition-tip,
+.alert--success {
+  background: var(--xs-accent-soft) !important;
+  border-color: var(--ifm-color-primary) !important;
+}
+
+.admonition-tip .admonition-heading h5,
+.alert--success .admonition-heading h5 {
+  color: var(--ifm-color-primary);
+}
+
+/* Danger */
+.admonition-danger,
+.alert--danger {
+  background: rgba(239, 68, 68, 0.07) !important;
+  border-color: #ef4444 !important;
+}
+
+.admonition-danger .admonition-heading h5,
+.alert--danger .admonition-heading h5 {
+  color: #ef4444;
+}
+
+/* ─── Table of Contents ───────────────────────────────────────── */
+
+.table-of-contents {
+  font-size: 13.5px;
+}
+
+.table-of-contents__link {
+  color: var(--ifm-toc-link-color);
+  line-height: 1.4;
+  padding: 5px 0 5px 14px;
+  display: block;
+  transition: color 0.15s;
+}
+
+.table-of-contents__link:hover,
+.table-of-contents__link--active {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+.table-of-contents__link--active {
+  font-weight: 500;
+  margin-left: -1px;
+  border-left: 2px solid var(--ifm-color-primary);
+  padding-left: 13px;
+}
+
+/* "On this page" title above TOC */
+.table-of-contents__left-border::before {
+  content: 'On this page';
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--xs-text-faint);
+  margin-bottom: 12px;
+  padding-left: 14px;
+}
+
+/* ─── Breadcrumbs ─────────────────────────────────────────────── */
+
+.breadcrumbs__link {
+  font-size: 13.5px;
+  color: var(--xs-text-faint);
+}
+
+.breadcrumbs__item--active .breadcrumbs__link {
+  color: var(--ifm-color-content-secondary);
+}
+
+/* ─── Doc page layout ─────────────────────────────────────────── */
+
+/* Max width for article content */
+.docMainContainer article,
+article.docItemCol {
+  max-width: 768px;
+}
+
+/* ─── Previous/Next pagination ────────────────────────────────── */
+
+.pagination-nav__link {
+  border: 1px solid var(--xs-border);
+  border-radius: 11px;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.pagination-nav__link:hover {
+  border-color: var(--ifm-color-primary);
+  background: var(--xs-accent-soft);
+}
+
+.pagination-nav__sublabel {
+  font-size: 12px;
+  color: var(--xs-text-faint);
+}
+
+.pagination-nav__label {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+}
+
+/* ─── Doc edit/last-updated row ──────────────────────────────── */
+
+.theme-doc-footer {
+  font-size: 13px;
+  color: var(--xs-text-faint);
+  border-top: 1px solid var(--xs-border);
+  margin-top: 26px;
+  padding-top: 26px;
+}
+
+/* ─── Footer ──────────────────────────────────────────────────── */
+
+.footer {
+  border-top: 1px solid var(--xs-border);
+}
+
 [data-theme='dark'] .footer {
   border-top: 1px solid rgba(255, 79, 0, 0.2);
+}
+
+/* ─── Mermaid diagrams ────────────────────────────────────────── */
+
+.docusaurus-mermaid-container {
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--xs-border);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 22px;
+  overflow-x: auto;
+}
+
+/* ─── Search bar ──────────────────────────────────────────────── */
+
+/*
+ * 3-column navbar: [left items] [search — centered] [right items]
+ * Left items group is flex:1, so search (last item in it) gets pushed
+ * to the visual center when combined with the right group's fixed width.
+ * Using absolute centering relative to navbar__inner as the reliable method.
+ */
+.navbar__inner {
+  position: relative;
+}
+
+.navbar__search {
+  position: absolute !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 2;
+}
+
+.navbar__search-input {
+  font-family: var(--ifm-font-family-base);
+  font-size: 13.5px;
+  background: var(--xs-surface-2);
+  border: 1px solid var(--xs-border);
+  color: var(--ifm-color-content-secondary);
+  border-radius: 8px;
+  min-width: 240px;
+}
+
+[data-theme='dark'] .navbar__search-input {
+  background: #1a1a1d;
 }
