@@ -34,12 +34,12 @@ A missing `X-Scope-OrgID` returns `400`. A missing or invalid `Authorization` re
 
 | Operation | Method | Path |
 |-----------|--------|------|
-| [Instant query](/log-query/instant-query) | `GET` | `/api/v1/logs/query` |
-| [Range query](/log-query/range-query) | `GET` | `/api/v1/logs/query_range` |
-| [Label names](/log-query/label-exploration) | `GET` | `/api/v1/logs/labels` |
-| [Label values](/log-query/label-exploration) | `GET` | `/api/v1/logs/label/<name>/values` |
-| [Series](/log-query/label-exploration) | `GET` | `/api/v1/logs/series` |
-| Tail (live) | `GET` (WebSocket) | `/api/v1/logs/tail` |
+| [Instant query](/log-query/instant-query) | `GET` | `/api/v1/query` |
+| [Range query](/log-query/range-query) | `GET` | `/api/v1/query_range` |
+| [Label names](/log-query/label-exploration) | `GET` | `/api/v1/labels` |
+| [Label values](/log-query/label-exploration) | `GET` | `/api/v1/label/<name>/values` |
+| [Series](/log-query/label-exploration) | `GET` | `/api/v1/series` |
+| Tail (live) | `GET` (WebSocket) | `/api/v1/tail` |
 
 ---
 

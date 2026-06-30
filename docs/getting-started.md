@@ -46,7 +46,7 @@ curl "https://euw1-01.m.xscalerlabs.com/api/v1/query" \
   --data-urlencode 'query=up'
 
 # Logs
-curl "https://euw1-01.l.xscalerlabs.com/api/v1/logs/labels" \
+curl "https://euw1-01.l.xscalerlabs.com/api/v1/labels" \
   -H "Authorization: Bearer <token>" \
   -H "X-Scope-OrgID: <tenant-id>"
 ```

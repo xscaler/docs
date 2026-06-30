@@ -47,7 +47,7 @@ Your instrumented application or infrastructure emits telemetry through an OTel 
 
 | Method | Protocol | Endpoint |
 |--------|----------|----------|
-| Grafana Alloy | HTTP (push) | `POST /api/v1/logs/push` |
+| Grafana Alloy | HTTP (push) | `POST /api/v1/push` |
 | OpenTelemetry Collector | OTLP/HTTP | `POST /otlp/v1/logs` |
 | OpenTelemetry Collector | OTLP/gRPC | `:443` (TLS) |
 | OTel SDK (Python / Node.js / Go) | OTLP/HTTP | `POST /otlp/v1/logs` |

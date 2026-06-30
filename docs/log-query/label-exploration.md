@@ -13,12 +13,12 @@ Discover available log streams, label names, and label values before writing a q
 
 ## Label names
 
-**Endpoint:** `GET https://euw1-01.l.xscalerlabs.com/api/v1/logs/labels`
+**Endpoint:** `GET https://euw1-01.l.xscalerlabs.com/api/v1/labels`
 
 Returns all label names present across your log streams.
 
 ```bash
-curl "https://euw1-01.l.xscalerlabs.com/api/v1/logs/labels" \
+curl "https://euw1-01.l.xscalerlabs.com/api/v1/labels" \
   -H "Authorization: Bearer <token>" \
   -H "X-Scope-OrgID: <tenant-id>"
 ```
@@ -35,7 +35,7 @@ Response:
 ### Scoped to a time range
 
 ```bash
-curl "https://euw1-01.l.xscalerlabs.com/api/v1/logs/labels" \
+curl "https://euw1-01.l.xscalerlabs.com/api/v1/labels" \
   -H "Authorization: Bearer <token>" \
   -H "X-Scope-OrgID: <tenant-id>" \
   --data-urlencode 'start=2024-01-01T00:00:00Z' \
@@ -46,12 +46,12 @@ curl "https://euw1-01.l.xscalerlabs.com/api/v1/logs/labels" \
 
 ## Label values
 
-**Endpoint:** `GET https://euw1-01.l.xscalerlabs.com/api/v1/logs/label/<name>/values`
+**Endpoint:** `GET https://euw1-01.l.xscalerlabs.com/api/v1/label/<name>/values`
 
 Returns all values for a given label name.
 
 ```bash
-curl "https://euw1-01.l.xscalerlabs.com/api/v1/logs/label/job/values" \
+curl "https://euw1-01.l.xscalerlabs.com/api/v1/label/job/values" \
   -H "Authorization: Bearer <token>" \
   -H "X-Scope-OrgID: <tenant-id>"
 ```
@@ -69,12 +69,12 @@ Response:
 
 ## Series
 
-**Endpoint:** `GET https://euw1-01.l.xscalerlabs.com/api/v1/logs/series`
+**Endpoint:** `GET https://euw1-01.l.xscalerlabs.com/api/v1/series`
 
 Returns all log stream label sets matching a selector. Useful for discovering which streams exist before querying them.
 
 ```bash
-curl "https://euw1-01.l.xscalerlabs.com/api/v1/logs/series" \
+curl "https://euw1-01.l.xscalerlabs.com/api/v1/series" \
   -H "Authorization: Bearer <token>" \
   -H "X-Scope-OrgID: <tenant-id>" \
   --data-urlencode 'match[]={job="app"}' \
@@ -99,7 +99,7 @@ Response:
 
 ## Live tail
 
-**Endpoint:** `GET wss://euw1-01.l.xscalerlabs.com/api/v1/logs/tail` (WebSocket)
+**Endpoint:** `GET wss://euw1-01.l.xscalerlabs.com/api/v1/tail` (WebSocket)
 
 Stream log lines in real time as they are ingested.
 
@@ -108,7 +108,7 @@ Stream log lines in real time as they are ingested.
 websocat \
   -H "Authorization: Bearer <token>" \
   -H "X-Scope-OrgID: <tenant-id>" \
-  "wss://euw1-01.l.xscalerlabs.com/api/v1/logs/tail?query={job=%22app%22}&limit=10"
+  "wss://euw1-01.l.xscalerlabs.com/api/v1/tail?query={job=%22app%22}&limit=10"
 ```
 
 Each message is a JSON object with a `streams` array containing the new log entries.

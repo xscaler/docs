@@ -34,7 +34,7 @@ loki.source.file "app" {
 
 loki.write "xscaler" {
   endpoint {
-    url = "https://euw1-01.l.xscalerlabs.com/api/v1/logs/push"
+    url = "https://euw1-01.l.xscalerlabs.com/api/v1/push"
 
     http_client_config {
       authorization {
@@ -65,7 +65,7 @@ discovery.docker "all" {
 
 loki.write "xscaler" {
   endpoint {
-    url = "https://euw1-01.l.xscalerlabs.com/api/v1/logs/push"
+    url = "https://euw1-01.l.xscalerlabs.com/api/v1/push"
 
     http_client_config {
       authorization {
@@ -111,7 +111,7 @@ otelcol.exporter.otlphttp "xscaler" {
 ```river
 loki.write "xscaler" {
   endpoint {
-    url = "https://euw1-01.l.xscalerlabs.com/api/v1/logs/push"
+    url = "https://euw1-01.l.xscalerlabs.com/api/v1/push"
 
     http_client_config {
       authorization {
@@ -147,7 +147,7 @@ docker run --rm \
 
 **Logs not arriving**
 1. Open the **Alloy UI** at `http://localhost:12345` — red components indicate errors.
-2. Verify the `url` ends in `/api/v1/logs/push`.
+2. Verify the `url` ends in `/api/v1/push`.
 3. Check `http_client_config.authorization` is nested inside the `endpoint` block — not at the top level.
 
 **400 Bad Request — "no org id"**

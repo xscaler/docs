@@ -141,7 +141,7 @@ loki.relabel "nomad_journal" {
 
 loki.write "xscaler" {
   endpoint {
-    url = "https://euw1-01.l.xscalerlabs.com/api/v1/logs/push"
+    url = "https://euw1-01.l.xscalerlabs.com/api/v1/push"
 
     http_client_config {
       authorization {

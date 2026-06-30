@@ -37,7 +37,7 @@ Replace `<region>` with your region ID (e.g. `euw1-01`) in every URL below.
 
 | Protocol | Endpoint |
 |----------|----------|
-| Push (native) | `POST https://<region>.l.xscalerlabs.com/api/v1/logs/push` |
+| Push (native) | `POST https://<region>.l.xscalerlabs.com/api/v1/push` |
 | OTLP/HTTP | `POST https://<region>.l.xscalerlabs.com/otlp/v1/logs` |
 | OTLP/gRPC | `<region>.l.xscalerlabs.com:443` (TLS, headers as gRPC metadata) |
 
@@ -64,12 +64,12 @@ Replace `<region>` with your region ID (e.g. `euw1-01`) in every URL below.
 
 | Operation | Endpoint |
 |-----------|----------|
-| Instant query | `GET https://<region>.l.xscalerlabs.com/api/v1/logs/query` |
-| Range query | `GET https://<region>.l.xscalerlabs.com/api/v1/logs/query_range` |
-| Label names | `GET https://<region>.l.xscalerlabs.com/api/v1/logs/labels` |
-| Label values | `GET https://<region>.l.xscalerlabs.com/api/v1/logs/label/<name>/values` |
-| Series | `GET https://<region>.l.xscalerlabs.com/api/v1/logs/series` |
-| Live tail | `wss://<region>.l.xscalerlabs.com/api/v1/logs/tail` (WebSocket) |
+| Instant query | `GET https://<region>.l.xscalerlabs.com/api/v1/query` |
+| Range query | `GET https://<region>.l.xscalerlabs.com/api/v1/query_range` |
+| Label names | `GET https://<region>.l.xscalerlabs.com/api/v1/labels` |
+| Label values | `GET https://<region>.l.xscalerlabs.com/api/v1/label/<name>/values` |
+| Series | `GET https://<region>.l.xscalerlabs.com/api/v1/series` |
+| Live tail | `wss://<region>.l.xscalerlabs.com/api/v1/tail` (WebSocket) |
 
 ### Traces query (TraceQL)
 
@@ -111,5 +111,5 @@ Using region `euw1-01`:
 | `<region>.l.xscalerlabs.com` | `euw1-01.l.xscalerlabs.com` |
 | `<region>.t.xscalerlabs.com` | `euw1-01.t.xscalerlabs.com` |
 | Metrics ingest | `https://euw1-01.m.xscalerlabs.com/api/v1/push` |
-| Logs ingest | `https://euw1-01.l.xscalerlabs.com/api/v1/logs/push` |
+| Logs ingest | `https://euw1-01.l.xscalerlabs.com/api/v1/push` |
 | Traces ingest | `https://euw1-01.t.xscalerlabs.com/otlp/v1/traces` |

@@ -9,7 +9,7 @@ slug: /log-query/range-query
 
 A log range query evaluates a LogQL expression over a **time range**, returning log streams or a metric matrix suitable for graphing.
 
-**Endpoint:** `GET https://euw1-01.l.xscalerlabs.com/api/v1/logs/query_range`
+**Endpoint:** `GET https://euw1-01.l.xscalerlabs.com/api/v1/query_range`
 
 ---
 
@@ -32,7 +32,7 @@ A log range query evaluates a LogQL expression over a **time range**, returning 
 ### Fetch logs over a time window
 
 ```bash
-curl "https://euw1-01.l.xscalerlabs.com/api/v1/logs/query_range" \
+curl "https://euw1-01.l.xscalerlabs.com/api/v1/query_range" \
   -H "Authorization: Bearer <token>" \
   -H "X-Scope-OrgID: <tenant-id>" \
   --data-urlencode 'query={job="app"} |= "error"' \
@@ -45,7 +45,7 @@ curl "https://euw1-01.l.xscalerlabs.com/api/v1/logs/query_range" \
 ### Error rate over the last hour (metric query)
 
 ```bash
-curl "https://euw1-01.l.xscalerlabs.com/api/v1/logs/query_range" \
+curl "https://euw1-01.l.xscalerlabs.com/api/v1/query_range" \
   -H "Authorization: Bearer <token>" \
   -H "X-Scope-OrgID: <tenant-id>" \
   --data-urlencode 'query=sum by (service) (rate({job="app"} |= "error" [5m]))' \
@@ -57,7 +57,7 @@ curl "https://euw1-01.l.xscalerlabs.com/api/v1/logs/query_range" \
 ### Log volume by level over 24 hours
 
 ```bash
-curl "https://euw1-01.l.xscalerlabs.com/api/v1/logs/query_range" \
+curl "https://euw1-01.l.xscalerlabs.com/api/v1/query_range" \
   -H "Authorization: Bearer <token>" \
   -H "X-Scope-OrgID: <tenant-id>" \
   --data-urlencode 'query=sum by (level) (count_over_time({job="app"} | json [5m]))' \

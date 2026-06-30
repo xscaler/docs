@@ -9,7 +9,7 @@ slug: /log-query/instant-query
 
 An instant log query evaluates a LogQL expression at a **single point in time** and returns a vector of log streams or metric values.
 
-**Endpoint:** `GET https://euw1-01.l.xscalerlabs.com/api/v1/logs/query`
+**Endpoint:** `GET https://euw1-01.l.xscalerlabs.com/api/v1/query`
 
 ---
 
@@ -30,7 +30,7 @@ An instant log query evaluates a LogQL expression at a **single point in time** 
 ### Fetch recent error logs
 
 ```bash
-curl "https://euw1-01.l.xscalerlabs.com/api/v1/logs/query" \
+curl "https://euw1-01.l.xscalerlabs.com/api/v1/query" \
   -H "Authorization: Bearer <token>" \
   -H "X-Scope-OrgID: <tenant-id>" \
   --data-urlencode 'query={job="app"} |= "error"' \
@@ -40,7 +40,7 @@ curl "https://euw1-01.l.xscalerlabs.com/api/v1/logs/query" \
 ### Parse JSON logs and filter on a field
 
 ```bash
-curl "https://euw1-01.l.xscalerlabs.com/api/v1/logs/query" \
+curl "https://euw1-01.l.xscalerlabs.com/api/v1/query" \
   -H "Authorization: Bearer <token>" \
   -H "X-Scope-OrgID: <tenant-id>" \
   --data-urlencode 'query={job="api"} | json | status >= 500' \
@@ -50,7 +50,7 @@ curl "https://euw1-01.l.xscalerlabs.com/api/v1/logs/query" \
 ### Metric query — current error rate
 
 ```bash
-curl "https://euw1-01.l.xscalerlabs.com/api/v1/logs/query" \
+curl "https://euw1-01.l.xscalerlabs.com/api/v1/query" \
   -H "Authorization: Bearer <token>" \
   -H "X-Scope-OrgID: <tenant-id>" \
   --data-urlencode 'query=sum by (service) (rate({job="app"} |= "error" [5m]))'
