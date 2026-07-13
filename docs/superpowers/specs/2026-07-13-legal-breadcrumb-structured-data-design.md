@@ -26,4 +26,3 @@ the same invalid schema again.
 - Confirm type checking and the complete build pass.
 - Confirm all five generated pages contain no empty breadcrumb schema.
 - Confirm no generated page contains an invalid empty `BreadcrumbList`.
-

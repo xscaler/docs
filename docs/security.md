@@ -2,7 +2,6 @@
 id: security
 title: Security
 sidebar_label: Security
-displayed_sidebar: mainSidebar
 ---
 
 # Security

@@ -27,7 +27,7 @@
 - Produces: exit code 0 for valid output and exit code 1 with affected paths for invalid output.
 
 - [ ] Create a Node.js validator that recursively reads `build/**/*.html`, parses JSON-LD scripts, and reports empty `BreadcrumbList.itemListElement` arrays.
-- [ ] Run `npm run build:site && npm run check:structured-data` against the existing content and verify it fails for all five legal pages.
+- [ ] Run `npx docusaurus build && npm run check:structured-data` against the existing content and verify it fails for all five legal pages.
 - [ ] Wire `npm run check:structured-data` into `npm run build` after the Docusaurus build.
 
 ### Task 2: Correct orphaned legal-page metadata

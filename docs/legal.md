@@ -1,7 +1,6 @@
 ---
 id: legal
 title: Legal & Open Source Notices
-displayed_sidebar: mainSidebar
 ---
 
 # Legal & Open Source Notices
