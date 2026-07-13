@@ -5,7 +5,9 @@
   "scripts": {
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
-    "build": "docusaurus build",
+    "build": "docusaurus build && npm run check:structured-data",
+    "check:structured-data": "node scripts/check-structured-data.mjs",
+    "test:structured-data": "node --test scripts/check-structured-data.test.mjs",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy",
     "clear": "docusaurus clear",
@@ -32,6 +34,7 @@
     "@docusaurus/tsconfig": "3.10.0",
     "@docusaurus/types": "3.10.0",
     "@types/react": "^19.0.0",
+    "parse5": "^7.3.0",
     "typescript": "~6.0.2"
   },
   "browserslist": {
