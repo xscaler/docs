@@ -42,6 +42,15 @@ const sidebars: SidebarsConfig = {
         'fleet-management/fleet-management',
         'fleet-management/enroll-agents',
         'fleet-management/configure-agents',
+        {
+          type: 'category',
+          label: 'Kubernetes',
+          collapsed: false,
+          items: [
+            'fleet-management/ebpf-instrumentation',
+            'fleet-management/traces-auto-instrumentation',
+          ],
+        },
         'fleet-management/secrets',
         'fleet-management/fleet-troubleshooting',
       ],
