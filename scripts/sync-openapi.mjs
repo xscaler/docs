@@ -2,11 +2,22 @@ import {copyFile, mkdir, writeFile, access} from 'node:fs/promises';
 import {constants} from 'node:fs';
 import path from 'node:path';
 
-const DEFAULT_SRC =
-  '/Users/gamunu/work/xscaler/xscaler/services/portal-api/internal/publicapi/openapi.yaml';
 const DEST = path.resolve('openapi/xscaler.yaml');
 
-const source = process.env.SPEC_SRC ?? DEFAULT_SRC;
+// The spec source is the portal-api file in the monorepo, or any http(s) URL
+// that serves it (e.g. the live /v1/openapi.yaml). It is deliberately not
+// defaulted to a checkout-specific path so this works the same for everyone and
+// in CI; the caller must point SPEC_SRC at their spec.
+const source = process.env.SPEC_SRC;
+
+if (!source) {
+  console.error(
+    'sync-openapi: set SPEC_SRC to the OpenAPI spec source (a file path or an http(s) URL).\n' +
+      '  file: SPEC_SRC=../xscaler/services/portal-api/internal/publicapi/openapi.yaml npm run sync:spec\n' +
+      '  url:  SPEC_SRC=https://api.xscalerlabs.com/v1/openapi.yaml npm run sync:spec',
+  );
+  process.exit(1);
+}
 
 async function main() {
   await mkdir(path.dirname(DEST), {recursive: true});

@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
+    "prestart": "docusaurus gen-api-docs xscaler",
     "start": "docusaurus start",
     "build": "docusaurus gen-api-docs xscaler && docusaurus build && npm run check:structured-data",
     "sync:spec": "node scripts/sync-openapi.mjs",
@@ -17,6 +18,7 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
+    "pretypecheck": "docusaurus gen-api-docs xscaler",
     "typecheck": "tsc"
   },
   "dependencies": {
