@@ -7,7 +7,6 @@
     "prestart": "docusaurus gen-api-docs xscaler",
     "start": "docusaurus start",
     "build": "docusaurus gen-api-docs xscaler && docusaurus build && npm run check:structured-data",
-    "sync:spec": "node scripts/sync-openapi.mjs",
     "gen-api": "docusaurus gen-api-docs xscaler",
     "clean-api": "docusaurus clean-api-docs xscaler",
     "check:structured-data": "node scripts/check-structured-data.mjs",
