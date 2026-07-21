@@ -1,3 +1,6 @@
 node_modules/
 build/
 .docusaurus/
+
+# Generated OpenAPI reference MDX (regenerated at build via `docusaurus gen-api-docs`)
+docs/api/

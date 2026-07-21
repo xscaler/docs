@@ -1,0 +1,357 @@
+openapi: 3.1.0
+info:
+  title: xScaler Customer API
+  version: "1.0.0"
+  description: |
+    Customer-facing, versioned API for managing tenants and tenant ingestion
+    secrets programmatically.
+
+    ## Authentication
+
+    All `/v1` endpoints require a developer API key (prefix `xsk_`) in the
+    `Authorization` header:
+
+        Authorization: Bearer xsk_live_...
+
+    Developer keys are minted from the portal Developer settings (an org owner or
+    admin calls `POST /developer/keys` with a JWT). The plaintext key is shown
+    **once** at creation and is never retrievable afterwards.
+
+    ## Scopes
+
+    Each key carries granular scopes, enforced per endpoint:
+
+    | Scope             | Grants                                   |
+    |-------------------|------------------------------------------|
+    | `tenants:read`    | list tenants, list tenant secrets        |
+    | `tenants:write`   | create a tenant                          |
+    | `tenants:pause`   | pause / resume a tenant                  |
+    | `secrets:write`   | create a tenant ingestion secret         |
+    | `secrets:delete`  | delete (hard) a tenant ingestion secret  |
+
+    ## One-time secrets
+
+    Tenant ingestion secrets (`sk_live_` tokens) and developer keys are returned
+    in plaintext **only** in the create response. List endpoints return metadata
+    only. Deletion is a hard delete; the data plane stops authorizing the secret
+    within a short cache window (~10s).
+servers:
+  - url: https://api.xscalerlabs.com
+    description: Production
+security:
+  - developerKey: []
+tags:
+  - name: tenants
+  - name: secrets
+  - name: developer-keys
+paths:
+  /v1/tenants:
+    post:
+      tags: [tenants]
+      summary: Create a tenant
+      description: Requires scope `tenants:write`. Subject to the per-org tenant limit (default 10).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateTenantRequest"
+      responses:
+        "201":
+          description: Tenant created. `ingestion_key.secret` is shown once.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateTenantResponse"
+        "400": { $ref: "#/components/responses/BadRequest" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "402":
+          description: Tenant limit reached (upgrade or request a higher limit).
+        "403": { $ref: "#/components/responses/Forbidden" }
+    get:
+      tags: [tenants]
+      summary: List tenants
+      description: Requires scope `tenants:read`.
+      responses:
+        "200":
+          description: Tenants in the key's organization.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Tenant" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "403": { $ref: "#/components/responses/Forbidden" }
+  /v1/tenants/{tenantID}:
+    patch:
+      tags: [tenants]
+      summary: Update tenant metadata
+      description: |
+        Requires scope `tenants:write`. Updates editable metadata
+        (`display_name`, `environment`). Omitted fields are left unchanged; an
+        empty string clears the field.
+      parameters: [ { $ref: "#/components/parameters/TenantID" } ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateTenantRequest"
+      responses:
+        "200":
+          description: Updated tenant.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/TenantWrapper" }
+        "400": { $ref: "#/components/responses/BadRequest" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "403": { $ref: "#/components/responses/Forbidden" }
+        "404": { $ref: "#/components/responses/NotFound" }
+  /v1/tenants/{tenantID}/pause:
+    post:
+      tags: [tenants]
+      summary: Pause (suspend) a tenant
+      description: Requires scope `tenants:pause`.
+      parameters: [ { $ref: "#/components/parameters/TenantID" } ]
+      responses:
+        "200":
+          description: Tenant suspended.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/TenantWrapper" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "403": { $ref: "#/components/responses/Forbidden" }
+        "404": { $ref: "#/components/responses/NotFound" }
+  /v1/tenants/{tenantID}/resume:
+    post:
+      tags: [tenants]
+      summary: Resume (activate) a tenant
+      description: Requires scope `tenants:pause`.
+      parameters: [ { $ref: "#/components/parameters/TenantID" } ]
+      responses:
+        "200":
+          description: Tenant activated.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/TenantWrapper" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "403": { $ref: "#/components/responses/Forbidden" }
+        "404": { $ref: "#/components/responses/NotFound" }
+  /v1/tenants/{tenantID}/secrets:
+    post:
+      tags: [secrets]
+      summary: Create a tenant ingestion secret
+      description: Requires scope `secrets:write`. `secret` is shown once.
+      parameters: [ { $ref: "#/components/parameters/TenantID" } ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateSecretRequest"
+      responses:
+        "201":
+          description: Secret created.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/CreateSecretResponse" }
+        "400": { $ref: "#/components/responses/BadRequest" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "403": { $ref: "#/components/responses/Forbidden" }
+        "404": { $ref: "#/components/responses/NotFound" }
+        "409": { description: A secret with that name already exists for the tenant. }
+    get:
+      tags: [secrets]
+      summary: List tenant ingestion secrets (metadata only)
+      description: Requires scope `tenants:read`. Never returns secret values.
+      parameters: [ { $ref: "#/components/parameters/TenantID" } ]
+      responses:
+        "200":
+          description: Secret metadata.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/SecretSummary" }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "403": { $ref: "#/components/responses/Forbidden" }
+        "404": { $ref: "#/components/responses/NotFound" }
+  /v1/tenants/{tenantID}/secrets/{secretID}:
+    delete:
+      tags: [secrets]
+      summary: Delete a tenant ingestion secret (hard delete)
+      description: |
+        Requires scope `secrets:delete`. Permanently removes the secret; the data
+        plane stops authorizing it within a short cache window (~10s).
+      parameters:
+        - { $ref: "#/components/parameters/TenantID" }
+        - name: secretID
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "204": { description: Deleted. }
+        "401": { $ref: "#/components/responses/Unauthorized" }
+        "403": { $ref: "#/components/responses/Forbidden" }
+        "404": { $ref: "#/components/responses/NotFound" }
+  /developer/keys:
+    post:
+      tags: [developer-keys]
+      summary: Mint a developer key (portal, JWT + admin/owner)
+      security:
+        - portalJWT: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/CreateDeveloperKeyRequest" }
+      responses:
+        "201":
+          description: Key created. `token` is shown once.
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/DeveloperKeyResponse" }
+        "400": { $ref: "#/components/responses/BadRequest" }
+        "403": { $ref: "#/components/responses/Forbidden" }
+    get:
+      tags: [developer-keys]
+      summary: List developer keys (metadata only)
+      security:
+        - portalJWT: []
+      responses:
+        "200":
+          description: Developer keys for the caller's organization.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/DeveloperKeySummary" }
+        "403": { $ref: "#/components/responses/Forbidden" }
+  /developer/keys/{keyID}:
+    delete:
+      tags: [developer-keys]
+      summary: Delete a developer key (hard delete)
+      security:
+        - portalJWT: []
+      parameters:
+        - name: keyID
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        "204": { description: Deleted. }
+        "403": { $ref: "#/components/responses/Forbidden" }
+        "404": { $ref: "#/components/responses/NotFound" }
+components:
+  securitySchemes:
+    developerKey:
+      type: http
+      scheme: bearer
+      bearerFormat: xsk_live_*
+      description: Org-scoped developer API key.
+    portalJWT:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Portal session JWT (bootstrap routes only).
+  parameters:
+    TenantID:
+      name: tenantID
+      in: path
+      required: true
+      schema: { type: string }
+  responses:
+    BadRequest:
+      description: Invalid request.
+    Unauthorized:
+      description: Missing or invalid developer key.
+    Forbidden:
+      description: Key lacks the required scope (`insufficient_scope`).
+    NotFound:
+      description: Resource not found in the key's organization.
+  schemas:
+    CreateTenantRequest:
+      type: object
+      required: [region]
+      properties:
+        region: { type: string, example: aps1 }
+        display_name: { type: string }
+        environment: { type: string, example: production }
+    UpdateTenantRequest:
+      type: object
+      description: Editable tenant metadata. Omitted fields are left unchanged.
+      properties:
+        display_name: { type: string }
+        environment: { type: string, example: production }
+    Tenant:
+      type: object
+      properties:
+        id: { type: string }
+        region: { type: string }
+        metrics_host: { type: string }
+        logs_host: { type: string }
+        traces_host: { type: string }
+        plan: { type: string }
+        status: { type: string, enum: [active, suspended] }
+        display_name: { type: string }
+        environment: { type: string }
+    TenantWrapper:
+      type: object
+      properties:
+        tenant: { $ref: "#/components/schemas/Tenant" }
+    CreateTenantResponse:
+      type: object
+      properties:
+        tenant: { $ref: "#/components/schemas/Tenant" }
+        ingestion_key:
+          type: object
+          properties:
+            id: { type: string }
+            secret: { type: string, description: "Shown once." }
+        endpoints:
+          type: object
+          additionalProperties: { type: string }
+    CreateSecretRequest:
+      type: object
+      required: [name]
+      properties:
+        name: { type: string }
+    CreateSecretResponse:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        secret: { type: string, description: "Shown once." }
+    SecretSummary:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        status: { type: string, enum: [active, disabled] }
+        last_used_at: { type: string, format: date-time }
+        created_at: { type: string, format: date-time }
+    CreateDeveloperKeyRequest:
+      type: object
+      required: [name, scopes]
+      properties:
+        name: { type: string }
+        scopes:
+          type: array
+          items:
+            type: string
+            enum: [tenants:read, tenants:write, tenants:pause, secrets:write, secrets:delete]
+    DeveloperKeyResponse:
+      type: object
+      properties:
+        key_id: { type: string }
+        name: { type: string }
+        scopes: { type: array, items: { type: string } }
+        token: { type: string, description: "Shown once." }
+    DeveloperKeySummary:
+      type: object
+      properties:
+        id: { type: string }
+        name: { type: string }
+        scopes: { type: array, items: { type: string } }
+        last_used_at: { type: string, format: date-time }
+        created_at: { type: string, format: date-time }
