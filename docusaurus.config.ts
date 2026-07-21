@@ -1,6 +1,7 @@
 import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import type * as OpenApiPlugin from 'docusaurus-plugin-openapi-docs';
 
 const config: Config = {
   title: 'xScaler Labs Docs',
@@ -34,6 +35,7 @@ const config: Config = {
 
   themes: [
     '@docusaurus/theme-mermaid',
+    'docusaurus-theme-openapi-docs',
     [
       require.resolve('@easyops-cn/docusaurus-search-local'),
       {
@@ -46,6 +48,44 @@ const config: Config = {
     ],
   ],
 
+  plugins: [
+    // The OpenAPI theme pulls in postman-code-generators for request samples,
+    // which imports the Node `path` builtin. The Rspack bundler (enabled by
+    // @docusaurus/faster) does not auto-polyfill Node core modules for the
+    // browser bundle, so map `path` to its browser shim.
+    function nodePolyfillPlugin() {
+      return {
+        name: 'node-polyfill-fallback',
+        configureWebpack() {
+          return {
+            resolve: {
+              fallback: {
+                path: require.resolve('path-browserify'),
+              },
+            },
+          };
+        },
+      };
+    },
+    [
+      'docusaurus-plugin-openapi-docs',
+      {
+        id: 'api',
+        docsPluginId: 'classic',
+        config: {
+          xscaler: {
+            specPath: 'openapi/xscaler.yaml',
+            outputDir: 'docs/api',
+            sidebarOptions: {
+              groupPathsBy: 'tag',
+              categoryLinkSource: 'tag',
+            },
+          } satisfies OpenApiPlugin.Options,
+        },
+      },
+    ],
+  ],
+
   presets: [
     [
       'classic',
@@ -53,6 +93,7 @@ const config: Config = {
         docs: {
           sidebarPath: './sidebars.ts',
           routeBasePath: '/',
+          docItemComponent: '@theme/ApiItem',
         },
         blog: false,
         theme: {
@@ -81,6 +122,11 @@ const config: Config = {
           sidebarId: 'mainSidebar',
           position: 'left',
           label: 'Documentation',
+        },
+        {
+          to: '/api/xscaler-customer-api',
+          label: 'API',
+          position: 'left',
         },
         {
           type: 'search',

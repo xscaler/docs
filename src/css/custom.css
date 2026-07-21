@@ -343,15 +343,18 @@ h3 {
   margin-bottom: 18px;
 }
 
-/* Custom bullet list */
-.markdown ul:not(.contains-task-list):not(.breadcrumbs__list):not(.tabs__container) li {
+/* Custom bullet list.
+ * Excludes tab lists (`.tabs` / `[role='tablist']`, used by Docusaurus tabs and
+ * the OpenAPI theme's language/mime/schema tab strips) so the amber bullet dot
+ * never leaks onto tab pills. */
+.markdown ul:not(.contains-task-list):not(.breadcrumbs__list):not(.tabs__container):not(.tabs):not([role='tablist']) li {
   position: relative;
   padding-left: 22px;
   list-style: none;
   margin-bottom: 11px;
 }
 
-.markdown ul:not(.contains-task-list):not(.breadcrumbs__list):not(.tabs__container) > li::before {
+.markdown ul:not(.contains-task-list):not(.breadcrumbs__list):not(.tabs__container):not(.tabs):not([role='tablist']) > li::before {
   content: '';
   position: absolute;
   left: 0;
@@ -360,6 +363,16 @@ h3 {
   height: 6px;
   border-radius: 50%;
   background: var(--ifm-color-primary);
+}
+
+/* Belt-and-suspenders: kill list markers on any tab list item, even if nested
+ * deeper than the exclusions above reach. Only the marker is removed here - do
+ * NOT set padding/list-style on `.tabs > li`, because `.tabs > li` (0,1,1)
+ * outranks the theme's `.openapi-tabs__mime-item`/`__schema-item` (0,1,0) pill
+ * rules and would strip their `padding: .35rem .7rem`, clipping the labels. */
+.tabs > li::before,
+[role='tablist'] > li::before {
+  content: none !important;
 }
 
 /* ─── Inline code ─────────────────────────────────────────────── */
@@ -377,8 +390,12 @@ h3 {
 
 /* ─── Code blocks ─────────────────────────────────────────────── */
 
-/* Always dark background regardless of theme */
-.theme-code-block {
+/* Always dark background regardless of theme.
+ * The OpenAPI theme's ApiCodeBlock reuses `.theme-code-block` and `.prism-code`
+ * on its own <pre>; it manages its own border/radius/padding and a sticky
+ * table-cell line-number gutter. Excluding those elements here keeps our global
+ * code-block chrome from double-bordering the box or breaking gutter alignment. */
+.theme-code-block:not(.openapi-explorer__code-block-container) {
   border: 1px solid var(--xs-border-strong);
   border-radius: 11px;
   overflow: hidden;
@@ -406,7 +423,7 @@ div[class*='codeBlockContent'] {
   background: #0d0f12 !important;
 }
 
-.prism-code {
+.prism-code:not(.openapi-explorer__code-block) {
   background: #0d0f12 !important;
   font-family: var(--ifm-font-family-monospace);
   font-size: 13.5px !important;

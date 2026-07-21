@@ -4,8 +4,11 @@
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
+    "prestart": "docusaurus gen-api-docs xscaler",
     "start": "docusaurus start",
-    "build": "docusaurus build && npm run check:structured-data",
+    "build": "docusaurus gen-api-docs xscaler && docusaurus build && npm run check:structured-data",
+    "gen-api": "docusaurus gen-api-docs xscaler",
+    "clean-api": "docusaurus clean-api-docs xscaler",
     "check:structured-data": "node scripts/check-structured-data.mjs",
     "test:structured-data": "node --test scripts/check-structured-data.test.mjs",
     "swizzle": "docusaurus swizzle",
@@ -14,6 +17,7 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
+    "pretypecheck": "docusaurus gen-api-docs xscaler",
     "typecheck": "tsc"
   },
   "dependencies": {
@@ -24,9 +28,14 @@
     "@easyops-cn/docusaurus-search-local": "^0.55.2",
     "@mdx-js/react": "^3.0.0",
     "clsx": "^2.0.0",
+    "docusaurus-plugin-openapi-docs": "^5.1.2",
+    "docusaurus-plugin-sass": "^0.2.6",
+    "docusaurus-theme-openapi-docs": "^5.1.2",
+    "path-browserify": "^1.0.1",
     "prism-react-renderer": "^2.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "sass": "^1.101.3",
     "simple-icons": "^16.19.0"
   },
   "devDependencies": {

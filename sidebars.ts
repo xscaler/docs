@@ -1,4 +1,5 @@
 import type { SidebarsConfig } from '@docusaurus/plugin-content-docs';
+import apiSidebar from './docs/api/sidebar';
 
 const sidebars: SidebarsConfig = {
   mainSidebar: [
@@ -348,6 +349,14 @@ const sidebars: SidebarsConfig = {
         'limits',
         'troubleshooting',
       ],
+    },
+
+    // ── API Reference ─────────────────────────────────────────────────────────
+    {
+      type: 'category',
+      label: 'API Reference',
+      collapsed: true,
+      items: [...apiSidebar],
     },
   ],
 };
