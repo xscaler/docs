@@ -1,0 +1,137 @@
+---
+id: intro
+title: Introduction
+sidebar_label: Introduction
+slug: /
+hide_table_of_contents: true
+---
+
+import {
+  Hero, SearchHero, Badges, Badge,
+  TileGrid, Tile, TileLink,
+  LogoStrip, LogoTile,
+  HubGrid, HubCard,
+} from '@site/src/components/DocHub';
+import ArchDiagram from '@site/src/components/ArchDiagram';
+
+<Hero>
+
+# xScaler Docs
+
+Learn how to send, store, and query **metrics, logs, and traces** on xScaler —
+a fully managed, OpenTelemetry-native observability backend.
+
+<SearchHero placeholder="Search the docs — e.g. Prometheus remote_write" />
+
+<Badges>
+  <Badge>Fully managed</Badge>
+  <Badge>Multi-signal</Badge>
+  <Badge>OpenTelemetry-native</Badge>
+  <Badge>Multi-tenant</Badge>
+</Badges>
+
+</Hero>
+
+## Start sending data
+
+Point any OpenTelemetry-compatible source at xScaler and you're live in minutes.
+
+<TileGrid columns={3}>
+
+  <Tile title="Send Metrics" icon="prometheus" description="Prometheus-compatible metrics ingestion." viewAllTo="/ingest/prometheus-remote-write">
+    <TileLink to="/ingest/prometheus-remote-write" icon="prometheus">Prometheus</TileLink>
+    <TileLink to="/ingest/grafana-alloy" icon="grafana">Grafana Alloy</TileLink>
+    <TileLink to="/ingest/opentelemetry-collector" icon="opentelemetry">OTel Collector</TileLink>
+    <TileLink to="/ingest/otel-sdk-python" icon="python">Python SDK</TileLink>
+  </Tile>
+
+  <Tile title="Send Logs" icon="grafana" description="Structured and unstructured log collection." viewAllTo="/logs/grafana-alloy">
+    <TileLink to="/logs/grafana-alloy" icon="grafana">Grafana Alloy</TileLink>
+    <TileLink to="/logs/opentelemetry-collector" icon="opentelemetry">OTel Collector</TileLink>
+    <TileLink to="/logs/otel-sdk-python" icon="python">Python SDK</TileLink>
+    <TileLink to="/logs/otel-sdk-nodejs" icon="nodejs">Node.js SDK</TileLink>
+  </Tile>
+
+  <Tile title="Send Traces" icon="opentelemetry" description="Distributed tracing across your services." viewAllTo="/traces/opentelemetry-collector">
+    <TileLink to="/traces/opentelemetry-collector" icon="opentelemetry">OTel Collector</TileLink>
+    <TileLink to="/traces/grafana-alloy" icon="grafana">Grafana Alloy</TileLink>
+    <TileLink to="/traces/otel-sdk-python" icon="python">Python SDK</TileLink>
+    <TileLink to="/traces/otel-sdk-go" icon="go">Go SDK</TileLink>
+  </Tile>
+
+</TileGrid>
+
+## Monitor your infrastructure
+
+Connect ready-made integrations for your infrastructure, databases, and cloud services.
+
+<TileGrid columns={3}>
+
+  <Tile title="Infrastructure" icon="kubernetes" description="Hosts, containers, and orchestrators." viewAllTo="/integrations">
+    <TileLink to="/integrations/linux" icon="linux">Linux</TileLink>
+    <TileLink to="/integrations/kubernetes" icon="kubernetes">Kubernetes</TileLink>
+    <TileLink to="/integrations/docker" icon="docker">Docker</TileLink>
+    <TileLink to="/integrations/nginx" icon="nginx">NGINX</TileLink>
+  </Tile>
+
+  <Tile title="Databases" icon="postgresql" description="Track query performance and health." viewAllTo="/integrations">
+    <TileLink to="/integrations/postgresql" icon="postgresql">PostgreSQL</TileLink>
+    <TileLink to="/integrations/mysql" icon="mysql">MySQL</TileLink>
+    <TileLink to="/integrations/redis" icon="redis">Redis</TileLink>
+    <TileLink to="/integrations/mongodb" icon="mongodb">MongoDB</TileLink>
+  </Tile>
+
+  <Tile title="Cloud" emoji="☁️" description="Pull metrics from your cloud providers." viewAllTo="/integrations">
+    <TileLink to="/integrations/aws-cloudwatch" emoji="🟠">AWS CloudWatch</TileLink>
+    <TileLink to="/integrations/google-cloud" icon="googlecloud">Google Cloud</TileLink>
+    <TileLink to="/integrations/azure-monitor" emoji="🔷">Azure Monitor</TileLink>
+    <TileLink to="/integrations/cloudflare" icon="cloudflare">Cloudflare</TileLink>
+  </Tile>
+
+</TileGrid>
+
+## Popular integrations
+
+<LogoStrip>
+  <LogoTile to="/integrations/redis" devIcon="redis/redis-original" label="Redis" />
+  <LogoTile to="/integrations/postgresql" devIcon="postgresql/postgresql-original" label="PostgreSQL" />
+  <LogoTile to="/integrations/nginx" devIcon="nginx/nginx-original" label="NGINX" />
+  <LogoTile to="/integrations/mongodb" devIcon="mongodb/mongodb-original" label="MongoDB" />
+  <LogoTile to="/integrations/clickhouse" icon="clickhouse" label="ClickHouse" />
+  <LogoTile to="/integrations/kubernetes" devIcon="kubernetes/kubernetes-plain" label="Kubernetes" />
+</LogoStrip>
+
+[Browse all 100+ integrations →](/integrations)
+
+## What is xScaler?
+
+xScaler is a drop-in backend for any OpenTelemetry-compatible stack. You push
+telemetry from your existing Prometheus, Grafana Alloy, OpenTelemetry Collector,
+or OTel SDKs — xScaler handles ingestion, storage, and querying at scale across
+all three signals. Data is queried back out with **PromQL** (metrics), **LogQL**
+(logs), and **TraceQL** (traces) from Grafana or any compatible tool.
+
+<ArchDiagram />
+
+## Popular docs
+
+<HubGrid columns={3}>
+  <HubCard title="Quick Start" to="/getting-started" emoji="🚀">
+    Connect your first telemetry source in minutes.
+  </HubCard>
+  <HubCard title="Authentication" to="/authentication" emoji="🔑">
+    Tokens, scopes, and the required request headers.
+  </HubCard>
+  <HubCard title="Regions & Endpoints" to="/regions" emoji="🌍">
+    Choose the right region and find your hostnames.
+  </HubCard>
+  <HubCard title="Endpoints Reference" to="/endpoints" emoji="🧭">
+    Every ingest and query endpoint, per signal.
+  </HubCard>
+  <HubCard title="Query with PromQL" to="/query/overview" emoji="🔍">
+    Run instant and range queries against your metrics.
+  </HubCard>
+  <HubCard title="Limits & Quotas" to="/limits" emoji="📊">
+    Ingestion, cardinality, and rate limits to plan around.
+  </HubCard>
+</HubGrid>
