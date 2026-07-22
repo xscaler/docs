@@ -130,7 +130,7 @@ const config: Config = {
         },
         {
           type: 'search',
-          position: 'left',
+          position: 'right',
         },
         {
           href: 'https://portal.xscalerlabs.com',
@@ -145,7 +145,7 @@ const config: Config = {
       ],
     },
     footer: {
-      style: 'dark',
+      style: 'light',
       links: [
         {
           title: 'Get Started',

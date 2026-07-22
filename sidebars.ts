@@ -355,6 +355,7 @@ const sidebars: SidebarsConfig = {
       label: 'Reference',
       collapsed: false,
       items: [
+        'endpoints',
         'limits',
         'troubleshooting',
       ],

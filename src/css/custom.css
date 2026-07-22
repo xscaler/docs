@@ -95,9 +95,12 @@ html {
   /* Code */
   --docusaurus-highlighted-code-line-bg: rgba(255, 79, 0, 0.08);
 
-  /* Footer */
-  --ifm-footer-background-color: #fbfbfa;
+  /* Footer — match the page body background */
+  --ifm-footer-background-color: var(--ifm-background-color);
   --ifm-footer-color:           #5c5c63;
+  --ifm-footer-link-color:      #5c5c63;
+  --ifm-footer-link-hover-color: var(--ifm-color-primary);
+  --ifm-footer-title-color:     #111113;
 
   /* Link */
   --ifm-link-color:             #e64700;
@@ -170,8 +173,12 @@ html {
   /* Code */
   --docusaurus-highlighted-code-line-bg: rgba(255, 107, 43, 0.15);
 
-  /* Footer */
-  --ifm-footer-background-color: #0c0c0d;
+  /* Footer — match the page body background */
+  --ifm-footer-background-color: var(--ifm-background-color);
+  --ifm-footer-color:           #9c9c98;
+  --ifm-footer-link-color:      #9c9c98;
+  --ifm-footer-link-hover-color: var(--ifm-color-primary);
+  --ifm-footer-title-color:     #ffffff;
 
   /* Link */
   --ifm-link-color:             #ff6b2b;
@@ -692,24 +699,7 @@ article.docItemCol {
 
 /* ─── Search bar ──────────────────────────────────────────────── */
 
-/*
- * 3-column navbar: [left items] [search — centered] [right items]
- * Left items group is flex:1, so search (last item in it) gets pushed
- * to the visual center when combined with the right group's fixed width.
- * Using absolute centering relative to navbar__inner as the reliable method.
- */
-.navbar__inner {
-  position: relative;
-}
-
-.navbar__search {
-  position: absolute !important;
-  left: 50% !important;
-  top: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  z-index: 2;
-}
-
+/* Search sits in the right-hand navbar group, just before the Portal link. */
 .navbar__search-input {
   font-family: var(--ifm-font-family-base);
   font-size: 13.5px;
@@ -717,9 +707,16 @@ article.docItemCol {
   border: 1px solid var(--xs-border);
   color: var(--ifm-color-content-secondary);
   border-radius: 8px;
-  min-width: 240px;
+  min-width: 200px;
 }
 
 [data-theme='dark'] .navbar__search-input {
   background: #1a1a1d;
+}
+
+/* On the landing page the hero already has a prominent search box, so hide
+ * the redundant navbar search there. `docs-doc-id-intro` is applied to <html>
+ * by the docs theme for the Introduction page (slug: /). */
+html.docs-doc-id-intro .navbar__search {
+  display: none;
 }

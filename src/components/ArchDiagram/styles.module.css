@@ -1,0 +1,194 @@
+/* ArchDiagram — interactive "What is xScaler?" architecture flow.
+ * Reuses global theme tokens from src/css/custom.css. */
+
+.wrap {
+  margin: 8px 0 28px;
+  padding: 22px;
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--xs-border);
+  border-radius: 14px;
+}
+
+/* Horizontal scroll on narrow viewports so labels stay legible. */
+.scroll {
+  overflow-x: auto;
+}
+
+.svg {
+  width: 100%;
+  min-width: 720px;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+/* ─── Zones ───────────────────────────────────────────────────────── */
+
+.zone {
+  fill: none;
+  stroke: var(--xs-border-strong);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 6;
+}
+
+.zoneLabel {
+  fill: var(--xs-text-faint);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+/* ─── Edges ───────────────────────────────────────────────────────── */
+
+.edge {
+  fill: none;
+  stroke: var(--xs-border-strong);
+  stroke-width: 2;
+  transition: stroke 0.15s;
+}
+
+.edgeDashed {
+  stroke-dasharray: 5 5;
+}
+
+.edgeActive {
+  stroke: var(--ifm-color-primary);
+}
+
+.arrowhead {
+  fill: var(--xs-border-strong);
+}
+
+/* Animated "flow" overlay — marching dashes drifting toward the sink. */
+.flow {
+  fill: none;
+  stroke: var(--ifm-color-primary);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 2 12;
+  opacity: 0.35;
+  animation: arch-flow 1.4s linear infinite;
+}
+
+.flowActive {
+  opacity: 1;
+  stroke-width: 2.5;
+  animation-duration: 0.7s;
+}
+
+@keyframes arch-flow {
+  to {
+    stroke-dashoffset: -14;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow {
+    animation: none;
+    opacity: 0;
+  }
+  .flowActive {
+    opacity: 0.6;
+  }
+}
+
+/* ─── Wire labels & auth pill ─────────────────────────────────────── */
+
+.wireLabel {
+  fill: var(--xs-text-faint);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  pointer-events: none;
+}
+
+.pill {
+  fill: var(--ifm-background-color);
+  stroke: var(--xs-border-strong);
+  stroke-width: 1;
+}
+
+.pillLabel {
+  fill: var(--ifm-color-content-secondary);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 11px;
+  font-weight: 500;
+  pointer-events: none;
+}
+
+/* ─── Nodes ───────────────────────────────────────────────────────── */
+
+.node {
+  cursor: pointer;
+  outline: none;
+}
+
+.nodeBox {
+  fill: var(--ifm-background-color);
+  stroke: var(--xs-border-strong);
+  stroke-width: 1.5;
+  transition: stroke 0.15s, fill 0.15s, filter 0.15s;
+}
+
+/* The OpenTelemetry Collector is the recommended, Fleet-managed path. */
+.nodeHighlight .nodeBox {
+  stroke: var(--ifm-color-primary);
+  stroke-width: 2;
+}
+
+.node:hover .nodeBox,
+.node:focus-visible .nodeBox,
+.nodeActive .nodeBox {
+  stroke: var(--ifm-color-primary);
+  fill: var(--xs-accent-soft);
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.12));
+}
+
+.nodeLabel {
+  fill: var(--ifm-heading-color);
+  font-family: var(--ifm-font-family-base);
+  font-size: 15px;
+  font-weight: 600;
+  dominant-baseline: middle;
+}
+
+.nodeSub {
+  fill: var(--ifm-color-content-secondary);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 11.5px;
+  dominant-baseline: middle;
+}
+
+/* ─── Chips (inside visualization nodes) ──────────────────────────── */
+
+.chip {
+  fill: var(--ifm-background-surface-color);
+  stroke: var(--xs-border);
+  stroke-width: 1;
+}
+
+.node:hover .chip,
+.nodeActive .chip {
+  stroke: var(--xs-accent-line);
+}
+
+.chipLabel {
+  fill: var(--ifm-color-content);
+  font-family: var(--ifm-font-family-base);
+  font-size: 12px;
+  font-weight: 500;
+  dominant-baseline: middle;
+  pointer-events: none;
+}
+
+/* ─── Caption ─────────────────────────────────────────────────────── */
+
+.caption {
+  margin: 16px 4px 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--xs-text-faint);
+  text-align: center;
+}
