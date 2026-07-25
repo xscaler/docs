@@ -109,11 +109,11 @@ docker run --rm \
 
 1. Enable debug logging by adding `--stability.level=generally-available` to the `alloy run` command and checking stdout for errors.
 2. Open the **Alloy UI** at `http://localhost:12345` — it shows the health status of every component. A red component means it has encountered an error.
-3. Verify the `headers` block includes `"X-Scope-OrgID"` — this is the most common cause of `400 no org id` errors.
+3. Verify the `headers` block includes `"X-Scope-OrgID"` — this is the most common cause of `401 x-scope-orgid mismatch` errors.
 4. Confirm the `authorization` block uses `type = "Bearer"` and `credentials = "<token>"` (not a bare `bearer_token` field at the top level when using the block form).
 
-**400 Bad Request — "no org id"**
-The `X-Scope-OrgID` key is missing from the `headers` map. Add it and restart Alloy.
+**401 Unauthorized — "x-scope-orgid mismatch"**
+The `X-Scope-OrgID` key is missing from the `headers` map, or its value doesn't match your token's tenant. Add or correct it and restart Alloy.
 
 **401 Unauthorized**
 Check the `credentials` value — it must be the raw token string, not `Bearer <token>` (the `type = "Bearer"` prefix is added automatically by Alloy).

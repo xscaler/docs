@@ -29,7 +29,7 @@ Authorization: Bearer <token>
 X-Scope-OrgID: <tenant-id>
 ```
 
-If `X-Scope-OrgID` is missing, the backend returns **400 Bad Request** ("no org id"). If `Authorization` is missing or invalid, it returns **401 Unauthorized**.
+If `X-Scope-OrgID` is missing or does not match your token's tenant, the backend returns **401 Unauthorized** (`x-scope-orgid mismatch`). If `Authorization` is missing or invalid, it also returns **401 Unauthorized**.
 :::
 
 ---
@@ -104,7 +104,7 @@ See the full walkthrough: [Metrics](/grafana/metrics) Â· [Logs](/grafana/logs) Â
 
 | Error | Cause | Fix |
 |-------|-------|-----|
-| `400 no org id` | `X-Scope-OrgID` header missing | Add `-H "X-Scope-OrgID: <tenant-id>"` |
+| `401 x-scope-orgid mismatch` | `X-Scope-OrgID` header missing or wrong tenant | Add `-H "X-Scope-OrgID: <tenant-id>"` with the tenant that matches your token |
 | `401 Unauthorized` | Token missing or malformed | Check format: `Bearer <token>` (capital B, space) |
 | `403 Forbidden` | Token scope too narrow | Generate a read+write token from the portal |
 

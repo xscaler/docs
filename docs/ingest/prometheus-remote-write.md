@@ -50,7 +50,7 @@ remote_write:
 |-------|-------------|
 | `url` | The xScaler ingest endpoint. Must end in `/api/v1/push`. |
 | `authorization.credentials` | Your API token. Prometheus sends this as `Authorization: Bearer <token>`. |
-| `headers.X-Scope-OrgID` | **Required.** The tenant isolation header. Without this, the backend returns `400 no org id`. |
+| `headers.X-Scope-OrgID` | **Required.** The tenant isolation header. Without this, or with a value that doesn't match your token's tenant, the backend returns `401 x-scope-orgid mismatch`. |
 | `remote_timeout` | How long Prometheus waits for the backend to acknowledge a batch before retrying. `30s` is a safe default. |
 | `queue_config.capacity` | In-memory queue size (number of samples). Increase if you see dropped samples under high load. |
 | `queue_config.max_samples_per_send` | Maximum samples per HTTP request. The xScaler limit is `2000`. |
@@ -95,8 +95,8 @@ Monitor these Prometheus internal metrics to diagnose remote_write issues:
 
 ### Common issues
 
-**400 Bad Request — "no org id"**
-The `headers.X-Scope-OrgID` field is missing or misspelled. Verify the exact key name in your config.
+**401 Unauthorized — "x-scope-orgid mismatch"**
+The `headers.X-Scope-OrgID` field is missing, misspelled, or set to a tenant that doesn't match your token. Verify the exact key name and value in your config.
 
 **Metrics not appearing**
 1. Check `prometheus_remote_storage_failed_samples_total` — if it is rising, note the HTTP status code in Prometheus logs (`--log.level=debug`).

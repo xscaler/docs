@@ -134,5 +134,5 @@ exporter = OTLPMetricExporter(
 **401 Unauthorized**
 - Check the `Authorization` header value is `"Bearer <token>"` (string, capital B, space before token)
 
-**400 Bad Request**
-- The `X-Scope-OrgID` header is missing or the key is misspelled
+**401 Unauthorized — "x-scope-orgid mismatch"**
+- The `X-Scope-OrgID` header is missing, the key is misspelled, or its value doesn't match your token's tenant

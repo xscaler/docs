@@ -137,5 +137,5 @@ XSCALER_TOKEN=<token> XSCALER_TENANT_ID=<tenant-id> node -r ./otel.js app.js
 **401 Unauthorized**
 - Confirm `XSCALER_TOKEN` is set and the header reads `Bearer <token>` (with the prefix and space).
 
-**400 Bad Request**
-- `X-Scope-OrgID` is missing from `headers` or uses the wrong key name.
+**401 Unauthorized — "x-scope-orgid mismatch"**
+- `X-Scope-OrgID` is missing from `headers`, uses the wrong key name, or its value doesn't match your token's tenant.

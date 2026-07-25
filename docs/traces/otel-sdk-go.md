@@ -142,5 +142,5 @@ To inspect a specific tenant, click the **Tenants** tab, select the tenant, then
 **`401 Unauthorized`**
 - The `Authorization` header must be `"Bearer <token>"` — include the `Bearer ` prefix and space.
 
-**`400 Bad Request`**
-- The `X-Scope-OrgID` key is missing from the headers map or misspelled.
+**`401 Unauthorized` — "x-scope-orgid mismatch"**
+- The `X-Scope-OrgID` key is missing from the headers map, misspelled, or its value doesn't match your token's tenant.

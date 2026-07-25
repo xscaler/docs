@@ -144,8 +144,8 @@ if err := provider.Shutdown(ctx); err != nil {
 **`401 Unauthorized`**
 - The `Authorization` header value must be `"Bearer <token>"` — the full string including the `Bearer ` prefix and a space.
 
-**`400 Bad Request`**
-- The `X-Scope-OrgID` key is missing from the headers map or misspelled.
+**`401 Unauthorized` — "x-scope-orgid mismatch"**
+- The `X-Scope-OrgID` key is missing from the headers map, misspelled, or its value doesn't match your token's tenant.
 
 **Metrics exported but not visible in Grafana**
 - Allow up to one export interval (15 s) for metrics to appear.

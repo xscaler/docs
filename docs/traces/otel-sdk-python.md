@@ -107,5 +107,5 @@ To inspect a specific tenant, click the **Tenants** tab, select the tenant, then
 **401 Unauthorized**
 - Check the `Authorization` header value is `"Bearer <token>"` (capital B, space before token).
 
-**400 Bad Request**
-- The `X-Scope-OrgID` header is missing or misspelled.
+**401 Unauthorized — "x-scope-orgid mismatch"**
+- The `X-Scope-OrgID` header is missing, misspelled, or its value doesn't match your token's tenant.

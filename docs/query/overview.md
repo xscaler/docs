@@ -26,7 +26,7 @@ Authorization: Bearer <token>
 X-Scope-OrgID: <tenant-id>
 ```
 
-A missing `X-Scope-OrgID` returns `400`. A missing or invalid `Authorization` returns `401`.
+A missing or mismatched `X-Scope-OrgID` returns `401` (`x-scope-orgid mismatch`). A missing or invalid `Authorization` also returns `401`.
 
 ---
 
