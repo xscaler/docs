@@ -150,8 +150,8 @@ docker run --rm \
 2. Verify the `url` ends in `/api/v1/push`.
 3. Check `http_client_config.authorization` is nested inside the `endpoint` block — not at the top level.
 
-**400 Bad Request — "no org id"**
-The `X-Scope-OrgID` key is missing from the `headers` map. Add it and restart Alloy.
+**401 Unauthorized — "x-scope-orgid mismatch"**
+The `X-Scope-OrgID` key is missing from the `headers` map, or its value doesn't match your token's tenant. Add or correct it and restart Alloy.
 
 **401 Unauthorized**
 The `credentials` value must be the raw token — the `type = "Bearer"` prefix is added automatically.

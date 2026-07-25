@@ -11,21 +11,36 @@ Organised by symptom. If the issue you're experiencing is not listed here, conta
 
 ---
 
-## 400 Bad Request — "no org id"
+## 401 Unauthorized — "x-scope-orgid mismatch"
 
-**Cause:** The `X-Scope-OrgID` header is missing from the request.
+**Cause:** The `X-Scope-OrgID` header is missing, or its value does not match the tenant your token belongs to.
 
-**Fix:** Add the header to every request:
+**Fix:** Add the header — with the tenant ID that matches your token — to every request:
 
 ```bash
 -H "X-Scope-OrgID: <tenant-id>"
+```
+
+Reproduce and confirm the fix:
+
+```bash
+# Fails — 401 "x-scope-orgid mismatch" (header omitted)
+curl -i "https://euw1-01.m.xscalerlabs.com/api/v1/query" \
+  -H "Authorization: Bearer <token>" \
+  --data-urlencode 'query=up'
+
+# Works — tenant header present and matching the token
+curl -i "https://euw1-01.m.xscalerlabs.com/api/v1/query" \
+  -H "Authorization: Bearer <token>" \
+  -H "X-Scope-OrgID: <tenant-id>" \
+  --data-urlencode 'query=up'
 ```
 
 This header is mandatory on every write and read request. See [Authentication](/authentication) for details.
 
 ---
 
-## 401 Unauthorized
+## 401 Unauthorized — invalid token
 
 **Cause:** The `Authorization` header is missing, has an invalid token, or is malformed.
 
@@ -138,7 +153,7 @@ This header is mandatory on every write and read request. See [Authentication](/
          level: debug
    ```
 
-2. **Look for `"failed to export"` in the logs.** The line includes the HTTP status code. Common codes: `400` (missing `X-Scope-OrgID`), `401` (bad token), `404` (wrong endpoint path).
+2. **Look for `"failed to export"` in the logs.** The line includes the HTTP status code. Common codes: `401` (missing/mismatched `X-Scope-OrgID`, or bad token), `404` (wrong endpoint path).
 
 3. **Verify `endpoint` is the base host only:**
    ```yaml

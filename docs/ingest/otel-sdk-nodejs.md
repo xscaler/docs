@@ -125,5 +125,5 @@ process.on('SIGTERM', async () => {
 **`401 Unauthorized`**
 - Verify the `Authorization` header value is `'Bearer <token>'` (capital B, space before token).
 
-**`400 Bad Request`**
-- Check the `X-Scope-OrgID` header is present and the key is spelled correctly (case-sensitive).
+**`401 Unauthorized` — "x-scope-orgid mismatch"**
+- Check the `X-Scope-OrgID` header is present, spelled correctly (case-sensitive), and matches your token's tenant.

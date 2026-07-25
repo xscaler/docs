@@ -21,8 +21,20 @@ X-Scope-OrgID: <tenant-id>
 | `Authorization: Bearer <token>` | Authenticates the caller. The token must be a valid API token issued from the xScaler dashboard. |
 | `X-Scope-OrgID: <tenant-id>` | Selects the tenant data namespace. This is the **tenant isolation header** — without it the backend cannot route the request to the correct data store. |
 
+### Where the `Bearer` prefix goes
+
+Some clients want the **raw token**; others want the full `Bearer <token>` string. Pasting `Bearer ` into a raw-token field (or omitting it where it's required) returns **401 (invalid token)**.
+
+| Client | Field | Value to paste |
+|--------|-------|----------------|
+| `curl` / raw HTTP | `Authorization` header | `Bearer <token>` |
+| Prometheus | `authorization.credentials` | `<token>` — **raw**, Prometheus adds `Bearer` |
+| Grafana Alloy | `authorization.credentials` | `<token>` — **raw**, Alloy adds `Bearer` |
+| OpenTelemetry Collector | `headers.Authorization` | `Bearer <token>` |
+| Grafana data source | `Authorization` HTTP header | `Bearer <token>` |
+
 :::danger Both headers are mandatory
-There are no exceptions. Every `remote_write` and every query must include both headers. A missing `X-Scope-OrgID` returns **400**. A missing or invalid `Authorization` returns **401**.
+There are no exceptions. Every `remote_write` and every query must include both headers. A missing or mismatched `X-Scope-OrgID` returns **401** (`x-scope-orgid mismatch`). A missing or invalid `Authorization` also returns **401**.
 :::
 
 ### Example — curl
@@ -74,7 +86,7 @@ Do not delete the old token before step 3 — there may be in-flight `remote_wri
 
 | HTTP Code | Meaning | Common cause |
 |-----------|---------|--------------|
-| `400` | Missing `X-Scope-OrgID` header | Header omitted from the request |
+| `401` | Missing or mismatched `X-Scope-OrgID` header (`x-scope-orgid mismatch`) | Header omitted, or its value does not match the token's tenant |
 | `401` | Missing or invalid `Authorization` header | Token absent, expired, or malformed |
 | `403` | Token has insufficient scope for the operation | Write-only token used for a query, or vice versa |
 | `429` | Rate limit exceeded | Too many requests; reduce ingest rate or shard count |
