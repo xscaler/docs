@@ -56,6 +56,9 @@ const sidebars: SidebarsConfig = {
       ],
     },
 
+    // ── Grafana Datasources ──────────────────────────────────────────────────
+    'grafana-datasources',
+
     // ── Metrics ──────────────────────────────────────────────────────────────
     {
       type: 'category',
