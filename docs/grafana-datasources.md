@@ -186,8 +186,6 @@ In the Tempo datasource settings scroll to **Trace to logs**:
 | **Tags** | `service.name` |
 | **Filter by trace ID** | Enabled |
 
-![Grafana — Tempo Trace to logs config](/img/grafana/correlate-01-trace-to-logs.png)
-
 This adds a **Logs** button on every span view that jumps to the correlated log lines for the same service and time window.
 
 ### Trace to metrics
@@ -199,8 +197,6 @@ In the Tempo datasource settings scroll to **Trace to metrics**:
 | **Data source** | Your Prometheus datasource |
 | **Query** | `rate(traces_spanmetrics_duration_bucket{service="${__span.tags.service.name}"}[$__rate_interval])` |
 
-![Grafana — Tempo Trace to metrics config](/img/grafana/correlate-02-trace-to-metrics.png)
-
 ### Metrics to logs (Correlations)
 
 1. Go to **Administration → Correlations**.
@@ -208,8 +204,6 @@ In the Tempo datasource settings scroll to **Trace to metrics**:
 3. Set **Source** to your Prometheus datasource.
 4. Set **Target** to your Loki datasource.
 5. Use `{job="${job}"}` as the target query and map the `job` label from the metric series.
-
-![Grafana — Correlations config](/img/grafana/correlate-03-correlations.png)
 
 ---
 
@@ -228,8 +222,6 @@ up
 ```
 
 **Traces** — select the Tempo datasource, switch to the **Search** tab, and click **Run query** with no filters.
-
-![Grafana — Explore with all three signals](/img/grafana/verify-explore.png)
 
 ---
 
