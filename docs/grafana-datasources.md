@@ -225,6 +225,8 @@ up
 
 **Traces** — select the Tempo datasource, switch to the **Search** tab, and click **Run query** with no filters.
 
+![Grafana Explore — trace waterfall view in Tempo](/img/grafana/xscaler-traces.png)
+
 ---
 
 ## Troubleshooting
