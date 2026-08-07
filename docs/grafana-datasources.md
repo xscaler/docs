@@ -221,6 +221,8 @@ up
 {job=~".+"}
 ```
 
+![Grafana Explore — live log lines from Loki](/img/grafana/xscaler-logs.png)
+
 **Traces** — select the Tempo datasource, switch to the **Search** tab, and click **Run query** with no filters.
 
 ---
