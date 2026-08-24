@@ -18,10 +18,10 @@ A log range query evaluates a LogQL expression over a **time range**, returning 
 | Parameter | Required | Description |
 |-----------|----------|-------------|
 | `query` | Yes | LogQL expression |
-| `start` | Yes | Range start — RFC3339 or Unix timestamp |
-| `end` | Yes | Range end — RFC3339 or Unix timestamp |
+| `start` | Yes | Range start: RFC3339 or Unix timestamp |
+| `end` | Yes | Range end: RFC3339 or Unix timestamp |
 | `limit` | No | Maximum log lines for log queries. Default: `100`. |
-| `step` | No | Resolution step for metric queries — e.g. `60s`, `5m`. |
+| `step` | No | Resolution step for metric queries: e.g. `60s`, `5m`. |
 | `direction` | No | `forward` or `backward` (default) for log queries. |
 | `timeout` | No | Query timeout override. Maximum: `2m`. |
 
@@ -68,7 +68,7 @@ curl "https://euw1-01.l.xscalerlabs.com/api/v1/query_range" \
 
 ---
 
-## Response — log streams
+## Response: log streams
 
 ```json
 {
@@ -88,7 +88,7 @@ curl "https://euw1-01.l.xscalerlabs.com/api/v1/query_range" \
 }
 ```
 
-## Response — metric matrix
+## Response: metric matrix
 
 ```json
 {
@@ -115,8 +115,8 @@ curl "https://euw1-01.l.xscalerlabs.com/api/v1/query_range" \
 
 | Rule of thumb | Rationale |
 |---------------|-----------|
-| Aim for 200–400 data points per graph | `step = (end - start) / 300` is a good default. |
-| Match the range to at least 4× the step | `rate({...}[5m])` works well with a step of `60s`–`90s`. |
+| Aim for 200-400 data points per graph | `step = (end - start) / 300` is a good default. |
+| Match the range to at least 4× the step | `rate({...}[5m])` works well with a step of `60s` to `90s`. |
 | Wider step = faster query | For long time ranges, increase step to reduce query cost. |
 
 ### Example: 24-hour graph

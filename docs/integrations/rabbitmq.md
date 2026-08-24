@@ -11,7 +11,7 @@ Monitor RabbitMQ queue depths, message rates, connection counts, and node resour
 
 ![RabbitMQ Dashboard](https://grafana.com/api/dashboards/10991/images/7003/image)
 
-## Key Metrics
+## Key metrics
 
 | Metric | Description |
 |--------|-------------|
@@ -35,7 +35,7 @@ Monitor RabbitMQ queue depths, message rates, connection counts, and node resour
 rabbitmq-plugins enable rabbitmq_prometheus
 ```
 
-### Option A — Prometheus scrape
+### Option A: Prometheus scrape
 
 RabbitMQ exposes metrics natively on port `15692` when the plugin is enabled.
 
@@ -53,7 +53,7 @@ remote_write:
       password: <api-token>
 ```
 
-### Option B — Grafana Alloy
+### Option B: Grafana Alloy
 
 ```alloy
 prometheus.scrape "rabbitmq" {
@@ -70,7 +70,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-### Option C — OpenTelemetry Collector
+### Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

@@ -7,7 +7,7 @@ slug: /integrations/openldap
 
 # OpenLDAP
 
-Monitor OpenLDAP — operation rates, connection counts, thread usage, and replication status — using openldap_exporter.
+Monitor OpenLDAP using openldap_exporter: operation rates, connection counts, thread usage, and replication status.
 
 **Pattern:** openldap_exporter → Prometheus scrape → xScaler `remote_write`
 
@@ -21,7 +21,7 @@ Monitor OpenLDAP — operation rates, connection counts, thread usage, and repli
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 ```bash
 docker run -d \
@@ -50,7 +50,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "openldap" {
@@ -73,7 +73,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

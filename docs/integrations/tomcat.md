@@ -7,7 +7,7 @@ slug: /integrations/tomcat
 
 # Apache Tomcat
 
-Monitor Apache Tomcat — active threads, request throughput, JVM heap, JDBC connection pools, and error rates — using the JMX Exporter.
+Monitor Apache Tomcat using the JMX Exporter: active threads, request throughput, JVM heap, JDBC connection pools, and error rates.
 
 **Pattern:** JMX Exporter agent → Prometheus scrape → xScaler remote_write
 
@@ -22,7 +22,7 @@ Monitor Apache Tomcat — active threads, request throughput, JVM heap, JDBC con
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 Attach the JMX Exporter as a Java agent by adding to `CATALINA_OPTS`:
 
@@ -55,7 +55,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "tomcat" {
@@ -77,7 +77,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 Use the OTel JMX receiver with the `tomcat` target system:
 

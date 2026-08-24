@@ -7,7 +7,7 @@ slug: /integrations/spark
 
 # Apache Spark
 
-Monitor Apache Spark — executor CPU/memory, task counts, shuffle I/O, GC time, and streaming micro-batch latencies — using the Spark Prometheus Sink.
+Monitor Apache Spark using the Spark Prometheus Sink: executor CPU/memory, task counts, shuffle I/O, GC time, and streaming micro-batch latencies.
 
 **Pattern:** Spark PrometheusServlet → Prometheus scrape → xScaler `remote_write`
 
@@ -20,7 +20,7 @@ Monitor Apache Spark — executor CPU/memory, task counts, shuffle I/O, GC time,
 
 ---
 
-## Enable Prometheus Sink
+## Enable Prometheus sink
 
 Add to `conf/metrics.properties`:
 
@@ -43,7 +43,7 @@ Metrics are exposed at `http://<driver>:4040/metrics/prometheus`.
 
 ---
 
-## Option A — Prometheus
+## Option A: Prometheus
 
 ```yaml
 scrape_configs:
@@ -62,7 +62,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "spark" {
@@ -85,7 +85,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

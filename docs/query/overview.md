@@ -7,7 +7,7 @@ slug: /query/overview
 
 # Querying Overview
 
-xScaler exposes the **full Prometheus HTTP API**, so any tool that speaks PromQL works without modification — Grafana, custom dashboards, `curl`, and more.
+xScaler exposes the **full Prometheus HTTP API**, so any tool that speaks PromQL works without modification: Grafana, custom dashboards, `curl`, and more.
 
 ## Base URL
 
@@ -72,7 +72,7 @@ On error:
 
 ## Query timeout
 
-Queries time out after **2 minutes**. Long-running queries over large time ranges with fine step resolution are most likely to hit this limit. Increase the step or narrow the time range to reduce query cost.
+Queries time out after **2 minutes**. Wide time ranges with a fine step hit the limit first. Raise the step or narrow the range.
 
 ---
 

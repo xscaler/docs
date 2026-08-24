@@ -1,11 +1,11 @@
 ---
 id: otel-sdk-python
-title: OTel SDK — Python
-sidebar_label: OTel SDK — Python
+title: Python OTel SDK
+sidebar_label: Python OTel SDK
 slug: /ingest/otel-sdk-python
 ---
 
-# OTel SDK — Python
+# Python OTel SDK
 
 Instrument your Python application to push metrics directly to xScaler using the OpenTelemetry Python SDK over OTLP/HTTP.
 
@@ -55,14 +55,14 @@ meter = metrics.get_meter("my-service", version="1.0.0")
 ```
 
 :::note Full OTLP path required in the SDK
-Unlike the OpenTelemetry Collector exporter (which only takes the base host), the Python SDK exporter requires the **full path** including `/otlp/v1/metrics`.
+The Python SDK exporter needs the **full path**, `/otlp/v1/metrics` included. The OpenTelemetry Collector exporter takes the base host only.
 :::
 
 ---
 
 ## Instrument your code
 
-### Counter — monotonically increasing values
+### Counter: monotonically increasing values
 
 Use a counter for things that only go up: requests, errors, bytes sent.
 
@@ -77,7 +77,7 @@ request_counter = meter.create_counter(
 request_counter.add(1, {"method": "GET", "status": "200"})
 ```
 
-### Histogram — latencies and sizes
+### Histogram: latencies and sizes
 
 Use a histogram for values that are meaningful as distributions: latency, payload size.
 
@@ -91,7 +91,7 @@ latency = meter.create_histogram(
 latency.record(0.042, {"route": "/api/v1/metrics"})
 ```
 
-### UpDownCounter — values that go up and down
+### UpDownCounter: values that go up and down
 
 Use an UpDownCounter for quantities that can decrease as well as increase: queue depth, active connections, cache size.
 
@@ -134,5 +134,5 @@ exporter = OTLPMetricExporter(
 **401 Unauthorized**
 - Check the `Authorization` header value is `"Bearer <token>"` (string, capital B, space before token)
 
-**401 Unauthorized — "x-scope-orgid mismatch"**
+**401 Unauthorized: "x-scope-orgid mismatch"**
 - The `X-Scope-OrgID` header is missing, the key is misspelled, or its value doesn't match your token's tenant

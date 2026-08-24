@@ -7,7 +7,7 @@ slug: /integrations/raspberry-pi
 
 # Raspberry Pi
 
-Monitor Raspberry Pi hardware metrics — CPU temperature, CPU usage, memory, and GPIO — using node_exporter. Gain visibility into your Pi fleet from a single xScaler dashboard.
+Monitor Raspberry Pi hardware metrics using node_exporter: CPU temperature, CPU usage, memory, and GPIO.
 
 **Pattern:** node_exporter → Prometheus scrape → xScaler remote_write
 
@@ -21,7 +21,7 @@ Monitor Raspberry Pi hardware metrics — CPU temperature, CPU usage, memory, an
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 Download the ARMv7 (32-bit) or ARM64 (64-bit) build of node_exporter from the [Prometheus releases page](https://github.com/prometheus/node_exporter/releases), then create a systemd service:
 
@@ -70,7 +70,7 @@ remote_write:
       X-Scope-OrgID: "<tenant-id>"
 ```
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "raspberry_pi" {
@@ -90,7 +90,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

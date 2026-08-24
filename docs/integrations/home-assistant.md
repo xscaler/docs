@@ -7,7 +7,7 @@ slug: /integrations/home-assistant
 
 # Home Assistant
 
-Monitor Home Assistant — entity states (sensors, switches, climate, binary sensors), automation trigger counts, and integration health — using the built-in Prometheus integration.
+Monitor Home Assistant using the built-in Prometheus integration: entity states (sensors, switches, climate, binary sensors), automation trigger counts, and integration health.
 
 **Pattern:** Home Assistant /api/prometheus → Prometheus scrape → xScaler `remote_write`
 
@@ -21,7 +21,7 @@ Monitor Home Assistant — entity states (sensors, switches, climate, binary sen
 
 ---
 
-## Enable Prometheus Integration
+## Enable Prometheus integration
 
 In `configuration.yaml`:
 
@@ -41,7 +41,7 @@ Restart Home Assistant. Metrics are at `http://localhost:8123/api/prometheus`.
 
 ---
 
-## Option A — Prometheus
+## Option A: Prometheus
 
 ```yaml
 scrape_configs:
@@ -61,7 +61,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "home_assistant" {
@@ -85,7 +85,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

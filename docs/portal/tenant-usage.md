@@ -70,7 +70,7 @@ Each signal section has its own tenant detail page. To open one:
 
 Each detail page has two tabs: **Setup** (credentials and write endpoint) and **Monitoring** (live stats and usage charts).
 
-### Metrics tenant — summary stats
+### Metrics tenant: summary stats
 
 | Metric | Description |
 |--------|-------------|
@@ -84,7 +84,7 @@ Each detail page has two tabs: **Setup** (credentials and write endpoint) and **
 
 Charts show historical trends with a time range selector (1h / 6h / 24h / 7d). Toggle between **Series**, **DPM**, and **Req/s** for ingestion; toggle between **QPS**, **Error %**, and **Latency** for query health.
 
-### Logs tenant — summary stats
+### Logs tenant: summary stats
 
 | Metric | Description |
 |--------|-------------|
@@ -94,7 +94,7 @@ Charts show historical trends with a time range selector (1h / 6h / 24h / 7d). T
 
 Charts show ingest rate and lines/s over time with a time range selector (1h / 6h / 24h / 7d).
 
-### Traces tenant — summary stats
+### Traces tenant: summary stats
 
 | Metric | Description |
 |--------|-------------|
@@ -108,7 +108,7 @@ Charts show bytes/s, spans/s, bytes ingested, discards, and query RPS with a tim
 
 ## Checking usage against your plan limit
 
-Your plan defines the maximum number of **active series** allowed across all tenants combined.
+Your plan caps total **active series** across all tenants.
 
 | Plan | Series limit |
 |------|-------------|
@@ -118,11 +118,11 @@ Your plan defines the maximum number of **active series** allowed across all ten
 
 To check how close you are to the limit:
 
-1. Go to **Metrics → Overview** — the **Series capacity** ring gauge and progress bar show total active series vs your plan limit.
+1. Go to **Metrics → Overview**. The **Series capacity** ring gauge and progress bar show total active series vs your plan limit.
 2. A warning notification appears in the portal when you approach your limit (configurable in [Notification preferences](/portal/notifications)).
 3. If you exceed the limit, new series are throttled. The tenant's health badge changes to **Needs attention**.
 
-If you are consistently near or at your limit, consider [upgrading your plan](/portal/change-plan).
+Sitting at the limit means it is time to [upgrade the plan](/portal/change-plan).
 
 ---
 

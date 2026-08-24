@@ -7,7 +7,7 @@ slug: /integrations/ruby
 
 # Ruby / Rack
 
-Expose Prometheus metrics from any Ruby or Rack application — request rates, latencies, GC stats, and Puma thread pool — using the `prometheus-client` gem.
+Expose Prometheus metrics from any Ruby or Rack application using the `prometheus-client` gem: request rates, latencies, GC stats, and Puma thread pool.
 
 **Pattern:** Ruby prometheus-client → Prometheus scrape → xScaler `remote_write`
 
@@ -21,7 +21,7 @@ Expose Prometheus metrics from any Ruby or Rack application — request rates, l
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 Add to `Gemfile`:
 
@@ -50,7 +50,7 @@ use Prometheus::Client::Rack::Collector
 run MyApp
 ```
 
-Metrics are exposed at `/metrics` on your app port.
+Your app serves metrics at `/metrics` on its own port.
 
 ```yaml
 scrape_configs:
@@ -68,7 +68,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "ruby" {
@@ -90,7 +90,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 Use the OpenTelemetry Ruby SDK with OTLP export instead:
 
@@ -122,7 +122,7 @@ OTEL_EXPORTER_OTLP_HEADERS="Authorization=Bearer <token>,X-Scope-OrgID=<tenant-i
 
 ## Logs
 
-Collect application log — tail the Rails or app log file with Alloy. Add the following to your Alloy config, adjusting `__path__` to match your application's log file location:
+Collect application log. Tail the Rails or app log file with Alloy. Add the following to your Alloy config, adjusting `__path__` to match your application's log file location:
 
 ```river
 local.file_match "ruby_logs" {

@@ -7,7 +7,7 @@ slug: /integrations/envoy
 
 # Envoy Proxy
 
-Monitor Envoy proxy — downstream/upstream connections, request rates, circuit breaker status, and health check results — using Envoy's built-in stats endpoint.
+Monitor Envoy proxy using its built-in stats endpoint: downstream/upstream connections, request rates, circuit breaker status, and health check results.
 
 **Pattern:** Envoy /stats/prometheus → Prometheus scrape → xScaler remote_write
 
@@ -37,7 +37,7 @@ Prometheus-formatted stats are available at `http://localhost:9901/stats/prometh
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 Scrape Envoy's built-in Prometheus stats endpoint:
 
@@ -58,7 +58,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "envoy" {
@@ -81,7 +81,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

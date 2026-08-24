@@ -11,7 +11,7 @@ Monitor HAProxy frontend/backend request rates, error rates, queue depths, and s
 
 ![HAProxy Dashboard](https://grafana.com/api/dashboards/12693/images/8600/image)
 
-## Key Metrics
+## Key metrics
 
 | Metric | Description |
 |--------|-------------|
@@ -39,7 +39,7 @@ frontend stats
     stats uri /stats
 ```
 
-### Option A — Prometheus scrape
+### Option A: Prometheus scrape
 
 ```yaml
 scrape_configs:
@@ -55,7 +55,7 @@ remote_write:
       password: <api-token>
 ```
 
-### Option B — Grafana Alloy
+### Option B: Grafana Alloy
 
 ```alloy
 prometheus.scrape "haproxy" {
@@ -72,7 +72,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-### Option C — OpenTelemetry Collector
+### Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

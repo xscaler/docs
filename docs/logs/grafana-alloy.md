@@ -7,12 +7,12 @@ slug: /logs/grafana-alloy
 
 # Grafana Alloy
 
-Send logs to xScaler using [Grafana Alloy](https://grafana.com/docs/alloy/) — tail files, collect from Docker containers, or receive OTLP log data and forward everything over the native push protocol.
+Send logs to xScaler using [Grafana Alloy](https://grafana.com/docs/alloy/). Tail files, collect from Docker containers, or receive OTLP log data and forward everything over the native push protocol.
 
 :::warning Required headers
 Both headers are mandatory on every request:
-- `Authorization: Bearer <token>` — set via the `http_client_config.authorization` block
-- `X-Scope-OrgID: <tenant-id>` — set via the `headers` map
+- `Authorization: Bearer <token>`. Set via the `http_client_config.authorization` block
+- `X-Scope-OrgID: <tenant-id>`. Set via the `headers` map
 :::
 
 ---
@@ -146,12 +146,12 @@ docker run --rm \
 ## Troubleshooting
 
 **Logs not arriving**
-1. Open the **Alloy UI** at `http://localhost:12345` — red components indicate errors.
+1. Open the **Alloy UI** at `http://localhost:12345`. Red components indicate errors.
 2. Verify the `url` ends in `/api/v1/push`.
-3. Check `http_client_config.authorization` is nested inside the `endpoint` block — not at the top level.
+3. Check `http_client_config.authorization` is nested inside the `endpoint` block. Not at the top level.
 
-**401 Unauthorized — "x-scope-orgid mismatch"**
+**401 Unauthorized: "x-scope-orgid mismatch"**
 The `X-Scope-OrgID` key is missing from the `headers` map, or its value doesn't match your token's tenant. Add or correct it and restart Alloy.
 
 **401 Unauthorized**
-The `credentials` value must be the raw token — the `type = "Bearer"` prefix is added automatically.
+The `credentials` value must be the raw token. Alloy adds the `type = "Bearer"` prefix itself.

@@ -7,11 +7,11 @@ slug: /integrations/spring-boot
 
 # Spring Boot
 
-Monitor Spring Boot applications via the Actuator Prometheus endpoint — HTTP request rates, JVM memory, GC pauses, and connection pool usage.
+Monitor Spring Boot applications via the Actuator Prometheus endpoint: HTTP request rates, JVM memory, GC pauses, and connection pool usage.
 
 ![Spring Boot Dashboard](https://grafana.com/api/dashboards/12685/images/8578/image)
 
-## Key Metrics
+## Key metrics
 
 | Metric | Description |
 |--------|-------------|
@@ -51,7 +51,7 @@ management.endpoint.prometheus.enabled=true
 
 Metrics are available at `http://localhost:8080/actuator/prometheus`.
 
-### Option A — Prometheus scrape
+### Option A: Prometheus scrape
 
 ```yaml
 scrape_configs:
@@ -68,7 +68,7 @@ remote_write:
       password: <api-token>
 ```
 
-### Option B — Grafana Alloy
+### Option B: Grafana Alloy
 
 ```alloy
 prometheus.scrape "spring_boot" {
@@ -86,7 +86,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-### Option C — OpenTelemetry Collector
+### Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:
@@ -114,7 +114,7 @@ service:
 
 ## Logs
 
-Collect Spring Boot application log — configure `logging.file.name` and tail the output file. Add the following to your Alloy config, adjusting `__path__` to match your application's log file location:
+Collect Spring Boot application log. Configure `logging.file.name` and tail the output file. Add the following to your Alloy config, adjusting `__path__` to match your application's log file location:
 
 ```river
 local.file_match "spring_boot_logs" {

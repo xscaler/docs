@@ -28,7 +28,7 @@ Collect operation throughput, connection pool, replication lag, WiredTiger cache
 
 ---
 
-## Step 1 — Create a monitoring user
+## Step 1: Create a monitoring user
 
 Connect to your MongoDB instance and run:
 
@@ -46,7 +46,7 @@ db.createUser({
 
 ---
 
-## Step 2 — Run mongodb_exporter
+## Step 2: Run mongodb_exporter
 
 ```bash
 docker run --rm -d \
@@ -66,7 +66,7 @@ curl -s http://localhost:9216/metrics | grep mongodb_up
 
 ---
 
-## Step 3 — Scrape and forward to xScaler
+## Step 3: Scrape and forward to xScaler
 
 ### Prometheus
 

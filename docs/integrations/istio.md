@@ -11,7 +11,7 @@ Monitor Istio service mesh request rates, latencies, error rates, and control pl
 
 ![Istio Dashboard](https://grafana.com/api/dashboards/7645/images/16446/image)
 
-## Key Metrics
+## Key metrics
 
 | Metric | Description |
 |--------|-------------|
@@ -29,7 +29,7 @@ Monitor Istio service mesh request rates, latencies, error rates, and control pl
 
 ## Configuration
 
-### Option A — Prometheus scrape (in-cluster)
+### Option A: Prometheus scrape (in-cluster)
 
 Istio sidecars expose metrics on port `15020`.
 
@@ -51,7 +51,7 @@ remote_write:
       password: <api-token>
 ```
 
-### Option B — Grafana Alloy
+### Option B: Grafana Alloy
 
 ```alloy
 discovery.kubernetes "istio_pods" {
@@ -72,7 +72,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-### Option C — OpenTelemetry Collector
+### Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

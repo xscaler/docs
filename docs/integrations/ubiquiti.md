@@ -7,7 +7,7 @@ slug: /integrations/ubiquiti
 
 # Ubiquiti EdgeRouter
 
-Monitor Ubiquiti EdgeRouter — interface throughput, CPU/memory, routing table size, and connection stats — using SNMP Exporter.
+Monitor Ubiquiti EdgeRouter using SNMP Exporter: interface throughput, CPU/memory, routing table size, and connection stats.
 
 **Pattern:** SNMP Exporter → Prometheus scrape → xScaler `remote_write`
 
@@ -32,7 +32,7 @@ commit; save
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 ```bash
 ./snmp_exporter --config.file=snmp.yml
@@ -64,7 +64,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.exporter.snmp "edgerouter" {
@@ -96,7 +96,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

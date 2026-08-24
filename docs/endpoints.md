@@ -7,12 +7,11 @@ slug: /endpoints
 
 # Endpoints Reference
 
-A complete reference of every ingest and query endpoint xScaler exposes, across
-all three signals. For a walkthrough of connecting your first source, see the
-[Quick Start](/getting-started).
+Every ingest and query endpoint xScaler exposes, per signal. To connect your
+first source, start with the [Quick Start](/getting-started).
 
 :::info
-Every request — both writes and reads, for all signals — must include the
+Every request, both writes and reads, for all signals, must include the
 `Authorization: Bearer <token>` and `X-Scope-OrgID: <tenant-id>` headers. See
 [Authentication](/authentication) for details.
 :::

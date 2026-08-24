@@ -7,7 +7,7 @@ slug: /integrations/confluent-cloud
 
 # Confluent Cloud
 
-Monitor Confluent Cloud Kafka clusters — consumer lag, throughput, and partition health — using the Confluent Cloud Metrics API and Prometheus Exporter. Correlate Kafka performance with your downstream services in xScaler.
+Monitor Confluent Cloud Kafka clusters using the Confluent Cloud Metrics API and Prometheus Exporter: consumer lag, throughput, and partition health.
 
 **Pattern:** Confluent Cloud Metrics API → prometheus_exporter → xScaler remote_write
 
@@ -21,7 +21,7 @@ Monitor Confluent Cloud Kafka clusters — consumer lag, throughput, and partiti
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 Run the Confluent Cloud exporter with your API credentials:
 
@@ -51,7 +51,7 @@ remote_write:
       X-Scope-OrgID: "<tenant-id>"
 ```
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "confluent_cloud" {
@@ -72,7 +72,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:
@@ -107,7 +107,7 @@ service:
 
 ## Logs
 
-Confluent Cloud audit logs — export via the Confluent Audit Log API and forward to xScaler using an OTel Collector.
+Confluent Cloud audit logs. Export via the Confluent Audit Log API and forward to xScaler using an OTel Collector.
 
 ## Key metrics
 

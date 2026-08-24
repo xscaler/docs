@@ -16,7 +16,7 @@ By accessing or using the xScaler Labs platform, you agree to be bound by these 
 
 ## 2. Description of Service
 
-xScaler Labs provides a managed, Prometheus-compatible observability backend for storing, querying, and visualizing observability data.
+xScaler Labs provides a managed, Prometheus-compatible observability backend for storing, querying, and visualising observability data.
 
 ---
 
@@ -35,7 +35,7 @@ You are responsible for:
 You agree not to:
 
 - Use the platform for any unlawful purpose.
-- Attempt to gain unauthorized access to other tenants' data.
+- Attempt to gain unauthorised access to other tenants' data.
 - Interfere with or disrupt the platform's infrastructure.
 - Transmit malicious code or conduct denial-of-service attacks.
 

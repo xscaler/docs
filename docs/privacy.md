@@ -18,9 +18,9 @@ xScaler Labs ("we", "us", or "our") is committed to protecting your privacy. Thi
 
 We may collect the following types of information:
 
-- **Account information** — name, email address, and billing details provided during registration.
-- **Usage data** — metrics, logs, and telemetry data you send to our platform.
-- **Technical data** — IP addresses, browser type, and access logs for security and operational purposes.
+- **Account information**. Name, email address, and billing details provided during registration.
+- **Usage data**. Metrics, logs, and telemetry data you send to our platform.
+- **Technical data**. IP addresses, browser type, and access logs for security and operational purposes.
 
 ---
 

@@ -7,7 +7,7 @@ slug: /integrations/solr
 
 # Apache Solr
 
-Monitor Apache Solr — query rates, cache hit ratios, index size, JVM heap, and replication status — using the Solr Prometheus Exporter.
+Monitor Apache Solr using the Solr Prometheus Exporter: query rates, cache hit ratios, index size, JVM heap, and replication status.
 
 **Pattern:** solr-exporter → Prometheus scrape → xScaler `remote_write`
 
@@ -20,7 +20,7 @@ Monitor Apache Solr — query rates, cache hit ratios, index size, JVM heap, and
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 The Solr Prometheus Exporter ships with Solr (in `contrib/prometheus-exporter/`):
 
@@ -49,7 +49,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "solr" {
@@ -71,7 +71,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

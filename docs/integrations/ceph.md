@@ -7,7 +7,7 @@ slug: /integrations/ceph
 
 # Ceph
 
-Monitor Ceph — cluster health, OSD status, pool I/O, PG states, and capacity utilization — using Ceph's built-in MGR Prometheus module.
+Monitor Ceph using its built-in MGR Prometheus module: cluster health, OSD status, pool I/O, PG states, and capacity utilisation.
 
 **Pattern:** Ceph MGR prometheus module → Prometheus scrape → xScaler `remote_write`
 
@@ -21,7 +21,7 @@ Monitor Ceph — cluster health, OSD status, pool I/O, PG states, and capacity u
 
 ---
 
-## Enable Prometheus Module
+## Enable Prometheus module
 
 ```bash
 ceph mgr module enable prometheus
@@ -31,7 +31,7 @@ Metrics are exposed at `http://<mgr-host>:9283/metrics`.
 
 ---
 
-## Option A — Prometheus
+## Option A: Prometheus
 
 ```yaml
 scrape_configs:
@@ -50,7 +50,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "ceph" {
@@ -73,7 +73,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

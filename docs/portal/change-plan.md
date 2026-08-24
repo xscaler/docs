@@ -15,7 +15,7 @@ You can upgrade or downgrade your xScaler subscription from the Billing page. Pl
 
 | Plan | Active series | Retention | SLA | Price |
 |------|--------------|-----------|-----|-------|
-| **Free** | Up to 10K | Limited | — | $0/mo |
+| **Free** | Up to 10K | Limited | None | $0/mo |
 | **Scale** | Up to 20K | Up to 90 days | 99.9% | $19/mo + usage |
 | **Enterprise** | Custom | Up to 1 year | 99.99% | Contact sales |
 
@@ -44,7 +44,7 @@ If you are on a trial, you can end the trial early and start paying by clicking 
 5. The downgrade takes effect at the end of your current billing period.
 
 :::warning Check your series count before downgrading
-If your current active series count exceeds the limit on the new plan, ingestion will be throttled after the downgrade takes effect. Check your current usage on the [Metrics → Overview](/portal/tenant-usage) tab first.
+If your active series count exceeds the new plan's limit, xScaler throttles ingestion once the downgrade takes effect. Check your current usage on the [Metrics → Overview](/portal/tenant-usage) tab first.
 :::
 
 ---

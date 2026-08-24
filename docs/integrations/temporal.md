@@ -7,7 +7,7 @@ slug: /integrations/temporal
 
 # Temporal
 
-Monitor Temporal workflow engine — active workflow counts, activity latency, schedule-to-start times, request rates, and service errors — using Temporal's built-in Prometheus metrics.
+Monitor Temporal workflow engine using its built-in Prometheus metrics: active workflow counts, activity latency, schedule-to-start times, request rates, and service errors.
 
 **Pattern:** Temporal /metrics → Prometheus scrape → xScaler `remote_write`
 
@@ -20,7 +20,7 @@ Monitor Temporal workflow engine — active workflow counts, activity latency, s
 
 ---
 
-## Enable Metrics
+## Enable metrics
 
 In `temporal-server.yaml`:
 
@@ -36,7 +36,7 @@ Temporal frontend exposes metrics at `:8000/metrics` and workers at `:9091/metri
 
 ---
 
-## Option A — Prometheus
+## Option A: Prometheus
 
 ```yaml
 scrape_configs:
@@ -57,7 +57,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "temporal" {
@@ -82,7 +82,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

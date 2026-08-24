@@ -1,11 +1,11 @@
 ---
 id: otel-sdk-nodejs
-title: OTel SDK — Node.js
-sidebar_label: OTel SDK — Node.js
+title: Node.js OTel SDK
+sidebar_label: Node.js OTel SDK
 slug: /ingest/otel-sdk-nodejs
 ---
 
-# OTel SDK — Node.js
+# Node.js OTel SDK
 
 Instrument a Node.js application to push metrics directly to xScaler using the OpenTelemetry JavaScript SDK over OTLP/HTTP.
 
@@ -120,10 +120,10 @@ process.on('SIGTERM', async () => {
 
 **Metrics not appearing**
 - The SDK exports asynchronously on an interval; ensure the process runs long enough for at least one export cycle (15 s by default).
-- Check `url` — it must include the full path ending in `/otlp/v1/metrics`.
+- Check `url`. It must include the full path ending in `/otlp/v1/metrics`.
 
 **`401 Unauthorized`**
 - Verify the `Authorization` header value is `'Bearer <token>'` (capital B, space before token).
 
-**`401 Unauthorized` — "x-scope-orgid mismatch"**
+**`401 Unauthorized`: "x-scope-orgid mismatch"**
 - Check the `X-Scope-OrgID` header is present, spelled correctly (case-sensitive), and matches your token's tenant.

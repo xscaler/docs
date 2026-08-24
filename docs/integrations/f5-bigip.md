@@ -7,7 +7,7 @@ slug: /integrations/f5-bigip
 
 # F5 BIG-IP
 
-Monitor F5 BIG-IP — virtual server throughput, pool member health, SSL offload rates, connection counts, and system CPU/memory — using the F5 BIG-IP Prometheus exporter.
+Monitor F5 BIG-IP using the F5 BIG-IP Prometheus exporter: virtual server throughput, pool member health, SSL offload rates, connection counts, and system CPU/memory.
 
 **Pattern:** f5-bigip-exporter → Prometheus scrape → xScaler `remote_write`
 
@@ -21,7 +21,7 @@ Monitor F5 BIG-IP — virtual server throughput, pool member health, SSL offload
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 ```bash
 docker run -d \
@@ -50,7 +50,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "f5_bigip" {
@@ -73,7 +73,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

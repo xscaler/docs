@@ -7,7 +7,7 @@ slug: /integrations/cassandra
 
 # Apache Cassandra
 
-Monitor Apache Cassandra — read/write latencies, compaction progress, GC pressure, and node health — using the JMX Exporter. Ship Cassandra telemetry to xScaler to detect hotspots and degraded nodes early.
+Monitor Apache Cassandra using the JMX Exporter: read/write latencies, compaction progress, GC pressure, and node health.
 
 **Pattern:** JMX Exporter agent → Prometheus scrape → xScaler remote_write
 
@@ -22,7 +22,7 @@ Monitor Apache Cassandra — read/write latencies, compaction progress, GC press
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 Attach the JMX Exporter as a Java agent in Cassandra's JVM options. Edit `cassandra-env.sh` or set `JVM_OPTS` in your startup script:
 
@@ -55,7 +55,7 @@ remote_write:
       X-Scope-OrgID: "<tenant-id>"
 ```
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "cassandra" {
@@ -75,7 +75,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

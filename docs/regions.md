@@ -7,7 +7,7 @@ slug: /regions
 
 # Regions & Endpoints
 
-xScaler is deployed in geographically distributed regions. All traffic is **TLS-only** — there is no plaintext HTTP or gRPC option.
+Each xScaler region has its own hostnames per signal. All traffic is **TLS-only**. There is no plaintext HTTP or gRPC option.
 
 ## Available regions
 
@@ -16,7 +16,7 @@ xScaler is deployed in geographically distributed regions. All traffic is **TLS-
 | `euw1-01` | Europe West 1 | `euw1-01.m.xscalerlabs.com` | `euw1-01.l.xscalerlabs.com` | `euw1-01.t.xscalerlabs.com` |
 
 :::info More regions coming soon
-Additional regions are in the roadmap. Contact [support](https://xscalerlabs.com/support) if you need a specific region.
+More regions are planned. Contact [support](https://xscalerlabs.com/support) if you need a specific one.
 :::
 
 ---
@@ -97,7 +97,7 @@ Replace `<region>` with your region ID (e.g. `euw1-01`) in every URL below.
 | HTTPS | `443` | All HTTP endpoints |
 | gRPC over TLS | `443` | OTLP/gRPC ingest (all signals) |
 
-Self-signed certificates are **not** accepted. `insecure_skip_verify` should remain `false` in all client configurations.
+xScaler rejects self-signed certificates. Keep `insecure_skip_verify` set to `false` in every client config.
 
 ---
 

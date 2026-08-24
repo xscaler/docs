@@ -7,7 +7,7 @@ slug: /integrations/loki
 
 # Grafana Loki
 
-Monitor Grafana Loki — ingestion throughput, query latency, chunk storage, and ingester health — using Loki's built-in Prometheus metrics endpoint.
+Monitor Grafana Loki using Loki's built-in Prometheus metrics endpoint: ingestion throughput, query latency, chunk storage, and ingester health.
 
 **Pattern:** Loki /metrics → Prometheus scrape → xScaler `remote_write`
 
@@ -20,7 +20,7 @@ Monitor Grafana Loki — ingestion throughput, query latency, chunk storage, and
 
 ---
 
-## Option A — Prometheus
+## Option A: Prometheus
 
 Loki exposes metrics at `:3100/metrics` by default.
 
@@ -40,7 +40,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "loki" {
@@ -62,7 +62,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

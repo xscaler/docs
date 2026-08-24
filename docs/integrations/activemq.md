@@ -7,7 +7,7 @@ slug: /integrations/activemq
 
 # Apache ActiveMQ
 
-Monitor Apache ActiveMQ broker health — queue depth, consumer counts, message throughput, and broker memory usage — using the JMX Exporter.
+Monitor Apache ActiveMQ broker health using the JMX Exporter: queue depth, consumer counts, message throughput, and broker memory usage.
 
 **Pattern:** JMX Exporter agent → Prometheus scrape → xScaler `remote_write`
 
@@ -21,7 +21,7 @@ Monitor Apache ActiveMQ broker health — queue depth, consumer counts, message 
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 Download the JMX Exporter agent jar and create a config file `/etc/activemq/jmx_exporter.yml`:
 
@@ -63,7 +63,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "activemq" {
@@ -86,7 +86,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

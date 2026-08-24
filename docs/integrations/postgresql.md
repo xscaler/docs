@@ -28,7 +28,7 @@ Collect query performance, connection pool, replication lag, table bloat, and lo
 
 ---
 
-## Step 1 — Create a monitoring user
+## Step 1: Create a monitoring user
 
 ```sql
 -- Run as superuser
@@ -38,7 +38,7 @@ GRANT pg_monitor TO xscaler_monitor;
 
 ---
 
-## Step 2 — Run postgres_exporter
+## Step 2: Run postgres_exporter
 
 ```bash
 docker run --rm -d \
@@ -57,7 +57,7 @@ curl -s http://localhost:9187/metrics | grep pg_up
 
 ---
 
-## Step 3 — Scrape and forward to xScaler
+## Step 3: Scrape and forward to xScaler
 
 ### Prometheus
 
@@ -216,7 +216,7 @@ topk(10, pg_stat_user_tables_n_dead_tup)
 ## Troubleshooting
 
 **`pg_up 0`**
-- Check `DATA_SOURCE_NAME` — verify host, port, user, and password
+- Check `DATA_SOURCE_NAME`. Verify host, port, user, and password
 - Ensure `pg_monitor` role is granted: `\du xscaler_monitor` in psql
 
 **High connection count**

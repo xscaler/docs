@@ -7,7 +7,7 @@ slug: /query/label-exploration
 
 # Label Exploration
 
-Use the labels, label values, and series endpoints to discover what metrics exist in your tenant namespace — useful for building dashboards or debugging cardinality issues.
+The labels, label values, and series endpoints show what exists in your tenant namespace. Use them when building dashboards or chasing down cardinality.
 
 :::warning Required headers
 All requests need both headers:
@@ -114,7 +114,7 @@ curl "https://euw1-01.m.xscalerlabs.com/api/v1/labels" \
 
 ## Find high-cardinality metrics
 
-High cardinality — too many unique label value combinations — is a common cause of performance issues. Use this query to identify the top offenders:
+Too many unique label value combinations slow queries down. This query finds the top offenders:
 
 ```bash
 curl "https://euw1-01.m.xscalerlabs.com/api/v1/query" \
@@ -123,4 +123,4 @@ curl "https://euw1-01.m.xscalerlabs.com/api/v1/query" \
   --data-urlencode 'query=topk(10, count by (__name__)({__name__=~".+"}))'
 ```
 
-This returns the 10 metric names with the highest number of active time series. If any metric has unexpectedly high cardinality, review which labels are being attached and whether all their values are truly necessary.
+This returns the 10 metric names with the most active time series. When one stands out, check which labels it carries and drop the values you do not need.

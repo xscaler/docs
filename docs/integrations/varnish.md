@@ -7,7 +7,7 @@ slug: /integrations/varnish
 
 # Varnish Cache
 
-Monitor Varnish Cache — cache hit ratio, backend connections, request rates, and object counts — using varnish_exporter.
+Monitor Varnish Cache using varnish_exporter: cache hit ratio, backend connections, request rates, and object counts.
 
 **Pattern:** varnish_exporter → Prometheus scrape → xScaler remote_write
 
@@ -21,7 +21,7 @@ Monitor Varnish Cache — cache hit ratio, backend connections, request rates, a
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 Start varnish_exporter on the Varnish host:
 
@@ -47,7 +47,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "varnish" {
@@ -69,7 +69,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

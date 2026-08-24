@@ -11,7 +11,7 @@ Monitor Consul Raft leadership, node health, service registrations, and RPC acti
 
 ![Consul Dashboard](https://grafana.com/api/dashboards/13396/images/9348/image)
 
-## Key Metrics
+## Key metrics
 
 | Metric | Description |
 |--------|-------------|
@@ -40,7 +40,7 @@ telemetry {
 
 Metrics are available at `http://localhost:8500/v1/agent/metrics?format=prometheus`.
 
-### Option A — Prometheus scrape
+### Option A: Prometheus scrape
 
 ```yaml
 scrape_configs:
@@ -59,7 +59,7 @@ remote_write:
       password: <api-token>
 ```
 
-### Option B — Grafana Alloy
+### Option B: Grafana Alloy
 
 ```alloy
 prometheus.scrape "consul" {
@@ -78,7 +78,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-### Option C — OpenTelemetry Collector
+### Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

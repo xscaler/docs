@@ -7,7 +7,7 @@ slug: /integrations/cert-manager
 
 # cert-manager
 
-Monitor cert-manager — certificate expiry, renewal status, ACME request rates, and controller sync health — using cert-manager's built-in Prometheus metrics.
+Monitor cert-manager using its built-in Prometheus metrics: certificate expiry, renewal status, ACME request rates, and controller sync health.
 
 **Pattern:** cert-manager /metrics → Prometheus scrape → xScaler `remote_write`
 
@@ -21,9 +21,9 @@ Monitor cert-manager — certificate expiry, renewal status, ACME request rates,
 
 ---
 
-## Enable Metrics
+## Enable metrics
 
-cert-manager exposes metrics on port `9402` of the controller pod by default. No additional configuration is required.
+cert-manager exposes metrics on port `9402` of the controller pod by default. No extra config needed.
 
 Create a Prometheus `ServiceMonitor` (if using Prometheus Operator):
 
@@ -44,7 +44,7 @@ spec:
 
 ---
 
-## Option A — Prometheus
+## Option A: Prometheus
 
 ```yaml
 scrape_configs:
@@ -71,7 +71,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 discovery.kubernetes "cert_manager" {
@@ -113,7 +113,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

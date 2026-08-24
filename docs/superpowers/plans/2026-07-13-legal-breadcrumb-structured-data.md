@@ -8,7 +8,7 @@
 
 **Tech Stack:** Docusaurus 3.10, TypeScript frontmatter, Node.js 20, npm.
 
-## Global Constraints
+## Global constraints
 
 - Preserve all existing legal page URLs and content.
 - Do not disable breadcrumb structured data globally.

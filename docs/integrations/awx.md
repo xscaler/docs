@@ -7,7 +7,7 @@ slug: /integrations/awx
 
 # Ansible AWX
 
-Monitor Ansible AWX (Tower) — job status, host inventory size, running and pending jobs, and project sync health — using the AWX Prometheus exporter.
+Monitor Ansible AWX (Tower) using the AWX Prometheus exporter: job status, host inventory size, running and pending jobs, and project sync health.
 
 **Pattern:** awx_prometheus_exporter → Prometheus scrape → xScaler `remote_write`
 
@@ -21,7 +21,7 @@ Monitor Ansible AWX (Tower) — job status, host inventory size, running and pen
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 ```bash
 docker run -d \
@@ -49,7 +49,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "awx" {
@@ -72,7 +72,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

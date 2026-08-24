@@ -7,7 +7,7 @@ slug: /integrations/presto
 
 # Presto / Trino
 
-Monitor Presto or Trino — active queries, queued queries, completed query rates, failed queries, and cluster CPU/memory — using the JMX Exporter agent.
+Monitor Presto or Trino using the JMX Exporter agent: active queries, queued queries, completed query rates, failed queries, and cluster CPU/memory.
 
 **Pattern:** JMX Exporter agent → Prometheus scrape → xScaler `remote_write`
 
@@ -21,7 +21,7 @@ Monitor Presto or Trino — active queries, queued queries, completed query rate
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 Attach the JMX Exporter to the coordinator and workers:
 
@@ -59,7 +59,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "presto" {
@@ -82,7 +82,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

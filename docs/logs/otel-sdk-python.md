@@ -1,11 +1,11 @@
 ---
 id: otel-sdk-python
-title: OTel SDK — Python
-sidebar_label: OTel SDK — Python
+title: Python OTel SDK
+sidebar_label: Python OTel SDK
 slug: /logs/otel-sdk-python
 ---
 
-# OTel SDK — Python
+# Python OTel SDK
 
 Send logs directly from a Python application to xScaler using the OpenTelemetry Python SDK over OTLP/HTTP.
 
@@ -60,7 +60,7 @@ logging.getLogger().setLevel(logging.DEBUG)
 ```
 
 :::note Full OTLP path required
-Unlike the OpenTelemetry Collector exporter (which only takes the base host), the Python SDK exporter requires the **full path** including `/otlp/v1/logs`.
+The Python SDK exporter needs the **full path**, `/otlp/v1/logs` included. The OpenTelemetry Collector exporter takes the base host only.
 :::
 
 ---
@@ -100,10 +100,10 @@ exporter = OTLPLogExporter(
 **Logs not appearing in xScaler**
 - Verify the `endpoint` includes the full path: `.../otlp/v1/logs`
 - Enable debug logging on the SDK: `logging.basicConfig(level=logging.DEBUG)`
-- The `BatchLogRecordProcessor` exports on a background thread — ensure the process runs long enough for the first flush.
+- The `BatchLogRecordProcessor` exports on a background thread. Ensure the process runs long enough for the first flush.
 
 **401 Unauthorized**
 - Check the `Authorization` header value is `"Bearer <token>"` (capital B, space before token).
 
-**401 Unauthorized — "x-scope-orgid mismatch"**
+**401 Unauthorized: "x-scope-orgid mismatch"**
 - The `X-Scope-OrgID` header is missing, misspelled, or its value doesn't match your token's tenant.

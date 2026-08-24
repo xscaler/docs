@@ -7,7 +7,7 @@ slug: /integrations/aerospike
 
 # Aerospike
 
-Monitor Aerospike — namespace stats, cluster health, read/write throughput, and memory usage — using aerospike-prometheus-exporter. Gain real-time visibility into your Aerospike clusters from within xScaler.
+Monitor Aerospike using aerospike-prometheus-exporter: namespace stats, cluster health, read/write throughput, and memory usage.
 
 **Pattern:** aerospike-prometheus-exporter → Prometheus scrape → xScaler remote_write
 
@@ -21,7 +21,7 @@ Monitor Aerospike — namespace stats, cluster health, read/write throughput, an
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 Download and install the [aerospike-prometheus-exporter](https://github.com/aerospike/aerospike-prometheus-exporter/releases), then configure it to connect to your Aerospike node:
 
@@ -58,7 +58,7 @@ remote_write:
       X-Scope-OrgID: "<tenant-id>"
 ```
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "aerospike" {
@@ -78,7 +78,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

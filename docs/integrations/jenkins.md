@@ -11,7 +11,7 @@ Monitor Jenkins build results, durations, queue lengths, executor utilisation, a
 
 ![Jenkins Dashboard](https://grafana.com/api/dashboards/9964/images/6247/image)
 
-## Key Metrics
+## Key metrics
 
 | Metric | Description |
 |--------|-------------|
@@ -31,9 +31,9 @@ Monitor Jenkins build results, durations, queue lengths, executor utilisation, a
 
 Install the plugin: **Manage Jenkins → Plugins → Prometheus Metrics Plugin**
 
-After installation, metrics are available at `<jenkins-url>/prometheus`.
+Jenkins then serves metrics at `<jenkins-url>/prometheus`.
 
-### Option A — Prometheus scrape
+### Option A: Prometheus scrape
 
 ```yaml
 scrape_configs:
@@ -50,7 +50,7 @@ remote_write:
       password: <api-token>
 ```
 
-### Option B — Grafana Alloy
+### Option B: Grafana Alloy
 
 ```alloy
 prometheus.scrape "jenkins" {
@@ -68,7 +68,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-### Option C — OpenTelemetry Collector
+### Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

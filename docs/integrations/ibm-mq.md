@@ -7,7 +7,7 @@ slug: /integrations/ibm-mq
 
 # IBM MQ
 
-Monitor IBM MQ queue managers — queue depth, channel status, message rates, and broker health — using the IBM MQ Prometheus exporter.
+Monitor IBM MQ queue managers using the IBM MQ Prometheus exporter: queue depth, channel status, message rates, and broker health.
 
 **Pattern:** mq-metric-samples → Prometheus scrape → xScaler `remote_write`
 
@@ -21,7 +21,7 @@ Monitor IBM MQ queue managers — queue depth, channel status, message rates, an
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 ```bash
 docker run -d \
@@ -50,7 +50,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "ibm_mq" {
@@ -73,7 +73,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

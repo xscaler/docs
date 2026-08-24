@@ -71,7 +71,7 @@ Response:
 
 **Endpoint:** `GET https://euw1-01.l.xscalerlabs.com/api/v1/series`
 
-Returns all log stream label sets matching a selector. Useful for discovering which streams exist before querying them.
+Returns all log stream label sets matching a selector, so you can see which streams exist before querying them.
 
 ```bash
 curl "https://euw1-01.l.xscalerlabs.com/api/v1/series" \
@@ -101,7 +101,7 @@ Response:
 
 **Endpoint:** `GET wss://euw1-01.l.xscalerlabs.com/api/v1/tail` (WebSocket)
 
-Stream log lines in real time as they are ingested.
+Stream log lines as they arrive.
 
 ```bash
 # Using websocat

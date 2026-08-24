@@ -11,7 +11,7 @@ Monitor Node.js heap memory, garbage collection, event loop lag, and active hand
 
 ![Node.js Dashboard](https://grafana.com/api/dashboards/11159/images/7101/image)
 
-## Key Metrics
+## Key metrics
 
 | Metric | Description |
 |--------|-------------|
@@ -29,7 +29,7 @@ Monitor Node.js heap memory, garbage collection, event loop lag, and active hand
 
 ## Configuration
 
-### Option A — prom-client
+### Option A: prom-client
 
 Install the library:
 
@@ -70,7 +70,7 @@ remote_write:
       password: <api-token>
 ```
 
-### Option B — Grafana Alloy
+### Option B: Grafana Alloy
 
 ```alloy
 prometheus.scrape "nodejs" {
@@ -87,7 +87,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-### Option C — OpenTelemetry Collector
+### Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:
@@ -114,7 +114,7 @@ service:
 
 ## Logs
 
-Collect application stdout/stderr — pipe your process output to a log file and tail it with Alloy. Add the following to your Alloy config, adjusting `__path__` to match your application's log file location:
+Collect application stdout/stderr. Pipe your process output to a log file and tail it with Alloy. Add the following to your Alloy config, adjusting `__path__` to match your application's log file location:
 
 ```river
 local.file_match "nodejs_logs" {

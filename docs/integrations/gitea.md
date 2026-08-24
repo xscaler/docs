@@ -7,7 +7,7 @@ slug: /integrations/gitea
 
 # Gitea
 
-Monitor Gitea — repositories, users, issues, pull requests, and process-level resource usage — using Gitea's built-in Prometheus endpoint.
+Monitor Gitea using its built-in Prometheus endpoint: repositories, users, issues, pull requests, and process-level resource usage.
 
 **Pattern:** Gitea /metrics → Prometheus scrape → xScaler `remote_write`
 
@@ -20,7 +20,7 @@ Monitor Gitea — repositories, users, issues, pull requests, and process-level 
 
 ---
 
-## Enable Metrics
+## Enable metrics
 
 In `app.ini`:
 
@@ -34,7 +34,7 @@ Restart Gitea. Metrics are available at `http://localhost:3000/metrics`.
 
 ---
 
-## Option A — Prometheus
+## Option A: Prometheus
 
 ```yaml
 scrape_configs:
@@ -53,7 +53,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "gitea" {
@@ -76,7 +76,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

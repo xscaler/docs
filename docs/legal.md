@@ -7,7 +7,7 @@ title: Legal & Open Source Notices
 
 ## 1. Overview
 
-This platform provides a managed observability service for monitoring and analyzing system performance and metrics.
+This platform provides a managed observability service for monitoring and analysing system performance and metrics.
 
 For full details on how we handle your data and your rights, please refer to our dedicated policy pages:
 
@@ -26,7 +26,7 @@ This product includes open-source software components, including:
 * Grafana
 * Prometheus
 
-These components are used in accordance with their respective licenses, including the AGPLv3 and Apache License 2.0.
+These components are used in accordance with their respective licences, including the AGPLv3 and Apache License 2.0.
 
 ---
 
@@ -34,7 +34,7 @@ These components are used in accordance with their respective licenses, includin
 
 Grafana, Prometheus, and related marks are trademarks of their respective owners.
 
-This product is not affiliated with, endorsed by, or sponsored by these organizations.
+This product is not affiliated with, endorsed by, or sponsored by these organisations.
 
 ---
 

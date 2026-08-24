@@ -47,7 +47,7 @@ curl "https://euw1-01.l.xscalerlabs.com/api/v1/query" \
   --data-urlencode 'limit=100'
 ```
 
-### Metric query — current error rate
+### Metric query: current error rate
 
 ```bash
 curl "https://euw1-01.l.xscalerlabs.com/api/v1/query" \
@@ -58,7 +58,7 @@ curl "https://euw1-01.l.xscalerlabs.com/api/v1/query" \
 
 ---
 
-## Response — log streams
+## Response: log streams
 
 When the query returns log lines (`resultType: "streams"`):
 
@@ -82,7 +82,7 @@ When the query returns log lines (`resultType: "streams"`):
 
 Each entry in `values` is a `[nanosecond_timestamp, log_line]` pair. Timestamps are Unix nanoseconds as strings.
 
-## Response — metric vector
+## Response: metric vector
 
 When the query is a metric expression (`resultType: "vector"`):
 

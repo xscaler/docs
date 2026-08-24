@@ -93,7 +93,7 @@ Do not commit enrollment tokens to source control. Store them in your secret man
 When the agent first connects:
 
 1. xScaler validates the enrollment token.
-2. The agent is registered in your organization.
+2. The agent is registered in your organisation.
 3. Default labels from the token are attached to the agent.
 4. The agent receives its own credential for future reconnects.
 5. If a config assignment matches the agent labels, xScaler offers the matching config.

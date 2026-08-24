@@ -7,7 +7,7 @@ slug: /integrations/snmp
 
 # SNMP
 
-The SNMP Exporter translates SNMP polling results into Prometheus metrics, enabling monitoring of network devices such as routers, switches, and printers that expose SNMP OIDs.
+The SNMP Exporter turns SNMP polling results into Prometheus metrics for any device that exposes SNMP OIDs: routers, switches, printers.
 
 **Pattern:** SNMP Exporter → Prometheus scrape → xScaler remote_write
 
@@ -38,7 +38,7 @@ Fleet-wide view across multiple SNMP-monitored devices.
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 **1. Generate snmp.yml for your MIBs**
 
@@ -88,7 +88,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "snmp" {
@@ -114,7 +114,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:
@@ -202,6 +202,6 @@ loki.write "xscaler" {
 | `ifInOctets` | Total bytes received on an interface |
 | `ifOutOctets` | Total bytes transmitted on an interface |
 | `ifInErrors` | Number of inbound packets with errors |
-| `sysUpTime` | Time since the device was last initialized |
+| `sysUpTime` | Time since the device was last initialised |
 | `ifOperStatus` | Operational status of each interface (1=up, 2=down) |
 | `hrProcessorLoad` | CPU load percentage per processor |

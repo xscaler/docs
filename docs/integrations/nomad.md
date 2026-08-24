@@ -7,7 +7,7 @@ slug: /integrations/nomad
 
 # Nomad
 
-Monitor HashiCorp Nomad — running allocations, job health, cluster resource utilization, and scheduler dispatch rates — using Nomad's built-in Prometheus metrics endpoint.
+Monitor HashiCorp Nomad using Nomad's built-in Prometheus metrics endpoint: running allocations, job health, cluster resource utilisation, and scheduler dispatch rates.
 
 **Pattern:** Nomad /v1/metrics → Prometheus scrape → xScaler `remote_write`
 
@@ -21,7 +21,7 @@ Monitor HashiCorp Nomad — running allocations, job health, cluster resource ut
 
 ---
 
-## Enable Telemetry
+## Enable telemetry
 
 In `nomad.hcl`:
 
@@ -36,7 +36,7 @@ Metrics are available at `:4646/v1/metrics?format=prometheus`.
 
 ---
 
-## Option A — Prometheus
+## Option A: Prometheus
 
 ```yaml
 scrape_configs:
@@ -57,7 +57,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "nomad" {
@@ -81,7 +81,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

@@ -7,7 +7,7 @@ slug: /integrations/docker
 
 # Docker
 
-Collect container-level metrics from a Docker host — CPU, memory, network I/O, and block I/O per container — using the OpenTelemetry Collector's Docker Stats receiver.
+Collect container-level metrics from a Docker host using the OpenTelemetry Collector's Docker Stats receiver: CPU, memory, network I/O, and block I/O per container.
 
 **Pattern:** OTel Collector `docker_stats` receiver → xScaler OTLP endpoint
 

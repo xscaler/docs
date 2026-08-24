@@ -7,7 +7,7 @@ slug: /integrations/macos
 
 # macOS
 
-Collect system metrics from macOS hosts using node_exporter (Darwin build). Ship CPU, memory, disk, and network telemetry to xScaler with minimal configuration.
+Collect system metrics from macOS hosts using node_exporter (Darwin build).
 
 **Pattern:** node_exporter → Prometheus scrape → xScaler remote_write
 
@@ -21,7 +21,7 @@ Collect system metrics from macOS hosts using node_exporter (Darwin build). Ship
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 Install and start node_exporter using Homebrew:
 
@@ -30,7 +30,7 @@ brew install node_exporter
 brew services start node_exporter
 ```
 
-node_exporter will listen on port `9100`. Configure your Prometheus instance to scrape it and remote_write to xScaler:
+node_exporter listens on port `9100`. Configure Prometheus to scrape it and remote_write to xScaler:
 
 ```yaml
 scrape_configs:
@@ -47,7 +47,7 @@ remote_write:
       X-Scope-OrgID: "<tenant-id>"
 ```
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "macos" {
@@ -67,7 +67,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

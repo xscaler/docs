@@ -7,7 +7,7 @@ slug: /integrations/juniper-mist
 
 # Juniper MIST AI
 
-Monitor your Juniper MIST AI wireless network — device health, client latency, NAC events, alarms, and session flows — by receiving MIST webhooks through an OpenTelemetry Collector and forwarding metrics, logs, and traces to xScaler.
+Monitor your Juniper MIST AI wireless network: device health, client latency, NAC events, alarms, and session flows. MIST posts webhooks to an OpenTelemetry Collector, which forwards metrics, logs, and traces to xScaler.
 
 **Pattern:** Juniper MIST AI → Webhook (HTTP POST JSON) → OTel Collector → xScaler
 
@@ -18,7 +18,7 @@ Monitor your Juniper MIST AI wireless network — device health, client latency,
 | Signal | MIST topics | What you get |
 |--------|------------|-------------|
 | **Metrics** | `minis-application`, `minis-network`, `client-latency`, `device-updowns` | Latency, packet loss, DHCP/DNS/auth response times, AP up/down events as gauges |
-| **Logs** | `alarms`, `audits`, `device-events`, `client-sessions`, `client-join`, `nac-events`, `nac-accounting` | Structured event log stream — security alerts, config changes, client connect/disconnect, NAC auth results |
+| **Logs** | `alarms`, `audits`, `device-events`, `client-sessions`, `client-join`, `nac-events`, `nac-accounting` | Structured event log stream: security alerts, config changes, client connect/disconnect, NAC auth results |
 | **Traces** | `client-join` + `client-sessions` + `nac-events` | Client session lifecycle modelled as spans: join → authenticate → roam → disconnect |
 
 :::info Marvis subscription required
@@ -35,7 +35,7 @@ The `minis-application`, `minis-network`, and `client-latency` topics require an
 
 ---
 
-## Step 1 — Deploy the OTel Collector
+## Step 1: Deploy the OTel Collector
 
 Save the following as `otel-collector-mist.yaml`. It exposes a single HTTP endpoint that receives all MIST webhook POSTs and fans the data out across three xScaler pipelines.
 
@@ -126,9 +126,9 @@ Your webhook receiver is now listening at `http://<your-host>:4320/mist/webhook`
 
 ---
 
-## Step 2 — Configure the MIST webhook
+## Step 2: Configure the MIST webhook
 
-### Via the MIST Portal
+### Via the MIST portal
 
 1. In the MIST Portal, navigate to **Organization → Settings** (org-level) or **Organization → Site Configuration → select site** (site-level).
 2. Scroll down to the **Webhooks** section and click **Add Webhook**.
@@ -139,7 +139,7 @@ Your webhook receiver is now listening at `http://<your-host>:4320/mist/webhook`
 | **Name** | `xscaler-otel` |
 | **Webhook Type** | `HTTP Post` |
 | **URL** | `http://<your-host>:4320/mist/webhook` |
-| **Secret** | A strong random string — used to sign payloads (see [Signature verification](#signature-verification)) |
+| **Secret** | A strong random string: used to sign payloads (see [Signature verification](#signature-verification)) |
 | **Verify Certificate** | Enabled (use HTTPS in production) |
 
 4. Under **Topics**, select the topics for the signals you want:
@@ -279,8 +279,8 @@ Topics that produce log events:
 | `audits` | INFO | Configuration changes with admin identity and timestamp |
 | `device-events` | INFO / WARN | AP/switch/gateway port changes, firmware upgrades, restarts |
 | `client-sessions` | INFO | Roaming, disconnects, session duration, termination reason |
-| `client-join` | INFO | Client associations — AP, WLAN, RSSI, band |
-| `nac-events` | INFO / WARN | 802.1X auth events — success, failure, identity provider |
+| `client-join` | INFO | Client associations: AP, WLAN, RSSI, band |
+| `nac-events` | INFO / WARN | 802.1X auth events: success, failure, identity provider |
 | `nac-accounting` | INFO | NAC session start/stop with rx/tx packet counts |
 
 Example payload from `alarms`:
@@ -342,7 +342,7 @@ service:
 
 **Webhook not received**
 - Confirm the OTel Collector is reachable from the MIST cloud at `http://<your-host>:4320/mist/webhook`.
-- Use the MIST portal **Test Webhook** button — it sends a `ping` topic POST and should return `200`.
+- Use the MIST portal **Test Webhook** button. It sends a `ping` topic POST and should return `200`.
 - Check collector logs: `docker logs otel-mist`.
 
 **Signature mismatch**

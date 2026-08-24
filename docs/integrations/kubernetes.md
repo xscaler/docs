@@ -7,7 +7,7 @@ slug: /integrations/kubernetes
 
 # Kubernetes
 
-Collect metrics from your Kubernetes cluster — node resource usage, pod CPU/memory, deployment health, persistent volume status, and more.
+Collect metrics from your Kubernetes cluster: node resource usage, pod CPU/memory, deployment health, persistent volume status, and more.
 
 **Pattern:** kube-state-metrics + kubelet cAdvisor → Prometheus scrape → xScaler `remote_write`
 
@@ -42,7 +42,7 @@ Collect metrics from your Kubernetes cluster — node resource usage, pod CPU/me
 
 ---
 
-## Step 1 — Deploy kube-state-metrics
+## Step 1: Deploy kube-state-metrics
 
 kube-state-metrics exposes Kubernetes object state as Prometheus metrics.
 
@@ -58,20 +58,20 @@ kubectl get pods -n kube-system -l app.kubernetes.io/name=kube-state-metrics
 
 ---
 
-## Step 2 — Scrape and forward to xScaler
+## Step 2: Scrape and forward to xScaler
 
-### Option A — Prometheus (in-cluster)
+### Option A: Prometheus (in-cluster)
 
 Add these scrape jobs to your Prometheus config or `prometheus-operator` `ServiceMonitor`:
 
 ```yaml
 scrape_configs:
-  # kube-state-metrics — Kubernetes object state
+  # kube-state-metrics: Kubernetes object state
   - job_name: kube-state-metrics
     static_configs:
       - targets: ['kube-state-metrics.kube-system.svc.cluster.local:8080']
 
-  # kubelet cAdvisor — container resource usage
+  # kubelet cAdvisor: container resource usage
   - job_name: kubelet
     scheme: https
     tls_config:
@@ -96,7 +96,7 @@ remote_write:
       X-Scope-OrgID: <tenant-id>
 ```
 
-### Option B — Grafana Alloy (in-cluster)
+### Option B: Grafana Alloy (in-cluster)
 
 ```river
 // Discover all Kubernetes pods with prometheus.io/scrape annotation
@@ -132,7 +132,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-### Option C — OpenTelemetry Collector
+### Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

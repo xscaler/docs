@@ -7,9 +7,9 @@ slug: /grafana-datasources
 
 # Connect Grafana Datasources
 
-Connect Grafana to all three xScaler signals — metrics, logs, and traces — as native Prometheus, Loki, and Tempo datasources. Once connected you can query, correlate, and alert across all signals from a single Grafana instance.
+Connect Grafana to xScaler metrics, logs, and traces as native Prometheus, Loki, and Tempo datasources. Once connected you can query, correlate, and alert across all signals from a single Grafana instance.
 
-Works with **Grafana 9.1+** — both self-hosted and Grafana Cloud.
+Works with **Grafana 9.1+**. Both self-hosted and Grafana Cloud.
 
 ---
 
@@ -37,15 +37,15 @@ A single API token works for all three signals as long as it is scoped for read 
 
 ---
 
-## Metrics — Prometheus datasource
+## Metrics: Prometheus datasource
 
-### Step 1 — Add a new connection
+### Step 1: Add a new connection
 
 In Grafana, go to **Connections → Add new connection**. Search for **Prometheus** and click the **Prometheus** card.
 
-![Grafana — Add new connection, search for Prometheus](/img/grafana/metrics-01-connections.png)
+![Add new connection in Grafana, search for Prometheus](/img/grafana/metrics-01-connections.png)
 
-### Step 2 — Set the server URL
+### Step 2: Set the server URL
 
 In the **Prometheus server URL** field enter the metrics endpoint for your region:
 
@@ -53,13 +53,13 @@ In the **Prometheus server URL** field enter the metrics endpoint for your regio
 https://euw1-01.m.xscalerlabs.com
 ```
 
-![Grafana — Prometheus server URL field](/img/grafana/metrics-03-server-url.png)
+![Prometheus server URL field in Grafana](/img/grafana/metrics-03-server-url.png)
 
 :::tip No path suffix
-Enter the host root only. Grafana appends `/api/v1/query` automatically — do not add any path.
+Enter the host root only. Grafana appends `/api/v1/query` automatically. Do not add any path.
 :::
 
-### Step 3 — Add HTTP headers
+### Step 3: Add HTTP headers
 
 Scroll down to the **HTTP Headers** section and add two headers:
 
@@ -68,13 +68,13 @@ Scroll down to the **HTTP Headers** section and add two headers:
 | `Authorization` | `Bearer <your-api-token>` |
 | `X-Scope-OrgID` | `<your-tenant-id>` |
 
-![Grafana — HTTP Headers section with Authorization and X-Scope-OrgID](/img/grafana/metrics-04-http-headers.png)
+![HTTP Headers section with Authorization and X-Scope-OrgID](/img/grafana/metrics-04-http-headers.png)
 
 :::danger Use HTTP Headers only
-Do **not** use the Basic Auth fields or the Grafana Authentication section. xScaler authentication is Bearer-token only via custom HTTP headers.
+Do **not** use the Basic Auth fields or the Grafana Authentication section. xScaler accepts Bearer tokens in custom HTTP headers only.
 :::
 
-### Step 4 — Save & test
+### Step 4: Save & test
 
 Click **Save & test**. A successful response shows:
 
@@ -82,19 +82,19 @@ Click **Save & test**. A successful response shows:
 Successfully queried the Prometheus API.
 ```
 
-![Grafana — Prometheus Save & Test success](/img/grafana/metrics-04-save.png)
+![Prometheus Save & Test success in Grafana](/img/grafana/metrics-04-save.png)
 
 ---
 
-## Logs — Loki datasource
+## Logs: Loki datasource
 
-### Step 1 — Add a new connection
+### Step 1: Add a new connection
 
 In Grafana, go to **Connections → Add new connection**. Search for **Loki** and click the **Loki** card.
 
-![Grafana — Loki datasource settings](/img/grafana/logs-01-select-loki.png)
+![Loki datasource settings in Grafana](/img/grafana/logs-01-select-loki.png)
 
-### Step 2 — Set the URL
+### Step 2: Set the URL
 
 In the **URL** field enter the logs endpoint:
 
@@ -102,9 +102,9 @@ In the **URL** field enter the logs endpoint:
 https://euw1-01.l.xscalerlabs.com
 ```
 
-![Grafana — Loki URL field](/img/grafana/logs-02-url.png)
+![Loki URL field in Grafana](/img/grafana/logs-02-url.png)
 
-### Step 3 — Add HTTP headers
+### Step 3: Add HTTP headers
 
 Scroll to **HTTP Headers** and add:
 
@@ -113,9 +113,9 @@ Scroll to **HTTP Headers** and add:
 | `Authorization` | `Bearer <your-api-token>` |
 | `X-Scope-OrgID` | `<your-tenant-id>` |
 
-![Grafana — Loki HTTP Headers](/img/grafana/logs-03-http-headers.png)
+![Loki HTTP Headers in Grafana](/img/grafana/logs-03-http-headers.png)
 
-### Step 4 — Save & test
+### Step 4: Save & test
 
 Click **Save & test**. A successful response shows:
 
@@ -123,23 +123,23 @@ Click **Save & test**. A successful response shows:
 Data source successfully connected.
 ```
 
-![Grafana — Loki Save & Test success](/img/grafana/logs-04-save-test.png)
+![Loki Save & Test success in Grafana](/img/grafana/logs-04-save-test.png)
 
 :::note No data yet?
-If the connection succeeds but queries return empty results, logs haven't been ingested yet for this tenant. Send logs first using [Grafana Alloy](/logs/grafana-alloy) or the [OTel Collector](/logs/opentelemetry-collector).
+If the connection succeeds but queries come back empty, no logs have arrived for this tenant yet. Send logs first using [Grafana Alloy](/logs/grafana-alloy) or the [OTel Collector](/logs/opentelemetry-collector).
 :::
 
 ---
 
-## Traces — Tempo datasource
+## Traces: Tempo datasource
 
-### Step 1 — Add a new connection
+### Step 1: Add a new connection
 
 In Grafana, go to **Connections → Add new connection**. Search for **Tempo** and click the **Tempo** card.
 
-![Grafana — Tempo datasource settings](/img/grafana/traces-01-select-tempo.png)
+![Tempo datasource settings in Grafana](/img/grafana/traces-01-select-tempo.png)
 
-### Step 2 — Set the URL
+### Step 2: Set the URL
 
 In the **URL** field enter the traces endpoint:
 
@@ -147,9 +147,9 @@ In the **URL** field enter the traces endpoint:
 https://euw1-01.t.xscalerlabs.com
 ```
 
-![Grafana — Tempo URL field](/img/grafana/traces-02-url.png)
+![Tempo URL field in Grafana](/img/grafana/traces-02-url.png)
 
-### Step 3 — Add HTTP headers
+### Step 3: Add HTTP headers
 
 Scroll to **HTTP Headers** and add:
 
@@ -158,9 +158,9 @@ Scroll to **HTTP Headers** and add:
 | `Authorization` | `Bearer <your-api-token>` |
 | `X-Scope-OrgID` | `<your-tenant-id>` |
 
-![Grafana — Tempo HTTP Headers](/img/grafana/traces-03-http-headers.png)
+![Tempo HTTP Headers in Grafana](/img/grafana/traces-03-http-headers.png)
 
-### Step 4 — Save & test
+### Step 4: Save & test
 
 Click **Save & test**. A successful response shows:
 
@@ -168,7 +168,7 @@ Click **Save & test**. A successful response shows:
 Data source is working
 ```
 
-![Grafana — Tempo Save & Test success](/img/grafana/traces-04-save-test.png)
+![Tempo Save & Test success in Grafana](/img/grafana/traces-04-save-test.png)
 
 ---
 
@@ -211,21 +211,21 @@ In the Tempo datasource settings scroll to **Trace to metrics**:
 
 Open **Explore** to confirm each signal works end-to-end.
 
-**Metrics** — select the Prometheus datasource and run:
+**Metrics**. Select the Prometheus datasource and run:
 ```promql
 up
 ```
 
-**Logs** — select the Loki datasource and run:
+**Logs**. Select the Loki datasource and run:
 ```logql
 {job=~".+"}
 ```
 
-![Grafana Explore — live log lines from Loki](/img/grafana/xscaler-logs.png)
+![Live log lines from Loki in Grafana Explore](/img/grafana/xscaler-logs.png)
 
-**Traces** — select the Tempo datasource, switch to the **Search** tab, and click **Run query** with no filters.
+**Traces**. Select the Tempo datasource, switch to the **Search** tab, and click **Run query** with no filters.
 
-![Grafana Explore — trace waterfall view in Tempo](/img/grafana/xscaler-traces.png)
+![Trace waterfall view in Grafana Explore](/img/grafana/xscaler-traces.png)
 
 ---
 
@@ -233,13 +233,13 @@ up
 
 **"Bad Gateway" on Save & Test**
 - Verify the URL is the host root only (e.g. `https://euw1-01.m.xscalerlabs.com`) with no path suffix and no trailing slash.
-- Confirm HTTPS — HTTP is not accepted.
+- Confirm HTTPS. HTTP is not accepted.
 
 **"Forbidden" (403) on Save & Test**
 - The token may be `write`-only. Generate a `read` or `read+write` token: go to **Organization → Tenants → tenant name → API keys** in the portal and create a new key.
 
 **401 Unauthorized**
-- The `Authorization` header value must be exactly `Bearer <token>` — capital B, one space, then the raw token.
+- The `Authorization` header value must be exactly `Bearer <token>`: capital B, one space, then the raw token.
 - Check that the header is in the **HTTP Headers** section, not in the Grafana Authentication panel.
 
 **"No org id" error in queries**
@@ -247,8 +247,8 @@ up
 
 **Loki: "Data source connected" but no labels**
 - No logs have been ingested yet for this tenant.
-- The label browser only shows labels active in the selected time range — widen the time picker.
+- The label browser only shows labels active in the selected time range. Widen the time picker.
 
 **Tempo: No traces found**
 - Use the **Search** tab with a wide time range and no service filter to confirm traces exist.
-- Check the time range — it must cover the period when traces were sent.
+- Check the time range. It must cover the period when traces were sent.

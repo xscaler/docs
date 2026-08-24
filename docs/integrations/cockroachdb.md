@@ -7,7 +7,7 @@ slug: /integrations/cockroachdb
 
 # CockroachDB
 
-Collect metrics from CockroachDB — SQL throughput, replication health, storage usage, and node liveness — using CockroachDB's built-in Prometheus endpoint. No additional exporter is required.
+Collect metrics from CockroachDB using its built-in Prometheus endpoint: SQL throughput, replication health, storage usage, and node liveness. No additional exporter is required.
 
 **Pattern:** CockroachDB /_status/vars → Prometheus scrape → xScaler remote_write
 
@@ -21,9 +21,9 @@ Collect metrics from CockroachDB — SQL throughput, replication health, storage
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
-CockroachDB exposes a native Prometheus endpoint at `/_status/vars` on its HTTP port. No exporter installation is needed — point Prometheus directly at each node:
+CockroachDB exposes a native Prometheus endpoint at `/_status/vars` on its HTTP port. No exporter installation is needed. Point Prometheus directly at each node:
 
 ```yaml
 scrape_configs:
@@ -46,7 +46,7 @@ remote_write:
       X-Scope-OrgID: "<tenant-id>"
 ```
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "cockroachdb" {
@@ -71,7 +71,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

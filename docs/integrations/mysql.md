@@ -28,7 +28,7 @@ Collect query throughput, connection pool, InnoDB buffer pool, replication statu
 
 ---
 
-## Step 1 — Create a monitoring user
+## Step 1: Create a monitoring user
 
 ```sql
 CREATE USER 'xscaler_monitor'@'localhost' IDENTIFIED BY 'strongpassword' WITH MAX_USER_CONNECTIONS 3;
@@ -38,7 +38,7 @@ FLUSH PRIVILEGES;
 
 ---
 
-## Step 2 — Run mysqld_exporter
+## Step 2: Run mysqld_exporter
 
 ```bash
 docker run --rm -d \
@@ -62,7 +62,7 @@ curl -s http://localhost:9104/metrics | grep mysql_up
 
 ---
 
-## Step 3 — Scrape and forward to xScaler
+## Step 3: Scrape and forward to xScaler
 
 ### Prometheus
 

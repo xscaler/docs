@@ -7,7 +7,7 @@ slug: /integrations/supabase
 
 # Supabase
 
-Monitor Supabase — PostgreSQL performance, Auth request rates, Storage usage, and Realtime connections — using the built-in Prometheus endpoint.
+Monitor Supabase using the built-in Prometheus endpoint: PostgreSQL performance, Auth request rates, Storage usage, and Realtime connections.
 
 **Pattern:** Supabase /metrics → Prometheus scrape → xScaler remote_write
 
@@ -21,7 +21,7 @@ Monitor Supabase — PostgreSQL performance, Auth request rates, Storage usage, 
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 Scrape the built-in Supabase metrics endpoint directly. Replace `<project-ref>` with your project reference and use the `service_role` key as the Bearer token:
 
@@ -45,7 +45,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "supabase" {
@@ -75,7 +75,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

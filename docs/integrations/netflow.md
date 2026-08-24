@@ -7,7 +7,7 @@ slug: /integrations/netflow
 
 # NetFlow / IPFIX / sFlow
 
-Collect and visualise network flow telemetry — bytes per flow, top talkers, protocol breakdown, and interface utilisation — from any NetFlow 5/9, IPFIX, or sFlow-enabled device using **ktranslate**.
+Collect and visualise network flow telemetry from any NetFlow 5/9, IPFIX, or sFlow-enabled device using **ktranslate**: bytes per flow, top talkers, protocol breakdown, and interface utilisation.
 
 **Pattern:** Network device → ktranslate (port 9995) → Grafana Alloy (OTLP gRPC) → xScaler OTLP endpoint
 
@@ -15,7 +15,7 @@ Collect and visualise network flow telemetry — bytes per flow, top talkers, pr
 
 ## Dashboards
 
-Two pre-built dashboards are available once the integration is set up.
+Setting up the integration gives you two dashboards.
 
 ### NetFlow Overview
 
@@ -30,7 +30,7 @@ Interface-level breakdown, AS number analysis, DSCP markings, and flow sampling 
 ![NetFlow Overview Part 2 dashboard](/img/integrations/netflow-overview-2.png)
 
 :::info
-These dashboards are installed automatically when you configure the integration. You can import them into any Grafana instance connected to xScaler.
+xScaler installs these dashboards when you configure the integration. Import them into any Grafana instance connected to xScaler.
 :::
 
 ---
@@ -44,7 +44,7 @@ These dashboards are installed automatically when you configure the integration.
 
 ---
 
-## Step 1 — Configure Grafana Alloy
+## Step 1: Configure Grafana Alloy
 
 Add this to your Alloy config to receive OTLP metrics from ktranslate and forward them to xScaler:
 
@@ -78,7 +78,7 @@ otelcol.exporter.otlphttp "xscaler" {
 
 ---
 
-## Step 2 — Deploy ktranslate
+## Step 2: Deploy ktranslate
 
 Run ktranslate with Docker. It listens for flows on UDP port 9995 and forwards converted metrics to Alloy via OTLP gRPC:
 
@@ -109,7 +109,7 @@ If ktranslate and Alloy run on the same host, use `--sink_url http://localhost:4
 
 ---
 
-## Step 3 — Configure your network devices
+## Step 3: Configure your network devices
 
 Point your routers and switches to send flows to the ktranslate host:
 
@@ -141,7 +141,7 @@ sflow polling-interval 30
 
 ---
 
-## Option B — Prometheus remote_write (alternative)
+## Option B: Prometheus remote_write (alternative)
 
 If you prefer Prometheus instead of OTel, ktranslate can expose a `/metrics` endpoint:
 

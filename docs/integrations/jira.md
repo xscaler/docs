@@ -7,7 +7,7 @@ slug: /integrations/jira
 
 # Jira
 
-Monitor Jira — open/in-progress/resolved issue counts, JVM memory, and database connection pool health — using jira-prometheus-exporter.
+Monitor Jira using jira-prometheus-exporter: open/in-progress/resolved issue counts, JVM memory, and database connection pool health.
 
 **Pattern:** jira_exporter → Prometheus scrape → xScaler `remote_write`
 
@@ -21,7 +21,7 @@ Monitor Jira — open/in-progress/resolved issue counts, JVM memory, and databas
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 ```bash
 docker run -d \
@@ -50,7 +50,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "jira" {
@@ -73,7 +73,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

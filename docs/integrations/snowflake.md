@@ -7,7 +7,7 @@ slug: /integrations/snowflake
 
 # Snowflake
 
-Monitor Snowflake — query performance, warehouse credit usage, storage consumption, and login history — using snowflake-prometheus-exporter.
+Monitor Snowflake using snowflake-prometheus-exporter: query performance, warehouse credit usage, storage consumption, and login history.
 
 **Pattern:** snowflake-prometheus-exporter → Prometheus scrape → xScaler remote_write
 
@@ -21,7 +21,7 @@ Monitor Snowflake — query performance, warehouse credit usage, storage consump
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 Install and run the exporter:
 
@@ -54,7 +54,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "snowflake" {
@@ -76,7 +76,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:
@@ -114,7 +114,7 @@ service:
 
 ## Logs
 
-Snowflake query history and login history — query `SNOWFLAKE.ACCOUNT_USAGE` views and forward to xScaler using the OTel Collector.
+Snowflake query history and login history. Query `SNOWFLAKE.ACCOUNT_USAGE` views and forward to xScaler using the OTel Collector.
 
 ## Key metrics
 

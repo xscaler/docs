@@ -19,13 +19,13 @@ The sidebar is grouped into sections:
 
 ### Workspace
 
-Each signal has its own page with two tabs — **Overview** (live dashboard) and **Tenants** (tenant list).
+Each signal has its own page with two tabs: **Overview** (live dashboard) and **Tenants** (tenant list).
 
 | Section | What you do here |
 |---------|-----------------|
-| **Metrics** | Metrics Overview + Tenants — series usage, DPM, query load, per-tenant capacity |
-| **Logs** *(Beta)* | Logs Overview + Tenants — ingest rate, GB ingested, discards, per-tenant usage |
-| **Traces** *(Beta)* | Traces Overview + Tenants — span ingest rate, GB ingested, discards, per-tenant usage |
+| **Metrics** | Metrics Overview + Tenants: series usage, DPM, query load, per-tenant capacity |
+| **Logs** *(Beta)* | Logs Overview + Tenants: ingest rate, GB ingested, discards, per-tenant usage |
+| **Traces** *(Beta)* | Traces Overview + Tenants: span ingest rate, GB ingested, discards, per-tenant usage |
 | **Grafana** | Access your managed Grafana instance |
 | **Fleet Management** | Enroll OpenTelemetry agents, view fleet health, manage config templates, assignments, and secrets |
 
@@ -55,10 +55,10 @@ Each signal has its own page with two tabs — **Overview** (live dashboard) and
 
 ## Key concepts
 
-**Organisation** — your top-level account. One organisation maps to one workspace (region + cluster).
+**Organisation**. Your top-level account. One organisation maps to one workspace (region + cluster).
 
-**Tenant** — an isolated metrics namespace within your organisation. Each tenant has its own series quota, API token, and write endpoint. Use tenants to separate environments (production, staging) or teams.
+**Tenant**. An isolated metrics namespace within your organisation. Each tenant has its own series quota, API token, and write endpoint. Use tenants to separate environments (production, staging) or teams.
 
-**API token** — a bearer token scoped to a single tenant. Used in the `Authorization` header of every `remote_write` and query request alongside `X-Scope-OrgID`.
+**API token**. A bearer token scoped to a single tenant. Used in the `Authorization` header of every `remote_write` and query request alongside `X-Scope-OrgID`.
 
-**Plan** — your subscription tier (Pro / Scale / Enterprise). The plan sets the series limit, retention, and SLA for the entire organisation.
+**Plan**. Your subscription tier (Pro / Scale / Enterprise). The plan sets the series limit, retention, and SLA for the entire organisation.

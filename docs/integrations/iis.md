@@ -7,7 +7,7 @@ slug: /integrations/iis
 
 # Microsoft IIS
 
-Monitor Microsoft IIS — request rates, active connections, send/receive bytes, and application pool status — using windows_exporter with the IIS collector.
+Monitor Microsoft IIS using windows_exporter with the IIS collector: request rates, active connections, send/receive bytes, and application pool status.
 
 **Pattern:** windows_exporter (IIS collector) → Prometheus scrape → xScaler remote_write
 
@@ -22,7 +22,7 @@ Monitor Microsoft IIS — request rates, active connections, send/receive bytes,
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 Install windows_exporter with the IIS, CPU, memory, and network collectors enabled. Run from PowerShell (or configure as a Windows Service):
 
@@ -48,7 +48,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "iis" {
@@ -70,7 +70,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 Use the `windowsperfcounters` receiver to collect IIS performance counters directly:
 
