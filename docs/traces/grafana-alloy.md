@@ -11,8 +11,8 @@ Send traces to xScaler using [Grafana Alloy](https://grafana.com/docs/alloy/). A
 
 :::warning Required headers
 Both headers are mandatory on every request:
-- `Authorization: Bearer <token>` — set in the `headers` map
-- `X-Scope-OrgID: <tenant-id>` — set in the `headers` map
+- `Authorization: Bearer <token>`. Set in the `headers` map
+- `X-Scope-OrgID: <tenant-id>`. Set in the `headers` map
 :::
 
 ---
@@ -148,9 +148,9 @@ To inspect a specific tenant, click the **Tenants** tab, select the tenant, then
 ## Troubleshooting
 
 **Traces not arriving**
-1. Open the **Alloy UI** at `http://localhost:12345` — red components indicate errors.
+1. Open the **Alloy UI** at `http://localhost:12345`. Red components indicate errors.
 2. Verify the `endpoint` is `https://euw1-01.t.xscalerlabs.com` (no path suffix).
 3. Check both `Authorization` and `X-Scope-OrgID` are in the `headers` map.
 
 **401 Unauthorized**
-The `Authorization` value must be `"Bearer <token>"` — include the `Bearer ` prefix.
+The `Authorization` value must be `"Bearer <token>"`. Include the `Bearer ` prefix.

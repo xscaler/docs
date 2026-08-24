@@ -7,7 +7,7 @@ slug: /integrations/github
 
 # GitHub
 
-Monitor GitHub repositories and Actions — workflow run status, job durations, open issues, and pull request counts — using a GitHub Prometheus exporter.
+Monitor GitHub repositories and Actions using a GitHub Prometheus exporter: workflow run status, job durations, open issues, and pull request counts.
 
 **Pattern:** github_exporter → Prometheus scrape → xScaler `remote_write`
 
@@ -20,7 +20,7 @@ Monitor GitHub repositories and Actions — workflow run status, job durations, 
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 ```bash
 docker run -d \
@@ -48,7 +48,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "github" {
@@ -71,7 +71,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:
@@ -107,7 +107,7 @@ service:
 
 ## Logs
 
-GitHub audit log — stream via the GitHub Audit Log API and forward to xScaler using an OTel Collector.
+GitHub audit log. Stream via the GitHub Audit Log API and forward to xScaler using an OTel Collector.
 
 ## Key metrics
 

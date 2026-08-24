@@ -1,19 +1,19 @@
 ---
 id: grafana-logs
-title: Grafana — Logs
+title: Logs in Grafana
 sidebar_label: Grafana Datasource
 slug: /grafana/logs
 ---
 
-# Grafana — Logs
+# Logs in Grafana
 
 Connect Grafana to xScaler as a Loki-compatible data source to explore and visualise your logs using LogQL.
 
-Works with **Grafana 9+** — both self-hosted and Grafana Cloud.
+Works with **Grafana 9+**. Both self-hosted and Grafana Cloud.
 
 ---
 
-## Step 1 — Add a Loki data source
+## Step 1: Add a Loki data source
 
 1. In Grafana, navigate to **Connections → Data Sources**.
 2. Click **Add new data source**.
@@ -21,7 +21,7 @@ Works with **Grafana 9+** — both self-hosted and Grafana Cloud.
 
 ---
 
-## Step 2 — Set the server URL
+## Step 2: Set the server URL
 
 In the **URL** field, enter:
 
@@ -30,12 +30,12 @@ https://euw1-01.l.xscalerlabs.com
 ```
 
 :::tip
-Use the host root only — Grafana appends query paths automatically. Do not add any path suffix.
+Use the host root only. Grafana appends query paths automatically. Do not add any path suffix.
 :::
 
 ---
 
-## Step 3 — Add authentication headers
+## Step 3: Add authentication headers
 
 Scroll down to the **HTTP Headers** section and add two custom headers:
 
@@ -45,12 +45,12 @@ Scroll down to the **HTTP Headers** section and add two custom headers:
 | `X-Scope-OrgID` | `<tenant-id>` |
 
 :::danger Do not use Basic Auth or the Authentication section
-xScaler uses token-based authentication via the `Authorization: Bearer` header. Do **not** fill in the Basic Auth username/password fields — use custom HTTP headers only as shown above.
+xScaler uses token-based authentication via the `Authorization: Bearer` header. Do **not** fill in the Basic Auth username/password fields. Use custom HTTP headers only as shown above.
 :::
 
 ---
 
-## Step 4 — Save & Test
+## Step 4: Save & Test
 
 Click **Save & Test**. A successful connection displays:
 
@@ -103,7 +103,7 @@ sum by (service) (rate({job="app"} |= "error" [5m]))
 
 ### Live tail
 
-In **Explore**, enable the **Live** toggle to stream new log lines in real time as they are ingested.
+In **Explore**, enable the **Live** toggle to stream new log lines as they arrive.
 
 ---
 
@@ -120,12 +120,12 @@ With both the Prometheus (metrics) and Loki (logs) data sources configured, you 
 ## Troubleshooting
 
 **"Bad Gateway" on Save & Test**
-- Verify the URL is `https://euw1-01.l.xscalerlabs.com` (HTTPS, host root only — no path suffix).
+- Verify the URL is `https://euw1-01.l.xscalerlabs.com` (HTTPS, host root only, no path suffix).
 - Check both `Authorization` and `X-Scope-OrgID` are in the **HTTP Headers** section.
 
 **"Data source connected" but no labels**
 - No logs have been ingested yet for this tenant. Send some logs first using [Grafana Alloy](/logs/grafana-alloy) or the [OTel Collector](/logs/opentelemetry-collector).
-- Check the time range — the label browser only shows labels active within the selected window.
+- Check the time range. The label browser only shows labels active within the selected window.
 
 **"Forbidden" error**
 - Your token may be `write`-scoped. Generate a `read` or `read+write` token from the xScaler portal.

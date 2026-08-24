@@ -7,7 +7,7 @@ slug: /authentication
 
 # Authentication
 
-Every request to xScaler — whether writing metrics or querying them — requires **two HTTP headers**.
+Every request to xScaler, whether writing metrics or querying them, requires **two HTTP headers**.
 
 ## Required headers
 
@@ -19,17 +19,17 @@ X-Scope-OrgID: <tenant-id>
 | Header | Purpose |
 |--------|---------|
 | `Authorization: Bearer <token>` | Authenticates the caller. The token must be a valid API token issued from the xScaler dashboard. |
-| `X-Scope-OrgID: <tenant-id>` | Selects the tenant data namespace. This is the **tenant isolation header** — without it the backend cannot route the request to the correct data store. |
+| `X-Scope-OrgID: <tenant-id>` | Selects the tenant data namespace. This is the **tenant isolation header**: without it the backend cannot route the request to the correct data store. |
 
 ### Where the `Bearer` prefix goes
 
-Some clients want the **raw token**; others want the full `Bearer <token>` string. Pasting `Bearer ` into a raw-token field (or omitting it where it's required) returns **401 (invalid token)**.
+Some clients want the **raw token**, others the full `Bearer <token>` string. Pasting `Bearer ` into a raw-token field returns **401 invalid token**. So does leaving it out where the client expects it.
 
 | Client | Field | Value to paste |
 |--------|-------|----------------|
 | `curl` / raw HTTP | `Authorization` header | `Bearer <token>` |
-| Prometheus | `authorization.credentials` | `<token>` — **raw**, Prometheus adds `Bearer` |
-| Grafana Alloy | `authorization.credentials` | `<token>` — **raw**, Alloy adds `Bearer` |
+| Prometheus | `authorization.credentials` | `<token>`: **raw**, Prometheus adds `Bearer` |
+| Grafana Alloy | `authorization.credentials` | `<token>`: **raw**, Alloy adds `Bearer` |
 | OpenTelemetry Collector | `headers.Authorization` | `Bearer <token>` |
 | Grafana data source | `Authorization` HTTP header | `Bearer <token>` |
 
@@ -37,7 +37,7 @@ Some clients want the **raw token**; others want the full `Bearer <token>` strin
 There are no exceptions. Every `remote_write` and every query must include both headers. A missing or mismatched `X-Scope-OrgID` returns **401** (`x-scope-orgid mismatch`). A missing or invalid `Authorization` also returns **401**.
 :::
 
-### Example — curl
+### Example: curl
 
 ```bash
 curl "https://euw1-01.m.xscalerlabs.com/api/v1/query" \
@@ -65,7 +65,7 @@ curl "https://euw1-01.m.xscalerlabs.com/api/v1/query" \
 | `read` | Query via the Prometheus HTTP API. Cannot write. |
 | `read+write` | Both ingest and query. Suitable for integrated clients such as Grafana Agent or Alloy. |
 
-Use the narrowest scope appropriate for each client. For example, a Prometheus instance that only ships metrics should use a `write`-scoped token.
+Give each client the narrowest scope it needs. A Prometheus instance that only ships metrics takes a `write` token.
 
 ---
 
@@ -75,10 +75,10 @@ Rotating a token without dropping metrics or queries:
 
 1. **Generate a new token** in the dashboard with the same scope as the existing token.
 2. **Update all clients** (Prometheus configs, Alloy configs, collector configs, Grafana data sources) to use the new token.
-3. **Verify traffic** — watch your ingest dashboards and confirm metrics continue to arrive.
+3. **Verify traffic**. Watch your ingest dashboards and confirm metrics continue to arrive.
 4. **Delete the old token** once traffic from the old token has dropped to zero.
 
-Do not delete the old token before step 3 — there may be in-flight `remote_write` batches that still carry it.
+Do not delete the old token before step 3. There may be in-flight `remote_write` batches that still carry it.
 
 ---
 

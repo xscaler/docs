@@ -152,7 +152,7 @@ service:
 
 ## Provide AWS credentials
 
-**Option A — Environment variables (recommended for local/Docker)**
+**Option A: Environment variables (recommended for local/Docker)**
 
 ```bash
 export AWS_ACCESS_KEY_ID=AKIA...
@@ -160,7 +160,7 @@ export AWS_SECRET_ACCESS_KEY=...
 export AWS_REGION=eu-west-1
 ```
 
-**Option B — IAM instance role (recommended for EC2/ECS)**
+**Option B: IAM instance role (recommended for EC2/ECS)**
 
 Attach the IAM policy to the EC2 instance profile or ECS task role. The collector picks up credentials automatically via the EC2 metadata endpoint.
 
@@ -168,7 +168,7 @@ Attach the IAM policy to the EC2 instance profile or ECS task role. The collecto
 
 ## Logs
 
-CloudWatch Logs — stream log groups to xScaler using the CloudWatch Logs subscription filter or Kinesis Firehose with an OTel Collector forwarder.
+CloudWatch Logs. Stream log groups to xScaler using the CloudWatch Logs subscription filter or Kinesis Firehose with an OTel Collector forwarder.
 
 ## Key metrics
 
@@ -213,4 +213,4 @@ rate(aws_applicationelb_h_t_t_p_code_elb_5_x_x_count_sum[5m])
 AWS credentials are not reachable. Set `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` env vars, or verify the instance profile is attached.
 
 **Empty results from CloudWatch**
-CloudWatch metrics are delayed by up to 5 minutes. Increase `poll_interval` to `5m` to avoid redundant API calls and reduce cost.
+CloudWatch metrics lag by up to 5 minutes. Increase `poll_interval` to `5m` to avoid redundant API calls and reduce cost.

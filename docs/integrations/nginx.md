@@ -27,7 +27,7 @@ Collect request rate, active connections, upstream health, and error rate metric
 
 ---
 
-## Step 1 — Enable the stub status endpoint
+## Step 1: Enable the stub status endpoint
 
 Add the following location block to your NGINX config (e.g. `/etc/nginx/conf.d/status.conf`):
 
@@ -61,7 +61,7 @@ curl http://localhost:8080/nginx_status
 
 ---
 
-## Step 2 — Run nginx-prometheus-exporter
+## Step 2: Run nginx-prometheus-exporter
 
 ```bash
 docker run --rm -d \
@@ -81,7 +81,7 @@ curl -s http://localhost:9113/metrics | grep nginx_up
 
 ---
 
-## Step 3 — Scrape and forward to xScaler
+## Step 3: Scrape and forward to xScaler
 
 ### Prometheus
 

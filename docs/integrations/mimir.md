@@ -7,7 +7,7 @@ slug: /integrations/mimir
 
 # Grafana Mimir
 
-Monitor Grafana Mimir — sample ingestion rates, compaction health, query throughput, and store-gateway block loading — using Mimir's built-in Prometheus metrics endpoint.
+Monitor Grafana Mimir using Mimir's built-in Prometheus metrics endpoint: sample ingestion rates, compaction health, query throughput, and store-gateway block loading.
 
 **Pattern:** Mimir /metrics → Prometheus scrape → xScaler `remote_write`
 
@@ -20,7 +20,7 @@ Monitor Grafana Mimir — sample ingestion rates, compaction health, query throu
 
 ---
 
-## Option A — Prometheus
+## Option A: Prometheus
 
 Mimir exposes metrics at `:8080/metrics`.
 
@@ -40,7 +40,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "mimir" {
@@ -62,7 +62,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

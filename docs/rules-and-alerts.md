@@ -7,13 +7,13 @@ slug: /rules-and-alerts
 
 # Alerts
 
-xScaler does not expose a Ruler API. Alerting is handled directly in **Grafana** using its built-in alerting engine, which queries your xScaler data source.
+xScaler does not expose a Ruler API. You write alerts in **Grafana**, whose alerting engine queries your xScaler data source.
 
-This approach keeps alert configuration in one place — your Grafana instance — without needing to manage rule files or a separate alerting backend.
+Alert config stays in your Grafana instance. No rule files to ship, no separate alerting backend to run.
 
 ---
 
-## Set up Grafana Alerts against xScaler
+## Set up Grafana alerts against xScaler
 
 ### 1. Add xScaler as a Prometheus data source
 
@@ -32,7 +32,7 @@ Authorization: Bearer <token>
 X-Scope-OrgID: <tenant-id>
 ```
 
-Save & test — you should see "Data source is working".
+Save & test. You should see "Data source is working".
 
 ---
 

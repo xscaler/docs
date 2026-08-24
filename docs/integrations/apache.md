@@ -27,7 +27,7 @@ Collect request rate, worker utilisation, scoreboard state, and traffic metrics 
 
 ---
 
-## Step 1 — Enable mod_status
+## Step 1: Enable mod_status
 
 Add or verify the following in your Apache config (e.g. `/etc/apache2/conf-available/status.conf`):
 
@@ -63,7 +63,7 @@ curl http://localhost/server-status?auto
 
 ---
 
-## Step 2 — Run apache_exporter
+## Step 2: Run apache_exporter
 
 ```bash
 docker run --rm -d \
@@ -83,7 +83,7 @@ curl -s http://localhost:9117/metrics | grep apache_up
 
 ---
 
-## Step 3 — Scrape and forward to xScaler
+## Step 3: Scrape and forward to xScaler
 
 ### Prometheus
 
@@ -237,5 +237,5 @@ apache_cpuload
 - Ensure `Require local` allows connections from the exporter's IP
 
 **All workers appear busy**
-- Check `apache_scoreboard` for workers in `closing` or `logging` state — may indicate slow clients
+- Check `apache_scoreboard` for workers in `closing` or `logging` state. May indicate slow clients
 - Review `MaxRequestWorkers` / `ServerLimit` in your Apache config

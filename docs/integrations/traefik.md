@@ -11,7 +11,7 @@ Monitor Traefik request rates, latencies, error rates, and open connections per 
 
 ![Traefik Dashboard](https://grafana.com/api/dashboards/2240/images/1373/image)
 
-## Key Metrics
+## Key metrics
 
 | Metric | Description |
 |--------|-------------|
@@ -40,7 +40,7 @@ metrics:
     entryPoint: metrics
 ```
 
-### Option A — Prometheus scrape
+### Option A: Prometheus scrape
 
 ```yaml
 scrape_configs:
@@ -57,7 +57,7 @@ remote_write:
       password: <api-token>
 ```
 
-### Option B — Grafana Alloy
+### Option B: Grafana Alloy
 
 ```alloy
 prometheus.scrape "traefik" {
@@ -75,7 +75,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-### Option C — OpenTelemetry Collector
+### Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

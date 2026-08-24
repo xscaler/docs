@@ -7,7 +7,7 @@ slug: /integrations/pgbouncer
 
 # PgBouncer
 
-Monitor PgBouncer connection pooler — active connections, pool utilization, wait times, and query throughput — using pgbouncer_exporter.
+Monitor PgBouncer connection pooler using pgbouncer_exporter: active connections, pool utilisation, wait times, and query throughput.
 
 **Pattern:** pgbouncer_exporter → Prometheus scrape → xScaler remote_write
 
@@ -21,7 +21,7 @@ Monitor PgBouncer connection pooler — active connections, pool utilization, wa
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 Run the pgbouncer_exporter as a Docker container:
 
@@ -49,7 +49,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "pgbouncer" {
@@ -71,7 +71,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

@@ -7,7 +7,7 @@ slug: /integrations-legacy
 
 # Integrations
 
-Connect any metrics source to xScaler. Every integration below describes how to collect metrics from a specific system and forward them to your xScaler tenant using Prometheus `remote_write`, Grafana Alloy, or the OpenTelemetry Collector.
+Each integration below shows how to collect metrics from one system and forward them to your xScaler tenant with Prometheus `remote_write`, Grafana Alloy, or the OpenTelemetry Collector.
 
 :::info Two headers on every request
 Whichever integration you use, every request to xScaler requires:
@@ -23,13 +23,13 @@ X-Scope-OrgID: <tenant-id>
 
 Most integrations follow one of two patterns:
 
-**Pattern A — Prometheus Exporter → remote_write**
+**Pattern A: Prometheus Exporter → remote_write**
 ```
 [Service] → [Exporter] → [Prometheus scrape] → [xScaler remote_write]
 ```
 A sidecar exporter exposes a `/metrics` endpoint. Prometheus scrapes it and ships to xScaler.
 
-**Pattern B — OTel Collector receiver → OTLP export**
+**Pattern B: OTel Collector receiver → OTLP export**
 ```
 [Service] → [OTel Collector receiver] → [xScaler OTLP endpoint]
 ```
@@ -69,7 +69,7 @@ The OTel Collector uses a native receiver for the service and exports via OTLP/H
 | [Nginx](/integrations/nginx) | Exporter | Requests/sec, active connections, errors |
 | [Apache HTTP Server](/integrations/apache) | Exporter | Requests, workers, traffic |
 
-## Message Queues
+## Message queues
 
 | Integration | Pattern | Key metrics |
 |-------------|---------|-------------|
@@ -79,4 +79,4 @@ The OTel Collector uses a native receiver for the service and exports via OTLP/H
 
 ## Don't see your integration?
 
-Email [founders@xscalerlabs.com](mailto:founders@xscalerlabs.com) — if you can expose a Prometheus `/metrics` endpoint or send OTLP, xScaler will accept it. Most integrations not listed here work out of the box with the [OpenTelemetry Collector](../ingest/opentelemetry-collector) using an existing receiver.
+Email [founders@xscalerlabs.com](mailto:founders@xscalerlabs.com). If you can expose a Prometheus `/metrics` endpoint or send OTLP, xScaler will accept it. Most integrations not listed here work out of the box with the [OpenTelemetry Collector](../ingest/opentelemetry-collector) using an existing receiver.

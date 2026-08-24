@@ -7,7 +7,7 @@ slug: /integrations/linux
 
 # Linux
 
-Collect system-level metrics from Linux hosts — CPU, memory, disk, network, filesystem, and more — using the Prometheus **node_exporter**.
+Collect system-level metrics from Linux hosts using the Prometheus **node_exporter**: CPU, memory, disk, network, filesystem, and more.
 
 **Pattern:** node_exporter → Prometheus scrape → xScaler `remote_write`
 
@@ -33,7 +33,7 @@ Collect system-level metrics from Linux hosts — CPU, memory, disk, network, fi
 
 ---
 
-## Step 1 — Install node_exporter
+## Step 1: Install node_exporter
 
 **systemd (recommended)**
 
@@ -71,9 +71,9 @@ curl -s http://localhost:9100/metrics | head -5
 
 ---
 
-## Step 2 — Scrape and forward to xScaler
+## Step 2: Scrape and forward to xScaler
 
-### Option A — Prometheus
+### Option A: Prometheus
 
 Add to `prometheus.yml`:
 
@@ -93,7 +93,7 @@ remote_write:
       X-Scope-OrgID: <tenant-id>
 ```
 
-### Option B — Grafana Alloy
+### Option B: Grafana Alloy
 
 ```river
 prometheus.exporter.unix "host" {}
@@ -117,12 +117,12 @@ prometheus.remote_write "xscaler" {
 ```
 
 :::tip
-The `prometheus.exporter.unix` component in Alloy is a built-in wrapper around node_exporter — no separate binary needed.
+The `prometheus.exporter.unix` component in Alloy is a built-in wrapper around node_exporter. No separate binary needed.
 :::
 
 ---
 
-### Option C — OpenTelemetry Collector
+### Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

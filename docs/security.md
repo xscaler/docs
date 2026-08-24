@@ -10,19 +10,19 @@ sidebar_label: Security
 
 ## 1. Overview
 
-Security is a core priority at xScaler Labs. This page outlines the measures we take to protect the platform and your data.
+This page lists the controls that protect the platform and your data.
 
 ---
 
-## 2. Data in Transit
+## 2. Data in transit
 
-All data transmitted to and from the platform is encrypted using TLS 1.2 or higher. This applies to metric ingestion, query endpoints, and the management portal.
+The platform encrypts all traffic with TLS 1.2 or higher: metric ingestion, query endpoints, and the management portal.
 
 ---
 
-## 3. Data at Rest
+## 3. Data at rest
 
-Stored metrics and account data are encrypted at rest using industry-standard encryption.
+We encrypt stored metrics and account data at rest.
 
 ---
 
@@ -34,20 +34,20 @@ Stored metrics and account data are encrypted at rest using industry-standard en
 
 ---
 
-## 5. Tenant Isolation
+## 5. Tenant isolation
 
-All customer data is logically isolated by tenant. Multi-tenant access controls ensure that one tenant cannot access another tenant's data.
+We isolate customer data by tenant. Access controls stop one tenant from reading another tenant's data.
 
 ---
 
-## 6. Infrastructure Security
+## 6. Infrastructure security
 
 - The platform runs on hardened cloud infrastructure with network-level access controls.
 - We apply regular security patches and updates to all system components.
 
 ---
 
-## 7. Vulnerability Disclosure
+## 7. Vulnerability disclosure
 
 If you discover a security vulnerability, please report it responsibly by emailing:
 **[info@xscalerlabs.com](mailto:info@xscalerlabs.com)**
@@ -58,7 +58,7 @@ Please do not publicly disclose the vulnerability until we have had an opportuni
 
 ## 8. Compliance
 
-We are committed to aligning with industry security best practices. For compliance-related questions, contact us directly.
+We follow industry security best practices. For compliance questions, contact us directly.
 
 ---
 

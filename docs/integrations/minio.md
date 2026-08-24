@@ -7,7 +7,7 @@ slug: /integrations/minio
 
 # MinIO
 
-Monitor MinIO object storage — request rates, replication lag, bucket usage, and node health — using MinIO's built-in Prometheus endpoint. Track the health of your S3-compatible storage alongside the rest of your stack in xScaler.
+Monitor MinIO object storage using its built-in Prometheus endpoint: request rates, replication lag, bucket usage, and node health.
 
 **Pattern:** MinIO /minio/v2/metrics/cluster → Prometheus scrape → xScaler remote_write
 
@@ -21,7 +21,7 @@ Monitor MinIO object storage — request rates, replication lag, bucket usage, a
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 MinIO exposes a native Prometheus metrics endpoint. Generate a bearer token using the MinIO Client and configure Prometheus to scrape it:
 
@@ -50,7 +50,7 @@ remote_write:
       X-Scope-OrgID: "<tenant-id>"
 ```
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "minio" {
@@ -74,7 +74,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

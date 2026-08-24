@@ -7,7 +7,7 @@ slug: /portal/api-tokens
 
 # Manage API Tokens
 
-API tokens (access keys) authenticate `remote_write` and query requests for a specific tenant. Each token is scoped to one tenant and must be sent as a Bearer token in the `Authorization` header alongside `X-Scope-OrgID`.
+API tokens (access keys) authenticate `remote_write` and query requests. Each token covers one tenant. Send it as a Bearer token in the `Authorization` header alongside `X-Scope-OrgID`.
 
 ---
 
@@ -27,22 +27,22 @@ The table shows each key's name, status, last used time, and creation date.
 2. In the **API keys** section, click **New key**.
 3. Enter a **name** for the key (e.g. `prometheus-prod`, `alloy-staging`).
 4. Click **Create**.
-5. Copy the token immediately — it is only shown once.
+5. Copy the token immediately. It is only shown once.
 
 :::warning Token shown once
-The full token value is displayed only at creation time. Store it securely (e.g. in a secrets manager or Kubernetes secret). If you lose it, rotate the key.
+The portal shows the full token once, at creation. Store it in a secrets manager or a Kubernetes secret. If you lose it, rotate the key.
 :::
 
 ---
 
 ## Rotate an API token
 
-Rotating a key generates a new token and invalidates the old one. Do this if a token may have been exposed, or as part of a regular credential rotation policy.
+Rotating a key issues a new token and kills the old one. Rotate after a possible exposure, or on a schedule.
 
 1. Open the tenant detail page (Organization → Tenants → click tenant name).
 2. In the **API keys** table, find the key to rotate.
 3. Click the **rotate** icon (circular arrow) on that row.
-4. Copy the new token — it is only shown once.
+4. Copy the new token. It is only shown once.
 5. Update your `remote_write` config with the new token before the old one is invalidated.
 
 :::tip Zero-downtime rotation
@@ -53,14 +53,14 @@ Update your metrics collector config with the new token **before** closing the r
 
 ## Revoke an API token
 
-Revoking permanently deletes a token. Requests using that token will receive HTTP 401 immediately.
+Revoking deletes a token for good. Requests carrying it get HTTP 401 immediately.
 
 1. Open the tenant detail page (Organization → Tenants → click tenant name).
 2. In the **API keys** table, find the key to revoke.
 3. Click the **revoke** icon (trash / X) on that row.
 4. Confirm the action.
 
-The key is removed from the list and is no longer usable.
+The key leaves the list and stops working.
 
 ---
 
@@ -96,7 +96,7 @@ prometheus.remote_write "xscaler" {
 
 ## Audit trail
 
-All token operations are logged in the [Activity log](/portal/activity):
+xScaler logs every token operation in the [Activity log](/portal/activity):
 
 | Event | Triggered by |
 |-------|-------------|

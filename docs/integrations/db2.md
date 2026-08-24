@@ -7,7 +7,7 @@ slug: /integrations/db2
 
 # IBM Db2
 
-Monitor IBM Db2 — connections, lock waits, buffer pool hit rates, tablespace usage, and log utilization — using the Db2 Prometheus exporter.
+Monitor IBM Db2 using the Db2 Prometheus exporter: connections, lock waits, buffer pool hit rates, tablespace usage, and log utilisation.
 
 **Pattern:** db2_exporter → Prometheus scrape → xScaler `remote_write`
 
@@ -21,7 +21,7 @@ Monitor IBM Db2 — connections, lock waits, buffer pool hit rates, tablespace u
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 ```bash
 docker run -d \
@@ -48,7 +48,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "db2" {
@@ -71,7 +71,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

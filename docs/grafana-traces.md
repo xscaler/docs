@@ -1,19 +1,19 @@
 ---
 id: grafana-traces
-title: Grafana — Traces
+title: Traces in Grafana
 sidebar_label: Grafana Datasource
 slug: /grafana/traces
 ---
 
-# Grafana — Traces
+# Traces in Grafana
 
 Connect Grafana to xScaler as a Tempo-compatible data source to explore and visualise distributed traces using TraceQL.
 
-Works with **Grafana 9.1+** — both self-hosted and Grafana Cloud.
+Works with **Grafana 9.1+**. Both self-hosted and Grafana Cloud.
 
 ---
 
-## Step 1 — Add a Tempo data source
+## Step 1: Add a Tempo data source
 
 1. In Grafana, navigate to **Connections → Data Sources**.
 2. Click **Add new data source**.
@@ -21,7 +21,7 @@ Works with **Grafana 9.1+** — both self-hosted and Grafana Cloud.
 
 ---
 
-## Step 2 — Set the server URL
+## Step 2: Set the server URL
 
 In the **URL** field, enter:
 
@@ -30,12 +30,12 @@ https://euw1-01.t.xscalerlabs.com
 ```
 
 :::tip
-Use the host root only — Grafana appends query paths automatically. Do not add any path suffix.
+Use the host root only. Grafana appends query paths automatically. Do not add any path suffix.
 :::
 
 ---
 
-## Step 3 — Add authentication headers
+## Step 3: Add authentication headers
 
 Scroll down to the **HTTP Headers** section and add two custom headers:
 
@@ -45,12 +45,12 @@ Scroll down to the **HTTP Headers** section and add two custom headers:
 | `X-Scope-OrgID` | `<tenant-id>` |
 
 :::danger Do not use Basic Auth or the Authentication section
-xScaler uses token-based authentication via the `Authorization: Bearer` header. Do **not** fill in the Basic Auth username/password fields — use custom HTTP headers only as shown above.
+xScaler uses token-based authentication via the `Authorization: Bearer` header. Do **not** fill in the Basic Auth username/password fields. Use custom HTTP headers only as shown above.
 :::
 
 ---
 
-## Step 4 — Save & Test
+## Step 4: Save & Test
 
 Click **Save & Test**. A successful connection displays:
 
@@ -129,7 +129,7 @@ Go to **Traces** in the sidebar and open the **Overview** tab to see workspace-w
 | **Spans/s** | Spans being received per second |
 | **DPT** | Spans per minute (data points for traces) |
 
-The **Ingest and query load** chart lets you visualise throughput over time (1h – 90d). The right panel shows your **Monthly ingest quota** ring gauge and a **Throttle gauge** for the highest-utilisation tenant.
+The **Ingest and query load** chart lets you visualise throughput over time (1h to 90d). The right panel shows your **Monthly ingest quota** ring gauge and a **Throttle gauge** for the highest-utilisation tenant.
 
 The bottom row shows **Top tenants by ingest**, **Discards by reason**, and **Query health**.
 
@@ -141,8 +141,8 @@ Click the **Tenants** tab to see per-tenant ingest rates and bytes ingested. Cli
 
 The tenant detail page has two tabs:
 
-- **Setup** — write endpoint (OTLP/HTTP and gRPC), Tenant ID, and API keys.
-- **Monitoring** — live KPI cards (ingest rate, bytes ingested, retention), monthly ingest quota card, time-range charts for ingest rate, span rate, bytes ingested, discarded spans, and query traffic.
+- **Setup**. Write endpoint (OTLP/HTTP and gRPC), Tenant ID, and API keys.
+- **Monitoring**. Live KPI cards (ingest rate, bytes ingested, retention), monthly ingest quota card, time-range charts for ingest rate, span rate, bytes ingested, discarded spans, and query traffic.
 
 ---
 
@@ -154,7 +154,7 @@ The tenant detail page has two tabs:
 
 **No traces found**
 - Confirm traces have been ingested. Use the **Search** tab with a wide time range and no filters.
-- Check the time range picker — it must cover the period when traces were sent.
+- Check the time range picker. It must cover the period when traces were sent.
 
 **"Forbidden" error**
 - Your token may be `write`-scoped. Generate a `read` or `read+write` token: go to **Organization → Tenants** in the portal, open the tenant, and create a new API key in the **API keys** section.

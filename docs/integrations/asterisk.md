@@ -7,7 +7,7 @@ slug: /integrations/asterisk
 
 # Asterisk
 
-Monitor Asterisk PBX — active channels, call volumes, SIP registration status, voicemail counts, and system uptime — using asterisk-exporter.
+Monitor Asterisk PBX using asterisk-exporter: active channels, call volumes, SIP registration status, voicemail counts, and system uptime.
 
 **Pattern:** asterisk_exporter → Prometheus scrape → xScaler `remote_write`
 
@@ -39,7 +39,7 @@ read_only = no
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 ```bash
 docker run -d \
@@ -68,7 +68,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "asterisk" {
@@ -90,7 +90,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

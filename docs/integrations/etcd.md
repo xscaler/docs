@@ -11,7 +11,7 @@ Monitor etcd Raft proposals, leader elections, disk fsync latency, and database 
 
 ![etcd Dashboard](https://grafana.com/api/dashboards/3070/images/1906/image)
 
-## Key Metrics
+## Key metrics
 
 | Metric | Description |
 |--------|-------------|
@@ -31,7 +31,7 @@ Monitor etcd Raft proposals, leader elections, disk fsync latency, and database 
 
 etcd exposes metrics natively at `http://localhost:2379/metrics`.
 
-### Option A — Prometheus scrape
+### Option A: Prometheus scrape
 
 ```yaml
 scrape_configs:
@@ -47,7 +47,7 @@ remote_write:
       password: <api-token>
 ```
 
-### Option B — Grafana Alloy
+### Option B: Grafana Alloy
 
 ```alloy
 prometheus.scrape "etcd" {
@@ -64,7 +64,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-### Option C — OpenTelemetry Collector
+### Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

@@ -7,7 +7,7 @@ slug: /integrations/gitlab
 
 # GitLab
 
-Monitor GitLab — request throughput, SQL query latency, cache hit rates, Gitaly connections, and Sidekiq job queues — using GitLab's built-in Prometheus metrics endpoint.
+Monitor GitLab using its built-in Prometheus metrics endpoint: request throughput, SQL query latency, cache hit rates, Gitaly connections, and Sidekiq job queues.
 
 **Pattern:** GitLab /metrics → Prometheus scrape → xScaler `remote_write`
 
@@ -21,7 +21,7 @@ Monitor GitLab — request throughput, SQL query latency, cache hit rates, Gital
 
 ---
 
-## Enable Metrics
+## Enable metrics
 
 In GitLab Admin → Settings → Metrics and profiling, enable:
 - **Prometheus metrics** (exposes `/-/metrics`)
@@ -38,7 +38,7 @@ Run `gitlab-ctl reconfigure`.
 
 ---
 
-## Option A — Prometheus
+## Option A: Prometheus
 
 ```yaml
 scrape_configs:
@@ -64,7 +64,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "gitlab" {
@@ -93,7 +93,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

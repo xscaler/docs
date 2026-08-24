@@ -11,7 +11,7 @@ Monitor SQL Server connections, I/O stall, buffer pool health, and transaction r
 
 ![SQL Server Dashboard](https://grafana.com/api/dashboards/409/images/295/image)
 
-## Key Metrics
+## Key metrics
 
 | Metric | Description |
 |--------|-------------|
@@ -37,7 +37,7 @@ GRANT VIEW SERVER STATE TO sql_exporter;
 GRANT VIEW ANY DEFINITION TO sql_exporter;
 ```
 
-### Option A — sql_exporter
+### Option A: sql_exporter
 
 Download [sql_exporter](https://github.com/burningalchemist/sql_exporter):
 
@@ -70,7 +70,7 @@ remote_write:
       password: <api-token>
 ```
 
-### Option B — Grafana Alloy
+### Option B: Grafana Alloy
 
 ```alloy
 prometheus.scrape "mssql" {
@@ -87,7 +87,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-### Option C — OpenTelemetry Collector
+### Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

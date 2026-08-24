@@ -112,19 +112,19 @@ Set the `GOOGLE_APPLICATION_CREDENTIALS` environment variable to the path of you
 export GOOGLE_APPLICATION_CREDENTIALS=/path/to/sa-key.json
 ```
 
-On GCE or GKE with Workload Identity, credentials are picked up automatically — no key file needed.
+On GCE or GKE with Workload Identity, the collector picks up credentials itself. No key file needed.
 
 ---
 
 ## Logs
 
-Cloud Logging — export log sinks to Pub/Sub and forward to xScaler using an OTel Collector with the `googlecloudpubsub` receiver.
+Cloud Logging. Export log sinks to Pub/Sub and forward to xScaler using an OTel Collector with the `googlecloudpubsub` receiver.
 
 ## Key metrics
 
 | Service | Metric type | Description |
 |---------|-------------|-------------|
-| GCE | `instance/cpu/utilization` | CPU utilisation (0–1) |
+| GCE | `instance/cpu/utilization` | CPU utilisation (0-1) |
 | GCE | `instance/network/received_bytes_count` | Bytes received |
 | GKE | `container/cpu/core_usage_time` | Container CPU seconds |
 | GKE | `container/memory/used_bytes` | Container memory |

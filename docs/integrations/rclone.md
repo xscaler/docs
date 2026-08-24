@@ -7,7 +7,7 @@ slug: /integrations/rclone
 
 # rclone
 
-Monitor rclone sync operations — bytes transferred, transfer errors, file counts, and cache stats — using rclone's built-in metrics endpoint.
+Monitor rclone sync operations using its built-in metrics endpoint: bytes transferred, transfer errors, file counts, and cache stats.
 
 **Pattern:** rclone /metrics → Prometheus scrape → xScaler `remote_write`
 
@@ -20,7 +20,7 @@ Monitor rclone sync operations — bytes transferred, transfer errors, file coun
 
 ---
 
-## Enable Metrics
+## Enable metrics
 
 Start rclone with the remote control API enabled:
 
@@ -38,7 +38,7 @@ Metrics are at `http://localhost:5572/metrics`.
 
 ---
 
-## Option A — Prometheus
+## Option A: Prometheus
 
 ```yaml
 scrape_configs:
@@ -57,7 +57,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "rclone" {
@@ -80,7 +80,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:
@@ -116,7 +116,7 @@ service:
 
 ## Logs
 
-Collect rclone sync/copy log — capture stdout with `--log-file` flag and tail the output. Add the following to your Alloy config, adjusting `__path__` to match your application's log file location:
+Collect rclone sync/copy log. Capture stdout with `--log-file` flag and tail the output. Add the following to your Alloy config, adjusting `__path__` to match your application's log file location:
 
 ```river
 local.file_match "rclone_logs" {

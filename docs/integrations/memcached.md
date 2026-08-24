@@ -7,7 +7,7 @@ slug: /integrations/memcached
 
 # Memcached
 
-Monitor Memcached — cache hit ratios, evictions, connection counts, memory usage, and command throughput — using the Prometheus Memcached exporter.
+Monitor Memcached using the Prometheus Memcached exporter: cache hit ratios, evictions, connection counts, memory usage, and command throughput.
 
 **Pattern:** memcached_exporter → Prometheus scrape → xScaler `remote_write`
 
@@ -20,7 +20,7 @@ Monitor Memcached — cache hit ratios, evictions, connection counts, memory usa
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 ```bash
 docker run -d \
@@ -47,7 +47,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.exporter.memcached "cache" {
@@ -73,7 +73,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

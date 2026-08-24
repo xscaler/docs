@@ -38,7 +38,7 @@ Our documentation site is built with Docusaurus and may include cookies set by t
 
 ## 5. Managing Cookies
 
-You can control or disable cookies through your browser settings. Note that disabling essential cookies may affect the functionality of the portal.
+You can control or disable cookies through your browser settings. Disabling essential cookies may break parts of the portal.
 
 ---
 

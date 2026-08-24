@@ -7,7 +7,7 @@ slug: /integrations/windows
 
 # Windows
 
-Collect system metrics from Windows hosts — CPU, memory, disk, network — using the **windows_exporter**.
+Collect system metrics from Windows hosts using the **windows_exporter**: CPU, memory, disk, network.
 
 ## Dashboards
 
@@ -19,7 +19,7 @@ Collect system metrics from Windows hosts — CPU, memory, disk, network — usi
 
 ![Windows Fleet dashboard](/img/integrations/windows-fleet.png)
 
-## Key Metrics
+## Key metrics
 
 | Metric | Description |
 |--------|-------------|
@@ -38,7 +38,7 @@ Collect system metrics from Windows hosts — CPU, memory, disk, network — usi
 
 ## Configuration
 
-### Option A — Prometheus Exporter
+### Option A: Prometheus Exporter
 
 **Install windows_exporter**
 
@@ -66,7 +66,7 @@ remote_write:
       password: <api-token>
 ```
 
-### Option B — Grafana Alloy
+### Option B: Grafana Alloy
 
 ```alloy
 prometheus.exporter.windows "default" { }
@@ -85,7 +85,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-### Option C — OpenTelemetry Collector
+### Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

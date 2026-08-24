@@ -7,7 +7,7 @@ slug: /integrations/apollo
 
 # Apollo Server
 
-Monitor Apollo Server — GraphQL request rates, error counts, field execution latencies, and schema validation — using the Prometheus plugin for Apollo Server.
+Monitor Apollo Server using the Prometheus plugin for Apollo Server: GraphQL request rates, error counts, field execution latencies, and schema validation.
 
 **Pattern:** Apollo /metrics → Prometheus scrape → xScaler `remote_write`
 
@@ -21,7 +21,7 @@ Monitor Apollo Server — GraphQL request rates, error counts, field execution l
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 Install the plugin:
 
@@ -74,7 +74,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "apollo" {
@@ -97,7 +97,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 Use `@opentelemetry/api` with OTLP export from Node.js:
 
@@ -117,7 +117,7 @@ OTEL_EXPORTER_OTLP_HEADERS="Authorization=Bearer <token>,X-Scope-OrgID=<tenant-i
 
 ## Logs
 
-Collect Apollo GraphQL server log — tail the application log file. Add the following to your Alloy config, adjusting `__path__` to match your application's log file location:
+Collect Apollo GraphQL server log. Tail the application log file. Add the following to your Alloy config, adjusting `__path__` to match your application's log file location:
 
 ```river
 local.file_match "apollo_logs" {

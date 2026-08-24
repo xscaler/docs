@@ -7,7 +7,7 @@ slug: /integrations/dnsmasq
 
 # Dnsmasq
 
-Dnsmasq is a lightweight DNS forwarder and DHCP server widely used in home networks, containers, and embedded systems. Monitoring it helps you track query rates, cache efficiency, and active DHCP leases.
+Dnsmasq is a small DNS forwarder and DHCP server used in home networks, containers, and embedded systems. Monitoring it gives you query rates, cache efficiency, and active DHCP leases.
 
 **Pattern:** dnsmasq_exporter → Prometheus scrape → xScaler remote_write
 
@@ -21,7 +21,7 @@ Dnsmasq is a lightweight DNS forwarder and DHCP server widely used in home netwo
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 **1. Start dnsmasq_exporter**
 
@@ -57,7 +57,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "dnsmasq" {
@@ -79,7 +79,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

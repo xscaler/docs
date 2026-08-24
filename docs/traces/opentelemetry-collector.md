@@ -72,12 +72,12 @@ service:
 ### Key configuration notes
 
 **`endpoint` is the base host only**
-Set `endpoint` to `https://euw1-01.t.xscalerlabs.com` — do **not** append `/otlp/v1/traces`. The `otlphttp` exporter appends the correct path automatically.
+Set `endpoint` to `https://euw1-01.t.xscalerlabs.com`. Do **not** append `/otlp/v1/traces`. The `otlphttp` exporter appends the correct path automatically.
 
 **Processor order matters**
-1. `memory_limiter` — shed load under memory pressure
-2. `resourcedetection` — enrich spans with host/cloud metadata
-3. `batch` — buffer and flush in bulk; always last before the exporter
+1. `memory_limiter`. Shed load under memory pressure
+2. `resourcedetection`. Enrich spans with host/cloud metadata
+3. `batch`. Buffer and flush in bulk; always last before the exporter
 
 ---
 
@@ -155,6 +155,6 @@ service:
 ```
 
 **Traces not arriving**
-1. Look for `"failed to export"` in collector logs — the line includes the HTTP status code.
+1. Look for `"failed to export"` in collector logs. The line includes the HTTP status code.
 2. Verify `endpoint` is the base host only: `https://euw1-01.t.xscalerlabs.com` (no path suffix).
 3. Check both `Authorization` and `X-Scope-OrgID` are under the `headers` block.

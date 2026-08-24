@@ -7,7 +7,7 @@ slug: /integrations/velero
 
 # Velero
 
-Monitor Velero backup and restore operations — backup success/failure rates, restore status, schedule health, and volume snapshot counts — using Velero's built-in Prometheus metrics.
+Monitor Velero backup and restore operations using its built-in Prometheus metrics: backup success/failure rates, restore status, schedule health, and volume snapshot counts.
 
 **Pattern:** Velero /metrics → Prometheus scrape → xScaler `remote_write`
 
@@ -21,7 +21,7 @@ Monitor Velero backup and restore operations — backup success/failure rates, r
 
 ---
 
-## Option A — Prometheus
+## Option A: Prometheus
 
 Velero server exposes metrics at `:8085/metrics` by default.
 
@@ -50,7 +50,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "velero" {
@@ -73,7 +73,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

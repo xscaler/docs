@@ -21,7 +21,7 @@ Track OpenAI API token consumption, request latency, error rates, and cost estim
 
 ---
 
-## Option A — Python Instrumentation
+## Option A: Python Instrumentation
 
 ```bash
 pip install openai prometheus-client
@@ -71,7 +71,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "openai_app" {
@@ -93,7 +93,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry SDK
+## Option C: OpenTelemetry SDK
 
 ```bash
 pip install opentelemetry-sdk opentelemetry-exporter-otlp
@@ -119,7 +119,7 @@ token_counter = meter.create_counter("openai.tokens.total")
 
 ## Logs
 
-OpenAI API usage — there are no local log files to collect. Use the API-based metrics exporter to monitor request counts, latency, and token usage.
+OpenAI API usage. There are no local log files to collect. Use the API-based metrics exporter to monitor request counts, latency, and token usage.
 
 ## Key metrics
 

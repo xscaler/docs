@@ -55,7 +55,7 @@ Use Fleet Management to:
 
 ## Supported targets
 
-Fleet Management is designed for OpenTelemetry Collector based deployments, including:
+Fleet Management targets OpenTelemetry Collector deployments:
 
 - Linux hosts
 - Windows hosts
@@ -80,11 +80,11 @@ Open the xScaler portal and go to **Fleet Management**.
 
 **Agent** - A managed OpenTelemetry Collector or collector supervisor connected to xScaler.
 
-**Enrollment token** - A one-time bootstrap token used to enroll agents into your organization. The token is shown once when created.
+**Enrollment token** - A one-time bootstrap token used to enroll agents into your organisation. The token is shown once when created.
 
 **Per-agent credential** - After enrollment, xScaler gives each agent its own credential for reconnects. You do not need to manage this credential manually.
 
-**Labels** - Key-value attributes reported by the agent or stamped onto agents during enrollment. Labels are used to filter inventory and target config assignments.
+**Labels** - Key-value attributes reported by the agent or stamped onto agents during enrollment. Use labels to filter inventory and to target config assignments.
 
 **Config template** - A named OpenTelemetry Collector YAML fragment managed in the portal.
 

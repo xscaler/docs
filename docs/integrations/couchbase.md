@@ -7,7 +7,7 @@ slug: /integrations/couchbase
 
 # Couchbase
 
-Monitor Couchbase Server — bucket operations, memory usage, disk I/O, and replication — using couchbase-exporter. Track the performance and capacity of your Couchbase clusters in xScaler.
+Monitor Couchbase Server using couchbase-exporter: bucket operations, memory usage, disk I/O, and replication.
 
 **Pattern:** couchbase-exporter → Prometheus scrape → xScaler remote_write
 
@@ -21,7 +21,7 @@ Monitor Couchbase Server — bucket operations, memory usage, disk I/O, and repl
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 Run couchbase-exporter as a Docker container pointed at your Couchbase node:
 
@@ -51,7 +51,7 @@ remote_write:
       X-Scope-OrgID: "<tenant-id>"
 ```
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "couchbase" {
@@ -71,7 +71,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

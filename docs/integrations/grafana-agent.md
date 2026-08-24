@@ -7,7 +7,7 @@ slug: /integrations/grafana-agent
 
 # Grafana Agent / Alloy
 
-Monitor Grafana Agent or Alloy itself — component health, WAL status, remote write queue lag, and scrape errors — using the built-in self-metrics endpoint.
+Monitor Grafana Agent or Alloy itself using the built-in self-metrics endpoint: component health, WAL status, remote write queue lag, and scrape errors.
 
 **Pattern:** Agent /metrics → Prometheus scrape → xScaler `remote_write`
 
@@ -20,7 +20,7 @@ Monitor Grafana Agent or Alloy itself — component health, WAL status, remote w
 
 ---
 
-## Option A — Prometheus
+## Option A: Prometheus
 
 Grafana Agent exposes self-metrics at `:12345/metrics` by default. Alloy uses the same port.
 
@@ -40,7 +40,7 @@ remote_write:
 
 ---
 
-## Option B — Self-scrape in Alloy
+## Option B: Self-scrape in Alloy
 
 Alloy can scrape itself natively:
 
@@ -65,7 +65,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

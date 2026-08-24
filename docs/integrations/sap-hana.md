@@ -7,7 +7,7 @@ slug: /integrations/sap-hana
 
 # SAP HANA
 
-Monitor SAP HANA — memory usage, CPU, connection pool, replication, and backup status — using hana_exporter.
+Monitor SAP HANA using hana_exporter: memory usage, CPU, connection pool, replication, and backup status.
 
 **Pattern:** hana_exporter → Prometheus scrape → xScaler remote_write
 
@@ -21,7 +21,7 @@ Monitor SAP HANA — memory usage, CPU, connection pool, replication, and backup
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 Run the hana_exporter as a Docker container:
 
@@ -52,7 +52,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "sap_hana" {
@@ -74,7 +74,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:
@@ -149,7 +149,7 @@ loki.write "xscaler" {
 
 | Metric | Description |
 |--------|-------------|
-| `hana_cpu_used` | CPU utilization percentage across HANA services |
+| `hana_cpu_used` | CPU utilisation percentage across HANA services |
 | `hana_memory_used_mb` | Total memory consumed by HANA in megabytes |
 | `hana_connection_count` | Current number of active client connections |
 | `hana_backup_status` | Status code of the most recent backup operation |

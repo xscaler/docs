@@ -7,7 +7,7 @@ slug: /integrations/vmware-vsphere
 
 # VMware vSphere
 
-Collect metrics from VMware vCenter and ESXi hosts — VM CPU/memory, datastore I/O, and cluster health — using vmware_exporter. Centralise your virtualisation telemetry in xScaler alongside your other infrastructure.
+Collect metrics from VMware vCenter and ESXi hosts using vmware_exporter: VM CPU/memory, datastore I/O, and cluster health.
 
 **Pattern:** vmware_exporter → Prometheus scrape → xScaler remote_write
 
@@ -21,7 +21,7 @@ Collect metrics from VMware vCenter and ESXi hosts — VM CPU/memory, datastore 
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 Run vmware_exporter as a Docker container, pointed at your vCenter:
 
@@ -52,7 +52,7 @@ remote_write:
       X-Scope-OrgID: "<tenant-id>"
 ```
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "vmware_vsphere" {
@@ -73,7 +73,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

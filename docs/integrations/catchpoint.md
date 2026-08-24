@@ -7,7 +7,7 @@ slug: /integrations/catchpoint
 
 # Catchpoint
 
-Forward Catchpoint synthetic monitoring results — DNS time, connect time, response time, availability, and packet loss — to xScaler using webhooks and the OpenTelemetry Collector.
+Forward Catchpoint synthetic monitoring results to xScaler using webhooks and the OpenTelemetry Collector: DNS time, connect time, response time, availability, and packet loss.
 
 **Pattern:** Catchpoint Webhook → OTel Collector (HTTP receiver) → xScaler OTLP endpoint
 
@@ -65,7 +65,7 @@ In Catchpoint portal → Settings → Webhooks:
 - **Format**: JSON
 - **Test types**: Web, API, DNS, Ping, etc.
 
-### 3. Alternative — Prometheus bridge
+### 3. Alternative: Prometheus bridge
 
 Use the Catchpoint Prometheus exporter if available for your plan:
 
@@ -85,7 +85,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 otelcol.receiver.otlp "catchpoint" {
@@ -110,7 +110,7 @@ otelcol.exporter.otlphttp "xscaler" {
 
 ## Logs
 
-Catchpoint test results — available via the Catchpoint REST API. Forward to xScaler using an OTel Collector.
+Catchpoint test results. Available via the Catchpoint REST API. Forward to xScaler using an OTel Collector.
 
 ## Key metrics
 

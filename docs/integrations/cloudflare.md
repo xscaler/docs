@@ -7,7 +7,7 @@ slug: /integrations/cloudflare
 
 # Cloudflare
 
-Monitor Cloudflare zone analytics — requests, bandwidth, threats, and cache hit rates — via the Cloudflare GraphQL Analytics API and the OTel Collector. Correlate CDN performance with your application and infrastructure metrics in xScaler.
+Monitor Cloudflare zone analytics via the Cloudflare GraphQL Analytics API and the OTel Collector: requests, bandwidth, threats, and cache hit rates.
 
 **Pattern:** OTel cloudflare receiver → xScaler OTLP endpoint
 
@@ -21,7 +21,7 @@ Monitor Cloudflare zone analytics — requests, bandwidth, threats, and cache hi
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 Run the community `cloudflare_exporter` with your API token:
 
@@ -51,7 +51,7 @@ remote_write:
       X-Scope-OrgID: "<tenant-id>"
 ```
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "cloudflare" {
@@ -72,7 +72,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:
@@ -104,7 +104,7 @@ service:
 
 ## Logs
 
-Cloudflare Logpush — configure a Logpush job to deliver logs to an HTTPS endpoint backed by an OTel Collector.
+Cloudflare Logpush. Configure a Logpush job to deliver logs to an HTTPS endpoint backed by an OTel Collector.
 
 ## Key metrics
 

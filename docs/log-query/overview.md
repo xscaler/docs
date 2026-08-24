@@ -7,7 +7,7 @@ slug: /log-query/overview
 
 # Log Querying Overview
 
-xScaler exposes the **full LogQL HTTP API**, so any tool that speaks LogQL works without modification — Grafana, `logcli`, `curl`, and more.
+xScaler exposes the **full LogQL HTTP API**, so any tool that speaks LogQL works without modification: Grafana, `logcli`, `curl`, and more.
 
 ## Base URL
 
@@ -47,7 +47,7 @@ A missing or mismatched `X-Scope-OrgID` returns `401` (`x-scope-orgid mismatch`)
 
 LogQL has two query types:
 
-### Log queries — return log lines
+### Log queries: return log lines
 
 ```logql
 # All logs from a job
@@ -69,7 +69,7 @@ LogQL has two query types:
 {job="nginx"} | pattern `<ip> - - [<_>] "<method> <path> <_>" <status> <bytes>`
 ```
 
-### Metric queries — compute aggregations over log streams
+### Metric queries: compute aggregations over log streams
 
 ```logql
 # Log rate per minute (lines/sec)
@@ -114,4 +114,4 @@ Timestamps in `values` are Unix nanoseconds as strings.
 
 ## Query timeout
 
-Queries time out after **2 minutes**. Long-range queries over high-volume streams are most likely to hit this. Narrow the time range or add more specific stream selectors to reduce query cost.
+Queries time out after **2 minutes**. Wide ranges over high-volume streams hit the limit first. Narrow the range or tighten the stream selector.

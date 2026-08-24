@@ -1,11 +1,11 @@
 ---
 id: otel-sdk-python
-title: OTel SDK — Python
-sidebar_label: OTel SDK — Python
+title: Python OTel SDK
+sidebar_label: Python OTel SDK
 slug: /traces/otel-sdk-python
 ---
 
-# OTel SDK — Python
+# Python OTel SDK
 
 Instrument a Python application to send traces directly to xScaler using the OpenTelemetry Python SDK over OTLP/HTTP.
 
@@ -102,10 +102,10 @@ To inspect a specific tenant, click the **Tenants** tab, select the tenant, then
 **Traces not appearing**
 - Verify `endpoint` includes the full path: `.../otlp/v1/traces`.
 - Enable debug logging: `import logging; logging.basicConfig(level=logging.DEBUG)`.
-- The `BatchSpanProcessor` exports on a background thread — ensure the process runs long enough for the first flush.
+- The `BatchSpanProcessor` exports on a background thread. Ensure the process runs long enough for the first flush.
 
 **401 Unauthorized**
 - Check the `Authorization` header value is `"Bearer <token>"` (capital B, space before token).
 
-**401 Unauthorized — "x-scope-orgid mismatch"**
+**401 Unauthorized: "x-scope-orgid mismatch"**
 - The `X-Scope-OrgID` header is missing, misspelled, or its value doesn't match your token's tenant.

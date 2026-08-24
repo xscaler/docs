@@ -11,8 +11,8 @@ Send metrics from a self-hosted Prometheus instance to xScaler using the `remote
 
 :::warning Required headers
 Both of the following must be present on every request:
-- `Authorization: Bearer <token>` — via the `authorization.credentials` field
-- `X-Scope-OrgID: <tenant-id>` — via the `headers` block
+- `Authorization: Bearer <token>`. Via the `authorization.credentials` field
+- `X-Scope-OrgID: <tenant-id>`. Via the `headers` block
 :::
 
 ---
@@ -95,10 +95,10 @@ Monitor these Prometheus internal metrics to diagnose remote_write issues:
 
 ### Common issues
 
-**401 Unauthorized — "x-scope-orgid mismatch"**
+**401 Unauthorized: "x-scope-orgid mismatch"**
 The `headers.X-Scope-OrgID` field is missing, misspelled, or set to a tenant that doesn't match your token. Verify the exact key name and value in your config.
 
 **Metrics not appearing**
-1. Check `prometheus_remote_storage_failed_samples_total` — if it is rising, note the HTTP status code in Prometheus logs (`--log.level=debug`).
-2. Confirm the URL ends in `/api/v1/push` — not `/api/v1/write` or `/push`.
+1. Check `prometheus_remote_storage_failed_samples_total`: if it is rising, note the HTTP status code in Prometheus logs (`--log.level=debug`).
+2. Confirm the URL ends in `/api/v1/push`. Not `/api/v1/write` or `/push`.
 3. Confirm both `authorization.credentials` and `headers.X-Scope-OrgID` are set.

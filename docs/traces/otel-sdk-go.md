@@ -1,11 +1,11 @@
 ---
 id: otel-sdk-go
-title: OTel SDK — Go
-sidebar_label: OTel SDK — Go
+title: Go OTel SDK
+sidebar_label: Go OTel SDK
 slug: /traces/otel-sdk-go
 ---
 
-# OTel SDK — Go
+# Go OTel SDK
 
 Instrument a Go application to send traces directly to xScaler using the OpenTelemetry Go SDK over OTLP/HTTP.
 
@@ -90,7 +90,7 @@ func main() {
 
 | Option | Value | Notes |
 |--------|-------|-------|
-| `WithEndpoint` | `"euw1-01.t.xscalerlabs.com"` | Host only — no scheme prefix |
+| `WithEndpoint` | `"euw1-01.t.xscalerlabs.com"` | Host only: no scheme prefix |
 | `WithURLPath` | `"/otlp/v1/traces"` | Path appended to the host |
 
 The SDK uses HTTPS by default when port 443 is resolved.
@@ -140,7 +140,7 @@ To inspect a specific tenant, click the **Tenants** tab, select the tenant, then
 - Verify `WithURLPath` is `"/otlp/v1/traces"`.
 
 **`401 Unauthorized`**
-- The `Authorization` header must be `"Bearer <token>"` — include the `Bearer ` prefix and space.
+- The `Authorization` header must be `"Bearer <token>"`. Include the `Bearer ` prefix and space.
 
-**`401 Unauthorized` — "x-scope-orgid mismatch"**
+**`401 Unauthorized`: "x-scope-orgid mismatch"**
 - The `X-Scope-OrgID` key is missing from the headers map, misspelled, or its value doesn't match your token's tenant.

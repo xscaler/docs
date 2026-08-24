@@ -11,7 +11,7 @@ Monitor Elasticsearch cluster health, indexing throughput, search latency, and J
 
 ![Elasticsearch Dashboard](https://grafana.com/api/dashboards/878/images/602/image)
 
-## Key Metrics
+## Key metrics
 
 | Metric | Description |
 |--------|-------------|
@@ -29,7 +29,7 @@ Monitor Elasticsearch cluster health, indexing throughput, search latency, and J
 
 ## Configuration
 
-### Option A — Prometheus Exporter
+### Option A: Prometheus Exporter
 
 ```bash
 docker run -d \
@@ -53,7 +53,7 @@ remote_write:
       password: <api-token>
 ```
 
-### Option B — Grafana Alloy
+### Option B: Grafana Alloy
 
 ```alloy
 prometheus.scrape "elasticsearch" {
@@ -70,7 +70,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-### Option C — OpenTelemetry Collector
+### Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

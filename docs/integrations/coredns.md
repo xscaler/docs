@@ -7,7 +7,7 @@ slug: /integrations/coredns
 
 # CoreDNS
 
-Monitor CoreDNS — DNS request rates, response codes, cache hit rates, and plugin latencies — using CoreDNS's built-in Prometheus plugin.
+Monitor CoreDNS using its built-in Prometheus plugin: DNS request rates, response codes, cache hit rates, and plugin latencies.
 
 **Pattern:** CoreDNS prometheus plugin → Prometheus scrape → xScaler `remote_write`
 
@@ -20,7 +20,7 @@ Monitor CoreDNS — DNS request rates, response codes, cache hit rates, and plug
 
 ---
 
-## Enable Metrics
+## Enable metrics
 
 Add the `prometheus` directive to your `Corefile`:
 
@@ -41,7 +41,7 @@ curl -s http://localhost:9153/metrics | grep coredns_dns_requests_total
 
 ---
 
-## Option A — Prometheus
+## Option A: Prometheus
 
 ```yaml
 scrape_configs:
@@ -59,7 +59,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "coredns" {
@@ -81,7 +81,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

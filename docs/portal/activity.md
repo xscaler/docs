@@ -7,14 +7,14 @@ slug: /portal/activity
 
 # Activity Log
 
-The Activity log is an audit trail of every action taken in your organisation — tenant changes, API key operations, billing events, and system notifications. Use it to track who did what and when.
+The Activity log is an audit trail of every action taken in your organisation: tenant changes, API key operations, billing events, and system notifications. Use it to track who did what and when.
 
 ---
 
 ## View the activity log
 
 1. Go to **Activity** in the sidebar (under **Insights**).
-2. All recent events are listed in reverse chronological order.
+2. The list shows recent events, newest first.
 3. Click any row to open a detail panel with the full event record.
 
 ---
@@ -63,7 +63,7 @@ Click any row to see the full event record:
 | `api_key.revoked` | An API key is revoked |
 | `notification.active_series_warning.triggered` | Active series count crossed the warning threshold |
 | `notification.active_series_warning.resolved` | Series count dropped back below the warning threshold |
-| `notification.active_series_throttled.triggered` | Series limit reached — new series are being rejected |
+| `notification.active_series_throttled.triggered` | Series limit reached: new series are being rejected |
 | `notification.active_series_throttled.resolved` | Series count is back within limit |
 | `notification.scrape_interval_throttled.triggered` | Scrape interval is below plan minimum and is being throttled |
 | `notification.scrape_interval_throttled.resolved` | Scrape interval throttling has lifted |

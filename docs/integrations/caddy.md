@@ -7,7 +7,7 @@ slug: /integrations/caddy
 
 # Caddy
 
-Monitor Caddy web server — request rates, response latencies, active connections, and TLS handshake stats — using Caddy's built-in Prometheus metrics endpoint.
+Monitor Caddy web server using its built-in Prometheus metrics endpoint: request rates, response latencies, active connections, and TLS handshake stats.
 
 **Pattern:** Caddy /metrics → Prometheus scrape → xScaler remote_write
 
@@ -40,7 +40,7 @@ Caddy exposes metrics at `http://localhost:2019/metrics`.
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 Scrape the Caddy admin API metrics endpoint directly:
 
@@ -61,7 +61,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "caddy" {
@@ -84,7 +84,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

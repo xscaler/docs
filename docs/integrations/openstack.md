@@ -7,7 +7,7 @@ slug: /integrations/openstack
 
 # OpenStack
 
-Collect metrics from OpenStack services — Nova (compute), Neutron (networking), Cinder (storage), and Keystone — using the OTel Collector. Monitor your private cloud health and resource utilisation in xScaler.
+Collect metrics from OpenStack services using the OTel Collector: Nova (compute), Neutron (networking), Cinder (storage), and Keystone.
 
 **Pattern:** OTel openstack receiver → xScaler OTLP endpoint
 
@@ -21,7 +21,7 @@ Collect metrics from OpenStack services — Nova (compute), Neutron (networking)
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 Run openstack-exporter with your OpenStack authentication environment variables:
 
@@ -54,7 +54,7 @@ remote_write:
       X-Scope-OrgID: "<tenant-id>"
 ```
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "openstack" {
@@ -75,7 +75,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

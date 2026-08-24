@@ -7,7 +7,7 @@ slug: /integrations/cilium
 
 # Cilium
 
-Monitor Cilium eBPF networking — policy enforcement drops, connection tracking, BPF map pressure, and Envoy proxy metrics — using Cilium's built-in Prometheus endpoint.
+Monitor Cilium eBPF networking using its built-in Prometheus endpoint: policy enforcement drops, connection tracking, BPF map pressure, and Envoy proxy metrics.
 
 **Pattern:** Cilium Agent /metrics → Prometheus scrape → xScaler `remote_write`
 
@@ -21,7 +21,7 @@ Monitor Cilium eBPF networking — policy enforcement drops, connection tracking
 
 ---
 
-## Enable Metrics
+## Enable metrics
 
 Enable metrics in your Helm values:
 
@@ -44,7 +44,7 @@ helm upgrade cilium cilium/cilium --reuse-values -f values.yaml
 
 ---
 
-## Option A — Prometheus
+## Option A: Prometheus
 
 Add a scrape job targeting all cilium-agent pods:
 
@@ -71,7 +71,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 discovery.kubernetes "cilium_pods" {
@@ -111,7 +111,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

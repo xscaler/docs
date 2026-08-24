@@ -76,16 +76,16 @@ service:
 ### Key configuration notes
 
 **`endpoint` is the base host only**
-Set `endpoint` to `https://euw1-01.m.xscalerlabs.com` — do **not** append `/otlp/v1/metrics`. The `otlphttp` exporter appends the correct path (`/v1/metrics`) automatically. Appending the path manually will produce a `404`.
+Set `endpoint` to `https://euw1-01.m.xscalerlabs.com`. Do **not** append `/otlp/v1/metrics`. The `otlphttp` exporter appends the correct path (`/v1/metrics`) automatically. Appending the path manually will produce a `404`.
 
 **Both headers go in `headers`**
 The `Authorization` and `X-Scope-OrgID` headers both live under `exporters.otlphttp/xscaler.headers`. There is no separate auth block for this exporter.
 
 **Processor order matters**
 The recommended pipeline order is:
-1. `memory_limiter` — prevents OOM by shedding load when memory is tight
-2. `resourcedetection` — enriches spans/metrics with host/cloud metadata
-3. `batch` — buffers and sends in bulk; always place last before the exporter
+1. `memory_limiter`. Prevents OOM by shedding load when memory is tight
+2. `resourcedetection`. Enriches spans/metrics with host/cloud metadata
+3. `batch`. Buffers and sends in bulk; always place last before the exporter
 
 ---
 
@@ -98,7 +98,7 @@ docker run --rm \
   otel/opentelemetry-collector-contrib:latest
 ```
 
-This binds the OTLP gRPC port (`4317`) and OTLP HTTP port (`4318`) to localhost, allowing your application to send metrics to the collector.
+This binds the OTLP gRPC port (`4317`) and OTLP HTTP port (`4318`) to localhost. Your application sends metrics there.
 
 ---
 
@@ -118,6 +118,6 @@ service:
 **Metrics not arriving**
 
 1. Look for `"failed to export"` in the collector logs. The log line includes the HTTP status code.
-2. Verify the `endpoint` is the base host only — `https://euw1-01.m.xscalerlabs.com` (no path suffix).
+2. Verify the `endpoint` is the base host only: `https://euw1-01.m.xscalerlabs.com` (no path suffix).
 3. Check both `Authorization` and `X-Scope-OrgID` are in the `headers` block with correct values.
 4. If you see `429 Too Many Requests`, reduce `sending_queue.num_consumers` or increase `batch.timeout`.

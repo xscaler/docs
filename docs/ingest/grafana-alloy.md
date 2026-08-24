@@ -11,8 +11,8 @@ slug: /ingest/grafana-alloy
 
 :::warning Required headers
 Both headers are mandatory on every request:
-- `Authorization: Bearer <token>` — set via the `authorization` block
-- `X-Scope-OrgID: <tenant-id>` — set via the `headers` map
+- `Authorization: Bearer <token>`. Set via the `authorization` block
+- `X-Scope-OrgID: <tenant-id>`. Set via the `headers` map
 :::
 
 ---
@@ -62,7 +62,7 @@ prometheus.remote_write "xscaler" {
 - River uses `=` for assignment, not `:`.
 - Blocks are delimited by `{ }`, not by indentation.
 - The `authorization` block takes `type` and `credentials` as separate fields.
-- `headers` is a **string map** — keys and values are both quoted strings.
+- `headers` is a **string map**. Keys and values are both quoted strings.
 - The `forward_to` reference in `prometheus.scrape` wires the scrape output directly to the `remote_write` receiver. The label `xscaler` must match the label on `prometheus.remote_write`.
 
 ---
@@ -108,12 +108,12 @@ docker run --rm \
 **Metrics not arriving**
 
 1. Enable debug logging by adding `--stability.level=generally-available` to the `alloy run` command and checking stdout for errors.
-2. Open the **Alloy UI** at `http://localhost:12345` — it shows the health status of every component. A red component means it has encountered an error.
-3. Verify the `headers` block includes `"X-Scope-OrgID"` — this is the most common cause of `401 x-scope-orgid mismatch` errors.
+2. Open the **Alloy UI** at `http://localhost:12345`. It shows the health status of every component. A red component means it has encountered an error.
+3. Verify the `headers` block includes `"X-Scope-OrgID"`. This is the most common cause of `401 x-scope-orgid mismatch` errors.
 4. Confirm the `authorization` block uses `type = "Bearer"` and `credentials = "<token>"` (not a bare `bearer_token` field at the top level when using the block form).
 
-**401 Unauthorized — "x-scope-orgid mismatch"**
+**401 Unauthorized: "x-scope-orgid mismatch"**
 The `X-Scope-OrgID` key is missing from the `headers` map, or its value doesn't match your token's tenant. Add or correct it and restart Alloy.
 
 **401 Unauthorized**
-Check the `credentials` value — it must be the raw token string, not `Bearer <token>` (the `type = "Bearer"` prefix is added automatically by Alloy).
+Check the `credentials` value. It must be the raw token string, not `Bearer <token>`. Alloy adds the `type = "Bearer"` prefix itself.

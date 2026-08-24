@@ -21,7 +21,7 @@ Forward metrics from any OpenTelemetry-instrumented service to xScaler using the
 
 ---
 
-## Option A — Collector as a Gateway
+## Option A: Collector as a Gateway
 
 Deploy the OTel Collector with an OTLP receiver and xScaler as the exporter:
 
@@ -70,7 +70,7 @@ OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4317
 
 ---
 
-## Option B — Grafana Alloy with OTel receiver
+## Option B: Grafana Alloy with OTel receiver
 
 ```river
 otelcol.receiver.otlp "default" {
@@ -94,7 +94,7 @@ otelcol.exporter.otlphttp "xscaler" {
 
 ---
 
-## Option C — SDK direct export (no collector)
+## Option C: SDK direct export (no collector)
 
 Skip the collector entirely and export directly from your application:
 
@@ -106,7 +106,7 @@ OTEL_METRICS_EXPORTER=otlp
 
 ---
 
-## Span Metrics (traces → metrics)
+## Span metrics (traces → metrics)
 
 Use the `spanmetrics` connector to derive RED metrics from traces:
 

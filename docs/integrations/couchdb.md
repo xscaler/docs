@@ -7,7 +7,7 @@ slug: /integrations/couchdb
 
 # Apache CouchDB
 
-Monitor Apache CouchDB — request rates, database sizes, compaction status, and replication — using couchdb-exporter. Observe the health and throughput of your CouchDB cluster in xScaler.
+Monitor Apache CouchDB using couchdb-exporter: request rates, database sizes, compaction status, and replication.
 
 **Pattern:** couchdb-exporter → Prometheus scrape → xScaler remote_write
 
@@ -21,7 +21,7 @@ Monitor Apache CouchDB — request rates, database sizes, compaction status, and
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 Run the gesellix CouchDB Prometheus exporter as a Docker container:
 
@@ -49,7 +49,7 @@ remote_write:
       X-Scope-OrgID: "<tenant-id>"
 ```
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "couchdb" {
@@ -69,7 +69,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

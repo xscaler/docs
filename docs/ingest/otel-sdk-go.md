@@ -1,11 +1,11 @@
 ---
 id: otel-sdk-go
-title: OTel SDK — Go
-sidebar_label: OTel SDK — Go
+title: Go OTel SDK
+sidebar_label: Go OTel SDK
 slug: /ingest/otel-sdk-go
 ---
 
-# OTel SDK — Go
+# Go OTel SDK
 
 Instrument a Go application to push metrics directly to xScaler using the OpenTelemetry Go SDK over OTLP/HTTP.
 
@@ -142,9 +142,9 @@ if err := provider.Shutdown(ctx); err != nil {
 - Verify `WithURLPath` is `"/otlp/v1/metrics"`
 
 **`401 Unauthorized`**
-- The `Authorization` header value must be `"Bearer <token>"` — the full string including the `Bearer ` prefix and a space.
+- The `Authorization` header value must be `"Bearer <token>"`. The full string including the `Bearer ` prefix and a space.
 
-**`401 Unauthorized` — "x-scope-orgid mismatch"**
+**`401 Unauthorized`: "x-scope-orgid mismatch"**
 - The `X-Scope-OrgID` key is missing from the headers map, misspelled, or its value doesn't match your token's tenant.
 
 **Metrics exported but not visible in Grafana**

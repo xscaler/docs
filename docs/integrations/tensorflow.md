@@ -7,7 +7,7 @@ slug: /integrations/tensorflow
 
 # TensorFlow Serving
 
-Monitor TensorFlow Serving — request counts, latency percentiles, model load status, and runtime performance — using TF Serving's built-in Prometheus metrics endpoint.
+Monitor TensorFlow Serving using TF Serving's built-in Prometheus metrics endpoint: request counts, latency percentiles, model load status, and runtime performance.
 
 **Pattern:** TF Serving /monitoring/prometheus/metrics → Prometheus scrape → xScaler `remote_write`
 
@@ -20,7 +20,7 @@ Monitor TensorFlow Serving — request counts, latency percentiles, model load s
 
 ---
 
-## Enable Metrics
+## Enable metrics
 
 Create a monitoring config file `monitoring_config.txt`:
 
@@ -44,7 +44,7 @@ tensorflow_model_server \
 
 ---
 
-## Option A — Prometheus
+## Option A: Prometheus
 
 ```yaml
 scrape_configs:
@@ -63,7 +63,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "tensorflow" {
@@ -86,7 +86,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:
@@ -122,7 +122,7 @@ service:
 
 ## Logs
 
-Collect training and inference log — pipe TensorFlow output to a log file and tail it. Add the following to your Alloy config, adjusting `__path__` to match your application's log file location:
+Collect training and inference log. Pipe TensorFlow output to a log file and tail it. Add the following to your Alloy config, adjusting `__path__` to match your application's log file location:
 
 ```river
 local.file_match "tensorflow_logs" {

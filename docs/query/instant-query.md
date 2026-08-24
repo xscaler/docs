@@ -7,7 +7,7 @@ slug: /query/instant-query
 
 # Instant Query
 
-An instant query evaluates a PromQL expression at a **single point in time** and returns a vector of results — one value per matching time series.
+An instant query evaluates a PromQL expression at a **single point in time** and returns one value per matching time series.
 
 **Endpoint:** `GET https://euw1-01.m.xscalerlabs.com/api/v1/query`
 
@@ -81,8 +81,8 @@ curl "https://euw1-01.m.xscalerlabs.com/api/v1/query" \
 ```
 
 Each entry in `result` contains:
-- `metric` — the label set identifying the series
-- `value` — a `[timestamp, value_string]` tuple (value is always a string, even for numbers)
+- `metric`. The label set identifying the series
+- `value`. A `[timestamp, value_string]` tuple (value is always a string, even for numbers)
 
 ---
 

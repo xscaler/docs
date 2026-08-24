@@ -9,11 +9,11 @@ slug: /grafana
 
 Connect Grafana to xScaler as a Prometheus data source to visualise your metrics using PromQL.
 
-Works with **Grafana 9+** — both self-hosted and Grafana Cloud.
+Works with **Grafana 9+**. Both self-hosted and Grafana Cloud.
 
 ---
 
-## Step 1 — Add a Prometheus data source
+## Step 1: Add a Prometheus data source
 
 1. In Grafana, navigate to **Connections → Data Sources**.
 2. Click **Add new data source**.
@@ -21,7 +21,7 @@ Works with **Grafana 9+** — both self-hosted and Grafana Cloud.
 
 ---
 
-## Step 2 — Set the server URL
+## Step 2: Set the server URL
 
 In the **Prometheus server URL** field, enter:
 
@@ -30,12 +30,12 @@ https://euw1-01.m.xscalerlabs.com
 ```
 
 :::tip
-Use the host root only — Grafana appends `/api/v1/query` automatically. Do not add any path suffix.
+Use the host root only. Grafana appends `/api/v1/query` automatically. Do not add any path suffix.
 :::
 
 ---
 
-## Step 3 — Add authentication headers
+## Step 3: Add authentication headers
 
 Scroll down to the **HTTP Headers** section and add two custom headers:
 
@@ -45,12 +45,12 @@ Scroll down to the **HTTP Headers** section and add two custom headers:
 | `X-Scope-OrgID` | `<tenant-id>` |
 
 :::danger Do not use Basic Auth or the Authentication section
-xScaler uses token-based authentication via the `Authorization: Bearer` header. Do **not** fill in the Basic Auth username/password fields or the Grafana Authentication section — use custom HTTP headers only as shown above.
+xScaler uses token-based authentication via the `Authorization: Bearer` header. Do **not** fill in the Basic Auth username/password fields or the Grafana Authentication section. Use custom HTTP headers only as shown above.
 :::
 
 ---
 
-## Step 4 — Save & Test
+## Step 4: Save & Test
 
 Click **Save & Test**. A successful connection displays:
 
@@ -59,7 +59,7 @@ Data source is working
 ```
 
 If you see an error, verify:
-- The URL ends in `/prometheus`
+- The URL is the host root, with no path suffix
 - `Authorization` value is exactly `Bearer <token>` (capital B, space before token)
 - `X-Scope-OrgID` value matches your tenant ID from the dashboard
 
@@ -101,12 +101,12 @@ job_queue_depth
 ## Troubleshooting
 
 **"Bad Gateway" on Save & Test**
-- Verify the URL is `https://euw1-01.m.xscalerlabs.com` (HTTPS, host root only — no path suffix).
+- Verify the URL is `https://euw1-01.m.xscalerlabs.com` (HTTPS, host root only, no path suffix).
 - Check that both `Authorization` and `X-Scope-OrgID` headers are in the **HTTP Headers** section, not the Authentication section.
 
 **Empty results after connecting**
 - Use [Explore](/query/instant-query) with query `up` to confirm the connection works.
-- Check the time range selector — make sure it covers when your metrics were sent.
+- Check the time range selector. Make sure it covers when your metrics were sent.
 
 **"Forbidden" error**
 - Your token may be `write`-scoped. Generate a `read` or `read+write` token from the xScaler dashboard.

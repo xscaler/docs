@@ -7,7 +7,7 @@ slug: /integrations/airflow
 
 # Apache Airflow
 
-Monitor Apache Airflow — scheduler heartbeat, executor slots, task instance states, DAG processing time, and DAG run counts — via the built-in StatsD exporter or Prometheus endpoint.
+Monitor Apache Airflow via the built-in StatsD exporter or Prometheus endpoint: scheduler heartbeat, executor slots, task instance states, DAG processing time, and DAG run counts.
 
 **Pattern:** Airflow StatsD → statsd_exporter → Prometheus scrape → xScaler `remote_write`
 
@@ -20,7 +20,7 @@ Monitor Apache Airflow — scheduler heartbeat, executor slots, task instance st
 
 ---
 
-## Enable StatsD Metrics
+## Enable StatsD metrics
 
 In `airflow.cfg`:
 
@@ -45,7 +45,7 @@ docker run -d \
 
 ---
 
-## Option A — Prometheus
+## Option A: Prometheus
 
 ```yaml
 scrape_configs:
@@ -63,7 +63,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "airflow" {
@@ -85,7 +85,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector (Airflow 2.7+ built-in endpoint)
+## Option C: OpenTelemetry Collector (Airflow 2.7+ built-in endpoint)
 
 Airflow 2.7+ has a native Prometheus endpoint at `/metrics`:
 

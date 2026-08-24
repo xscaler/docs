@@ -11,7 +11,7 @@ Monitor InfluxDB query throughput, write rates, shard disk usage, and TSM cache 
 
 ![InfluxDB Dashboard](https://grafana.com/api/dashboards/1500/images/915/image)
 
-## Key Metrics
+## Key metrics
 
 | Metric | Description |
 |--------|-------------|
@@ -31,7 +31,7 @@ Monitor InfluxDB query throughput, write rates, shard disk usage, and TSM cache 
 
 InfluxDB 1.x exposes Prometheus metrics at `/metrics` with `[http] pprof-enabled = true`.
 
-### Option A — Prometheus scrape
+### Option A: Prometheus scrape
 
 ```yaml
 scrape_configs:
@@ -48,7 +48,7 @@ remote_write:
       password: <api-token>
 ```
 
-### Option B — Grafana Alloy
+### Option B: Grafana Alloy
 
 ```alloy
 prometheus.scrape "influxdb" {
@@ -66,7 +66,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-### Option C — OpenTelemetry Collector
+### Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

@@ -7,7 +7,7 @@ slug: /portal/suspend-tenant
 
 # Suspend and Resume a Tenant
 
-Suspending a tenant blocks all inbound writes and queries for that tenant without deleting it. Existing metric data is retained. You can resume the tenant at any time to restore access.
+Suspending a tenant blocks its writes and queries without deleting it. xScaler keeps the existing metric data. Resume the tenant whenever you want the access back.
 
 Use suspension to:
 - Temporarily cut off a decommissioned environment
@@ -26,7 +26,7 @@ Use suspension to:
 4. The action panel opens on the right. Click **Suspend tenant**.
 5. Confirm the action when prompted.
 
-The tenant status changes to **Suspended** (amber badge). Any `remote_write` requests to this tenant will be rejected until it is resumed.
+The tenant status changes to **Suspended** (amber badge). xScaler rejects `remote_write` requests for this tenant until you resume it.
 
 **From the tenant detail page:**
 
@@ -60,12 +60,12 @@ The tenant status returns to **Active** and ingestion resumes immediately.
 |--|--|
 | Inbound `remote_write` | Rejected (HTTP 403) |
 | Queries | Blocked |
-| Stored metric data | Retained — no data is deleted |
-| API tokens | Remain valid — they work again once resumed |
+| Stored metric data | Retained: no data is deleted |
+| API tokens | Remain valid: they work again once resumed |
 | Series count | Preserved |
 
 ---
 
 ## Audit trail
 
-Every suspension and resumption is recorded in the [Activity log](/portal/activity). The events `tenant.suspended` and `tenant.activated` include the timestamp and the user who performed the action.
+The [Activity log](/portal/activity) records every suspension and resumption. The events `tenant.suspended` and `tenant.activated` include the timestamp and the user who performed the action.

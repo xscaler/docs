@@ -29,17 +29,17 @@ flowchart TD
   agent -->|"reports status"| history
 ```
 
-Labels decide which agents receive a template. Delivery history shows whether the selected config was accepted by each agent.
+Labels decide which agents receive a template. Delivery history shows whether each agent accepted it.
 
 ---
 
 ## How config delivery works
 
-A config template is a named YAML document managed in the xScaler portal. An assignment selects the agents that should receive that template.
+A config template is a named YAML document you manage in the xScaler portal. An assignment picks the agents that receive it.
 
-When an agent checks in, xScaler evaluates enabled assignments against the agent labels. Matching templates are offered to the agent.
+When an agent checks in, xScaler evaluates enabled assignments against the agent labels and offers every matching template.
 
-Important behavior:
+Important behaviour:
 
 - An empty selector matches every agent.
 - `matchLabels` entries are combined with AND logic.

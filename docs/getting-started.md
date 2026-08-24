@@ -7,11 +7,11 @@ slug: /getting-started
 
 # Quick Start
 
-Get telemetry flowing into xScaler in a few steps. xScaler accepts **metrics, logs, and traces** — start with whichever signal matters most to you.
+xScaler accepts **metrics, logs, and traces**. Start with whichever signal matters most to you.
 
 ## Prerequisites
 
-Before you begin, locate the following in your **xScaler portal**:
+Locate these three values in your **xScaler portal**:
 
 | Value | Where to find it | Description |
 |-------|-----------------|-------------|
@@ -22,19 +22,19 @@ Before you begin, locate the following in your **xScaler portal**:
 See [Manage API Tokens](/portal/api-tokens) for step-by-step instructions on finding or creating a token.
 
 :::warning Both headers are required on every request
-Every request to xScaler — reads and writes, all signals — must include:
+Every request to xScaler, reads and writes across all signals, must include:
 
 ```
 Authorization: Bearer <token>
 X-Scope-OrgID: <tenant-id>
 ```
 
-If `X-Scope-OrgID` is missing or does not match your token's tenant, the backend returns **401 Unauthorized** (`x-scope-orgid mismatch`). If `Authorization` is missing or invalid, it also returns **401 Unauthorized**.
+A missing or mismatched `X-Scope-OrgID` returns **401 Unauthorized** with `x-scope-orgid mismatch`. A missing or invalid `Authorization` returns **401 Unauthorized** too.
 :::
 
 ---
 
-## Step 1 — Verify connectivity
+## Step 1: Verify connectivity
 
 Send a test query to confirm your credentials work:
 
@@ -55,7 +55,7 @@ A `200` response with `"status": "success"` confirms authentication and connecti
 
 ---
 
-## Step 2 — Send telemetry
+## Step 2: Send telemetry
 
 ### Metrics
 
@@ -84,9 +84,9 @@ A `200` response with `"status": "success"` confirms authentication and connecti
 
 ---
 
-## Step 3 — Connect Grafana
+## Step 3: Connect Grafana
 
-Once telemetry is flowing, visualise it in Grafana:
+Once telemetry arrives, point Grafana at it:
 
 | Signal | Data source type | URL |
 |--------|-----------------|-----|

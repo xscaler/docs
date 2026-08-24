@@ -7,7 +7,7 @@ slug: /integrations/wildfly
 
 # WildFly
 
-Monitor WildFly application server — deployment status, undertow request throughput, datasource pool, JVM memory, and transaction counts — using the JMX Exporter or WildFly Metrics subsystem.
+Monitor WildFly application server using the JMX Exporter or WildFly Metrics subsystem: deployment status, undertow request throughput, datasource pool, JVM memory, and transaction counts.
 
 **Pattern:** JMX Exporter agent → Prometheus scrape → xScaler remote_write
 
@@ -22,7 +22,7 @@ Monitor WildFly application server — deployment status, undertow request throu
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 Attach the JMX Exporter as a Java agent by adding to `JAVA_OPTS` in `standalone.conf`:
 
@@ -55,7 +55,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "wildfly" {
@@ -77,7 +77,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 Use the OTel JMX receiver targeting the WildFly management port:
 

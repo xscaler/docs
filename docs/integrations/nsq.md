@@ -7,7 +7,7 @@ slug: /integrations/nsq
 
 # NSQ
 
-Monitor NSQ message queue — topic message counts, channel depth, in-flight messages, and node health — using nsq_exporter.
+Monitor NSQ message queue using nsq_exporter: topic message counts, channel depth, in-flight messages, and node health.
 
 **Pattern:** nsq_exporter → Prometheus scrape → xScaler `remote_write`
 
@@ -20,7 +20,7 @@ Monitor NSQ message queue — topic message counts, channel depth, in-flight mes
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 ```bash
 docker run -d \
@@ -47,7 +47,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "nsq" {
@@ -69,7 +69,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

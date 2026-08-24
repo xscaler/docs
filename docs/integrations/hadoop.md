@@ -7,7 +7,7 @@ slug: /integrations/hadoop
 
 # Apache Hadoop
 
-Monitor Apache Hadoop — NameNode health, DataNode disk usage, HDFS block counts, MapReduce job queues, and JVM GC — using the JMX Exporter.
+Monitor Apache Hadoop using the JMX Exporter: NameNode health, DataNode disk usage, HDFS block counts, MapReduce job queues, and JVM GC.
 
 **Pattern:** JMX Exporter agent → Prometheus scrape → xScaler `remote_write`
 
@@ -21,7 +21,7 @@ Monitor Apache Hadoop — NameNode health, DataNode disk usage, HDFS block count
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 Attach the JMX Exporter to NameNode and DataNode:
 
@@ -55,7 +55,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "hadoop" {
@@ -80,7 +80,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

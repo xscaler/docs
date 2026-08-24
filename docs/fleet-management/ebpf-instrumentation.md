@@ -7,21 +7,21 @@ slug: /fleet-management/ebpf-instrumentation
 
 # eBPF Instrumentation (OBI)
 
-OpenTelemetry eBPF Instrumentation (OBI) instruments your applications from the Linux kernel — no code changes, no SDKs, and no pod restarts. It watches network sockets and emits **RED metrics** (request **R**ate, **E**rrors, **D**uration) plus server and client spans for the traffic it observes.
+OpenTelemetry eBPF Instrumentation (OBI) instruments your applications from the Linux kernel. No code changes, no SDKs, and no pod restarts. It watches network sockets and emits **RED metrics** (request **R**ate, **E**rrors, **D**uration) plus server and client spans for the traffic it observes.
 
-This is an **opt-in** layer of the xscaler-agent Helm chart. The base agent (metrics and logs) is covered in [Enroll Agents](/fleet-management/enroll-agents) and [Configure Agents](/fleet-management/configure-agents). This page assumes the base agent is already installed and enrolled.
+This is an **opt-in** layer of the xscaler-agent Helm chart. [Enroll Agents](/fleet-management/enroll-agents) and [Configure Agents](/fleet-management/configure-agents) cover the base agent for metrics and logs. This page assumes it is already installed and enrolled.
 
 :::note Versions may drift
-Chart, image, and OBI receiver configuration keys evolve over time. Pin the values below to a known-good release and treat the OBI receiver config as **version-specific** — a key that works on one chart version can change or move on the next. Check the release notes for your `<chart-version>` before copying config forward.
+Chart, image, and OBI receiver configuration keys evolve over time. Pin the values below to a known-good release and treat the OBI receiver config as **version-specific**. A key that works on one chart version can change or move on the next. Check the release notes for your `<chart-version>` before copying config forward.
 :::
 
 ---
 
 ## eBPF vs. Operator auto-instrumentation
 
-Two zero-code methods are available. They are complementary — you can run both.
+Two zero-code methods are available. They are complementary, so you can run both.
 
-| | **eBPF (OBI)** — this page | **Operator auto-instrumentation** — [see traces page](/fleet-management/traces-auto-instrumentation) |
+| | **eBPF (OBI)**: this page | **Operator auto-instrumentation**: [see traces page](/fleet-management/traces-auto-instrumentation) |
 |---|---|---|
 | How it works | Kernel eBPF probes on network sockets | Language SDK injected into the pod at admission |
 | Signal | RED metrics + server/client spans | Rich language-level distributed traces |
@@ -55,12 +55,12 @@ Enabling eBPF takes **two independent steps**:
 2. **A pushed OBI config assignment** adds the `obi` receiver and its pipelines. Collection starts only after this config is delivered.
 
 :::warning The Helm flag alone collects nothing
-The `obi` receiver and its pipelines are **not** part of the chart. They arrive as an OpAMP config assignment targeting the node DaemonSet (see [Configure Agents](/fleet-management/configure-agents)). Until that config is assigned, the DaemonSet has host access but produces no eBPF telemetry — while metrics and logs keep flowing normally. This is expected, not a broken pipeline.
+The `obi` receiver and its pipelines are **not** part of the chart. They arrive as an OpAMP config assignment targeting the node DaemonSet (see [Configure Agents](/fleet-management/configure-agents)). Until that config is assigned, the DaemonSet has host access but produces no eBPF telemetry, while metrics and logs keep flowing normally. This is expected, not a broken pipeline.
 :::
 
 ---
 
-## Step 1 — Enable eBPF host access (Helm)
+## Step 1: Enable eBPF host access (Helm)
 
 Add these values to the base install (or `helm upgrade` an existing release):
 
@@ -81,7 +81,7 @@ Setting `nodeAgent.ebpf.enabled=true` reconfigures the node DaemonSet with **all
 | `runAsUser` | `0` (root) | eBPF probe attachment requires root. |
 
 :::warning Architecture and image
-eBPF instrumentation is supported on **amd64** and **arm64** nodes only. The chart automatically selects the OBI-enabled agent image when `nodeAgent.ebpf.enabled=true` — you do not set an image tag manually.
+OBI runs on **amd64** and **arm64** nodes only. The chart automatically selects the OBI-enabled agent image when `nodeAgent.ebpf.enabled=true`. You do not set an image tag manually.
 :::
 
 Verify the DaemonSet rolled out with host access:
@@ -95,14 +95,14 @@ kubectl -n xscaler get daemonset -l role=node \
 
 ---
 
-## Step 2 — Assign the OBI receiver config
+## Step 2: Assign the OBI receiver config
 
-Push a config template to the node DaemonSet that adds the `obi` receiver and wires it into pipelines. Create it as a config template and assign it to `role=node` agents — see [Configure Agents](/fleet-management/configure-agents) for the portal workflow.
+Push a config template to the node DaemonSet that adds the `obi` receiver and wires it into pipelines. Create it as a config template and assign it to `role=node` agents. See [Configure Agents](/fleet-management/configure-agents) for the portal workflow.
 
 ```yaml
 receivers:
   obi:
-    # Discovery: WHAT to instrument. See "Discovery" below — this is the
+    # Discovery: WHAT to instrument. See "Discovery" below. This is the
     # single most important block to get right.
     discovery:
       instrument:
@@ -149,7 +149,7 @@ Application RED metrics are **on by default**. Do **not** add a `features:` list
 
 ## Discovery: the #1 thing to get right
 
-Discovery decides **which processes OBI instruments**. Getting this wrong is the most common failure — and it looks exactly like a broken pipeline even though nothing is broken.
+Discovery decides **which processes OBI instruments**. Getting this wrong is the most common failure, and it looks exactly like a broken pipeline even though nothing is broken.
 
 ### Use `open_ports`
 
@@ -164,7 +164,7 @@ discovery:
 ### Do not select by `k8s_namespace` / `k8s_pod_label`
 
 ```yaml
-# AVOID — depends on the Kubernetes metadata informer
+# AVOID: depends on the Kubernetes metadata informer
 discovery:
   instrument:
     - k8s_namespace: "."        # even "all namespaces" does not save you
@@ -172,7 +172,7 @@ discovery:
         app: my-service
 ```
 
-Kubernetes selectors resolve through OBI's **Kubernetes metadata informer**, which needs RBAC to list and watch pods, and which races pod-metadata resolution at discovery time. When it loses that race, OBI discovers and instruments **nothing** — while metrics and logs continue to flow normally. The result reads as a broken eBPF pipeline but is really just discovery selecting zero targets. Setting `k8s_namespace: "."` (all namespaces) does **not** avoid the race. Match on `open_ports` instead.
+Kubernetes selectors resolve through OBI's **Kubernetes metadata informer**, which needs RBAC to list and watch pods, and which races pod-metadata resolution at discovery time. When it loses that race, OBI discovers and instruments **nothing**, while metrics and logs continue to flow normally. The result reads as a broken eBPF pipeline, but it is discovery selecting zero targets. Setting `k8s_namespace: "."` (all namespaces) does **not** avoid the race. Match on `open_ports` instead.
 
 :::tip Scope ports to your application ports
 A wide `open_ports` range across every namespace also instruments infrastructure (ingress, sidecars, system services) and can **overwhelm ingest and inflate cost**. List only the ports your applications actually listen on. Start narrow and widen deliberately.
@@ -180,13 +180,13 @@ A wide `open_ports` range across every namespace also instruments infrastructure
 
 ---
 
-## Step 3 — Verify
+## Step 3: Verify
 
 1. Confirm the config was applied on the node agents in **Fleet Management → Agents** (config hash and delivery status `applied`). See [Configure Agents](/fleet-management/configure-agents#confirm-delivery).
 2. Generate some traffic to an instrumented workload.
 3. Query the RED metrics in xScaler.
 
-RED metric names in this backend carry **no `_seconds` unit suffix**. The duration histogram is exposed as:
+RED metric names in this backend carry **no `_seconds` unit suffix**. The duration histogram appears as:
 
 ```
 http_server_request_duration_count
@@ -230,7 +230,7 @@ Attributes like `k8s_namespace_name` and `k8s_pod_name` on OBI metrics and spans
   verbs: ["get", "list", "watch"]
 ```
 
-The chart provisions this RBAC when eBPF is enabled. If telemetry arrives but the `k8s_namespace_name` / `k8s_pod_name` labels are **missing**, the fix is almost always this RBAC — confirm the node agent's ServiceAccount is bound to a ClusterRole with `get`/`list`/`watch` on pods, replicasets, services, and nodes.
+The chart provisions this RBAC when eBPF is enabled. If telemetry arrives but the `k8s_namespace_name` / `k8s_pod_name` labels are **missing**, the fix is almost always this RBAC: confirm the node agent's ServiceAccount is bound to a ClusterRole with `get`/`list`/`watch` on pods, replicasets, services, and nodes.
 
 :::note Discovery vs. enrichment
 `open_ports` decides **whether** a process is instrumented (kernel-only, no RBAC). The `k8s.*` labels only **enrich** telemetry that OBI already produces. Missing RBAC removes the labels; it does not stop collection. That is why you select targets with `open_ports`, not with `k8s_*`.
@@ -246,7 +246,7 @@ This is the signature symptom. eBPF collection is a separate path from base metr
 
 1. **Is an OBI config actually assigned?** The Helm flag only opens host access. Confirm a config template with the `obi` receiver is delivered and `applied` to `role=node` agents (**Fleet Management → Agents**).
 2. **Is discovery matching anything?** This is the most likely cause. Switch any `k8s_namespace` / `k8s_pod_label` selectors to `open_ports`, and confirm your workloads actually listen on the listed ports.
-3. **Did the Collector crash on start?** Check the node agent pod logs. A crash loop right after config delivery usually means an invalid `obi` receiver key — most often a `features` block that does not decode (see the warning in Step 2).
+3. **Did the Collector crash on start?** Check the node agent pod logs. A crash loop right after config delivery usually means an invalid `obi` receiver key. Most often a `features` block that does not decode (see the warning in Step 2).
 4. **Is host access really granted?** Verify `hostPID: true`, `privileged`, and `runAsUser: 0` on the DaemonSet pod spec. Missing any one prevents probe attachment.
 5. **Is the node architecture supported?** OBI runs on amd64/arm64 only.
 
@@ -260,4 +260,4 @@ A broad `open_ports` range instrumented infrastructure and system workloads too.
 
 ### Collector crash loop immediately after config delivery
 
-An `obi` receiver key failed to decode. Remove any metrics `features` block, revert to the [Step 2](#step-2--assign-the-obi-receiver-config) template, and re-assign. Remember the OBI config is version-specific — a key valid on another chart version may not decode on yours.
+An `obi` receiver key failed to decode. Remove any metrics `features` block, revert to the [Step 2](#step-2-assign-the-obi-receiver-config) template, and re-assign. Remember the OBI config is version-specific. A key valid on another chart version may not decode on yours.

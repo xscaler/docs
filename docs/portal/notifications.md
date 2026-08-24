@@ -7,7 +7,7 @@ slug: /portal/notifications
 
 # Notification Preferences
 
-xScaler sends email notifications when usage thresholds are crossed or when ingestion is throttled. You control which notifications are sent and who receives them from the Settings page.
+xScaler emails you when usage crosses a threshold or ingestion gets throttled. Choose which notifications go out, and to whom, on the Settings page.
 
 ---
 
@@ -35,7 +35,7 @@ xScaler sends email notifications when usage thresholds are crossed or when inge
 
 ### Active series warning
 
-Triggered when your organisation's total active series crosses a warning threshold (typically 80% of your plan limit). This is an early signal to investigate series growth or consider upgrading.
+Fires when your organisation's total active series crosses a warning threshold, typically 80% of your plan limit. Check series growth before you reach the cap.
 
 Resolved automatically when series count drops back below the threshold.
 
@@ -55,6 +55,6 @@ Triggered when a tenant sends data at a scrape interval shorter than the minimum
 
 ## In-portal notifications
 
-In addition to email, active notifications appear as a banner in the portal sidebar. The bell icon shows the active alert count, and clicking it opens the full notification list.
+Active notifications also show as a banner in the portal sidebar. The bell icon carries the active alert count; click it for the full list.
 
 To see the full list of events that triggered or resolved a notification, check the [Activity log](/portal/activity) and filter by event type `notification.*`.

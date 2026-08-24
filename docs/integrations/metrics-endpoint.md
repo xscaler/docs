@@ -20,7 +20,7 @@ Expose Prometheus metrics from any application and forward them to xScaler. Use 
 
 ---
 
-## Instrument Your Application
+## Instrument your application
 
 ### Python
 
@@ -97,7 +97,7 @@ func main() {
 
 ---
 
-## Option A — Prometheus
+## Option A: Prometheus
 
 ```yaml
 scrape_configs:
@@ -115,7 +115,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "my_app" {
@@ -137,7 +137,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:
@@ -181,7 +181,7 @@ service:
 
 ## Logs
 
-Collect application log — tail the log file for the service exposing the `/metrics` endpoint. Add the following to your Alloy config, adjusting `__path__` to match your application's log file location:
+Collect application log. Tail the log file for the service exposing the `/metrics` endpoint. Add the following to your Alloy config, adjusting `__path__` to match your application's log file location:
 
 ```river
 local.file_match "metrics_endpoint_logs" {

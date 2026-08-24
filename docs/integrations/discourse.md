@@ -7,7 +7,7 @@ slug: /integrations/discourse
 
 # Discourse
 
-Monitor Discourse — HTTP request rates, active users, page views, topic/post creation, and Redis/Sidekiq health — using Discourse's built-in Prometheus exporter.
+Monitor Discourse using its built-in Prometheus exporter: HTTP request rates, active users, page views, topic/post creation, and Redis/Sidekiq health.
 
 **Pattern:** Discourse /metrics → Prometheus scrape → xScaler `remote_write`
 
@@ -21,7 +21,7 @@ Monitor Discourse — HTTP request rates, active users, page views, topic/post c
 
 ---
 
-## Enable Metrics
+## Enable metrics
 
 In Discourse Admin → Settings → search for "prometheus":
 
@@ -36,7 +36,7 @@ DISCOURSE_PROMETHEUS_PORT=9405
 
 ---
 
-## Option A — Prometheus
+## Option A: Prometheus
 
 ```yaml
 scrape_configs:
@@ -54,7 +54,7 @@ remote_write:
 
 ---
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "discourse" {
@@ -76,7 +76,7 @@ prometheus.remote_write "xscaler" {
 
 ---
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

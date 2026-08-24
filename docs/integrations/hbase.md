@@ -7,7 +7,7 @@ slug: /integrations/hbase
 
 # Apache HBase
 
-Monitor Apache HBase — region server load, compaction queues, memstore usage, and RPC latency — using the JMX Exporter. Detect performance bottlenecks in your HBase cluster early using xScaler dashboards and alerts.
+Monitor Apache HBase using the JMX Exporter: region server load, compaction queues, memstore usage, and RPC latency.
 
 **Pattern:** JMX Exporter agent → Prometheus scrape → xScaler remote_write
 
@@ -22,7 +22,7 @@ Monitor Apache HBase — region server load, compaction queues, memstore usage, 
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 Attach the JMX Exporter Java agent to both the HBase Master and RegionServer JVMs. Add the following to `hbase-env.sh`:
 
@@ -67,7 +67,7 @@ remote_write:
       X-Scope-OrgID: "<tenant-id>"
 ```
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "hbase" {
@@ -91,7 +91,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

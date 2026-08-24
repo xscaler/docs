@@ -7,11 +7,11 @@ slug: /integrations/go
 
 # Go
 
-Monitor Go application runtime metrics — goroutines, GC frequency, heap allocation, and CPU — using the built-in `prometheus/client_golang` library.
+Monitor Go application runtime metrics using the built-in `prometheus/client_golang` library: goroutines, GC frequency, heap allocation, and CPU.
 
 ![Go Dashboard](https://grafana.com/api/dashboards/10826/images/6819/image)
 
-## Key Metrics
+## Key metrics
 
 | Metric | Description |
 |--------|-------------|
@@ -29,7 +29,7 @@ Monitor Go application runtime metrics — goroutines, GC frequency, heap alloca
 
 ## Configuration
 
-### Option A — client_golang
+### Option A: client_golang
 
 ```bash
 go get github.com/prometheus/client_golang/prometheus
@@ -66,7 +66,7 @@ remote_write:
       password: <api-token>
 ```
 
-### Option B — Grafana Alloy
+### Option B: Grafana Alloy
 
 ```alloy
 prometheus.scrape "go_app" {
@@ -83,7 +83,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-### Option C — OpenTelemetry Collector
+### Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:
@@ -110,7 +110,7 @@ service:
 
 ## Logs
 
-Collect application stdout/stderr — pipe your process output to a log file and tail it with Alloy. Add the following to your Alloy config, adjusting `__path__` to match your application's log file location:
+Collect application stdout/stderr. Pipe your process output to a log file and tail it with Alloy. Add the following to your Alloy config, adjusting `__path__` to match your application's log file location:
 
 ```river
 local.file_match "go_logs" {

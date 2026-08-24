@@ -7,7 +7,7 @@ slug: /trace-query/overview
 
 # Trace Querying Overview
 
-xScaler exposes the **full TraceQL HTTP API**, so any tool that supports TraceQL works without modification — Grafana, `tempo-cli`, `curl`, and more.
+xScaler exposes the **full TraceQL HTTP API**, so any tool that supports TraceQL works without modification: Grafana, `tempo-cli`, `curl`, and more.
 
 ## Base URL
 
@@ -75,7 +75,7 @@ TraceQL queries select spans from traces based on their attributes.
 { span.order.id = "abc-123" }
 ```
 
-### Structural queries — trace pipelines
+### Structural queries: trace pipelines
 
 ```traceql
 # A → B: A followed by B in the same trace

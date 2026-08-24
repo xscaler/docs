@@ -7,7 +7,7 @@ slug: /integrations/opensearch
 
 # OpenSearch
 
-Monitor OpenSearch cluster health, indexing throughput, search latency, and JVM usage using the prometheus-exporter plugin. Keep your search infrastructure observable alongside the rest of your stack in xScaler.
+Monitor OpenSearch cluster health, indexing throughput, search latency, and JVM usage using the prometheus-exporter plugin.
 
 **Pattern:** OpenSearch prometheus-exporter plugin → Prometheus scrape → xScaler remote_write
 
@@ -21,7 +21,7 @@ Monitor OpenSearch cluster health, indexing throughput, search latency, and JVM 
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 Install the prometheus-exporter plugin on each OpenSearch node, then restart the service:
 
@@ -31,7 +31,7 @@ bin/opensearch-plugin install prometheus-exporter
 sudo systemctl restart opensearch
 ```
 
-OpenSearch will now expose metrics at `:9200/_prometheus/metrics`. Configure Prometheus to scrape and remote_write:
+OpenSearch now exposes metrics at `:9200/_prometheus/metrics`. Configure Prometheus to scrape and remote_write:
 
 ```yaml
 scrape_configs:
@@ -49,7 +49,7 @@ remote_write:
       X-Scope-OrgID: "<tenant-id>"
 ```
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "opensearch" {
@@ -72,7 +72,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

@@ -11,7 +11,7 @@ Monitor Vault seal status, token counts, request rates, and audit log health.
 
 ![HashiCorp Vault Dashboard](https://grafana.com/api/dashboards/12904/images/8810/image)
 
-## Key Metrics
+## Key metrics
 
 | Metric | Description |
 |--------|-------------|
@@ -38,9 +38,9 @@ telemetry {
 }
 ```
 
-Metrics are available at `https://localhost:8200/v1/sys/metrics?format=prometheus` with a valid Vault token.
+Vault serves metrics at `https://localhost:8200/v1/sys/metrics?format=prometheus` with a valid token.
 
-### Option A — Prometheus scrape
+### Option A: Prometheus scrape
 
 ```yaml
 scrape_configs:
@@ -60,7 +60,7 @@ remote_write:
       password: <api-token>
 ```
 
-### Option B — Grafana Alloy
+### Option B: Grafana Alloy
 
 ```alloy
 prometheus.scrape "vault" {
@@ -80,7 +80,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-### Option C — OpenTelemetry Collector
+### Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

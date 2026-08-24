@@ -7,7 +7,7 @@ slug: /integrations/oracle
 
 # Oracle Database
 
-Monitor Oracle Database — sessions, SQL throughput, tablespace usage, wait events, and ASM — using oracledb_exporter. Gain deep visibility into your Oracle workloads from within xScaler.
+Monitor Oracle Database using oracledb_exporter: sessions, SQL throughput, tablespace usage, wait events, and ASM.
 
 **Pattern:** oracledb_exporter → Prometheus scrape → xScaler remote_write
 
@@ -28,7 +28,7 @@ GRANT CREATE SESSION, SELECT_CATALOG_ROLE TO monitor;
 
 ---
 
-## Option A — Prometheus Exporter
+## Option A: Prometheus Exporter
 
 Run oracledb_exporter as a Docker container, providing the Oracle connection string via `DATA_SOURCE_NAME`:
 
@@ -56,7 +56,7 @@ remote_write:
       X-Scope-OrgID: "<tenant-id>"
 ```
 
-## Option B — Grafana Alloy
+## Option B: Grafana Alloy
 
 ```river
 prometheus.scrape "oracle" {
@@ -76,7 +76,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-## Option C — OpenTelemetry Collector
+## Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

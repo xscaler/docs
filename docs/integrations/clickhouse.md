@@ -11,7 +11,7 @@ Monitor ClickHouse query rates, insert throughput, memory usage, and replication
 
 ![ClickHouse Dashboard](https://grafana.com/api/dashboards/14031/images/10034/image)
 
-## Key Metrics
+## Key metrics
 
 | Metric | Description |
 |--------|-------------|
@@ -41,7 +41,7 @@ Monitor ClickHouse query rates, insert throughput, memory usage, and replication
 </prometheus>
 ```
 
-### Option A — Prometheus scrape
+### Option A: Prometheus scrape
 
 ```yaml
 scrape_configs:
@@ -57,7 +57,7 @@ remote_write:
       password: <api-token>
 ```
 
-### Option B — Grafana Alloy
+### Option B: Grafana Alloy
 
 ```alloy
 prometheus.scrape "clickhouse" {
@@ -74,7 +74,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-### Option C — OpenTelemetry Collector
+### Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

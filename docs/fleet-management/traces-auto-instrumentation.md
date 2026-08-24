@@ -7,11 +7,11 @@ slug: /fleet-management/traces-auto-instrumentation
 
 # Trace Auto-Instrumentation (OpenTelemetry Operator)
 
-The OpenTelemetry Operator injects a language SDK into your pods at admission time, producing rich, language-level **distributed traces** with **no code changes and no image rebuild**. Instrumentation is added through an init container when the pod starts.
+The OpenTelemetry Operator injects a language SDK into your pods at admission time. You get language-level **distributed traces** with **no code changes and no image rebuild**. An init container installs the SDK when the pod starts.
 
-This is an **opt-in** layer of the xscaler-agent Helm chart. The base agent (metrics and logs) is covered in [Enroll Agents](/fleet-management/enroll-agents) and [Configure Agents](/fleet-management/configure-agents). This page assumes the base agent is already installed and enrolled.
+This is an **opt-in** layer of the xscaler-agent Helm chart. [Enroll Agents](/fleet-management/enroll-agents) and [Configure Agents](/fleet-management/configure-agents) cover the base agent for metrics and logs. This page assumes it is already installed and enrolled.
 
-Auto-instrumentation is an alternative — or complement — to [eBPF (OBI)](/fleet-management/ebpf-instrumentation). Use OBI for broad, language-agnostic RED metrics and basic spans; use the Operator when you want deep, SDK-level spans for specific applications.
+Auto-instrumentation is an alternative, or complement, to [eBPF (OBI)](/fleet-management/ebpf-instrumentation). Use OBI for broad, language-agnostic RED metrics and basic spans; use the Operator when you want deep, SDK-level spans for specific applications.
 
 :::note Versions may drift
 The Operator chart and the injected SDK images move independently of the xscaler-agent chart. Pin `<otel-operator-version>` to a known-good release and re-check the upstream [OpenTelemetry Operator](https://github.com/open-telemetry/opentelemetry-operator) docs before upgrading, as CR fields and defaults can change between versions.
@@ -21,7 +21,7 @@ The Operator chart and the injected SDK images move independently of the xscaler
 
 ## eBPF vs. Operator auto-instrumentation
 
-| | **Operator auto-instrumentation** — this page | **eBPF (OBI)** — [see eBPF page](/fleet-management/ebpf-instrumentation) |
+| | **Operator auto-instrumentation**: this page | **eBPF (OBI)**: [see eBPF page](/fleet-management/ebpf-instrumentation) |
 |---|---|---|
 | How it works | Language SDK injected into the pod at admission | Kernel eBPF probes on network sockets |
 | Signal | Rich language-level distributed traces | RED metrics + server/client spans |
@@ -49,7 +49,7 @@ flowchart LR
   svc -->|"forwarded by node agent"| xscaler
 ```
 
-Spans from the injected SDK are sent to the **node-local OTLP intake** exposed by the agent chart, which forwards them to xScaler. Sending to the node-local Service keeps trace traffic on-node and reuses the agent's authenticated export path.
+The injected SDK sends spans to the **node-local OTLP intake** from the agent chart, which forwards them to xScaler. Going through the node-local Service keeps trace traffic on-node and reuses the agent's authenticated export path.
 
 ---
 
@@ -84,7 +84,7 @@ kubectl -n xscaler get svc -l app.kubernetes.io/component=node-traces
 
 ---
 
-## Step 1 — Install the OpenTelemetry Operator
+## Step 1: Install the OpenTelemetry Operator
 
 Install the Operator with Helm from the upstream chart.
 
@@ -93,7 +93,7 @@ helm repo add open-telemetry https://open-telemetry.github.io/opentelemetry-helm
 helm repo update
 ```
 
-**For development** — let the Operator generate a self-signed webhook certificate:
+**For development**. Let the Operator generate a self-signed webhook certificate:
 
 ```bash
 helm install opentelemetry-operator open-telemetry/opentelemetry-operator \
@@ -115,7 +115,7 @@ kubectl -n opentelemetry-operator-system get pods
 
 ---
 
-## Step 2 — Apply an `Instrumentation` CR
+## Step 2: Apply an `Instrumentation` CR
 
 Create an `Instrumentation` custom resource named `xscaler-traces` **in each application namespace** you want to instrument. It tells the injected SDK where to export and how to propagate context.
 
@@ -148,7 +148,7 @@ The annotation in Step 3 references an `Instrumentation` CR by name, resolved wi
 
 ---
 
-## Step 3 — Annotate your workloads
+## Step 3: Annotate your workloads
 
 Add an injection annotation to each workload's **pod template** (`spec.template.metadata.annotations`), not the Deployment's top-level metadata. Choose the annotation matching the application's language:
 
@@ -170,7 +170,7 @@ Supported languages and their annotations:
 | .NET | `instrumentation.opentelemetry.io/inject-dotnet: "xscaler-traces"` |
 | Go | `instrumentation.opentelemetry.io/inject-go: "xscaler-traces"` |
 
-The value `"xscaler-traces"` refers to the `Instrumentation` CR from Step 2. When the pod is recreated, the Operator adds an init container that installs the SDK and sets the environment for you — **no image change**.
+The value `"xscaler-traces"` refers to the `Instrumentation` CR from Step 2. When the pod is recreated, the Operator adds an init container that installs the SDK and sets the environment for you. **No image change**.
 
 ```bash
 # Roll the workload so the webhook injects instrumentation
@@ -178,12 +178,12 @@ kubectl -n <app-namespace> rollout restart deployment/<workload>
 ```
 
 :::warning Injection happens on pod creation
-Existing pods are not instrumented in place. The mutating webhook runs only when a pod is **created**, so a rollout (or scale-up) is required for annotated workloads to pick up the SDK.
+The mutating webhook runs only when a pod is **created**, so existing pods stay uninstrumented. Annotated workloads pick up the SDK on the next rollout or scale-up.
 :::
 
 ---
 
-## Step 4 — Verify
+## Step 4: Verify
 
 1. Confirm the init container was injected:
 
@@ -203,14 +203,14 @@ Existing pods are not instrumented in place. The mutating webhook runs only when
 ### No init container appears on new pods
 
 - The annotation is on the wrong object. It must be on the **pod template** (`spec.template.metadata.annotations`), not the Deployment metadata.
-- The Operator webhook is not healthy. Check its pods and, in production, that its cert-manager certificate is valid — an expired or missing webhook cert silently skips injection.
+- The Operator webhook is not healthy. Check its pods and, in production, that its cert-manager certificate is valid. An expired or missing webhook cert silently skips injection.
 - Language mismatch. Confirm the `inject-<language>` matches the actual runtime.
 
 ### Init container is injected but no traces arrive
 
 - The `Instrumentation` CR is missing in the workload's namespace, or its name does not match the annotation value (`xscaler-traces`).
 - The exporter endpoint is wrong. Confirm `nodeAgent.traces.enabled=true` and that `<cluster>-xscaler-agent-node-traces.<namespace>.svc:4318` resolves from the app namespace.
-- The node-traces Service is not present — see [Prerequisites](#prerequisites).
+- The node-traces Service is not present. See [Prerequisites](#prerequisites).
 
 ### Traces from some workloads only
 

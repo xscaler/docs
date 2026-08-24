@@ -11,7 +11,7 @@ Monitor Java Virtual Machine heap usage, garbage collection pauses, thread count
 
 ![JVM Dashboard](https://grafana.com/api/dashboards/3457/images/2191/image)
 
-## Key Metrics
+## Key metrics
 
 | Metric | Description |
 |--------|-------------|
@@ -20,7 +20,7 @@ Monitor Java Virtual Machine heap usage, garbage collection pauses, thread count
 | `jvm_threads_live` | Live thread count |
 | `jvm_classes_loaded` | Currently loaded class count |
 | `jvm_memory_pool_bytes_used` | Usage per memory pool |
-| `process_cpu_usage` | Process CPU usage (0–1) |
+| `process_cpu_usage` | Process CPU usage (0-1) |
 
 ## Prerequisites
 
@@ -29,7 +29,7 @@ Monitor Java Virtual Machine heap usage, garbage collection pauses, thread count
 
 ## Configuration
 
-### Option A — jmx_exporter (Java agent)
+### Option A: jmx_exporter (Java agent)
 
 Download [jmx_exporter](https://github.com/prometheus/jmx_exporter) and add it as a Java agent:
 
@@ -60,7 +60,7 @@ remote_write:
       password: <api-token>
 ```
 
-### Option B — Grafana Alloy
+### Option B: Grafana Alloy
 
 ```alloy
 prometheus.scrape "jvm" {
@@ -77,7 +77,7 @@ prometheus.remote_write "xscaler" {
 }
 ```
 
-### Option C — OpenTelemetry Collector
+### Option C: OpenTelemetry Collector
 
 ```yaml
 receivers:

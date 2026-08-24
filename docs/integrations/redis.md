@@ -27,9 +27,9 @@ Collect command throughput, memory usage, keyspace hit ratio, connected clients,
 
 ---
 
-## Step 1 — Run redis_exporter
+## Step 1: Run redis_exporter
 
-No Redis configuration changes needed — the exporter calls `INFO` and `CONFIG GET` commands.
+No Redis configuration changes needed. The exporter calls `INFO` and `CONFIG GET` commands.
 
 ```bash
 docker run --rm -d \
@@ -59,7 +59,7 @@ curl -s http://localhost:9121/metrics | grep redis_up
 
 ---
 
-## Step 2 — Scrape and forward to xScaler
+## Step 2: Scrape and forward to xScaler
 
 ### Prometheus
 

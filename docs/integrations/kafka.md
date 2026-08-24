@@ -27,9 +27,9 @@ Collect broker throughput, consumer group lag, partition leadership, and JVM met
 
 ---
 
-## Step 1 — Run kafka_exporter
+## Step 1: Run kafka_exporter
 
-`kafka_exporter` connects to Kafka brokers over the standard Kafka protocol — no JMX required.
+`kafka_exporter` connects to Kafka brokers over the standard Kafka protocol. No JMX required.
 
 ```bash
 docker run --rm -d \
@@ -60,7 +60,7 @@ curl -s http://localhost:9308/metrics | grep kafka_brokers
 
 ---
 
-## Step 2 — Scrape and forward to xScaler
+## Step 2: Scrape and forward to xScaler
 
 ### Prometheus
 
