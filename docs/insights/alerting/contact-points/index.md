@@ -13,19 +13,26 @@ A contact point is where notifications are delivered. Open
 Set one up before you write your first rule. A rule that fires with nowhere to
 send is silent, and it looks exactly like a rule that is working.
 
-## Integration types
+## Supported integrations
 
-| Type | What you need |
-|------|--------------|
-| Slack | An incoming webhook URL, or a bot token and a channel |
-| Email | Your own SMTP server, and the addresses to send to |
-| PagerDuty | An Events API v2 integration key |
-| Webhook | A URL, and optionally basic auth |
-| Opsgenie | An API key |
-| MS Teams | A webhook URL |
-| Telegram | A bot token and a chat ID |
-| Discord | A webhook URL |
-| Amazon SNS | A topic ARN and a region |
+Each has its own setup guide, covering what to create on the provider's side and
+what to put in each field.
+
+| Integration | What you need |
+|-------------|--------------|
+| [Slack](/insights/alerting/contact-points/slack) | An incoming webhook URL, or a bot token and a channel |
+| [Email](/insights/alerting/contact-points/email) | Your own SMTP server, and the addresses to send to |
+| [PagerDuty](/insights/alerting/contact-points/pagerduty) | An Events API v2 integration key |
+| [Webhook](/insights/alerting/contact-points/webhook) | A URL, and optionally auth |
+| [Opsgenie](/insights/alerting/contact-points/opsgenie) | An API key |
+| [Microsoft Teams](/insights/alerting/contact-points/teams) | A workflow or connector webhook URL |
+| [Telegram](/insights/alerting/contact-points/telegram) | A bot token and a chat ID |
+| [Discord](/insights/alerting/contact-points/discord) | A webhook URL |
+| [Amazon SNS](/insights/alerting/contact-points/sns) | A topic ARN, a region and credentials |
+
+A destination without a dedicated integration is usually reachable with
+[Webhook](/insights/alerting/contact-points/webhook), which posts a JSON body
+you can parse.
 
 ## Create one
 
@@ -70,22 +77,17 @@ This stops a stored credential being carried to an address it was not issued
 for.
 :::
 
-## Email
+## What the notification says
 
-Alert email goes out through the SMTP server on the contact point, from your
-own domain and your own sending reputation. xScaler does not relay it.
+Without a template, a notification leads with the first alert's `summary`
+annotation, falling back to the rule name, and lists every alert in the group
+with its labels. Set the summary annotation on your rules and most
+notifications read well with no template at all.
 
-| Field | Notes |
-|-------|-------|
-| Addresses | Comma-separated recipients |
-| SMTP host | Your mail server |
-| SMTP port | 587 for STARTTLS, 465 for implicit TLS, 25 for an unauthenticated relay |
-| From address | The envelope sender |
-| SMTP username | Leave blank for an unauthenticated relay |
-| SMTP password | Required when a username is set |
-| Send a single email to all recipients | One message with everyone on it, instead of one each |
+To change the wording, see
+[Notification templates](/insights/alerting/templates).
 
-## Webhooks and reachable addresses
+## Reachable addresses
 
 A webhook, SMTP host or custom endpoint has to be reachable on the public
 internet. Delivery to private, loopback, link-local and cloud metadata
@@ -124,5 +126,7 @@ routing there stops delivering. Check
 
 ## Next
 
-[Notification policies](/insights/alerting/notification-policies) decide which
-alerts arrive here.
+- Pick your integration from [Supported integrations](#supported-integrations)
+  above.
+- [Notification policies](/insights/alerting/notification-policies) decide which
+  alerts arrive here.

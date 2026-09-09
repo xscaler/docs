@@ -7,9 +7,9 @@ slug: /insights/alerting
 
 # Alerting
 
-Alerting watches your metrics and logs and tells people when something is
-wrong. Rules, routing, contact points and silences all live in the portal, so
-there is nothing to install and nothing to connect.
+Alerting runs rules against your metrics and logs and notifies people when a
+condition holds. Rules, routing, contact points and silences all live in the
+portal, so there is nothing to install and nothing to connect.
 
 Open **Insights → Alerting**. Nine pages sit under it, each with its own link
 you can bookmark or paste into a ticket.

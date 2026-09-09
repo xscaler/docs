@@ -88,17 +88,18 @@ Each alert in `.Alerts.Firing` and `.Alerts.Resolved` carries:
 
 ### Functions
 
-Templates use Go template syntax with its built-in functions: `range`, `if`,
-`with`, `len`, `index`, `printf`. Helper functions from other alerting stacks,
-such as `toUpper` or `humanize`, are not available. Use `printf` where you need
-formatting.
+Templates use Go template syntax: `range`, `if`, `with`, `len`, `index` and
+`printf` all work. A label that does not exist renders as empty rather than as
+an error, so a title referencing an absent label comes out short rather than
+broken.
 
-A label that does not exist renders as empty rather than as an error.
+Use **Render preview** to confirm anything beyond those. It renders with the
+same engine that delivers.
 
-`.CommonLabels` is the one worth knowing. Anything in it is true of every alert
-in the message, so it is safe to put in a title. A label that varies across the
-group is missing from `.CommonLabels`, which is why a title built from
-`.CommonLabels.instance` sometimes comes out blank.
+`.CommonLabels` is the field to understand. Anything in it is true of every
+alert in the message, so it is safe to put in a title. A label that varies
+across the group is missing from `.CommonLabels`, which is why a title built
+from `.CommonLabels.instance` sometimes comes out blank.
 
 ## Test it
 

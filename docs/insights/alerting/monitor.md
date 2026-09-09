@@ -19,8 +19,16 @@ grouping is the useful part: it shows the routing tree's decisions, so an alert
 sitting under a contact point you did not expect is a routing problem you can
 see rather than guess at.
 
-Summary counts and a refresh control sit at the top. The authoritative state
-for any single alert is the chip on its row.
+Three counts sit at the top, with a refresh control beside them:
+
+| Count | Meaning |
+|-------|---------|
+| Active | Firing and notifying |
+| Silenced | Firing, with a silence holding the notification |
+| Inhibited | Firing, with an inhibition rule holding the notification |
+
+A rising Silenced count during an incident usually means a silence set for an
+earlier problem is covering this one too.
 
 ### Filter
 
@@ -78,6 +86,21 @@ broke notifications and you would rather roll back than debug.
 Restoring replaces the current routing tree, contact points, templates, mute
 timings and inhibition rules with the ones in that entry. Anything created
 since is gone. Alert rules and silences are separate and are left alone.
+
+### Which Alertmanager handles routing
+
+| Option | What it means |
+|--------|--------------|
+| Built-in | The Alertmanager that ships with xScaler. Routing, grouping, silences and delivery all happen here, managed for you |
+| External | Alerts are forwarded to your own Alertmanager instances, and you own routing, grouping and delivery there |
+
+Built-in is the default and is what the rest of these docs describe. Choose
+External when you already run Alertmanager and want one routing configuration
+across xScaler and everything else feeding it. Add one URL per instance under
+**External Alertmanager URLs**; alerts are sent to all of them.
+
+Switching to External leaves the contact points and policies in xScaler in
+place and stops using them, so switching back restores what you had.
 
 ### Alertmanager status
 

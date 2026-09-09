@@ -63,9 +63,9 @@ right on the normal operating range.
 
 ## Write the runbook link first
 
-An alert with a runbook URL is an alert somebody can act on at 3am. An alert
-without one gets muted. If there is no runbook, three commands in a wiki page
-counts.
+An alert with a runbook URL is one a responder can act on without being
+expected to improvise. An alert without one gets muted. If there is no runbook,
+three commands in a wiki page counts.
 
 Put the first thing to check in the description:
 

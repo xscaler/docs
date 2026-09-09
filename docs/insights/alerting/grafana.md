@@ -59,14 +59,14 @@ node plus a threshold, in one place a reader can check.
 
 ## Evaluation
 
-Grafana groups rules and evaluates each group on its own interval.
+The same model: rules belong to an evaluation group, and the group's interval
+decides how often they run. The default is every minute, over the last ten
+minutes of data.
 
-xScaler evaluates every rule continuously, roughly every ten seconds, over the
-last ten minutes of data. The **Evaluation group** field names a group for
-organizing rules.
-
-The pending period is the field that controls responsiveness. See
-[Alert rules](/insights/alerting/alert-rules).
+The difference is the query window. Grafana lets each query in a rule carry its
+own relative time range; xScaler evaluates every rule query over the same ten
+minute window. Express a longer lookback in the query itself, with a wider
+range selector such as `[1h]`.
 
 ## Signals you can alert on
 
@@ -111,6 +111,9 @@ Configuration rollback covers the case file provisioning is usually reached
 for. Every applied configuration is kept, and **Settings → Configuration
 history** restores any of them. See [Monitor alerts](/insights/alerting/monitor).
 
+To keep one routing configuration across xScaler and other systems, point
+xScaler at your own Alertmanager under **Settings**, and manage routing there.
+
 ## Contact points
 
 The portal offers Slack, email, PagerDuty, webhook, Opsgenie, MS Teams,
@@ -136,8 +139,9 @@ the same save. See [Contact points](/insights/alerting/contact-points).
 ## Templates
 
 Templates use Go template syntax and the same `.Alerts`, `.CommonLabels` and
-`.GroupLabels` data. Grafana's extra helper functions, such as `toUpper` and
-`humanize`, are not available. Use `printf` for formatting. See
+`.GroupLabels` data, so a Grafana notification template usually moves across
+unchanged. **Render preview** uses the same engine that delivers, so test a
+migrated template there before you rely on it. See
 [Notification templates](/insights/alerting/templates).
 
 ## Error and no-data behaviour

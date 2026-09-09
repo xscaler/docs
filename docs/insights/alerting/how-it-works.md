@@ -22,11 +22,11 @@ flowchart LR
 ## 1. The rule runs
 
 A rule is a query, a way of turning its result into one number, and a
-comparison against a threshold. xScaler evaluates every rule continuously,
-roughly every ten seconds, over the last ten minutes of data.
+comparison against a threshold. xScaler runs it on its evaluation interval,
+every minute by default, over the last ten minutes of data.
 
-You do not schedule this. There is no cron expression and no start button. A
-saved rule is a running rule until you pause it.
+A saved rule is a running rule. There is no cron expression and no start
+button, and it keeps evaluating until you pause it.
 
 ## 2. Each series becomes an instance
 

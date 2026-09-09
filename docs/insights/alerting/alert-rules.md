@@ -53,15 +53,22 @@ that is not in the rule will not save either.
 | Field | What it does |
 |-------|--------------|
 | Folder | Groups rules in the list. Also becomes the `grafana_folder` label |
-| Evaluation group | A name you choose for related rules |
+| Evaluation group | A name you choose for related rules. Rules in one group share an evaluation interval |
 | Pending period | How long the condition must hold before the alert fires. Default `5m` |
+| Evaluation interval | How often the rule runs. Default `1m` |
 
 The pending period is the field that decides how noisy a rule is. A CPU rule
-with `for: 0s` pages you about a compile job. The same rule at `for: 10m` pages
-you about a problem.
+with a pending period of `0s` pages you about a compile job. The same rule at
+`10m` pages you about a problem.
 
-Rules are evaluated continuously, about every ten seconds. You do not set a
-schedule.
+The two timing fields do different jobs. The evaluation interval is how often
+the query runs, and the pending period is how long the result has to stay bad.
+An interval of `1m` with a pending period of `5m` means the condition is
+checked every minute and has to hold for five of them.
+
+Shorter intervals notice faster and query more often. `1m` suits almost
+everything. Go below it only for a rule where thirty seconds of detection time
+is worth the query load.
 
 ### 3. Labels
 
@@ -87,7 +94,7 @@ host: {{ $labels.instance }}
 
 ### 4. Annotations
 
-Annotations are the words a human reads at 3am.
+Annotations are what the notification carries when a rule fires.
 
 | Field | Use it for |
 |-------|-----------|
