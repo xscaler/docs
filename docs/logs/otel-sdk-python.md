@@ -9,7 +9,7 @@ slug: /logs/otel-sdk-python
 
 Send logs directly from a Python application to xScaler using the OpenTelemetry Python SDK over OTLP/HTTP.
 
-:::warning Required headers
+:::warning[Required headers]
 Both headers must be present in the `OTLPLogExporter`:
 - `Authorization: "Bearer <token>"`
 - `X-Scope-OrgID: "<tenant-id>"`
@@ -59,7 +59,7 @@ logging.getLogger().addHandler(handler)
 logging.getLogger().setLevel(logging.DEBUG)
 ```
 
-:::note Full OTLP path required
+:::note[Full OTLP path required]
 The Python SDK exporter needs the **full path**, `/otlp/v1/logs` included. The OpenTelemetry Collector exporter takes the base host only.
 :::
 

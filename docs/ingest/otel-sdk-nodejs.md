@@ -9,7 +9,7 @@ slug: /ingest/otel-sdk-nodejs
 
 Instrument a Node.js application to push metrics directly to xScaler using the OpenTelemetry JavaScript SDK over OTLP/HTTP.
 
-:::warning Required headers
+:::warning[Required headers]
 Both headers must be present in the `OTLPMetricExporter`:
 - `Authorization: 'Bearer <token>'`
 - `X-Scope-OrgID: '<tenant-id>'`
@@ -58,7 +58,7 @@ const provider = new MeterProvider({
 const meter = provider.getMeter('my-service', '1.0.0');
 ```
 
-:::note Full OTLP path required
+:::note[Full OTLP path required]
 The Node.js SDK exporter requires the **full path** in `url`: `.../otlp/v1/metrics`. This differs from the OpenTelemetry Collector exporter, which uses only the base host.
 :::
 

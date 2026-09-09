@@ -1,7 +1,7 @@
 ---
 id: regions
 title: Regions & Endpoints
-sidebar_label: Regions & Endpoints
+sidebar_label: Regions & endpoints
 slug: /regions
 ---
 
@@ -15,7 +15,7 @@ Each xScaler region has its own hostnames per signal. All traffic is **TLS-only*
 |-----------|----------|---------|------|--------|
 | `euw1-01` | Europe West 1 | `euw1-01.m.xscalerlabs.com` | `euw1-01.l.xscalerlabs.com` | `euw1-01.t.xscalerlabs.com` |
 
-:::info More regions coming soon
+:::info[More regions coming soon]
 More regions are planned. Contact [support](https://xscalerlabs.com/support) if you need a specific one.
 :::
 

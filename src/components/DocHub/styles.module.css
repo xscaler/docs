@@ -4,10 +4,557 @@
 /* ─── Hero ────────────────────────────────────────────────────────── */
 
 .hero {
-  text-align: center;
-  padding: 12px 0 40px;
+  position: relative;
+  padding: 34px 0 44px;
   border-bottom: 1px solid var(--xs-border);
-  margin-bottom: 44px;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+
+/* Background texture, both non-interactive. The dot grid fades out downward so
+ * it never competes with the copy; the glow sits behind the graphic. */
+.heroDots {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(var(--xs-dot) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: linear-gradient(to bottom, #000, transparent 82%);
+  -webkit-mask-image: linear-gradient(to bottom, #000, transparent 82%);
+}
+
+.heroGlow {
+  position: absolute;
+  top: -190px;
+  right: -90px;
+  width: 620px;
+  height: 520px;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--xs-glow), transparent 66%);
+}
+
+.heroInner {
+  position: relative;
+  display: flex;
+  gap: 36px;
+  align-items: center;
+}
+
+.heroCopy {
+  flex: 1;
+  min-width: 0;
+}
+
+.heroAside {
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+@media (max-width: 1100px) {
+  .heroAside {
+    display: none;
+  }
+}
+
+/* The hero h1 wraps on purpose. Given the full column it reads as a banner
+ * rather than a sentence. */
+.heroCopy h1 {
+  font-size: 40px;
+  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: var(--ifm-heading-color);
+  margin: 0 0 15px;
+  max-width: 17ch;
+}
+
+.heroCopy p {
+  font-size: 17.5px;
+  line-height: 1.58;
+  color: var(--ifm-color-content-secondary);
+  margin: 0 0 26px;
+  max-width: 46ch;
+}
+
+.heroCopy p b {
+  color: var(--ifm-color-content);
+  font-weight: 600;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--ifm-color-primary);
+  background: var(--xs-accent-soft);
+  border: 1px solid var(--xs-accent-line);
+  border-radius: 999px;
+  padding: 5px 13px;
+  margin-bottom: 18px;
+}
+
+/* ─── Search hints ────────────────────────────────────────────────── */
+
+.hints {
+  display: flex;
+  gap: 7px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+  max-width: 466px;
+}
+
+.hint {
+  font-size: 13px;
+  color: var(--ifm-color-content-secondary);
+  padding: 5px 11px;
+  border: 1px solid var(--xs-border);
+  border-radius: 999px;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.hint:hover {
+  text-decoration: none;
+  color: var(--ifm-color-primary);
+  border-color: var(--xs-accent-line);
+  background: var(--xs-accent-soft);
+}
+
+.hintMono {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 12px;
+}
+
+
+/* ─── Section header ──────────────────────────────────────────────── */
+
+.sectionHead {
+  margin: 44px 0 18px;
+}
+
+.sectionEyebrow {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--xs-text-faint);
+  margin: 0 0 4px;
+}
+
+/* Deliberately not the global h2: no top border, no 52px rhythm. The eyebrow
+ * above it already separates the section. */
+.sectionTitle {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--ifm-heading-color);
+  margin: 0;
+  padding: 0;
+  border: none;
+  line-height: 1.25;
+}
+
+.sectionDesc {
+  font-size: 15.5px;
+  line-height: 1.55;
+  color: var(--ifm-color-content-secondary);
+  margin: 8px 0 0;
+  max-width: 640px;
+}
+
+.badgeMarker {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ifm-color-primary);
+  background: var(--xs-accent-soft);
+  border: 1px solid var(--xs-accent-line);
+  border-radius: 5px;
+  padding: 3px 9px;
+  vertical-align: 2px;
+  margin-left: 11px;
+}
+
+/* ─── Hairline grid ──────────────────────────────────────────────── */
+
+.hairlineGrid {
+  display: grid;
+  gap: 1px;
+  background: var(--xs-border);
+  border: 1px solid var(--xs-border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.hairlineGrid[data-columns='2'] {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.hairlineGrid[data-columns='3'] {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.hairlineGrid[data-columns='4'] {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (max-width: 1100px) {
+  .hairlineGrid[data-columns='4'] {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .hairlineGrid[data-columns] {
+    grid-template-columns: 1fr;
+  }
+}
+
+.cell {
+  background: var(--ifm-background-color);
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  color: var(--ifm-color-content);
+  transition: background 0.15s;
+}
+
+.cell:hover {
+  background: var(--ifm-background-surface-color);
+  text-decoration: none;
+  color: var(--ifm-color-content);
+}
+
+.cellHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 9px;
+}
+
+.cellTitle {
+  font-size: 16.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ifm-heading-color);
+}
+
+.cellTitleMuted {
+  font-size: 16.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ifm-color-content-secondary);
+}
+
+.cellQuery {
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 11.5px;
+  color: var(--xs-text-faint);
+  background: var(--xs-inline-bg);
+  border: 1px solid var(--xs-border);
+  padding: 2px 7px;
+  border-radius: 5px;
+  margin-left: auto;
+}
+
+.cellDesc {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ifm-color-content-secondary);
+}
+
+.cellDesc p {
+  margin: 0;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}
+
+.cellLinks {
+  display: flex;
+  flex-direction: column;
+  margin-top: 13px;
+}
+
+.cellRoute {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--ifm-color-content);
+  padding: 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.cellRoute:hover {
+  text-decoration: none;
+  color: var(--ifm-color-primary);
+}
+
+.cellRoute svg {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  color: var(--xs-text-faint);
+}
+
+.cellRoute:hover svg {
+  color: var(--ifm-color-primary);
+}
+
+/* ─── Capability claims ──────────────────────────────────────────── */
+
+.capTitle {
+  font-size: 15.5px;
+  font-weight: 600;
+  color: var(--ifm-heading-color);
+  margin: 10px 0 5px;
+  letter-spacing: -0.01em;
+}
+
+.capDesc {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: var(--ifm-color-content-secondary);
+  margin: 0;
+}
+
+/* ─── Start here: the agent panel ────────────────────────────────── */
+
+.splitPanel {
+  display: grid;
+  grid-template-columns: minmax(0, 326px) minmax(0, 1fr);
+  gap: 36px;
+  align-items: start;
+  border: 1px solid var(--xs-border);
+  border-radius: 12px;
+  padding: 25px 27px;
+  background: var(--ifm-background-surface-color);
+}
+
+@media (max-width: 996px) {
+  .splitPanel {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.splitPanelAside {
+  min-width: 0;
+}
+
+/* The config block inside the panel manages its own chrome. */
+.splitPanelAside :global(.theme-code-block) {
+  margin-bottom: 0;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+}
+
+.step {
+  display: flex;
+  gap: 13px;
+  padding-bottom: 17px;
+}
+
+.step:last-child {
+  padding-bottom: 0;
+}
+
+.stepNumber {
+  flex-shrink: 0;
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  background: var(--xs-accent-soft);
+  border: 1px solid var(--xs-accent-line);
+  color: var(--ifm-color-primary);
+  font-size: 12.5px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stepTitle {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--ifm-heading-color);
+  margin: 1px 0 4px;
+  letter-spacing: -0.005em;
+}
+
+.stepDesc {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ifm-color-content-secondary);
+  margin: 0;
+}
+
+.alternatives {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ifm-color-content-secondary);
+  margin: 17px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid var(--xs-border);
+}
+
+.alternatives a {
+  font-weight: 500;
+  color: var(--ifm-color-content);
+  border-bottom: 1px solid var(--xs-border);
+}
+
+.alternatives a:hover {
+  text-decoration: none;
+  color: var(--ifm-color-primary);
+  border-color: var(--xs-accent-line);
+}
+
+/* ─── Task lists ──────────────────────────────────────────────────── */
+
+.taskColumns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 48px;
+}
+
+@media (max-width: 768px) {
+  .taskColumns {
+    grid-template-columns: 1fr;
+  }
+}
+
+.taskGroup {
+  border-top: 1px solid var(--xs-border);
+  padding-top: 20px;
+  margin-bottom: 30px;
+}
+
+.taskGroupTitle {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--xs-text-faint);
+  margin-bottom: 11px;
+}
+
+.task {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 9px 0;
+  border-bottom: 1px solid var(--xs-border);
+}
+
+.task:last-child {
+  border-bottom: none;
+}
+
+.taskLabel {
+  font-size: 15.5px;
+  font-weight: 500;
+  color: var(--ifm-color-content);
+  flex: 1;
+}
+
+.task:hover {
+  text-decoration: none;
+}
+
+.task:hover .taskLabel,
+.task:hover .taskDest {
+  color: var(--ifm-color-primary);
+}
+
+.taskDest {
+  font-size: 13px;
+  color: var(--xs-text-faint);
+  white-space: nowrap;
+}
+
+/* ─── AI two-up ──────────────────────────────────────────────────── */
+
+.aiCard {
+  background: var(--ifm-background-color);
+  padding: 24px 26px;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.15s;
+}
+
+.aiCard:hover {
+  background: var(--ifm-background-surface-color);
+  text-decoration: none;
+}
+
+.aiTitle {
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--ifm-heading-color);
+  margin: 0 0 8px;
+}
+
+.aiDesc {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--ifm-color-content-secondary);
+  margin: 0 0 16px;
+}
+
+.aiCta {
+  margin-top: auto;
+  font-size: 14.5px;
+  font-weight: 600;
+  color: var(--ifm-color-primary);
+}
+
+/* ─── Integration pills ──────────────────────────────────────────── */
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pill,
+.pillAccent {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 7px 14px;
+  border-radius: 999px;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.pill {
+  color: var(--ifm-color-content);
+  border: 1px solid var(--xs-border);
+}
+
+.pillAccent {
+  color: var(--ifm-color-primary);
+  border: 1px solid var(--xs-accent-line);
+}
+
+.pill:hover,
+.pillAccent:hover {
+  text-decoration: none;
+  border-color: var(--xs-accent-line);
+  color: var(--ifm-color-primary);
+  background: var(--xs-accent-soft);
 }
 
 /* ─── Hero search ─────────────────────────────────────────────────── */
@@ -16,13 +563,12 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  max-width: 560px;
-  margin: 26px auto 0;
+  max-width: 466px;
+  margin: 0;
   background: var(--ifm-background-surface-color);
   border: 1px solid var(--xs-border-strong);
-  border-radius: 12px;
-  padding: 6px 6px 6px 16px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  border-radius: 11px;
+  padding: 5px 5px 5px 13px;
   transition: border-color 0.15s, box-shadow 0.15s;
 }
 
@@ -76,7 +622,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  justify-content: center;
   margin: 22px 0 0;
 }
 
@@ -368,4 +913,24 @@
   line-height: 1.55;
   color: var(--ifm-color-content-secondary);
   margin: 0;
+}
+
+/* A card with no destination: same shell, no hover affordance. */
+.cardStatic:hover {
+  border-color: var(--xs-border);
+  background: var(--ifm-background-surface-color);
+  transform: none;
+}
+
+/* These blocks hold MDX prose, which arrives already wrapped in <p>. The
+ * wrapper carries the typography and the inner paragraph inherits it. */
+.sectionDesc > p,
+.capDesc > p,
+.alternatives > p,
+.aiDesc > p,
+.stepDesc > p {
+  margin: 0;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
 }

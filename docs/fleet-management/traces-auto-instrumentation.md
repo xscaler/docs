@@ -1,7 +1,7 @@
 ---
 id: traces-auto-instrumentation
 title: Trace Auto-Instrumentation (OpenTelemetry Operator)
-sidebar_label: Trace Auto-Instrumentation
+sidebar_label: Trace auto-instrumentation
 slug: /fleet-management/traces-auto-instrumentation
 ---
 
@@ -13,7 +13,7 @@ This is an **opt-in** layer of the xscaler-agent Helm chart. [Enroll Agents](/fl
 
 Auto-instrumentation is an alternative, or complement, to [eBPF (OBI)](/fleet-management/ebpf-instrumentation). Use OBI for broad, language-agnostic RED metrics and basic spans; use the Operator when you want deep, SDK-level spans for specific applications.
 
-:::note Versions may drift
+:::note[Versions may drift]
 The Operator chart and the injected SDK images move independently of the xscaler-agent chart. Pin `<otel-operator-version>` to a known-good release and re-check the upstream [OpenTelemetry Operator](https://github.com/open-telemetry/opentelemetry-operator) docs before upgrading, as CR fields and defaults can change between versions.
 :::
 
@@ -103,7 +103,7 @@ helm install opentelemetry-operator open-telemetry/opentelemetry-operator \
   --set admissionWebhooks.autoGenerateCert.enabled=true
 ```
 
-:::warning Use cert-manager in production
+:::warning[Use cert-manager in production]
 The self-signed webhook certificate above is for development only. For production, install [cert-manager](/integrations/cert-manager) and let the Operator use it for its mutating webhook (`admissionWebhooks.certManager.enabled=true`). A managed cert avoids webhook downtime when the self-signed cert expires.
 :::
 
@@ -142,7 +142,7 @@ Apply it:
 kubectl apply -f xscaler-traces-instrumentation.yaml
 ```
 
-:::note One CR per namespace
+:::note[One CR per namespace]
 The annotation in Step 3 references an `Instrumentation` CR by name, resolved within the pod's own namespace. Create an `xscaler-traces` CR in **every** namespace whose workloads you annotate.
 :::
 
@@ -177,7 +177,7 @@ The value `"xscaler-traces"` refers to the `Instrumentation` CR from Step 2. Whe
 kubectl -n <app-namespace> rollout restart deployment/<workload>
 ```
 
-:::warning Injection happens on pod creation
+:::warning[Injection happens on pod creation]
 The mutating webhook runs only when a pod is **created**, so existing pods stay uninstrumented. Annotated workloads pick up the SDK on the next rollout or scale-up.
 :::
 

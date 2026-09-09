@@ -9,7 +9,7 @@ slug: /ingest/otel-sdk-python
 
 Instrument your Python application to push metrics directly to xScaler using the OpenTelemetry Python SDK over OTLP/HTTP.
 
-:::warning Required headers
+:::warning[Required headers]
 Both headers must be present in the `OTLPMetricExporter`:
 - `Authorization: "Bearer <token>"`
 - `X-Scope-OrgID: "<tenant-id>"`
@@ -54,7 +54,7 @@ metrics.set_meter_provider(provider)
 meter = metrics.get_meter("my-service", version="1.0.0")
 ```
 
-:::note Full OTLP path required in the SDK
+:::note[Full OTLP path required in the SDK]
 The Python SDK exporter needs the **full path**, `/otlp/v1/metrics` included. The OpenTelemetry Collector exporter takes the base host only.
 :::
 

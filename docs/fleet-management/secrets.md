@@ -1,7 +1,7 @@
 ---
 id: secrets
 title: Config Secrets
-sidebar_label: Config Secrets
+sidebar_label: Config secrets
 slug: /fleet-management/secrets
 ---
 

@@ -9,7 +9,7 @@ slug: /logs/grafana-alloy
 
 Send logs to xScaler using [Grafana Alloy](https://grafana.com/docs/alloy/). Tail files, collect from Docker containers, or receive OTLP log data and forward everything over the native push protocol.
 
-:::warning Required headers
+:::warning[Required headers]
 Both headers are mandatory on every request:
 - `Authorization: Bearer <token>`. Set via the `http_client_config.authorization` block
 - `X-Scope-OrgID: <tenant-id>`. Set via the `headers` map

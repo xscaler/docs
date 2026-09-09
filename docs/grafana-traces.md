@@ -1,7 +1,7 @@
 ---
 id: grafana-traces
 title: Traces in Grafana
-sidebar_label: Grafana Datasource
+sidebar_label: In your own Grafana
 slug: /grafana/traces
 ---
 
@@ -44,7 +44,7 @@ Scroll down to the **HTTP Headers** section and add two custom headers:
 | `Authorization` | `Bearer <token>` |
 | `X-Scope-OrgID` | `<tenant-id>` |
 
-:::danger Do not use Basic Auth or the Authentication section
+:::danger[Do not use Basic Auth or the Authentication section]
 xScaler uses token-based authentication via the `Authorization: Bearer` header. Do **not** fill in the Basic Auth username/password fields. Use custom HTTP headers only as shown above.
 :::
 

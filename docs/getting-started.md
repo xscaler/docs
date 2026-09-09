@@ -7,11 +7,11 @@ slug: /getting-started
 
 # Quick Start
 
-xScaler accepts **metrics, logs, and traces**. Start with whichever signal matters most to you.
+Three steps: check your credentials work, get data in, look at it.
 
 ## Prerequisites
 
-Locate these three values in your **xScaler portal**:
+Find these three values in the [xScaler portal](https://portal.xscalerlabs.com):
 
 | Value | Where to find it | Description |
 |-------|-----------------|-------------|
@@ -19,9 +19,9 @@ Locate these three values in your **xScaler portal**:
 | **Tenant ID** | Organization → Tenants → click tenant | Your `X-Scope-OrgID` value |
 | **API token** | Organization → Tenants → click tenant → API keys | Your `Authorization: Bearer` token |
 
-See [Manage API Tokens](/portal/api-tokens) for step-by-step instructions on finding or creating a token.
+See [Manage API tokens](/portal/api-tokens) for how to find or create a token.
 
-:::warning Both headers are required on every request
+:::warning[Both headers are required on every request]
 Every request to xScaler, reads and writes across all signals, must include:
 
 ```
@@ -29,7 +29,9 @@ Authorization: Bearer <token>
 X-Scope-OrgID: <tenant-id>
 ```
 
-A missing or mismatched `X-Scope-OrgID` returns **401 Unauthorized** with `x-scope-orgid mismatch`. A missing or invalid `Authorization` returns **401 Unauthorized** too.
+A missing or mismatched `X-Scope-OrgID` returns **401 Unauthorized** with
+`x-scope-orgid mismatch`. A missing or invalid `Authorization` returns **401
+Unauthorized** too.
 :::
 
 ---
@@ -51,42 +53,77 @@ curl "https://euw1-01.l.xscalerlabs.com/api/v1/labels" \
   -H "X-Scope-OrgID: <tenant-id>"
 ```
 
-A `200` response with `"status": "success"` confirms authentication and connectivity.
+A `200` response with `"status": "success"` confirms authentication and
+connectivity.
 
 ---
 
 ## Step 2: Send telemetry
 
-### Metrics
+Enroll the OpenTelemetry agent and the portal delivers its pipelines
+over OpAMP. The rest of these docs assume that route. Everything else writes to
+the same endpoints.
 
-| I use… | Guide |
-|--------|-------|
+| Starting point | Do this |
+|----------------|---------|
+| **Nothing yet** | **[Enroll the OpenTelemetry agent](/fleet-management/enroll-agents)** |
+| My own OpenTelemetry Collector | [Add the xScaler exporter](/ingest/opentelemetry-collector) |
 | Prometheus | [Prometheus remote_write](/ingest/prometheus-remote-write) |
 | Grafana Alloy | [Grafana Alloy](/ingest/grafana-alloy) |
-| OpenTelemetry Collector | [OpenTelemetry Collector](/ingest/opentelemetry-collector) |
 | Python / Node.js / Go | [OTel SDKs](/ingest/otel-sdk-python) |
+| Kubernetes, no code changes | [eBPF instrumentation](/fleet-management/ebpf-instrumentation) |
 
-### Logs
+### Why the agent
 
-| I use… | Guide |
-|--------|-------|
-| Grafana Alloy | [Grafana Alloy](/logs/grafana-alloy) |
-| OpenTelemetry Collector | [OpenTelemetry Collector](/logs/opentelemetry-collector) |
-| Python / Node.js / Go | [OTel SDKs](/logs/otel-sdk-python) |
+The agent is a standard OpenTelemetry Collector. You write one `opamp`
+extension block on the host, and after that every receiver, processor and
+exporter arrives from the portal:
 
-### Traces
+```yaml title="otel-collector-config.yaml"
+# the only file you edit by hand
+extensions:
+  opamp:
+    server:
+      ws:
+        endpoint: wss://agents.xscalerlabs.com/v1/opamp
+        headers:
+          Authorization: "Bearer <enrollment-token>"
+```
 
-| I use… | Guide |
-|--------|-------|
-| Grafana Alloy | [Grafana Alloy](/traces/grafana-alloy) |
-| OpenTelemetry Collector | [OpenTelemetry Collector](/traces/opentelemetry-collector) |
-| Python / Node.js / Go | [OTel SDKs](/traces/otel-sdk-python) |
+The enrollment token is bootstrap only. The agent trades it for its own
+credential on first connect. Then you assign config templates by label, so
+adding a receiver to fifty hosts is one edit in the portal.
+
+Full walkthrough: [Enroll agents](/fleet-management/enroll-agents).
+
+### Per-signal guides
+
+If you would rather wire one signal at a time:
+[Metrics](/ingest/opentelemetry-collector) ·
+[Logs](/logs/opentelemetry-collector) ·
+[Traces](/traces/opentelemetry-collector)
 
 ---
 
-## Step 3: Connect Grafana
+## Step 3: Look at your data
 
-Once telemetry arrives, point Grafana at it:
+Open **Insights** in the portal. Metrics, Logs and Traces each have their own
+page, and the Explorer runs several queries at once. There is nothing to
+connect.
+
+| Page | Use it for |
+|------|-----------|
+| [Metrics](/insights/metrics) | Break a metric down by label |
+| [Logs](/insights/logs) | Filter a stream, then open the trace a line belongs to |
+| [Traces](/insights/traces) | Span waterfall, critical path, service graph |
+| [Explorer](/insights/explorer) | Several queries at once, each with its own signal |
+| [Dashboards](/insights/dashboards) | Build panels, or import Grafana JSON as-is |
+| [Alerting](/insights/alerting) | Rules, contact points, notification policies |
+
+### Or use your own Grafana
+
+The Prometheus-, Loki- and Tempo-compatible APIs stay open, so existing
+dashboards keep reading:
 
 | Signal | Data source type | URL |
 |--------|-----------------|-----|
@@ -94,9 +131,12 @@ Once telemetry arrives, point Grafana at it:
 | Logs | Loki | `https://euw1-01.l.xscalerlabs.com` |
 | Traces | Tempo | `https://euw1-01.t.xscalerlabs.com` |
 
-Add `Authorization: Bearer <token>` and `X-Scope-OrgID: <tenant-id>` as custom HTTP headers on each data source.
+Add `Authorization: Bearer <token>` and `X-Scope-OrgID: <tenant-id>` as custom
+HTTP headers on each data source.
 
-See the full walkthrough: [Metrics](/grafana/metrics) · [Logs](/grafana/logs) · [Traces](/grafana/traces)
+Full walkthrough: [Connect Grafana datasources](/grafana-datasources). To have
+xScaler run the Grafana for you, see
+[Managed Grafana](/platform/managed-grafana).
 
 ---
 
@@ -105,7 +145,10 @@ See the full walkthrough: [Metrics](/grafana/metrics) · [Logs](/grafana/logs) �
 | Error | Cause | Fix |
 |-------|-------|-----|
 | `401 x-scope-orgid mismatch` | `X-Scope-OrgID` header missing or wrong tenant | Add `-H "X-Scope-OrgID: <tenant-id>"` with the tenant that matches your token |
-| `401 Unauthorized` | Token missing or malformed | Check format: `Bearer <token>` (capital B, space) |
-| `403 Forbidden` | Token scope too narrow | Generate a read+write token from the portal |
+| `401 Unauthorized` | Token missing or malformed | Check the format: `Bearer <token>`, capital B, one space |
+| `403 Forbidden` | Token scope too narrow | Generate a read and write token from the portal |
+| `404` on an OTLP write | A path was appended to the exporter endpoint | Set `endpoint` to the base host only. The exporter appends the path |
 
-See [Troubleshooting](/troubleshooting) for a full symptom guide.
+See [Troubleshooting](/troubleshooting) for a full symptom guide, or
+[Agent troubleshooting](/fleet-management/troubleshooting) if the agent itself
+is not reporting in.

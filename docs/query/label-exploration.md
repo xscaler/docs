@@ -1,7 +1,7 @@
 ---
 id: label-exploration
 title: Label Exploration
-sidebar_label: Label Exploration
+sidebar_label: Label exploration
 slug: /query/label-exploration
 ---
 
@@ -9,7 +9,7 @@ slug: /query/label-exploration
 
 The labels, label values, and series endpoints show what exists in your tenant namespace. Use them when building dashboards or chasing down cardinality.
 
-:::warning Required headers
+:::warning[Required headers]
 All requests need both headers:
 ```
 Authorization: Bearer <token>

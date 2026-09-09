@@ -1,7 +1,7 @@
 ---
 id: create-tenant
 title: Create a Tenant
-sidebar_label: Create a Tenant
+sidebar_label: Create a tenant
 slug: /portal/create-tenant
 ---
 

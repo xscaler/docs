@@ -33,7 +33,7 @@ Some clients want the **raw token**, others the full `Bearer <token>` string. Pa
 | OpenTelemetry Collector | `headers.Authorization` | `Bearer <token>` |
 | Grafana data source | `Authorization` HTTP header | `Bearer <token>` |
 
-:::danger Both headers are mandatory
+:::danger[Both headers are mandatory]
 There are no exceptions. Every `remote_write` and every query must include both headers. A missing or mismatched `X-Scope-OrgID` returns **401** (`x-scope-orgid mismatch`). A missing or invalid `Authorization` also returns **401**.
 :::
 

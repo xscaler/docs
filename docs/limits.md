@@ -1,7 +1,7 @@
 ---
 id: limits
 title: Limits & Quotas
-sidebar_label: Limits & Quotas
+sidebar_label: Limits & quotas
 slug: /limits
 ---
 
@@ -21,7 +21,7 @@ xScaler enforces these limits per tenant.
 | Max samples per `remote_write` request | 2,000 |
 | Query timeout | 2 minutes |
 
-:::info Plan-dependent limits
+:::info[Plan-dependent limits]
 Limits marked "Plan-dependent" vary by your subscription tier. Log in to the [xScaler dashboard](https://xscalerlabs.com) and navigate to **Settings → Limits** to see the exact values for your account.
 :::
 

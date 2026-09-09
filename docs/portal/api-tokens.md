@@ -1,7 +1,7 @@
 ---
 id: api-tokens
 title: Manage API Tokens
-sidebar_label: Manage API Tokens
+sidebar_label: Manage API tokens
 slug: /portal/api-tokens
 ---
 
@@ -29,7 +29,7 @@ The table shows each key's name, status, last used time, and creation date.
 4. Click **Create**.
 5. Copy the token immediately. It is only shown once.
 
-:::warning Token shown once
+:::warning[Token shown once]
 The portal shows the full token once, at creation. Store it in a secrets manager or a Kubernetes secret. If you lose it, rotate the key.
 :::
 
@@ -45,7 +45,7 @@ Rotating a key issues a new token and kills the old one. Rotate after a possible
 4. Copy the new token. It is only shown once.
 5. Update your `remote_write` config with the new token before the old one is invalidated.
 
-:::tip Zero-downtime rotation
+:::tip[Zero-downtime rotation]
 Update your metrics collector config with the new token **before** closing the rotation dialog. The old token is invalidated as soon as you confirm.
 :::
 

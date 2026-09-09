@@ -9,7 +9,7 @@ slug: /logs/opentelemetry-collector
 
 Forward logs to xScaler using the [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/) over OTLP/HTTP. The collector can receive logs from any OTLP-compatible source and forward them with the correct credentials.
 
-:::warning Required headers
+:::warning[Required headers]
 Both headers must be present in the `exporters.otlphttp/xscaler.headers` block:
 - `Authorization: "Bearer <token>"`
 - `X-Scope-OrgID: "<tenant-id>"`

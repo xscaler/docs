@@ -1,7 +1,7 @@
 ---
 id: tenant-usage
 title: Check Tenant Usage
-sidebar_label: Check Tenant Usage
+sidebar_label: Check tenant usage
 slug: /portal/tenant-usage
 ---
 

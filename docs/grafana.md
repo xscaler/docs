@@ -44,7 +44,7 @@ Scroll down to the **HTTP Headers** section and add two custom headers:
 | `Authorization` | `Bearer <token>` |
 | `X-Scope-OrgID` | `<tenant-id>` |
 
-:::danger Do not use Basic Auth or the Authentication section
+:::danger[Do not use Basic Auth or the Authentication section]
 xScaler uses token-based authentication via the `Authorization: Bearer` header. Do **not** fill in the Basic Auth username/password fields or the Grafana Authentication section. Use custom HTTP headers only as shown above.
 :::
 

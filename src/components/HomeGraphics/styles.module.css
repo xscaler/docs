@@ -1,0 +1,185 @@
+/* HomeGraphics — the figures from the design canvas: one spark per signal, the
+ * capability icons, and the two AI-section drawings. */
+
+/* ── Signal sparks ──────────────────────────────────────────────── */
+
+.spark {
+  display: block;
+  width: 100%;
+  height: 52px;
+  margin: 2px 0 10px;
+}
+
+.s1Line {
+  stroke: var(--xs-s1);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.s1Fill {
+  fill: var(--xs-s1);
+  opacity: 0.13;
+}
+
+.logLine {
+  fill: var(--ifm-color-content-secondary);
+  opacity: 0.35;
+}
+
+.logMatch {
+  fill: var(--xs-s1);
+}
+
+.logChip {
+  fill: var(--xs-s1);
+  opacity: 0.2;
+}
+
+.span1 {
+  fill: var(--xs-s1);
+  opacity: 0.85;
+}
+
+.span2 {
+  fill: var(--xs-s1);
+  opacity: 0.6;
+}
+
+.span3 {
+  fill: var(--xs-s2);
+  opacity: 0.8;
+}
+
+.span4 {
+  fill: var(--xs-s1);
+  opacity: 0.45;
+}
+
+.span5 {
+  fill: var(--xs-s2);
+  opacity: 0.55;
+}
+
+/* ── Capability icons ───────────────────────────────────────────── */
+
+.capIcon {
+  width: 22px;
+  height: 22px;
+  color: var(--ifm-color-primary);
+}
+
+/* ── AI section graphics ────────────────────────────────────────── */
+
+.aiGraphic {
+  display: block;
+  width: 100%;
+  height: 132px;
+  margin-bottom: 16px;
+}
+
+.flow {
+  stroke-dasharray: 3 9;
+  animation: flowdash 2.6s linear infinite;
+}
+
+.d2 {
+  animation-duration: 3.4s;
+}
+
+.d3 {
+  animation-duration: 2.1s;
+}
+
+@keyframes flowdash {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow {
+    animation: none;
+    stroke-dasharray: none;
+  }
+}
+
+.aiPanel {
+  fill: var(--xs-surface-2);
+  stroke: var(--xs-border-strong);
+  stroke-width: 1;
+}
+
+.aiPanelTitle {
+  fill: var(--ifm-color-content);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.aiPanelSub {
+  fill: var(--xs-text-faint);
+  font-size: 11px;
+  font-family: var(--ifm-font-family-monospace);
+}
+
+.aiEdge {
+  stroke: var(--ifm-color-primary);
+  stroke-width: 1.6;
+}
+
+.aiTool {
+  fill: var(--ifm-background-color);
+  stroke: var(--xs-accent-line);
+  stroke-width: 1;
+}
+
+.aiToolLabel {
+  fill: var(--ifm-color-primary);
+  font-size: 11px;
+  font-family: var(--ifm-font-family-monospace);
+}
+
+.aiBrace {
+  fill: none;
+  stroke: var(--xs-border);
+  stroke-width: 1;
+}
+
+.aiCoreGlyph {
+  fill: none;
+  stroke: var(--ifm-color-primary);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.axis {
+  stroke: var(--xs-border);
+  stroke-width: 1;
+}
+
+.axisLabel {
+  fill: var(--xs-text-faint);
+  font-size: 10.5px;
+  font-family: var(--ifm-font-family-monospace);
+}
+
+.barInput {
+  fill: var(--xs-s1);
+}
+
+.barOutput {
+  fill: var(--xs-s2);
+}
+
+.legendInput {
+  fill: var(--xs-s1);
+  font-size: 10.5px;
+  font-weight: 600;
+}
+
+.legendOutput {
+  fill: var(--xs-s2);
+  font-size: 10.5px;
+  font-weight: 600;
+}

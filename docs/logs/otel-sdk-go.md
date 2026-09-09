@@ -9,7 +9,7 @@ slug: /logs/otel-sdk-go
 
 Send logs directly from a Go application to xScaler using the OpenTelemetry Go SDK over OTLP/HTTP.
 
-:::warning Required headers
+:::warning[Required headers]
 Both headers must be passed via `otlploghttp.WithHeaders`:
 - `"Authorization": "Bearer <token>"`
 - `"X-Scope-OrgID": "<tenant-id>"`

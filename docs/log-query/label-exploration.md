@@ -1,7 +1,7 @@
 ---
 id: label-exploration
 title: Log Label Exploration
-sidebar_label: Label Exploration
+sidebar_label: Label exploration
 slug: /log-query/label-exploration
 ---
 

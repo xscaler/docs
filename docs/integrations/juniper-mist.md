@@ -21,7 +21,7 @@ Monitor your Juniper MIST AI wireless network: device health, client latency, NA
 | **Logs** | `alarms`, `audits`, `device-events`, `client-sessions`, `client-join`, `nac-events`, `nac-accounting` | Structured event log stream: security alerts, config changes, client connect/disconnect, NAC auth results |
 | **Traces** | `client-join` + `client-sessions` + `nac-events` | Client session lifecycle modelled as spans: join → authenticate → roam → disconnect |
 
-:::info Marvis subscription required
+:::info[Marvis subscription required]
 The `minis-application`, `minis-network`, and `client-latency` topics require an active **Marvis AI** subscription.
 :::
 

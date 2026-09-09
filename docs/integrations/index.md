@@ -9,7 +9,7 @@ slug: /integrations-legacy
 
 Each integration below shows how to collect metrics from one system and forward them to your xScaler tenant with Prometheus `remote_write`, Grafana Alloy, or the OpenTelemetry Collector.
 
-:::info Two headers on every request
+:::info[Two headers on every request]
 Whichever integration you use, every request to xScaler requires:
 ```
 Authorization: Bearer <token>

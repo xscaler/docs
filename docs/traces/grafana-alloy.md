@@ -9,7 +9,7 @@ slug: /traces/grafana-alloy
 
 Send traces to xScaler using [Grafana Alloy](https://grafana.com/docs/alloy/). Alloy can receive OTLP traces from your applications and forward them to xScaler over OTLP/HTTP.
 
-:::warning Required headers
+:::warning[Required headers]
 Both headers are mandatory on every request:
 - `Authorization: Bearer <token>`. Set in the `headers` map
 - `X-Scope-OrgID: <tenant-id>`. Set in the `headers` map

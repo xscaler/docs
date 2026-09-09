@@ -1,7 +1,7 @@
 ---
 id: ebpf-instrumentation
 title: eBPF Instrumentation (OBI)
-sidebar_label: eBPF Instrumentation (OBI)
+sidebar_label: eBPF instrumentation
 slug: /fleet-management/ebpf-instrumentation
 ---
 
@@ -11,7 +11,7 @@ OpenTelemetry eBPF Instrumentation (OBI) instruments your applications from the 
 
 This is an **opt-in** layer of the xscaler-agent Helm chart. [Enroll Agents](/fleet-management/enroll-agents) and [Configure Agents](/fleet-management/configure-agents) cover the base agent for metrics and logs. This page assumes it is already installed and enrolled.
 
-:::note Versions may drift
+:::note[Versions may drift]
 Chart, image, and OBI receiver configuration keys evolve over time. Pin the values below to a known-good release and treat the OBI receiver config as **version-specific**. A key that works on one chart version can change or move on the next. Check the release notes for your `<chart-version>` before copying config forward.
 :::
 
@@ -54,7 +54,7 @@ Enabling eBPF takes **two independent steps**:
 1. **The Helm flag** grants the node DaemonSet the host access OBI needs. It does **not** start collecting anything on its own.
 2. **A pushed OBI config assignment** adds the `obi` receiver and its pipelines. Collection starts only after this config is delivered.
 
-:::warning The Helm flag alone collects nothing
+:::warning[The Helm flag alone collects nothing]
 The `obi` receiver and its pipelines are **not** part of the chart. They arrive as an OpAMP config assignment targeting the node DaemonSet (see [Configure Agents](/fleet-management/configure-agents)). Until that config is assigned, the DaemonSet has host access but produces no eBPF telemetry, while metrics and logs keep flowing normally. This is expected, not a broken pipeline.
 :::
 
@@ -80,7 +80,7 @@ Setting `nodeAgent.ebpf.enabled=true` reconfigures the node DaemonSet with **all
 | Security context | `privileged` | Required to load eBPF programs into the kernel. |
 | `runAsUser` | `0` (root) | eBPF probe attachment requires root. |
 
-:::warning Architecture and image
+:::warning[Architecture and image]
 OBI runs on **amd64** and **arm64** nodes only. The chart automatically selects the OBI-enabled agent image when `nodeAgent.ebpf.enabled=true`. You do not set an image tag manually.
 :::
 
@@ -141,7 +141,7 @@ service:
 
 Use [config secrets](/fleet-management/secrets) for the ingest token (`${secret:XSCALER_OTLP_TOKEN}`) rather than pasting it into the template.
 
-:::danger Do not add a metrics `features` block to the `obi` receiver
+:::danger[Do not add a metrics `features` block to the `obi` receiver]
 Application RED metrics are **on by default**. Do **not** add a `features:` list (or similar metrics-selection block) under the `obi` receiver to "turn them on." Its value type does not decode through the Collector config loader and will **crash the Collector on startup**. Leave RED metrics to their default and omit the block entirely.
 :::
 
@@ -174,7 +174,7 @@ discovery:
 
 Kubernetes selectors resolve through OBI's **Kubernetes metadata informer**, which needs RBAC to list and watch pods, and which races pod-metadata resolution at discovery time. When it loses that race, OBI discovers and instruments **nothing**, while metrics and logs continue to flow normally. The result reads as a broken eBPF pipeline, but it is discovery selecting zero targets. Setting `k8s_namespace: "."` (all namespaces) does **not** avoid the race. Match on `open_ports` instead.
 
-:::tip Scope ports to your application ports
+:::tip[Scope ports to your application ports]
 A wide `open_ports` range across every namespace also instruments infrastructure (ingress, sidecars, system services) and can **overwhelm ingest and inflate cost**. List only the ports your applications actually listen on. Start narrow and widen deliberately.
 :::
 
@@ -232,7 +232,7 @@ Attributes like `k8s_namespace_name` and `k8s_pod_name` on OBI metrics and spans
 
 The chart provisions this RBAC when eBPF is enabled. If telemetry arrives but the `k8s_namespace_name` / `k8s_pod_name` labels are **missing**, the fix is almost always this RBAC: confirm the node agent's ServiceAccount is bound to a ClusterRole with `get`/`list`/`watch` on pods, replicasets, services, and nodes.
 
-:::note Discovery vs. enrichment
+:::note[Discovery vs. enrichment]
 `open_ports` decides **whether** a process is instrumented (kernel-only, no RBAC). The `k8s.*` labels only **enrich** telemetry that OBI already produces. Missing RBAC removes the labels; it does not stop collection. That is why you select targets with `open_ports`, not with `k8s_*`.
 :::
 

@@ -9,7 +9,7 @@ slug: /traces/otel-sdk-python
 
 Instrument a Python application to send traces directly to xScaler using the OpenTelemetry Python SDK over OTLP/HTTP.
 
-:::warning Required headers
+:::warning[Required headers]
 Both headers must be present in the `OTLPSpanExporter`:
 - `Authorization: "Bearer <token>"`
 - `X-Scope-OrgID: "<tenant-id>"`
@@ -53,7 +53,7 @@ trace.set_tracer_provider(provider)
 tracer = trace.get_tracer("my-service")
 ```
 
-:::note Full OTLP path required
+:::note[Full OTLP path required]
 Unlike the OpenTelemetry Collector exporter (which only takes the base host), the Python SDK exporter requires the **full path** including `/otlp/v1/traces`.
 :::
 

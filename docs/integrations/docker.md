@@ -77,7 +77,7 @@ docker run --rm \
   otel/opentelemetry-collector-contrib:latest
 ```
 
-:::info Docker socket access
+:::info[Docker socket access]
 The collector needs read access to `/var/run/docker.sock` to query container stats. The `:ro` flag mounts it read-only.
 :::
 

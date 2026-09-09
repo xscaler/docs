@@ -1,17 +1,23 @@
 ---
 id: rules-and-alerts
-title: Alerts
-sidebar_label: Alerts
+title: Alerts in your own Grafana
+sidebar_label: Alerts in your own Grafana
 slug: /rules-and-alerts
 ---
 
-# Alerts
+# Alerts in your own Grafana
 
-xScaler does not expose a Ruler API. You write alerts in **Grafana**, whose alerting engine queries your xScaler data source.
+xScaler does not expose a Ruler API. Alert rules either live in
+[Insights](/insights/alerting), where the portal manages them for you, or in a
+Grafana you run yourself, whose alerting engine queries your xScaler data
+source. This page covers the second route.
 
-Alert config stays in your Grafana instance. No rule files to ship, no separate alerting backend to run.
-
----
+:::tip[Start with Insights]
+[Insights → Alerting](/insights/alerting) already has rules, contact points,
+notification policies, silences, mute timings, inhibition rules and templates,
+plus rule preview and backtesting. Use your own Grafana when you have alerting
+there already and want to keep it in one place.
+:::
 
 ## Set up Grafana alerts against xScaler
 

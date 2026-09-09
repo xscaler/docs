@@ -167,10 +167,349 @@ export function SearchHero({
   );
 }
 
-/* ─── Hero wrapper ────────────────────────────────────────────────── */
+/* ─── Hero ────────────────────────────────────────────────────────── */
 
-export function Hero({ children }: { children: ReactNode }): ReactNode {
-  return <div className={styles.hero}>{children}</div>;
+/** Two-column hero: copy on the left, `aside` (the pipeline graphic) right.
+ *  The dot grid and the corner glow are the artboard's background layers. */
+export function Hero({
+  children,
+  aside,
+}: {
+  children: ReactNode;
+  aside?: ReactNode;
+}): ReactNode {
+  return (
+    <div className={styles.hero}>
+      <div className={styles.heroDots} aria-hidden="true" />
+      <div className={styles.heroGlow} aria-hidden="true" />
+      <div className={styles.heroInner}>
+        <div className={styles.heroCopy}>{children}</div>
+        {aside ? <div className={styles.heroAside}>{aside}</div> : null}
+      </div>
+    </div>
+  );
+}
+
+export function Eyebrow({ children }: { children: ReactNode }): ReactNode {
+  return (
+    <span className={styles.eyebrow}>
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2.4" />
+        <path
+          d="m8.5 12 2.5 2.5 4.5-5"
+          stroke="currentColor"
+          strokeWidth="2.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+      {children}
+    </span>
+  );
+}
+
+/** The searches people actually run, offered as one-click links. */
+export function Hints({ children }: { children: ReactNode }): ReactNode {
+  return <div className={styles.hints}>{children}</div>;
+}
+
+export function Hint({
+  to,
+  mono,
+  children,
+}: {
+  to: string;
+  /** A literal (a config key, a header name) set in mono ahead of the label.
+   *  A prop rather than <code> in MDX, which the global inline-code chrome
+   *  would draw a box inside the chip. */
+  mono?: string;
+  children?: ReactNode;
+}): ReactNode {
+  return (
+    <Link to={to} className={styles.hint}>
+      {mono ? <span className={styles.hintMono}>{mono}</span> : null}
+      {mono && children ? ' ' : null}
+      {children}
+    </Link>
+  );
+}
+
+/* ─── Section header ──────────────────────────────────────────────── */
+
+/** An eyebrow, a title, an optional marker, and a lead paragraph. */
+export function Section({
+  eyebrow,
+  title,
+  badge,
+  children,
+}: {
+  eyebrow: string;
+  title: string;
+  badge?: string;
+  children?: ReactNode;
+}): ReactNode {
+  return (
+    <div className={styles.sectionHead}>
+      <div className={styles.sectionEyebrow}>{eyebrow}</div>
+      <h2 className={styles.sectionTitle}>
+        {title}
+        {badge ? <span className={styles.badgeMarker}>{badge}</span> : null}
+      </h2>
+      {children ? <div className={styles.sectionDesc}>{children}</div> : null}
+    </div>
+  );
+}
+
+/* ─── Hairline grid ──────────────────────────────────────────────── */
+
+/** Cells separated by one-pixel gaps over a border, so the grid reads as a
+ *  single object rather than a row of floating cards. */
+export function HairlineGrid({
+  children,
+  columns = 4,
+}: {
+  children: ReactNode;
+  columns?: 2 | 3 | 4;
+}): ReactNode {
+  return (
+    <div className={styles.hairlineGrid} data-columns={columns}>
+      {children}
+    </div>
+  );
+}
+
+export function Cell({
+  title,
+  query,
+  muted,
+  graphic,
+  children,
+}: {
+  title: string;
+  /** The query language chip, right-aligned in the cell header. */
+  query?: string;
+  /** Renders the title in secondary ink, for the one cell that is an aside. */
+  muted?: boolean;
+  graphic?: ReactNode;
+  children?: ReactNode;
+}): ReactNode {
+  return (
+    <div className={styles.cell}>
+      <div className={styles.cellHead}>
+        <span className={muted ? styles.cellTitleMuted : styles.cellTitle}>{title}</span>
+        {query ? <span className={styles.cellQuery}>{query}</span> : null}
+      </div>
+      {graphic}
+      {children ? <div className={styles.cellDesc}>{children}</div> : null}
+    </div>
+  );
+}
+
+/** A cell whose title links. Same shell, whole cell is the hit target. */
+export function CellLink({
+  title,
+  to,
+  graphic,
+  children,
+}: {
+  title: string;
+  to: string;
+  graphic?: ReactNode;
+  children?: ReactNode;
+}): ReactNode {
+  return (
+    <Link to={to} className={styles.cell}>
+      <div className={styles.cellHead}>
+        <span className={styles.cellTitle}>{title}</span>
+      </div>
+      {graphic}
+      {children ? <div className={styles.cellDesc}>{children}</div> : null}
+    </Link>
+  );
+}
+
+export function CellLinks({ children }: { children: ReactNode }): ReactNode {
+  return <div className={styles.cellLinks}>{children}</div>;
+}
+
+export function CellRoute({ to, children }: { to: string; children: ReactNode }): ReactNode {
+  return (
+    <Link to={to} className={styles.cellRoute}>
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path
+          d="M5 12h14m-6-6 6 6-6 6"
+          stroke="currentColor"
+          strokeWidth="2.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+      {children}
+    </Link>
+  );
+}
+
+/* ─── Capability claims ──────────────────────────────────────────── */
+
+export function CapCell({
+  icon,
+  title,
+  to,
+  children,
+}: {
+  icon: ReactNode;
+  title: string;
+  to?: string;
+  children: ReactNode;
+}): ReactNode {
+  const body = (
+    <>
+      {icon}
+      <div className={styles.capTitle}>{title}</div>
+      <div className={styles.capDesc}>{children}</div>
+    </>
+  );
+  return to ? (
+    <Link to={to} className={styles.cell}>
+      {body}
+    </Link>
+  ) : (
+    <div className={styles.cell}>{body}</div>
+  );
+}
+
+/* ─── Start here: the agent panel ────────────────────────────────── */
+
+/** Two columns: numbered steps left, the config block right. */
+export function SplitPanel({
+  steps,
+  children,
+}: {
+  steps: ReactNode;
+  children: ReactNode;
+}): ReactNode {
+  return (
+    <div className={styles.splitPanel}>
+      <div>{steps}</div>
+      <div className={styles.splitPanelAside}>{children}</div>
+    </div>
+  );
+}
+
+export function Steps({ children }: { children: ReactNode }): ReactNode {
+  return <div className={styles.steps}>{children}</div>;
+}
+
+export function Step({
+  n,
+  title,
+  children,
+}: {
+  n: number;
+  title: string;
+  children?: ReactNode;
+}): ReactNode {
+  return (
+    <div className={styles.step}>
+      <div className={styles.stepNumber}>{n}</div>
+      <div>
+        <div className={styles.stepTitle}>{title}</div>
+        {children ? <p className={styles.stepDesc}>{children}</p> : null}
+      </div>
+    </div>
+  );
+}
+
+/** The footnote under the config block: the other ways in. */
+export function Alternatives({ children }: { children: ReactNode }): ReactNode {
+  return <div className={styles.alternatives}>{children}</div>;
+}
+
+/* ─── Task lists ("What do you want to do?") ─────────────────────── */
+
+export function TaskColumns({ children }: { children: ReactNode }): ReactNode {
+  return <div className={styles.taskColumns}>{children}</div>;
+}
+
+export function TaskGroup({
+  title,
+  children,
+}: {
+  title: string;
+  children: ReactNode;
+}): ReactNode {
+  return (
+    <div className={styles.taskGroup}>
+      <div className={styles.taskGroupTitle}>{title}</div>
+      {children}
+    </div>
+  );
+}
+
+/** One task: what you want to do, and where it happens. */
+export function Task({
+  to,
+  dest,
+  children,
+}: {
+  to: string;
+  dest: string;
+  children: ReactNode;
+}): ReactNode {
+  return (
+    <Link to={to} className={styles.task}>
+      <span className={styles.taskLabel}>{children}</span>
+      <span className={styles.taskDest}>{dest}</span>
+    </Link>
+  );
+}
+
+/* ─── AI two-up ──────────────────────────────────────────────────── */
+
+export function AiCard({
+  to,
+  title,
+  graphic,
+  cta,
+  children,
+}: {
+  to: string;
+  title: string;
+  graphic: ReactNode;
+  cta: string;
+  children: ReactNode;
+}): ReactNode {
+  return (
+    <Link to={to} className={styles.aiCard}>
+      {graphic}
+      <div className={styles.aiTitle}>{title}</div>
+      <div className={styles.aiDesc}>{children}</div>
+      <span className={styles.aiCta}>{cta} &rarr;</span>
+    </Link>
+  );
+}
+
+/* ─── Integration pills ──────────────────────────────────────────── */
+
+export function Pills({ children }: { children: ReactNode }): ReactNode {
+  return <div className={styles.pills}>{children}</div>;
+}
+
+export function Pill({
+  to,
+  accent,
+  children,
+}: {
+  to: string;
+  /** The last pill, which is the way into the catalogue. */
+  accent?: boolean;
+  children: ReactNode;
+}): ReactNode {
+  return (
+    <Link to={to} className={accent ? styles.pillAccent : styles.pill}>
+      {children}
+    </Link>
+  );
 }
 
 /* ─── Deployment / capability badges ──────────────────────────────── */
@@ -298,6 +637,7 @@ export function HubGrid({
   );
 }
 
+/** A card. Without `to` it is a statement rather than a link, and stays static. */
 export function HubCard({
   title,
   to,
@@ -306,18 +646,28 @@ export function HubCard({
   children,
 }: {
   title: string;
-  to: string;
+  to?: string;
   icon?: keyof typeof ICONS;
   emoji?: string;
   children?: ReactNode;
 }): ReactNode {
-  return (
-    <Link to={to} className={styles.card}>
+  const body = (
+    <>
       <div className={styles.cardHeader}>
         <Glyph icon={icon} emoji={emoji} className={styles.cardIcon} />
         <span className={styles.cardTitle}>{title}</span>
       </div>
       {children ? <span className={styles.cardDesc}>{children}</span> : null}
+    </>
+  );
+
+  if (!to) {
+    return <div className={`${styles.card} ${styles.cardStatic}`}>{body}</div>;
+  }
+
+  return (
+    <Link to={to} className={styles.card}>
+      {body}
     </Link>
   );
 }
