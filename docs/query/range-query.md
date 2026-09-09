@@ -1,7 +1,7 @@
 ---
 id: range-query
 title: Range Query
-sidebar_label: Range Query
+sidebar_label: Range query
 slug: /query/range-query
 ---
 

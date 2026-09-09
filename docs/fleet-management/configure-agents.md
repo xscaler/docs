@@ -1,7 +1,7 @@
 ---
 id: configure-agents
 title: Configure Agents
-sidebar_label: Configure Agents
+sidebar_label: Configure agents
 slug: /fleet-management/configure-agents
 ---
 

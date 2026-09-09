@@ -9,7 +9,7 @@ slug: /logs/otel-sdk-nodejs
 
 Send logs directly from a Node.js application to xScaler using the OpenTelemetry JS SDK over OTLP/HTTP.
 
-:::warning Required headers
+:::warning[Required headers]
 Both headers must be passed to `OTLPLogExporter`:
 - `Authorization: "Bearer <token>"`
 - `X-Scope-OrgID: "<tenant-id>"`

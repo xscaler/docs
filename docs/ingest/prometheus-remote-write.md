@@ -9,7 +9,7 @@ slug: /ingest/prometheus-remote-write
 
 Send metrics from a self-hosted Prometheus instance to xScaler using the `remote_write` protocol.
 
-:::warning Required headers
+:::warning[Required headers]
 Both of the following must be present on every request:
 - `Authorization: Bearer <token>`. Via the `authorization.credentials` field
 - `X-Scope-OrgID: <tenant-id>`. Via the `headers` block

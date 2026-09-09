@@ -1,7 +1,7 @@
 ---
 id: notifications
 title: Notification Preferences
-sidebar_label: Notification Preferences
+sidebar_label: Notification preferences
 slug: /portal/notifications
 ---
 

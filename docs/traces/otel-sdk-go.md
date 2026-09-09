@@ -9,7 +9,7 @@ slug: /traces/otel-sdk-go
 
 Instrument a Go application to send traces directly to xScaler using the OpenTelemetry Go SDK over OTLP/HTTP.
 
-:::warning Required headers
+:::warning[Required headers]
 Both headers must be passed via `otlptracehttp.WithHeaders`:
 - `"Authorization": "Bearer <token>"`
 - `"X-Scope-OrgID": "<tenant-id>"`

@@ -9,7 +9,7 @@ slug: /ingest/grafana-alloy
 
 [Grafana Alloy](https://grafana.com/docs/alloy/) is a vendor-neutral telemetry collector that uses the **River** configuration language. It can scrape Prometheus exporters, receive OTLP data, and forward everything to xScaler over `remote_write`.
 
-:::warning Required headers
+:::warning[Required headers]
 Both headers are mandatory on every request:
 - `Authorization: Bearer <token>`. Set via the `authorization` block
 - `X-Scope-OrgID: <tenant-id>`. Set via the `headers` map

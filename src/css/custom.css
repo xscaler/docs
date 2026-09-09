@@ -117,6 +117,16 @@ html {
 
   /* Card */
   --ifm-card-border-radius:     11px;
+
+  /* Home-page graphics.
+   * s1/s2 are the validated two-series data palette (validate_palette.js
+   * --pairs all). gold marks control-plane flow, never data. dot/glow are the
+   * hero's background texture. */
+  --xs-s1:                      #e64700;
+  --xs-s2:                      #2563eb;
+  --xs-gold:                    #c98a0a;
+  --xs-dot:                     rgba(17, 17, 17, 0.055);
+  --xs-glow:                    rgba(255, 79, 0, 0.06);
 }
 
 /* ─── Dark mode ───────────────────────────────────────────────── */
@@ -192,6 +202,13 @@ html {
   /* Table */
   --ifm-table-border-color:     rgba(255, 255, 255, 0.085);
   --ifm-table-stripe-background: rgba(255, 255, 255, 0.035);
+
+  /* Home-page graphics */
+  --xs-s1:                      #d9541c;
+  --xs-s2:                      #2f7ad4;
+  --xs-gold:                    #e8b830;
+  --xs-dot:                     rgba(255, 255, 255, 0.055);
+  --xs-glow:                    rgba(255, 79, 0, 0.10);
 }
 
 /* ─── Navbar ──────────────────────────────────────────────────── */
@@ -237,7 +254,10 @@ html {
   padding: 26px 16px 60px 22px;
 }
 
-/* Category (section) labels */
+/* Top-level section labels only.
+ * The eyebrow treatment (11px uppercase, faint) marks the eight sections. A
+ * nested category such as "Send & query data > Metrics" must NOT get it, or the
+ * sidebar reads as if it had a dozen top-level sections. */
 .menu__list-item-collapsible {
   border-radius: 0;
   background: transparent !important;
@@ -247,7 +267,7 @@ html {
   background: transparent !important;
 }
 
-.menu__list-item-collapsible .menu__link {
+.theme-doc-sidebar-menu > .menu__list-item > .menu__list-item-collapsible .menu__link {
   font-size: 11px !important;
   font-weight: 600 !important;
   letter-spacing: 0.09em !important;
@@ -258,6 +278,17 @@ html {
   padding-bottom: 9px;
   margin-bottom: 0;
   cursor: pointer;
+  flex: 1;
+}
+
+.theme-doc-sidebar-menu > .menu__list-item:not(:first-child) > .menu__list-item-collapsible .menu__link {
+  padding-top: 18px;
+}
+
+/* Nested categories read as links, one weight up from their children. */
+.theme-doc-sidebar-menu .menu__list .menu__list-item-collapsible .menu__link {
+  font-weight: 600;
+  color: var(--ifm-color-content);
   flex: 1;
 }
 

@@ -103,7 +103,7 @@ docker run -d \
 
 Replace `<alloy-host>` with the hostname or IP of your Alloy instance.
 
-:::tip Same-host deployment
+:::tip[Same-host deployment]
 If ktranslate and Alloy run on the same host, use `--sink_url http://localhost:4317`.
 :::
 

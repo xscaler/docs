@@ -1,7 +1,7 @@
 ---
 id: activity
 title: Activity Log
-sidebar_label: Activity Log
+sidebar_label: Activity log
 slug: /portal/activity
 ---
 

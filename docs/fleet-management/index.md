@@ -1,17 +1,35 @@
 ---
 id: fleet-management
-title: Fleet Management
+title: The xScaler OpenTelemetry agent
 sidebar_label: Overview
 slug: /fleet-management
 ---
 
-# Fleet Management
+# The xScaler OpenTelemetry agent
 
-xScaler Fleet Management gives operators one place to enroll, view, and configure OpenTelemetry agents and collectors across hosts.
+The xScaler agent is an unmodified OpenTelemetry Collector. What xScaler adds is
+management. You write one block of YAML on the host, and every pipeline after
+that arrives from the portal over
+[OpAMP](https://opentelemetry.io/docs/collector/management/).
 
-Fleet Management uses [OpAMP](https://opentelemetry.io/docs/collector/management/) for agent management. Your telemetry data still flows through the normal xScaler metrics, logs, and traces ingest endpoints. Fleet Management handles enrollment, status, labels, configuration delivery, and rollout visibility.
+This is the recommended way to get data into xScaler, and the one the rest of
+these docs assume. Prometheus `remote_write`, Grafana Alloy and the OTel SDKs
+write to the same endpoints and keep working. They just leave you editing config
+on every host.
 
----
+The portal calls this section **Fleet Management**. It handles enrollment,
+status, labels, configuration delivery and rollout visibility. Telemetry itself
+still flows through the normal metrics, logs and traces ingest endpoints, so
+changing fleet configuration does not change how you query your data.
+
+## Start here
+
+1. [Enroll agents](/fleet-management/enroll-agents). One extension block, one
+   token, and the host appears in the portal.
+2. [Configure agents](/fleet-management/configure-agents). Write a template
+   once, assign it by label.
+3. [Use config secrets](/fleet-management/secrets) for tokens and community
+   strings, so no credential sits in a template.
 
 ## How it fits together
 

@@ -9,7 +9,7 @@ slug: /traces/otel-sdk-nodejs
 
 Instrument a Node.js application to send traces directly to xScaler using the OpenTelemetry JS SDK over OTLP/HTTP.
 
-:::warning Required headers
+:::warning[Required headers]
 Both headers must be passed to `OTLPTraceExporter`:
 - `Authorization: "Bearer <token>"`
 - `X-Scope-OrgID: "<tenant-id>"`

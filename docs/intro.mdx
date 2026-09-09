@@ -7,131 +7,237 @@ hide_table_of_contents: true
 ---
 
 import {
-  Hero, SearchHero, Badges, Badge,
-  TileGrid, Tile, TileLink,
-  LogoStrip, LogoTile,
-  HubGrid, HubCard,
+  Hero, Eyebrow, SearchHero, Hints, Hint,
+  Section,
+  HairlineGrid, Cell, CellLinks, CellRoute, CapCell,
+  SplitPanel, Steps, Step, Alternatives,
+  TaskColumns, TaskGroup, Task,
+  AiCard,
+  Pills, Pill,
 } from '@site/src/components/DocHub';
-import ArchDiagram from '@site/src/components/ArchDiagram';
+import PipelineGraphic from '@site/src/components/PipelineGraphic';
+import {
+  MetricsSpark, LogsSpark, TracesSpark,
+  IconTemplate, IconBox, IconGlobe, IconChat,
+  McpGraphic, TokensGraphic,
+} from '@site/src/components/HomeGraphics';
 
-<Hero>
+<Hero aside={<PipelineGraphic />}>
 
-# xScaler Docs
+<Eyebrow>Managed OpenTelemetry backend</Eyebrow>
 
-Learn how to send, store, and query **metrics, logs, and traces** on xScaler,
-a fully managed, OpenTelemetry-native observability backend.
+# Run one OpenTelemetry agent. Query it in Insights.
 
-<SearchHero placeholder="Search the docs, e.g. Prometheus remote_write" />
+<p>Enroll the OpenTelemetry agent and the portal manages its config over <b>OpAMP</b>.
+Metrics, logs and traces land in <b>Insights</b>, where the explorer, dashboards,
+snapshots and alerting already live. The Prometheus-, Loki- and Tempo-compatible
+APIs stay open, so a Grafana you already run keeps working.</p>
 
-<Badges>
-  <Badge>Fully managed</Badge>
-  <Badge>Multi-signal</Badge>
-  <Badge>OpenTelemetry-native</Badge>
-  <Badge>Multi-tenant</Badge>
-</Badges>
+<SearchHero placeholder="Search the docs" />
+
+<Hints>
+  <Hint to="/fleet-management/enroll-agents">enroll an agent</Hint>
+  <Hint to="/ingest/opentelemetry-collector" mono="opamp">extension</Hint>
+  <Hint to="/authentication" mono="X-Scope-OrgID" />
+  <Hint to="/troubleshooting">401 mismatch</Hint>
+  <Hint to="/insights/dashboards">import a dashboard</Hint>
+  <Hint to="/limits">cardinality limits</Hint>
+</Hints>
 
 </Hero>
 
-## Start sending data
+<Section eyebrow="Start here" title="The xScaler OpenTelemetry agent" badge="Recommended">
+A standard OpenTelemetry Collector under OpAMP management. You write one block of
+YAML to enroll it. Every pipeline after that comes from the portal, selected by
+the agent's labels.
+</Section>
 
-Point any OpenTelemetry-compatible source at xScaler. No proprietary agent to install.
+<SplitPanel steps={
+  <Steps>
+    <Step n={1} title="Create an enrollment token">
+      Fleet Management &rarr; Enrollment. Stamp default labels such as{' '}
+      <code>environment</code> and <code>region</code> onto every agent the token
+      enrolls. The token is shown once.
+    </Step>
+    <Step n={2} title="Point the agent at OpAMP">
+      The agent registers, then trades the enrollment token for its own
+      credential. Reconnects use that credential.
+    </Step>
+    <Step n={3} title="Assign a config template">
+      Label selectors decide which agent runs which pipeline. The portal shows
+      the effective config and the delivery history per agent.
+    </Step>
+  </Steps>
+}>
 
-<TileGrid columns={3}>
+```yaml title="otel-collector-config.yaml"
+# the only file you edit by hand
+extensions:
+  opamp:
+    server:
+      ws:
+        endpoint: wss://agents.xscalerlabs.com/v1/opamp
+        headers:
+          Authorization: "Bearer <enrollment-token>"
 
-  <Tile title="Send Metrics" icon="prometheus" description="Prometheus-compatible metrics ingestion." viewAllTo="/ingest/prometheus-remote-write">
-    <TileLink to="/ingest/prometheus-remote-write" icon="prometheus">Prometheus</TileLink>
-    <TileLink to="/ingest/grafana-alloy" icon="grafana">Grafana Alloy</TileLink>
-    <TileLink to="/ingest/opentelemetry-collector" icon="opentelemetry">OTel Collector</TileLink>
-    <TileLink to="/ingest/otel-sdk-python" icon="python">Python SDK</TileLink>
-  </Tile>
+service:
+  extensions: [opamp]
+```
 
-  <Tile title="Send Logs" icon="grafana" description="Structured and unstructured log collection." viewAllTo="/logs/grafana-alloy">
-    <TileLink to="/logs/grafana-alloy" icon="grafana">Grafana Alloy</TileLink>
-    <TileLink to="/logs/opentelemetry-collector" icon="opentelemetry">OTel Collector</TileLink>
-    <TileLink to="/logs/otel-sdk-python" icon="python">Python SDK</TileLink>
-    <TileLink to="/logs/otel-sdk-nodejs" icon="nodejs">Node.js SDK</TileLink>
-  </Tile>
+<Alternatives>
+  <a href="/ingest/prometheus-remote-write">Prometheus <code>remote_write</code></a>,{' '}
+  <a href="/ingest/grafana-alloy">Grafana Alloy</a> and the{' '}
+  <a href="/ingest/otel-sdk-python">OTel SDKs</a> write to the same endpoints with
+  the same two headers.{' '}
+  <a href="/fleet-management/ebpf-instrumentation">eBPF instrumentation</a> gets
+  traces without touching your code.
+</Alternatives>
 
-  <Tile title="Send Traces" icon="opentelemetry" description="Distributed tracing across your services." viewAllTo="/traces/opentelemetry-collector">
-    <TileLink to="/traces/opentelemetry-collector" icon="opentelemetry">OTel Collector</TileLink>
-    <TileLink to="/traces/grafana-alloy" icon="grafana">Grafana Alloy</TileLink>
-    <TileLink to="/traces/otel-sdk-python" icon="python">Python SDK</TileLink>
-    <TileLink to="/traces/otel-sdk-go" icon="go">Go SDK</TileLink>
-  </Tile>
+</SplitPanel>
 
-</TileGrid>
+<Section eyebrow="Send data" title="Three signals, one set of credentials">
+One token and one tenant header cover all three. The agent sends every signal
+from a single config. Each signal keeps its own write endpoint and its own query
+language.
+</Section>
 
-## Monitor your infrastructure
+<HairlineGrid columns={3}>
+  <Cell title="Metrics" query="PromQL" graphic={<MetricsSpark />}>
+    Prometheus-compatible ingestion and query.
+    <CellLinks>
+      <CellRoute to="/fleet-management/enroll-agents">OpenTelemetry agent</CellRoute>
+      <CellRoute to="/ingest/prometheus-remote-write">Prometheus remote_write</CellRoute>
+      <CellRoute to="/ingest/grafana-alloy">Grafana Alloy</CellRoute>
+    </CellLinks>
+  </Cell>
+  <Cell title="Logs" query="LogQL" graphic={<LogsSpark />}>
+    Structured and plain-text lines, Loki-compatible.
+    <CellLinks>
+      <CellRoute to="/fleet-management/enroll-agents">OpenTelemetry agent</CellRoute>
+      <CellRoute to="/logs/grafana-alloy">Grafana Alloy</CellRoute>
+      <CellRoute to="/logs/otel-sdk-python">OTel SDKs</CellRoute>
+    </CellLinks>
+  </Cell>
+  <Cell title="Traces" query="TraceQL" graphic={<TracesSpark />}>
+    Distributed spans across services, Tempo-compatible.
+    <CellLinks>
+      <CellRoute to="/fleet-management/enroll-agents">OpenTelemetry agent</CellRoute>
+      <CellRoute to="/traces/otel-sdk-python">OTel SDKs</CellRoute>
+      <CellRoute to="/fleet-management/ebpf-instrumentation">eBPF auto-instrumentation</CellRoute>
+    </CellLinks>
+  </Cell>
+</HairlineGrid>
 
-Connect ready-made integrations for your infrastructure, databases, and cloud services.
+<Section eyebrow="Read your data" title="Insights" badge="In the portal">
+An explorer, dashboards, snapshots and alerting come with the tenant. There is
+nothing to host and no data source to wire up before the first query.
+</Section>
 
-<TileGrid columns={3}>
+<HairlineGrid columns={4}>
+  <Cell title="Metrics">Break a metric down by label and read the result, with no PromQL to write first.</Cell>
+  <Cell title="Logs">Filter a stream by label, then open the trace a line belongs to.</Cell>
+  <Cell title="Traces">Span tree, critical path and service graph for one request.</Cell>
+  <Cell title="Explorer">Several queries at once, each with its own signal, so logs sit beside the metric that raised the question.</Cell>
+  <Cell title="Dashboards">Visual panel editor with variables, annotations and exemplars. Grafana JSON imports as-is.</Cell>
+  <Cell title="Snapshots">Freeze what is on screen and send the link to whoever is on the call.</Cell>
+  <Cell title="Alerting">Alert rules, contact points, notification policies, silences and mute timings.</Cell>
+  <Cell title="Your own Grafana" muted>The Prometheus-, Loki- and Tempo-compatible APIs stay open, so existing dashboards keep reading.</Cell>
+</HairlineGrid>
 
-  <Tile title="Infrastructure" icon="kubernetes" description="Hosts, containers, and orchestrators." viewAllTo="/integrations">
-    <TileLink to="/integrations/linux" icon="linux">Linux</TileLink>
-    <TileLink to="/integrations/kubernetes" icon="kubernetes">Kubernetes</TileLink>
-    <TileLink to="/integrations/docker" icon="docker">Docker</TileLink>
-    <TileLink to="/integrations/nginx" icon="nginx">NGINX</TileLink>
-  </Tile>
+<div style={{ marginTop: '44px' }}>
+<HairlineGrid columns={4}>
+  <CapCell icon={<IconTemplate />} title="Config from the portal" to="/fleet-management/configure-agents">
+    Edit a pipeline once. OpAMP delivers it to every agent whose labels match the
+    assignment.
+  </CapCell>
+  <CapCell icon={<IconBox />} title="Insights is included" to="/insights">
+    Explorer, dashboards and alerting come with the tenant. There is no Grafana to
+    run to read your own data.
+  </CapCell>
+  <CapCell icon={<IconGlobe />} title="Regional by default" to="/regions">
+    Tenants are provisioned in a region and every hostname follows it.
+  </CapCell>
+  <CapCell icon={<IconChat />} title="MCP on every plan" to="/ai">
+    Point Claude Code or Cursor at your telemetry. No key to create.
+  </CapCell>
+</HairlineGrid>
+</div>
 
-  <Tile title="Databases" icon="postgresql" description="Track query performance and health." viewAllTo="/integrations">
-    <TileLink to="/integrations/postgresql" icon="postgresql">PostgreSQL</TileLink>
-    <TileLink to="/integrations/mysql" icon="mysql">MySQL</TileLink>
-    <TileLink to="/integrations/redis" icon="redis">Redis</TileLink>
-    <TileLink to="/integrations/mongodb" icon="mongodb">MongoDB</TileLink>
-  </Tile>
+<Section eyebrow="By task" title="What do you want to do?" />
 
-  <Tile title="Cloud" emoji="☁️" description="Pull metrics from your cloud providers." viewAllTo="/integrations">
-    <TileLink to="/integrations/aws-cloudwatch" emoji="🟠">AWS CloudWatch</TileLink>
-    <TileLink to="/integrations/google-cloud" icon="googlecloud">Google Cloud</TileLink>
-    <TileLink to="/integrations/azure-monitor" emoji="🔷">Azure Monitor</TileLink>
-    <TileLink to="/integrations/cloudflare" icon="cloudflare">Cloudflare</TileLink>
-  </Tile>
+<TaskColumns>
+  <div>
+    <TaskGroup title="Getting data in">
+      <Task to="/fleet-management/enroll-agents" dest="OpAMP">Enroll the OpenTelemetry agent</Task>
+      <Task to="/fleet-management/configure-agents" dest="Templates">Send config to a fleet of agents</Task>
+      <Task to="/ingest/opentelemetry-collector" dest="OTLP">I already run my own OTel Collector</Task>
+      <Task to="/ingest/prometheus-remote-write" dest="remote_write">I already run Prometheus</Task>
+      <Task to="/ingest/grafana-alloy" dest="Alloy">I already run Grafana Alloy</Task>
+      <Task to="/ingest/otel-sdk-python" dest="OTel SDKs">I want to instrument my service code</Task>
+      <Task to="/fleet-management/ebpf-instrumentation" dest="eBPF">I want traces without touching my code</Task>
+    </TaskGroup>
+    <TaskGroup title="Looking at your data">
+      <Task to="/insights/metrics" dest="Insights">Break a metric down by label</Task>
+      <Task to="/insights/dashboards" dest="Insights">Build a dashboard</Task>
+      <Task to="/insights/dashboards" dest="Insights">Import a Grafana dashboard</Task>
+      <Task to="/insights/alerting" dest="Alerting">Set up an alert rule</Task>
+      <Task to="/insights/snapshots" dest="Snapshots">Share what I am looking at</Task>
+      <Task to="/grafana-datasources" dest="Data sources">Point my own Grafana at xScaler</Task>
+      <Task to="/query/overview" dest="Query API">Run a query from the command line</Task>
+    </TaskGroup>
+  </div>
+  <div>
+    <TaskGroup title="Running the platform">
+      <Task to="/portal/create-tenant" dest="Portal">Create a tenant</Task>
+      <Task to="/portal/api-tokens" dest="Portal">Mint and rotate an API token</Task>
+      <Task to="/portal/tenant-usage" dest="Usage">Check what a tenant is ingesting</Task>
+      <Task to="/api/xscaler-customer-api" dest="API reference">Automate all of it</Task>
+    </TaskGroup>
+    <TaskGroup title="When something is wrong">
+      <Task to="/authentication" dest="Auth">I get 401 x-scope-orgid mismatch</Task>
+      <Task to="/limits" dest="Limits">My writes are being rejected</Task>
+      <Task to="/troubleshooting" dest="Troubleshooting">My data is not showing up</Task>
+      <Task to="/limits" dest="Limits">I need to reduce cardinality</Task>
+    </TaskGroup>
+  </div>
+</TaskColumns>
 
-</TileGrid>
+<Section eyebrow="AI" title="Two ways AI shows up here">
+Point a coding agent at your telemetry, or measure the AI you already ship.
+</Section>
 
-## Popular integrations
+<HairlineGrid columns={2}>
+  <AiCard to="/ai" title="xScaler & AI tools" graphic={<McpGraphic />} cta="Connect a client">
+    An MCP server your coding agent queries directly for metrics, logs and traces.
+    Every answer reports how much data it scanned.
+  </AiCard>
+  <AiCard
+    to="/ai-observability"
+    title="AI observability"
+    graphic={<TokensGraphic />}
+    cta="Instrument your app"
+  >
+    Your LLM calls as OpenTelemetry GenAI spans and metrics: request rate,
+    latency, and token usage per model and operation.
+  </AiCard>
+</HairlineGrid>
 
-<LogoStrip>
-  <LogoTile to="/integrations/redis" devIcon="redis/redis-original" label="Redis" />
-  <LogoTile to="/integrations/postgresql" devIcon="postgresql/postgresql-original" label="PostgreSQL" />
-  <LogoTile to="/integrations/nginx" devIcon="nginx/nginx-original" label="NGINX" />
-  <LogoTile to="/integrations/mongodb" devIcon="mongodb/mongodb-original" label="MongoDB" />
-  <LogoTile to="/integrations/clickhouse" icon="clickhouse" label="ClickHouse" />
-  <LogoTile to="/integrations/kubernetes" devIcon="kubernetes/kubernetes-plain" label="Kubernetes" />
-</LogoStrip>
+<Section eyebrow="Monitor your stack" title="Ready-made integrations">
+Each integration ships a collector config and a starter dashboard. Search the
+catalogue by name.
+</Section>
 
-[Browse all 100+ integrations →](/integrations)
-
-## What is xScaler?
-
-xScaler is a drop-in backend for any OpenTelemetry-compatible stack. You push
-telemetry from your existing Prometheus, Grafana Alloy, OpenTelemetry Collector,
-or OTel SDKs. xScaler handles ingestion, storage, and querying at scale across
-all three signals. You query it back with **PromQL** (metrics), **LogQL** (logs),
-and **TraceQL** (traces) from Grafana or any compatible tool.
-
-<ArchDiagram />
-
-## Popular docs
-
-<HubGrid columns={3}>
-  <HubCard title="Quick Start" to="/getting-started" emoji="🚀">
-    Connect your first telemetry source in minutes.
-  </HubCard>
-  <HubCard title="Authentication" to="/authentication" emoji="🔑">
-    Tokens, scopes, and the required request headers.
-  </HubCard>
-  <HubCard title="Regions & Endpoints" to="/regions" emoji="🌍">
-    Choose the right region and find your hostnames.
-  </HubCard>
-  <HubCard title="Endpoints Reference" to="/endpoints" emoji="🧭">
-    Every ingest and query endpoint, per signal.
-  </HubCard>
-  <HubCard title="Query with PromQL" to="/query/overview" emoji="🔍">
-    Run instant and range queries against your metrics.
-  </HubCard>
-  <HubCard title="Limits & Quotas" to="/limits" emoji="📊">
-    Ingestion, cardinality, and rate limits to plan around.
-  </HubCard>
-</HubGrid>
+<Pills>
+  <Pill to="/integrations/kubernetes">Kubernetes</Pill>
+  <Pill to="/integrations/postgresql">PostgreSQL</Pill>
+  <Pill to="/integrations/redis">Redis</Pill>
+  <Pill to="/integrations/nginx">NGINX</Pill>
+  <Pill to="/integrations/kafka">Kafka</Pill>
+  <Pill to="/integrations/mongodb">MongoDB</Pill>
+  <Pill to="/integrations/clickhouse">ClickHouse</Pill>
+  <Pill to="/integrations/linux">Linux</Pill>
+  <Pill to="/integrations/aws-cloudwatch">AWS CloudWatch</Pill>
+  <Pill to="/integrations/istio">Istio</Pill>
+  <Pill to="/integrations/vault">Vault</Pill>
+  <Pill to="/integrations" accent>Browse all 100+ &rarr;</Pill>
+</Pills>

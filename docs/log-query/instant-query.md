@@ -1,7 +1,7 @@
 ---
 id: instant-query
 title: Log Instant Query
-sidebar_label: Instant Query
+sidebar_label: Instant query
 slug: /log-query/instant-query
 ---
 

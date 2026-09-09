@@ -1,7 +1,7 @@
 ---
 id: change-plan
 title: Change Your Plan
-sidebar_label: Change Plan
+sidebar_label: Change plan
 slug: /portal/change-plan
 ---
 
@@ -29,7 +29,7 @@ You can upgrade or downgrade your xScaler subscription from the Billing page. Pl
 4. You are redirected to Stripe checkout to complete the payment.
 5. After payment, the new plan is active immediately.
 
-:::tip Trial users
+:::tip[Trial users]
 If you are on a trial, you can end the trial early and start paying by clicking **End trial** on your current plan card, or by clicking **Switch and upgrade** on a higher plan.
 :::
 
@@ -43,7 +43,7 @@ If you are on a trial, you can end the trial early and start paying by clicking 
 4. You are redirected to Stripe to confirm the change.
 5. The downgrade takes effect at the end of your current billing period.
 
-:::warning Check your series count before downgrading
+:::warning[Check your series count before downgrading]
 If your active series count exceeds the new plan's limit, xScaler throttles ingestion once the downgrade takes effect. Check your current usage on the [Metrics → Overview](/portal/tenant-usage) tab first.
 :::
 

@@ -1,0 +1,263 @@
+/* PipelineGraphic — the hero flow from the design canvas.
+ * Stroke widths and opacities are the artboard's; colours are theme tokens. */
+
+.graphic {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+/* ── Motion: one coherent system ─────────────────────────────────── */
+
+.flow {
+  stroke-dasharray: 3 9;
+  animation: flowdash 2.6s linear infinite;
+}
+
+.d2 {
+  animation-duration: 3.4s;
+}
+
+.d3 {
+  animation-duration: 2.1s;
+}
+
+@keyframes flowdash {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+.halo {
+  animation: halo 3.6s ease-in-out infinite;
+}
+
+.h2 {
+  animation-delay: 1.2s;
+}
+
+@keyframes halo {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.07;
+  }
+}
+
+.gnode {
+  animation: gnode 3.6s ease-in-out infinite;
+}
+
+@keyframes gnode {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+/* A drawing that loops forever is decoration. Anyone who has asked for less
+ * motion gets the same diagram, still. */
+@media (prefers-reduced-motion: reduce) {
+  .flow,
+  .halo,
+  .gnode {
+    animation: none;
+  }
+
+  .flow {
+    stroke-dasharray: none;
+  }
+}
+
+/* ── Edges ──────────────────────────────────────────────────────── */
+
+.src {
+  stroke: var(--ifm-color-primary);
+  stroke-width: 1.6;
+  opacity: 0.5;
+}
+
+.out {
+  stroke: var(--ifm-color-primary);
+  stroke-width: 2;
+  opacity: 0.75;
+}
+
+.outFaint {
+  stroke: var(--ifm-color-content-secondary);
+  stroke-width: 1.4;
+  opacity: 0.4;
+}
+
+.hairline {
+  stroke: var(--xs-border);
+  stroke-width: 1;
+}
+
+/* ── Config delivery ────────────────────────────────────────────── */
+
+.configEdge {
+  stroke: var(--xs-gold);
+  stroke-width: 1.6;
+  opacity: 0.7;
+  stroke-dasharray: 4 5;
+}
+
+.configArrow {
+  stroke: var(--xs-gold);
+  stroke-width: 1.6;
+  opacity: 0.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.configLabel {
+  fill: var(--xs-gold);
+  font-size: 10px;
+  font-weight: 600;
+  font-family: var(--ifm-font-family-monospace);
+}
+
+.pill {
+  fill: var(--ifm-background-surface-color);
+  stroke: var(--xs-border);
+  stroke-width: 1;
+}
+
+.pillLabel {
+  fill: var(--ifm-color-content-secondary);
+  font-size: 11.5px;
+  font-weight: 500;
+}
+
+/* ── The agent ──────────────────────────────────────────────────── */
+
+.agentBox {
+  fill: var(--ifm-background-surface-color);
+  stroke: var(--ifm-color-primary);
+  stroke-width: 1.8;
+}
+
+.haloRect {
+  fill: none;
+  stroke: var(--ifm-color-primary);
+  stroke-width: 1;
+  opacity: 0.22;
+}
+
+.configGlyph {
+  stroke: var(--ifm-color-primary);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  opacity: 0.9;
+}
+
+.nodeFill {
+  fill: var(--ifm-color-primary);
+}
+
+.nodeRing {
+  fill: none;
+  stroke: var(--ifm-color-primary);
+  stroke-width: 1.2;
+  opacity: 0.3;
+}
+
+.agentLabel {
+  fill: var(--ifm-color-content);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.srcLabel {
+  fill: var(--ifm-color-content-secondary);
+  font-size: 11.5px;
+  font-family: var(--ifm-font-family-monospace);
+}
+
+.mono10 {
+  fill: var(--xs-text-faint);
+  font-size: 10px;
+  font-family: var(--ifm-font-family-monospace);
+}
+
+/* ── xScaler core ───────────────────────────────────────────────── */
+
+.haloRing {
+  fill: none;
+  stroke: var(--ifm-color-primary);
+  stroke-width: 1;
+  opacity: 0.22;
+}
+
+.haloRing2 {
+  fill: none;
+  stroke: var(--ifm-color-primary);
+  stroke-width: 1;
+  opacity: 0.3;
+}
+
+.core {
+  fill: var(--ifm-background-surface-color);
+  stroke: var(--ifm-color-primary);
+  stroke-width: 1.8;
+}
+
+.coreGlyph {
+  fill: none;
+  stroke: var(--ifm-color-primary);
+  stroke-width: 2.1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.coreLabel {
+  fill: var(--xs-text-faint);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+}
+
+/* ── Destinations ───────────────────────────────────────────────── */
+
+.insightsBox {
+  fill: var(--ifm-background-surface-color);
+  stroke: var(--ifm-color-primary);
+  stroke-width: 1.6;
+}
+
+.grafanaBox {
+  fill: var(--ifm-background-surface-color);
+  stroke: var(--xs-border);
+  stroke-width: 1;
+}
+
+.destTitle {
+  fill: var(--ifm-heading-color);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.destTitleFaint {
+  fill: var(--ifm-color-content-secondary);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.destItem {
+  fill: var(--ifm-color-content-secondary);
+  font-size: 10.5px;
+}
+
+.destMono {
+  fill: var(--xs-text-faint);
+  font-size: 9.5px;
+  font-family: var(--ifm-font-family-monospace);
+}

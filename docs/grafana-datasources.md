@@ -1,7 +1,7 @@
 ---
 id: grafana-datasources
 title: Connect Grafana Datasources
-sidebar_label: Connect Grafana Datasources
+sidebar_label: Connect Grafana datasources
 slug: /grafana-datasources
 ---
 
@@ -31,7 +31,7 @@ For the `euw1-01` region:
 | Logs | `https://euw1-01.l.xscalerlabs.com` |
 | Traces | `https://euw1-01.t.xscalerlabs.com` |
 
-:::tip One token, three datasources
+:::tip[One token, three datasources]
 A single API token works for all three signals as long as it is scoped for read access. Create it once and reuse it across all datasource configs.
 :::
 
@@ -55,7 +55,7 @@ https://euw1-01.m.xscalerlabs.com
 
 ![Prometheus server URL field in Grafana](/img/grafana/metrics-03-server-url.png)
 
-:::tip No path suffix
+:::tip[No path suffix]
 Enter the host root only. Grafana appends `/api/v1/query` automatically. Do not add any path.
 :::
 
@@ -70,7 +70,7 @@ Scroll down to the **HTTP Headers** section and add two headers:
 
 ![HTTP Headers section with Authorization and X-Scope-OrgID](/img/grafana/metrics-04-http-headers.png)
 
-:::danger Use HTTP Headers only
+:::danger[Use HTTP Headers only]
 Do **not** use the Basic Auth fields or the Grafana Authentication section. xScaler accepts Bearer tokens in custom HTTP headers only.
 :::
 
@@ -125,7 +125,7 @@ Data source successfully connected.
 
 ![Loki Save & Test success in Grafana](/img/grafana/logs-04-save-test.png)
 
-:::note No data yet?
+:::note[No data yet?]
 If the connection succeeds but queries come back empty, no logs have arrived for this tenant yet. Send logs first using [Grafana Alloy](/logs/grafana-alloy) or the [OTel Collector](/logs/opentelemetry-collector).
 :::
 

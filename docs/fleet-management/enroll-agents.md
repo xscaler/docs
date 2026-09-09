@@ -1,7 +1,7 @@
 ---
 id: enroll-agents
 title: Enroll Agents
-sidebar_label: Enroll Agents
+sidebar_label: Enroll agents
 slug: /fleet-management/enroll-agents
 ---
 
@@ -82,7 +82,7 @@ extensions:
 
 Replace `<enrollment-token>` with the token you copied from the portal.
 
-:::warning Keep enrollment tokens private
+:::warning[Keep enrollment tokens private]
 Do not commit enrollment tokens to source control. Store them in your secret manager, encrypted configuration store, or deployment vault.
 :::
 

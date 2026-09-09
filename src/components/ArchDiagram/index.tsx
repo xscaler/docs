@@ -30,16 +30,16 @@ interface Node {
 const NODES: Record<NodeId, Node> = {
   // ── Customer infrastructure ──
   app: { x: 50, y: 100, w: 250, h: 54, title: 'Your Application', sub: 'your services & hosts', to: '/getting-started' },
-  collector: { x: 50, y: 172, w: 250, h: 64, title: 'OpenTelemetry Collector', sub: 'xScaler Agent · OpAMP-managed', to: '/ingest/opentelemetry-collector', highlight: true },
+  collector: { x: 50, y: 172, w: 250, h: 64, title: 'OpenTelemetry Collector', sub: 'xScaler Agent · OpAMP-managed', to: '/fleet-management/enroll-agents', highlight: true },
   sdk: { x: 50, y: 254, w: 250, h: 54, title: 'OTel SDK', sub: 'instrument your app directly', to: '/ingest/otel-sdk-python' },
   alloy: { x: 50, y: 326, w: 250, h: 54, title: 'Grafana Alloy', sub: 'existing Alloy / Agent config', to: '/ingest/grafana-alloy' },
-  custViz: { x: 50, y: 432, w: 250, h: 118, title: 'Visualization', sub: 'your query tooling', chips: ['Grafana', 'Jaeger'], to: '/grafana' },
+  custViz: { x: 50, y: 432, w: 250, h: 118, title: 'Visualization', sub: 'your query tooling', chips: ['Grafana', 'Jaeger'], to: '/grafana-datasources' },
   // ── xScaler hosted ──
   fleet: { x: 430, y: 100, w: 460, h: 54, title: 'Fleet Management', sub: 'agent-api · OpAMP control plane', to: '/fleet-management' },
   metrics: { x: 470, y: 196, w: 400, h: 56, title: 'Metrics', sub: 'remote_write / OTLP in · PromQL out', to: '/query/overview' },
   logs: { x: 470, y: 270, w: 400, h: 50, title: 'Logs', sub: 'OTLP / push in · LogQL out', to: '/log-query/overview' },
   traces: { x: 470, y: 336, w: 400, h: 56, title: 'Traces', sub: 'OTLP in · Jaeger / TraceQL out', to: '/trace-query/overview' },
-  xViz: { x: 470, y: 432, w: 400, h: 118, title: 'Visualization', rightLabel: 'xScaler Insight', chips: ['Dashboards', 'Drilldown', 'Explore', 'Alerting'], to: '/grafana' },
+  xViz: { x: 470, y: 432, w: 400, h: 118, title: 'Visualization', rightLabel: 'xScaler Insights', chips: ['Dashboards', 'Explorer', 'Snapshots', 'Alerting'], to: '/insights' },
 };
 
 const VIZ_IDS: NodeId[] = ['custViz', 'xViz'];

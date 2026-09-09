@@ -1,7 +1,7 @@
 ---
 id: suspend-tenant
 title: Suspend and Resume a Tenant
-sidebar_label: Suspend & Resume Tenant
+sidebar_label: Suspend & resume a tenant
 slug: /portal/suspend-tenant
 ---
 
