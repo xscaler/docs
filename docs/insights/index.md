@@ -22,7 +22,7 @@ Open **Insights** in the [xScaler portal](https://portal.xscalerlabs.com).
 | [Explorer](/insights/explorer) | Several queries at once, each with its own signal |
 | [Dashboards](/insights/dashboards) | Build panels, import Grafana JSON, keep version history |
 | [Snapshots](/insights/snapshots) | Freeze what is on screen and share the link |
-| [Alerting](/insights/alerting) | Rules, contact points, notification policies, silences |
+| [Alerting](/insights/alerting) | Alert rules, contact points, notification policies, silences |
 
 ## Moving between signals
 

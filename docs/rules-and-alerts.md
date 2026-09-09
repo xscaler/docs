@@ -7,16 +7,15 @@ slug: /rules-and-alerts
 
 # Alerts in your own Grafana
 
-xScaler does not expose a Ruler API. Alert rules either live in
-[Insights](/insights/alerting), where the portal manages them for you, or in a
-Grafana you run yourself, whose alerting engine queries your xScaler data
-source. This page covers the second route.
+Grafana's alerting engine queries xScaler like any other Prometheus or Loki
+data source, so rules you already have keep working. This page covers that
+route.
 
 :::tip[Start with Insights]
-[Insights → Alerting](/insights/alerting) already has rules, contact points,
-notification policies, silences, mute timings, inhibition rules and templates,
-plus rule preview and backtesting. Use your own Grafana when you have alerting
-there already and want to keep it in one place.
+[Insights → Alerting](/insights/alerting) already has alert rules, contact
+points, notification policies, silences, mute timings, inhibition rules and
+templates, with nothing to install. Use your own Grafana when you have alerting
+there already and want it in one place.
 :::
 
 ## Set up Grafana alerts against xScaler
@@ -66,6 +65,23 @@ sum(rate(http_requests_total{status=~"5.."}[5m]))
 
 ---
 
+## Where the rules run
+
+Rules created in your own Grafana are evaluated by that Grafana. It has to be
+running for them to fire, and it needs network access to the xScaler query
+endpoints.
+
+xScaler's own ingest endpoints do not host a Ruler, so a rules file posted to
+`https://euw1-01.m.xscalerlabs.com/prometheus/config/v1/rules` answers
+`Ruler is not enabled on this deployment.` Rules live either in
+[Insights](/insights/alerting) or in your own Grafana or Prometheus.
+
+## Recording rules
+
+Recording rules run in your own Prometheus or Grafana. Write the results back
+to xScaler with [remote_write](/ingest/prometheus-remote-write) and query them
+like any other metric.
+
 ## Common alert expressions
 
 ```promql
@@ -77,7 +93,7 @@ sum(rate(http_requests_total{status=~"5.."}[5m]))
 100 - (avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 90
 
 # Low disk space (< 10% free)
-node_filesystem_avail_bytes{mountpoint="/"} 
+node_filesystem_avail_bytes{mountpoint="/"}
 / node_filesystem_size_bytes{mountpoint="/"} * 100 < 10
 
 # Pod not ready
@@ -93,6 +109,23 @@ sum(pg_stat_database_numbackends)
 
 ---
 
+## Moving rules into Insights
+
+Rules move over one at a time. The query is the part that carries across
+unchanged, and the rest is a form:
+
+| In Grafana | In Insights |
+|------------|------------|
+| The query | The same PromQL or LogQL |
+| The threshold expression | The condition row: reducer, comparison, threshold |
+| `for` | Pending period |
+| Labels and annotations | The same fields |
+| Contact points and policies | Rebuilt once, then shared by every rule |
+
+See [Coming from Grafana Alerting](/insights/alerting/grafana) for the full
+mapping, and [Alert rules](/insights/alerting/alert-rules) for the editor.
+
 ## Grafana Alerting docs
 
-For full documentation on alert rules, silences, mute timings, and notification templates, see the [Grafana Alerting documentation](https://grafana.com/docs/grafana/latest/alerting/).
+For Grafana's own alerting features, see the
+[Grafana Alerting documentation](https://grafana.com/docs/grafana/latest/alerting/).
