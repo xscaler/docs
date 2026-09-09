@@ -160,6 +160,40 @@ const sidebars: SidebarsConfig = {
     // ── Alerting ─────────────────────────────────────────────────────────────
     'rules-and-alerts',
 
+    // ── xScaler & AI Tools ───────────────────────────────────────────────────
+    {
+      type: 'category',
+      label: 'xScaler & AI Tools',
+      collapsed: false,
+      items: [
+        'ai/ai',
+        'ai/ai-connect',
+        'ai/ai-capabilities',
+        'ai/ai-tools',
+        {
+          type: 'category',
+          label: 'Use cases',
+          collapsed: true,
+          link: { type: 'doc', id: 'ai/use-cases/ai-use-cases' },
+          items: [
+            'ai/use-cases/ai-uc-trace-id',
+            'ai/use-cases/ai-uc-latency',
+            'ai/use-cases/ai-uc-when-it-started',
+            'ai/use-cases/ai-uc-after-a-deploy',
+            'ai/use-cases/ai-uc-dashboard',
+            'ai/use-cases/ai-uc-alert-rule',
+            'ai/use-cases/ai-uc-who-gets-told',
+          ],
+        },
+        'ai/ai-answers',
+        'ai/ai-manage',
+        'ai/ai-limits',
+        'ai/ai-security',
+        'ai/ai-troubleshooting',
+        'ai/ai-protocol',
+      ],
+    },
+
     // ── Integrations ─────────────────────────────────────────────────────────
     {
       type: 'category',
