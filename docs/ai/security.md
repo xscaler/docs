@@ -17,9 +17,9 @@ Access tokens live 15 minutes. Refresh tokens rotate on every use, and xScaler k
 
 No secret leaves through MCP. `list_contact_points` reports which settings are filled in, never a value, encrypted or not. No tool can decrypt anything, and no tool accepts a secret as input.
 
-No tool deletes anything.
+The write tools only create. Nothing deletes dashboards, rules or telemetry.
 
-## Two things to weigh before you approve
+## Before you approve
 
 **Log lines reach the model.** `logs:read` lets a client read matching log lines, and a log line contains whatever your applications write to it: request bodies, identifiers, stack traces. Where an environment carries other people's data or platform internals, connect the client with metrics and traces and leave logs out.
 

@@ -62,7 +62,7 @@ Why did the checkout error rule not reach anybody?
 - "Which rules are failing to evaluate rather than not firing?"
 - "Is anything silenced right now?"
 
-## Under the hood
+## Which tool did what
 
 | Step | Tool | What it does |
 |---|---|---|

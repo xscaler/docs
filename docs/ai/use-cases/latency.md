@@ -85,7 +85,7 @@ Twelve sequential redis calls of about 95ms each inside one `/catalog/bulk` span
 - "Chart the redis command duration next to the checkout p95."
 - "What logs did catalog write during that trace?"
 
-## Under the hood
+## Which tool did what
 
 | Step | Tool | What it does |
 |---|---|---|

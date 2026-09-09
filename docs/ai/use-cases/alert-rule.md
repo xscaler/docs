@@ -91,7 +91,7 @@ Pause the exports queue rule while we drain the backlog.
 - "Who gets told when this rule fires?"
 - "Show me the rule's condition and what it does on no data."
 
-## Under the hood
+## Which tool did what
 
 | Step | Tool | What it does |
 |---|---|---|

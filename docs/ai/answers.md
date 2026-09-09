@@ -43,4 +43,4 @@ An empty result comes back as a success, carrying a status and a diagnostic. A q
 
 A failed query leads the answer. When one query in a batch fails, that is the first thing the text says, because an agent that only read the absence would mistake it for an absence of data.
 
-[What the caps are →](/ai/limits)
+See [Limits](/ai/limits) for the caps behind the reductions.

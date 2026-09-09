@@ -99,7 +99,7 @@ The last line is the answer: the pool was exhausted before the statement ever ra
 - "What does the connection pool metric look like around 09:41?"
 - "Show me a successful checkout trace from the same minute so I can compare."
 
-## Under the hood
+## Which tool did what
 
 | Step | Tool | What it does |
 |---|---|---|

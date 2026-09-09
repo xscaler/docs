@@ -58,7 +58,7 @@ Datasource inputs were filled in from production: DS_PROMETHEUS.
 The uid in the document was dropped, so this is a new dashboard.
 ```
 
-Both schemas are accepted, the classic one with a top-level `panels` array and the resource one with a `kind` and a `spec`. An export that declares its datasources as inputs gets them filled in from the environment you name, which is what makes a downloaded dashboard draw something instead of arriving with every panel empty.
+Both schemas are accepted, the classic one with a top-level `panels` array and the resource one with a `kind` and a `spec`. An export that declares its datasources as inputs gets them filled in from the environment you name, so a downloaded dashboard draws something instead of arriving with every panel empty.
 
 ## Refine the result
 
@@ -66,7 +66,7 @@ Both schemas are accepted, the classic one with a top-level `panels` array and t
 - "What panels are on the dashboard called Checkout service?"
 - "Make a copy that reads staging instead."
 
-## Under the hood
+## Which tool did what
 
 | Step | Tool | What it does |
 |---|---|---|

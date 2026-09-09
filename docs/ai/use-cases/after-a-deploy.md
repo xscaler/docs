@@ -71,7 +71,7 @@ The statistics are exact and every answer echoes the window and step it used, so
 - "Was the request rate the same across both windows, or is this just less traffic?"
 - "Set up an alert so nobody has to check this by hand next time."
 
-## Under the hood
+## Which tool did what
 
 | Step | Tool | What it does |
 |---|---|---|

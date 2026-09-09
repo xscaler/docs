@@ -22,8 +22,6 @@ Capabilities only subtract from your role. Connecting a client can never widen w
 | `dashboards:write` | Create dashboards | Create dashboards and folders | Editor |
 | `alerts:write` | Create and pause alert rules | Create alert rules, pause and resume them | Editor |
 
-**No tool here deletes anything.** No tool deletes a dashboard, a folder, an alert rule, a contact point or any telemetry. The dashboard tools only create. Importing the same file twice leaves two dashboards and never overwrites one that somebody else owns.
+**No tool deletes anything.** No tool deletes a dashboard, a folder, an alert rule, a contact point or any telemetry. The dashboard tools only create. Importing the same file twice leaves two dashboards and never overwrites one that somebody else owns.
 
----
-
-[See which tool each capability unlocks →](/ai/tools)
+See [Tools](/ai/tools) for which capability each tool needs.

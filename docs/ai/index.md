@@ -7,43 +7,40 @@ slug: /ai
 
 # xScaler & AI Tools
 
-Ask your telemetry questions in plain language, from the editor you already have open. Point a coding agent at xScaler and it investigates production from your real metrics, logs and traces instead of guessing.
+xScaler exposes your telemetry to a coding agent through an MCP server. Add
+`https://mcp.xscalerlabs.com/mcp` to Claude Code, Cursor or any other MCP
+client, and the agent reads the same metrics, logs and traces you see in the
+portal. It writes the PromQL, LogQL or TraceQL itself and moves between
+signals: from a metric to the trace behind it, to the logs that describe a
+span.
 
-## MCP server
+No API key is involved. Whoever connects signs in through the browser and ticks
+the capabilities the connection may use. See [Connect a client](/ai/connect)
+to set one up.
 
-The xScaler MCP server implements the Model Context Protocol and connects your telemetry to your coding agent. Plug it into Claude Code or Cursor in a couple of minutes and every session after that has your production data in it.
+## What a connection can do
 
-- Query metrics, logs and traces by asking, with no PromQL, LogQL or TraceQL to write yourself
-- Follow one signal into the next, from a metric to the trace behind it to the logs that describe the span
-- Read your dashboards and alert rules, and create new ones
-- Works with Claude Code, Claude Desktop, Cursor, VS Code and other MCP clients
-- Included on every plan, with no key to create and no agent to run
+The server exposes 25 tools in five groups. [Tools](/ai/tools) lists them with
+the capability each one needs.
 
-[Connect a client →](/ai/connect)
+- **Read telemetry.** Query metrics, logs and traces. When a window holds more
+  than one answer can carry, the tools return exact statistics computed from
+  the whole series and say what they reduced. See [Reading an answer](/ai/answers).
+- **Correlate signals.** The store keeps the link between a metric point, the
+  trace that produced it and the logs written while it ran, so a slow metric
+  can hand back a real trace and the log lines around it.
+- **Read dashboards and alerting.** List folders and dashboards, read alert
+  rules and firing alerts, and see where notifications route.
+- **Make changes.** Create dashboards and alert rules within the capabilities
+  granted. Nothing deletes, and every change an agent makes lands in the audit
+  trail.
 
-## Answers you can check
-
-An agent is only as good as what it reads, so every answer says how much of the data it actually saw.
-
-- Statistics are exact, computed from the full series before anything is reduced
-- Anything capped, clamped or summarised is named, with the remedy and a downgraded confidence
-- A connection can never do more than the person who approved it
-- Every answer links back to the same query in the portal
-- Every change an agent makes lands in the audit trail
-
-[Reading an answer →](/ai/answers)
+A connection acts as the person who approved it and never exceeds that person's
+role. See [Capabilities](/ai/capabilities) for what a connection can and cannot
+do.
 
 ## Use cases
 
-Questions an agent answers from your own telemetry:
-
-- Ask what changed after a deploy when latency or errors jump
-- Find the slowest trace through a service, and which span is eating the time
-- Ask when the 5xx rate started climbing and what the first error line said
-- Ask which metrics a service exports and what units they are in
-- Have an agent build a dashboard for a service: request rate, error rate and p95 latency
-- Describe an alert in words and check the condition against today's data before saving it
-
-It works through these the way a person does in the portal. It lists the environments, learns the metric names and labels, writes the query, reads the result, and follows one signal into the next.
-
-[Browse the tools →](/ai/tools)
+The [use cases](/ai/use-cases) walk through real investigations, prompt by
+prompt: reconstruct a bug from a trace id, find when a problem started, check
+what changed after a deploy, and the rest.

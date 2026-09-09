@@ -7,7 +7,7 @@ slug: /ai/connect
 
 # Connect a client
 
-Add `https://mcp.xscalerlabs.com/mcp` as an MCP server in the client. Whoever adds it signs in through the browser and picks what it may do, so there is no key to create and nothing to paste into the client.
+Add `https://mcp.xscalerlabs.com/mcp` as an MCP server in the client. Whoever adds it signs in through the browser and picks what it may do. There is no API key to create and nothing to paste into the client.
 
 ## Before you start
 
@@ -88,6 +88,5 @@ A connection lasts 180 days, after which the client asks again.
 
 An answer that names no environment, or a client that lists no tools, is covered in [Troubleshooting](/ai/troubleshooting).
 
-[Capabilities and the role each one needs →](/ai/capabilities)
-
-[Manage connections in the portal →](/ai/manage)
+See [Capabilities](/ai/capabilities) for the role each one needs, and
+[Manage connections](/ai/manage) for what the portal shows you.

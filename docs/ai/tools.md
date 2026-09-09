@@ -7,7 +7,8 @@ slug: /ai/tools
 
 # Tools
 
-25 tools, grouped by what they are for. Each tool needs the capability in its row.
+The server exposes 25 tools, grouped below by what they do. Each tool needs the
+capability in its row.
 
 ## Discovery
 
@@ -75,4 +76,4 @@ slug: /ai/tools
 
 ---
 
-[How to read a tool's answer →](/ai/answers)
+[How to read a tool's answer](/ai/answers) covers what a tool returns.

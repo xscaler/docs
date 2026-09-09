@@ -13,7 +13,7 @@ slug: /ai/use-cases/when-it-started
 
 - A connected client with `logs:read`. See [Connect a client](/ai/connect).
 
-## The trap this avoids
+## Why order matters
 
 Ask for the errors in a window and you get the newest lines first. If the window holds more lines than the limit, the earliest line you were handed is not the earliest line there is, and an agent that reads it as the beginning reports a start time that is simply the bottom of the page.
 
@@ -38,7 +38,9 @@ This query aggregates, so it answers with a series rather than lines.
   min 0  max 214  mean 61.4  p95 198  last 187
 ```
 
-An aggregating expression comes back as a series rather than lines, which is what makes this cheap. The sparkline puts the onset a little over halfway through a six-hour window, so the next question has a much smaller window to read.
+An aggregating expression comes back as a series rather than lines, which is what
+keeps it cheap. The sparkline puts the onset a little over halfway through a
+six-hour window, so the next question has a much smaller window to read.
 
 ## Step 2: Read the oldest lines in that window
 
@@ -80,7 +82,7 @@ Now the question has a timestamp, so it can be pointed at another service, at a 
 - "Show me the same count for catalog, so I can see which one moved first."
 - "What is the longest window I can ask about for logs?"
 
-## Under the hood
+## Which tool did what
 
 | Step | Tool | What it does |
 |---|---|---|
