@@ -204,8 +204,8 @@ RE2 with named groups; each group becomes a label.
 
 ### unpack
 
-Restores labels packed by the Promtail/Alloy `pack` stage, replacing the line
-with the original `_entry` value.
+Restores labels packed by a collector's `pack` stage (for example Grafana
+Alloy's), replacing the line with the original `_entry` value.
 
 ```logql
 | unpack

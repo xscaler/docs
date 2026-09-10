@@ -12,9 +12,8 @@ syntax from PromQL, then adds a pipeline for filtering, parsing, and reshaping
 log lines. Any tool that speaks LogQL works against the [log query
 API](/log-query/overview) without modification.
 
-xScaler runs a Loki-compatible backend, so the [upstream LogQL
-reference](https://grafana.com/docs/loki/latest/query/) applies in full. These
-pages summarise the parts you reach for most.
+xScaler implements the full LogQL query surface. These pages summarise the parts
+you reach for most.
 
 ---
 

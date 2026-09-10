@@ -15,8 +15,8 @@ and inside the [2-minute query timeout](/log-query/overview#query-timeout).
 
 ## Narrow the time range first
 
-The range decides how many chunks Loki reads before any filtering. Use the
-Grafana time picker, or `start` / `end` on
+The range decides how many chunks the backend reads before any filtering. Use
+the Grafana time picker, or `start` / `end` on
 [`/api/v1/query_range`](/log-query/range-query). A tight range beats every other
 optimisation.
 
