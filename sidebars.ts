@@ -84,6 +84,18 @@ const sidebars: SidebarsConfig = {
                 'log-query/label-exploration',
               ],
             },
+            {
+              type: 'category',
+              label: 'LogQL reference',
+              collapsed: true,
+              items: [
+                'logql/overview',
+                'logql/log-queries',
+                'logql/metric-queries',
+                'logql/template-functions',
+                'logql/best-practices',
+              ],
+            },
             'grafana-logs',
           ],
         },
