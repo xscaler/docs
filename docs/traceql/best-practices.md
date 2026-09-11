@@ -71,6 +71,15 @@ anchor the search.
 
 ---
 
+## Avoid structural operators in metrics queries when you can
+
+A [metrics query](/traceql/metrics-queries) that needs no knowledge of trace
+structure can use a faster, span-only read path. A structural operator
+(`>>`, `<<`, `~`, `!>>`, `!<<`, `!~`) forces the slower, full-trace path instead.
+If a query doesn't need to relate spans to each other, keep it flat.
+
+---
+
 ## Reach for `select()`, not a wider match
 
 Need extra fields on the result? Add `select()` rather than loosening the span

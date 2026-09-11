@@ -71,6 +71,8 @@ An attribute name with terminal characters (a period, a space) needs quoting:
 { span.attribute."nested name" = "value" }
 ```
 
+Only the `\"` and `\\` escape sequences are supported inside a quoted name.
+
 ### Arrays
 
 If an attribute holds an array, `=` / `=~` match when **any** element

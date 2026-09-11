@@ -101,6 +101,11 @@ Each sub-query needs its own parentheses.
 ({} | rate() by (resource.service.name)) / ({} | rate())
 ```
 
+`by()` can appear on either or both sub-queries. With matching `by()` on both
+sides, results are paired by label — as above, one output series per service.
+Leave one side unlabelled (as in the throughput example) and it's applied to
+every labelled series on the other side.
+
 A scalar can sit on either side to rescale or shift a result:
 
 ```traceql
@@ -143,6 +148,22 @@ Trade accuracy for speed on expensive metrics queries with a `with(...)` hint:
 { span:status=error } | count_over_time() with(span_sample=0.1)          # fixed, by span
 { } | count_over_time() by (resource.service.name) with(trace_sample=0.05) # fixed, by trace
 ```
+
+### Extrapolation from ingest-time sampling (experimental)
+
+If spans were sampled at ingest by an OpenTelemetry probability sampler, each
+surviving span carries the sampling probability in its W3C tracestate.
+`with(extrapolate=true)` scales each span's contribution by
+`1 / sampling_probability` so the result estimates the true, un-sampled volume
+instead of just what was stored.
+
+```traceql
+{ resource.service.name="api" } | rate() with(extrapolate=true)
+```
+
+Applies to `rate`, `count_over_time`, `sum_over_time`, `avg_over_time`,
+`histogram_over_time`, `quantile_over_time`, and `compare`. Not
+`min_over_time` / `max_over_time` — extremes don't scale with sampling.
 
 ---
 
