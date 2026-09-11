@@ -53,6 +53,17 @@ const sidebars: SidebarsConfig = {
                 'query/label-exploration',
               ],
             },
+            {
+              type: 'category',
+              label: 'PromQL reference',
+              collapsed: true,
+              items: [
+                'promql/overview',
+                'promql/operators',
+                'promql/functions',
+                'promql/best-practices',
+              ],
+            },
             'grafana-metrics',
           ],
         },
