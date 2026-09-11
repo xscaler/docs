@@ -127,6 +127,39 @@ function BrandLogo({
 
 /* ─── Hero search ─────────────────────────────────────────────────── */
 
+/** Seed the DocSearch modal once it has mounted. The theme code-splits the
+ *  modal, so the input only exists a few frames after the button is clicked. */
+function seedDocSearchInput(query: string, attemptsLeft = 60) {
+  const input = document.querySelector<HTMLInputElement>('.DocSearch-Input');
+  if (!input) {
+    if (attemptsLeft > 0) {
+      requestAnimationFrame(() => seedDocSearchInput(query, attemptsLeft - 1));
+    }
+    return;
+  }
+  // React tracks the value on the node, so a plain assignment is swallowed.
+  const setValue = Object.getOwnPropertyDescriptor(
+    HTMLInputElement.prototype,
+    'value',
+  )?.set;
+  setValue?.call(input, query);
+  input.dispatchEvent(new Event('input', { bubbles: true }));
+}
+
+/** Open the navbar DocSearch modal, optionally pre-filled. Returns false when
+ *  the button is not on the page, so callers can fall back to /search. */
+function openDocSearch(query: string): boolean {
+  const button = document.querySelector<HTMLButtonElement>('.DocSearch-Button');
+  if (!button) {
+    return false;
+  }
+  button.click();
+  if (query) {
+    seedDocSearchInput(query);
+  }
+  return true;
+}
+
 export function SearchHero({
   placeholder = 'Search the docs…',
 }: {
@@ -135,10 +168,29 @@ export function SearchHero({
   const [query, setQuery] = useState('');
   const history = useHistory();
 
+  const goToSearchPage = (q: string) => {
+    history.push(q ? `/search?q=${encodeURIComponent(q)}` : '/search');
+  };
+
+  const open = (seed: string) => {
+    if (!openDocSearch(seed)) {
+      goToSearchPage(seed);
+    }
+  };
+
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
-    const q = query.trim();
-    history.push(q ? `/search?q=${encodeURIComponent(q)}` : '/search');
+    open(query.trim());
+  };
+
+  // Typing here hands the keystroke to the modal rather than filling the
+  // hero input, so the first character is not lost.
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.metaKey || e.ctrlKey || e.altKey || e.key.length !== 1) {
+      return;
+    }
+    e.preventDefault();
+    open(e.key);
   };
 
   return (
@@ -157,6 +209,8 @@ export function SearchHero({
         type="search"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
+        onClick={() => open(query.trim())}
+        onKeyDown={onKeyDown}
         placeholder={placeholder}
         aria-label="Search the documentation"
       />
