@@ -125,6 +125,17 @@ const sidebars: SidebarsConfig = {
                 'trace-query/search',
               ],
             },
+            {
+              type: 'category',
+              label: 'TraceQL reference',
+              collapsed: true,
+              items: [
+                'traceql/overview',
+                'traceql/span-queries',
+                'traceql/metrics-queries',
+                'traceql/best-practices',
+              ],
+            },
             'grafana-traces',
           ],
         },
