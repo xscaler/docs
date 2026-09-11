@@ -33,20 +33,7 @@ const config: Config = {
     },
   },
 
-  themes: [
-    '@docusaurus/theme-mermaid',
-    'docusaurus-theme-openapi-docs',
-    [
-      require.resolve('@easyops-cn/docusaurus-search-local'),
-      {
-        hashed: true,
-        language: ['en'],
-        indexBlog: false,
-        docsRouteBasePath: '/',
-        searchBarPosition: 'auto',
-      },
-    ],
-  ],
+  themes: ['@docusaurus/theme-mermaid', 'docusaurus-theme-openapi-docs'],
 
   plugins: [
     // The OpenAPI theme pulls in postman-code-generators for request samples,
@@ -105,6 +92,15 @@ const config: Config = {
 
   themeConfig: {
     image: 'img/social-card.svg',
+    // Search-only key, scoped to the index and shipped in the client bundle.
+    // Never put an admin or write key here.
+    algolia: {
+      appId: 'QHIRH4EU8W',
+      apiKey: 'e3e9e89a1ce794c01949459b21d7e0b0',
+      indexName: 'xScaler Documentation',
+      contextualSearch: false,
+      searchPagePath: 'search',
+    },
     colorMode: {
       defaultMode: 'dark',
       disableSwitch: false,
