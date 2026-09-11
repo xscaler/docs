@@ -79,6 +79,16 @@ sample from *before* that window (subject to the lookback period).
 For classic histograms (a `_bucket`/`_count`/`_sum` series triplet with an
 `le` label) and for native histograms.
 
+:::note
+`histogram_quantile()` and `histogram_fraction()` work against the classic
+`_bucket` series every instrumentation library emits by default. `histogram_avg`,
+`histogram_count`, `histogram_sum`, `histogram_stddev`, and `histogram_stdvar`
+only read **native histogram** samples — a newer, single-series representation.
+Whether anything ingested here uses native histograms wasn't verified against
+the metrics config; if a native-histogram function returns nothing, the metric
+you're pointing it at is probably a classic histogram instead.
+:::
+
 ### histogram_quantile
 
 `histogram_quantile(φ, b)` — the φ-quantile from a histogram, `0 ≤ φ ≤ 1`.
@@ -180,6 +190,7 @@ and `pi()` for the constant.
 |----------|---------|
 | `time()` | seconds since epoch, at query evaluation time |
 | `timestamp(v)` | timestamp of each sample in `v` |
+| `start_timestamp(v)` | start timestamp of each sample in `v` — requires the `use-start-timestamps` feature flag and only works applied directly to an instant vector, not to an expression; returns empty otherwise |
 | `hour` / `minute` / `day_of_week` / `day_of_month` / `day_of_year` / `days_in_month` / `month` / `year` `(v=vector(time()))` | that field of each sample's timestamp, in UTC |
 
 ```promql
