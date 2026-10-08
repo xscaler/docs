@@ -1,11 +1,12 @@
 ---
 id: ai-security
-title: Security
+title: AI client security and permissions
+description: Understand how xScaler AI client connections use roles and capabilities, what data reaches the model, and what to check before granting access.
 sidebar_label: Security
 slug: /ai/security
 ---
 
-# Security
+# AI client security and permissions
 
 A connection acts as one person and is bounded by that person's live role. Capabilities subtract from the role and never add to it, and both checks run on every call, so a demotion or a removed membership ends the connection's reach on the next call.
 

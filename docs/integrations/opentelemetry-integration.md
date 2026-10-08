@@ -1,11 +1,12 @@
 ---
 id: opentelemetry-integration
-title: OpenTelemetry Collector
+title: Choose an OpenTelemetry integration for xScaler
+description: Compare OpenTelemetry Collector gateway, Grafana Alloy and direct SDK export configurations for xScaler, with guidance on span metrics and logs.
 sidebar_label: OpenTelemetry Collector
 slug: /integrations/opentelemetry-integration
 ---
 
-# OpenTelemetry Collector
+# Choose an OpenTelemetry integration for xScaler
 
 Forward metrics from any OpenTelemetry-instrumented service to xScaler using the OTel Collector's OTLP pipeline.
 

@@ -1,11 +1,12 @@
 ---
 id: otel-sdk-go
-title: Go OTel SDK
+title: Send metrics with the OpenTelemetry Go SDK
+description: Instrument a Go application to export metrics to xScaler over OTLP/HTTP using the OpenTelemetry SDK, tenant credentials and graceful shutdown.
 sidebar_label: Go OTel SDK
 slug: /ingest/otel-sdk-go
 ---
 
-# Go OTel SDK
+# Send metrics with the OpenTelemetry Go SDK
 
 Instrument a Go application to push metrics directly to xScaler using the OpenTelemetry Go SDK over OTLP/HTTP.
 

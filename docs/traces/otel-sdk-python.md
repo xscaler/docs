@@ -1,11 +1,12 @@
 ---
 id: otel-sdk-python
-title: Python OTel SDK
+title: Send traces with the OpenTelemetry Python SDK
+description: Instrument Python application spans and export traces to xScaler over OTLP/HTTP with the OpenTelemetry SDK, then verify ingestion in the portal.
 sidebar_label: Python OTel SDK
 slug: /traces/otel-sdk-python
 ---
 
-# Python OTel SDK
+# Send traces with the OpenTelemetry Python SDK
 
 Instrument a Python application to send traces directly to xScaler using the OpenTelemetry Python SDK over OTLP/HTTP.
 

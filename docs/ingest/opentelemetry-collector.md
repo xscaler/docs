@@ -1,11 +1,12 @@
 ---
 id: opentelemetry-collector
-title: OpenTelemetry Collector
+title: Send metrics with the OpenTelemetry Collector
+description: Configure the OpenTelemetry Collector to receive and forward metrics to xScaler over OTLP/HTTP with tenant authentication and diagnostic logging.
 sidebar_label: OpenTelemetry Collector
 slug: /ingest/opentelemetry-collector
 ---
 
-# OpenTelemetry Collector
+# Send metrics with the OpenTelemetry Collector
 
 The [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/) is a vendor-neutral agent that receives, processes, and exports telemetry. Use it to forward metrics to xScaler over OTLP/HTTP.
 

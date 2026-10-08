@@ -1,11 +1,12 @@
 ---
 id: otel-sdk-go
-title: Go OTel SDK
+title: Send traces with the OpenTelemetry Go SDK
+description: Instrument Go application spans and export traces to xScaler over OTLP/HTTP using the OpenTelemetry SDK, then verify ingestion in the portal.
 sidebar_label: Go OTel SDK
 slug: /traces/otel-sdk-go
 ---
 
-# Go OTel SDK
+# Send traces with the OpenTelemetry Go SDK
 
 Instrument a Go application to send traces directly to xScaler using the OpenTelemetry Go SDK over OTLP/HTTP.
 

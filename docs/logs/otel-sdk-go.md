@@ -1,11 +1,12 @@
 ---
 id: otel-sdk-go
-title: Go OTel SDK
+title: Send logs with the OpenTelemetry Go SDK
+description: Send Go application logs to xScaler over OTLP/HTTP using the OpenTelemetry SDK, with exporter setup, environment credentials and shutdown flushing.
 sidebar_label: Go OTel SDK
 slug: /logs/otel-sdk-go
 ---
 
-# Go OTel SDK
+# Send logs with the OpenTelemetry Go SDK
 
 Send logs directly from a Go application to xScaler using the OpenTelemetry Go SDK over OTLP/HTTP.
 

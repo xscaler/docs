@@ -24,6 +24,25 @@ yarn build
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
+### Public documentation boundary
+
+`docs/superpowers/` contains internal implementation sources. Docusaurus excludes
+that directory during content discovery, so it must not produce public routes,
+bundles or sitemap entries. Do not move internal plans into the customer docs
+corpus or rely on removing sidebar links to make them private.
+
+The public `/search` utility remains crawlable with `noindex, follow` and is
+excluded from the sitemap. `static/robots.txt` advertises the canonical docs
+sitemap. Signal-specific documentation keeps separate canonical URLs, with
+distinct titles and descriptions and short sidebar labels.
+
+`npm run build` checks structured data and public indexability after rendering.
+Run `npm run test:indexability` for the publishing-boundary regression cases.
+Before deployment, serve the build and verify that internal routes return real
+404s, `/search` remains available with noindex, and customer documentation remains
+indexable. After deployment, submit the cleaned sitemap to the existing
+`sc-domain:xscalerlabs.com` Search Console property and monitor recrawls.
+
 ## Deployment
 
 Using SSH:

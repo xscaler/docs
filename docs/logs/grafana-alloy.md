@@ -1,11 +1,12 @@
 ---
 id: grafana-alloy
-title: Grafana Alloy
+title: Send logs with Grafana Alloy
+description: Configure Grafana Alloy to collect file and Docker logs and forward them to xScaler with tenant credentials, then troubleshoot log delivery.
 sidebar_label: Grafana Alloy
 slug: /logs/grafana-alloy
 ---
 
-# Grafana Alloy
+# Send logs with Grafana Alloy
 
 Send logs to xScaler using [Grafana Alloy](https://grafana.com/docs/alloy/). Tail files, collect from Docker containers, or receive OTLP log data and forward everything over the native push protocol.
 

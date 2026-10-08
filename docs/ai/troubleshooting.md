@@ -1,11 +1,12 @@
 ---
 id: ai-troubleshooting
-title: Troubleshooting
+title: Troubleshoot AI client connections and tools
+description: Resolve xScaler AI client authentication, MCP discovery, capability and query-limit issues, and understand empty or incomplete tool responses.
 sidebar_label: Troubleshooting
 slug: /ai/troubleshooting
 ---
 
-# Troubleshooting
+# Troubleshoot AI client connections and tools
 
 What each symptom means, and what to do about it.
 

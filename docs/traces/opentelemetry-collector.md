@@ -1,11 +1,12 @@
 ---
 id: opentelemetry-collector
-title: OpenTelemetry Collector
+title: Send traces with the OpenTelemetry Collector
+description: Forward application traces to xScaler with the OpenTelemetry Collector over OTLP/HTTP, verify spans in the portal and configure all three telemetry signals.
 sidebar_label: OpenTelemetry Collector
 slug: /traces/opentelemetry-collector
 ---
 
-# OpenTelemetry Collector
+# Send traces with the OpenTelemetry Collector
 
 Forward traces to xScaler using the [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/) over OTLP/HTTP. The collector can receive traces from any OTLP-compatible source and forward them with the correct credentials.
 
