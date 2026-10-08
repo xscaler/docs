@@ -1,11 +1,12 @@
 ---
 id: otel-sdk-python
-title: Python OTel SDK
+title: Send metrics with the OpenTelemetry Python SDK
+description: Instrument Python counters and histograms and export metrics to xScaler over OTLP/HTTP with the OpenTelemetry SDK and environment-based credentials.
 sidebar_label: Python OTel SDK
 slug: /ingest/otel-sdk-python
 ---
 
-# Python OTel SDK
+# Send metrics with the OpenTelemetry Python SDK
 
 Instrument your Python application to push metrics directly to xScaler using the OpenTelemetry Python SDK over OTLP/HTTP.
 

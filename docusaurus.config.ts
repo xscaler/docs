@@ -81,8 +81,20 @@ const config: Config = {
           sidebarPath: './sidebars.ts',
           routeBasePath: '/',
           docItemComponent: '@theme/ApiItem',
+          // Keep Docusaurus's default exclusions and omit internal source at
+          // content discovery, before routes, bundles or sitemaps are created.
+          exclude: [
+            '**/_*.{js,jsx,ts,tsx,md,mdx}',
+            '**/_*/**',
+            '**/*.test.{js,jsx,ts,tsx}',
+            '**/__tests__/**',
+            '**/superpowers/**',
+          ],
         },
         blog: false,
+        sitemap: {
+          ignorePatterns: ['/search', '/search/**', '/superpowers', '/superpowers/**'],
+        },
         theme: {
           customCss: './src/css/custom.css',
         },

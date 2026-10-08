@@ -1,10 +1,11 @@
 ---
 id: security
-title: Security
+title: Platform security and data protection
+description: Learn how xScaler protects platform access and tenant data with encryption, scoped tokens and isolation, and how to report a vulnerability.
 sidebar_label: Security
 ---
 
-# Security
+# Platform security and data protection
 
 *Last updated: May 2, 2026*
 

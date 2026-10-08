@@ -1,11 +1,12 @@
 ---
 id: otel-sdk-python
-title: Python OTel SDK
+title: Send logs with the OpenTelemetry Python SDK
+description: Bridge Python standard logging to the OpenTelemetry SDK and send logs to xScaler over OTLP/HTTP with tenant authentication and batched export.
 sidebar_label: Python OTel SDK
 slug: /logs/otel-sdk-python
 ---
 
-# Python OTel SDK
+# Send logs with the OpenTelemetry Python SDK
 
 Send logs directly from a Python application to xScaler using the OpenTelemetry Python SDK over OTLP/HTTP.
 

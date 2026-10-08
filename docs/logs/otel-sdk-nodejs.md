@@ -1,11 +1,12 @@
 ---
 id: otel-sdk-nodejs
-title: Node.js OTel SDK
+title: Send logs with the OpenTelemetry Node.js SDK
+description: Export Node.js application logs to xScaler over OTLP/HTTP with the OpenTelemetry SDK, including Winston and Pino logging integrations.
 sidebar_label: Node.js OTel SDK
 slug: /logs/otel-sdk-nodejs
 ---
 
-# Node.js OTel SDK
+# Send logs with the OpenTelemetry Node.js SDK
 
 Send logs directly from a Node.js application to xScaler using the OpenTelemetry JS SDK over OTLP/HTTP.
 

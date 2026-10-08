@@ -1,11 +1,12 @@
 ---
 id: otel-sdk-nodejs
-title: Node.js OTel SDK
+title: Send metrics with the OpenTelemetry Node.js SDK
+description: Instrument Node.js counters and histograms and export metrics to xScaler over OTLP/HTTP with the OpenTelemetry SDK and tenant authentication.
 sidebar_label: Node.js OTel SDK
 slug: /ingest/otel-sdk-nodejs
 ---
 
-# Node.js OTel SDK
+# Send metrics with the OpenTelemetry Node.js SDK
 
 Instrument a Node.js application to push metrics directly to xScaler using the OpenTelemetry JavaScript SDK over OTLP/HTTP.
 

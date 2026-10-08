@@ -1,11 +1,12 @@
 ---
 id: troubleshooting
-title: Troubleshooting
+title: Troubleshoot metrics ingestion and queries
+description: Diagnose xScaler authentication errors, ingestion limits, missing metrics and query failures with checks for credentials, tenant headers and remote_write.
 sidebar_label: Troubleshooting
 slug: /troubleshooting
 ---
 
-# Troubleshooting
+# Troubleshoot metrics ingestion and queries
 
 Organised by symptom. If yours is not here, contact [support](https://xscalerlabs.com/support).
 

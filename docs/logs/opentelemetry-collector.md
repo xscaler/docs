@@ -1,11 +1,12 @@
 ---
 id: opentelemetry-collector
-title: OpenTelemetry Collector
+title: Send logs with the OpenTelemetry Collector
+description: Configure the OpenTelemetry Collector to receive application logs and forward them to xScaler over OTLP/HTTP with the correct tenant credentials.
 sidebar_label: OpenTelemetry Collector
 slug: /logs/opentelemetry-collector
 ---
 
-# OpenTelemetry Collector
+# Send logs with the OpenTelemetry Collector
 
 Forward logs to xScaler using the [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/) over OTLP/HTTP. The collector can receive logs from any OTLP-compatible source and forward them with the correct credentials.
 

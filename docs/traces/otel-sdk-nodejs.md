@@ -1,11 +1,12 @@
 ---
 id: otel-sdk-nodejs
-title: Node.js OTel SDK
+title: Send traces with the OpenTelemetry Node.js SDK
+description: Send Node.js application traces to xScaler over OTLP/HTTP using OpenTelemetry manual spans or auto-instrumentation, and verify ingestion in the portal.
 sidebar_label: Node.js OTel SDK
 slug: /traces/otel-sdk-nodejs
 ---
 
-# Node.js OTel SDK
+# Send traces with the OpenTelemetry Node.js SDK
 
 Instrument a Node.js application to send traces directly to xScaler using the OpenTelemetry JS SDK over OTLP/HTTP.
 

@@ -1,11 +1,12 @@
 ---
 id: grafana-alloy
-title: Grafana Alloy
+title: Send traces with Grafana Alloy
+description: Receive application traces with Grafana Alloy and forward them to xScaler over OTLP/HTTP, including a configuration for metrics, logs and traces together.
 sidebar_label: Grafana Alloy
 slug: /traces/grafana-alloy
 ---
 
-# Grafana Alloy
+# Send traces with Grafana Alloy
 
 Send traces to xScaler using [Grafana Alloy](https://grafana.com/docs/alloy/). Alloy can receive OTLP traces from your applications and forward them to xScaler over OTLP/HTTP.
 

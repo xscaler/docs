@@ -1,11 +1,12 @@
 ---
 id: grafana-alloy
-title: Grafana Alloy
+title: Send metrics with Grafana Alloy
+description: Configure Grafana Alloy to scrape Prometheus metrics and send them to xScaler with remote_write, tenant credentials and environment variables.
 sidebar_label: Grafana Alloy
 slug: /ingest/grafana-alloy
 ---
 
-# Grafana Alloy
+# Send metrics with Grafana Alloy
 
 [Grafana Alloy](https://grafana.com/docs/alloy/) is a vendor-neutral telemetry collector that uses the **River** configuration language. It can scrape Prometheus exporters, receive OTLP data, and forward everything to xScaler over `remote_write`.
 
