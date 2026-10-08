@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkxscaler_labs_docs=self.webpackChunkxscaler_labs_docs||[]).push([["5847"],{69277(s,e,n){n.r(e),n.d(e,{default:()=>l});var a=n(74848);n(96540);var r=n(53572),c=n(67364);function l(s){return(0,a.jsxs)(a.Fragment,{children:[(0,a.jsx)(c.A,{...s}),(0,a.jsx)(r.A,{children:(0,a.jsx)("meta",{name:"robots",content:"noindex, follow"})})]})}}}]);
