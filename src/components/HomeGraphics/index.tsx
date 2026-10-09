@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './styles.module.css';
 
 /* ─── Signal sparks ───────────────────────────────────────────────── */
@@ -102,6 +103,7 @@ export function IconChat(): ReactNode {
 
 /** A coding agent calling MCP tools, which resolve against the tenant. */
 export function McpGraphic(): ReactNode {
+  const logoUrl = useBaseUrl('/img/logo.svg');
   return (
     <svg
       className={styles.aiGraphic}
@@ -138,7 +140,7 @@ export function McpGraphic(): ReactNode {
 
       <path d="M292 27h34l14 39-14 39h-34" className={styles.aiBrace} />
       <circle cx="392" cy="66" r="26" className={styles.aiPanel} />
-      <path d="M380 74 388 58l4.6 9.2 3.2-5.2L404 74" className={styles.aiCoreGlyph} />
+      <image href={logoUrl} x="375" y="49" width="34" height="34" aria-hidden="true" />
     </svg>
   );
 }

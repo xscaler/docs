@@ -9,6 +9,14 @@
   flex-shrink: 0;
 }
 
+.pillLabel,
+.agentLabel,
+.coreLabel,
+.destTitle,
+.destTitleFaint {
+  font-family: var(--ifm-heading-font-family);
+}
+
 /* ── Motion: one coherent system ─────────────────────────────────── */
 
 .flow {
@@ -210,19 +218,11 @@
   stroke-width: 1.8;
 }
 
-.coreGlyph {
-  fill: none;
-  stroke: var(--ifm-color-primary);
-  stroke-width: 2.1;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
 .coreLabel {
   fill: var(--xs-text-faint);
   font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 1.5px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 /* ── Destinations ───────────────────────────────────────────────── */

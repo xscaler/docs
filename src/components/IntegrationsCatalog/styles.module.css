@@ -12,16 +12,20 @@
 .search {
   width: 100%;
   padding: 0.7rem 1rem;
-  border-radius: 8px;
-  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: var(--xs-radius-control);
+  border: 1px solid var(--xs-control-border);
   background: var(--ifm-background-surface-color);
   color: var(--ifm-font-color-base);
+  font-family: var(--ifm-font-family-base);
   font-size: 1rem;
   transition: border-color 0.15s;
 }
 
-.search:focus {
-  outline: none;
+.search:focus-visible,
+.categoryBtn:focus-visible,
+.card:focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
   border-color: var(--ifm-color-primary);
 }
 
@@ -33,10 +37,11 @@
 
 .categoryBtn {
   padding: 0.3rem 0.85rem;
-  border-radius: 9999px;
-  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: var(--xs-radius-control);
+  border: 1px solid var(--xs-control-border);
   background: transparent;
   color: var(--ifm-font-color-base);
+  font-family: var(--ifm-font-family-base);
   font-size: 0.8rem;
   cursor: pointer;
   transition: all 0.15s;
@@ -49,9 +54,13 @@
 }
 
 .categoryBtn.active {
-  background: var(--ifm-color-primary);
-  border-color: var(--ifm-color-primary);
-  color: #fff;
+  background: var(--xs-action-bg);
+  border-color: var(--xs-control-border);
+  color: var(--xs-action-ink);
+}
+
+.categoryBtn.active:hover {
+  background: var(--xs-action-hover);
 }
 
 .count {
@@ -72,7 +81,7 @@
   flex-direction: column;
   align-items: center;
   padding: 1.25rem 1rem 1rem;
-  border-radius: 12px;
+  border-radius: var(--xs-radius-panel);
   border: 1px solid var(--ifm-color-emphasis-200);
   background: var(--ifm-card-background-color, var(--ifm-background-surface-color));
   text-decoration: none !important;
@@ -118,6 +127,7 @@
 
 /* Name */
 .name {
+  font-family: var(--ifm-heading-font-family);
   font-size: 0.85rem;
   font-weight: 600;
   text-align: center;
@@ -125,27 +135,28 @@
   color: var(--ifm-font-color-base);
 }
 
-/* Monitor button */
+/* Non-interactive action label inside the card link. */
 .monitorBtn {
   display: inline-block;
   padding: 0.35rem 1.1rem;
-  border-radius: 6px;
-  background: #1a73e8;
-  color: #fff !important;
+  border-radius: var(--xs-radius-control);
+  background: var(--xs-action-bg);
+  color: var(--xs-action-ink);
   font-size: 0.8rem;
   font-weight: 600;
   margin-top: auto;
   transition: background 0.15s;
 }
 
-.card:hover .monitorBtn {
-  background: #1557b0;
+.card:hover .monitorBtn,
+.card:focus-visible .monitorBtn {
+  background: var(--xs-action-hover);
 }
 
 /* Empty state */
 .empty {
   text-align: center;
   padding: 3rem 1rem;
-  color: var(--ifm-color-emphasis-500);
+  color: var(--ifm-color-content-secondary);
   font-size: 0.95rem;
 }

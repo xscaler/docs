@@ -5,7 +5,7 @@ import type * as OpenApiPlugin from 'docusaurus-plugin-openapi-docs';
 
 const config: Config = {
   title: 'xScaler Labs Docs',
-  tagline: 'Managed Metrics Backend — Prometheus-compatible, built for scale',
+  tagline: 'Observability across applications, infrastructure and AI',
   favicon: 'img/favicon.svg',
 
   future: {
@@ -116,7 +116,7 @@ const config: Config = {
     colorMode: {
       defaultMode: 'dark',
       disableSwitch: false,
-      respectPrefersColorScheme: true,
+      respectPrefersColorScheme: false,
     },
     navbar: {
       title: 'xScaler Labs',
@@ -192,10 +192,11 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} xScaler Ltd. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} xScaler Ltd.`,
     },
     prism: {
-      theme: prismThemes.github,
+      // Code wells stay dark in both reading modes.
+      theme: prismThemes.vsDark,
       darkTheme: prismThemes.vsDark,
       additionalLanguages: ['bash', 'yaml', 'python', 'go', 'promql'],
     },

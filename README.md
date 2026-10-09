@@ -8,6 +8,34 @@ The xScaler logo links to `https://xscalerlabs.com` in the same tab, including
 the mobile navigation menu. Configure this through `themeConfig.navbar.logo`
 in `docusaurus.config.ts`; documentation links remain on the docs site.
 
+## Brand theme
+
+`src/css/custom.css` maps the marketing site's neutral palette to Docusaurus,
+DocSearch and the OpenAPI explorer. Use its shared `--xs-*` and `--ifm-*` roles
+in component styles rather than introducing independent colours.
+
+- Default to charcoal (`#171717`) regardless of OS preference. Keep the explicit
+  light-mode switch and Docusaurus's persisted reader preference.
+- Use Plus Jakarta Sans for headings/wordmarks, IBM Plex Sans for prose and
+  controls, and IBM Plex Mono for code.
+- Keep action fill/hover/ink separate from text-link colour. Orange actions use
+  dark ink, and both reading modes need accessible text and control contrast.
+- Code wells stay dark in both modes, paired with the dark Prism palette.
+  OpenAPI forms follow the reading mode; they are not code surfaces.
+- Mobile drawers are opaque. Wide article tables and code scroll within their
+  containers rather than widening the document.
+- Preserve semantic status/syntax colours and third-party integration logos.
+
+The favicon and social card are standalone SVG assets. Social-card lettering is
+outlined from SIL OFL-licensed Plus Jakarta Sans and IBM Plex Sans, so rendering
+does not depend on installed fonts or network access. Font sources and visible
+text are recorded in the SVG metadata; regenerate outlines when changing copy.
+
+Before release, serve a production build and inspect the homepage, article,
+catalogue and API explorer on desktop/mobile in both modes. Exercise theme
+persistence, keyboard focus, search results/empty/network-failure states, code
+copying and horizontal scrolling. Check the built standalone assets as well.
+
 ## Installation
 
 ```bash
