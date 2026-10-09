@@ -2,6 +2,12 @@
 
 This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
 
+## Navigation
+
+The xScaler logo links to `https://xscalerlabs.com` in the same tab, including
+the mobile navigation menu. Configure this through `themeConfig.navbar.logo`
+in `docusaurus.config.ts`; documentation links remain on the docs site.
+
 ## Installation
 
 ```bash
