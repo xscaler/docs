@@ -123,6 +123,8 @@ const config: Config = {
       logo: {
         alt: 'xScaler Labs Logo',
         src: 'img/logo.svg',
+        href: 'https://xscalerlabs.com',
+        target: '_self',
       },
       items: [
         {
