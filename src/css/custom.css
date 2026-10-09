@@ -1,10 +1,10 @@
 /**
  * xScaler Labs Docs — Custom Theme
- * Fonts: Source Sans 3 (body/headings) + IBM Plex Mono (code)
+ * Fonts: IBM Plex Sans (body), Plus Jakarta Sans (headings), IBM Plex Mono (code)
  * Brand accent: #FF4F00
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&display=swap');
 
 /* ─── Global ──────────────────────────────────────────────────── */
 
@@ -28,16 +28,17 @@ html {
 
 :root {
   /* Accent scale */
-  --ifm-color-primary:          #e64700;
-  --ifm-color-primary-dark:     #cc3e00;
-  --ifm-color-primary-darker:   #b33600;
-  --ifm-color-primary-darkest:  #992f00;
-  --ifm-color-primary-light:    #ff6219;
-  --ifm-color-primary-lighter:  #ff7a3d;
-  --ifm-color-primary-lightest: #ff9966;
+  --ifm-color-primary:          #b63800;
+  --ifm-color-primary-dark:     #a33200;
+  --ifm-color-primary-darker:   #942e00;
+  --ifm-color-primary-darkest:  #7a2600;
+  --ifm-color-primary-light:    #bd3b00;
+  --ifm-color-primary-lighter:  #c23e00;
+  --ifm-color-primary-lightest: #c64000;
 
   /* Typography */
-  --ifm-font-family-base:       'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --ifm-font-family-base:       'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --ifm-heading-font-family:    'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --ifm-font-family-monospace:  'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
   --ifm-font-size-base:         17px;
   --ifm-line-height-base:       1.75;
@@ -50,19 +51,31 @@ html {
   --ifm-h4-font-size:           1rem;
   --ifm-heading-font-weight:    600;
   --ifm-heading-line-height:    1.2;
-  --ifm-heading-color:          #111113;
+  --ifm-heading-color:          #171717;
 
   /* Colors */
   --ifm-background-color:           #ffffff;
-  --ifm-background-surface-color:   #fbfbfa;
-  --ifm-color-content:              #2b2b2e;
-  --ifm-color-content-secondary:    #5c5c63;
+  --ifm-background-surface-color:   #fafafa;
+  --ifm-card-background-color:      var(--ifm-background-surface-color);
+  --ifm-color-content:              #242424;
+  --ifm-color-content-secondary:    #525252;
+  --ifm-font-color-base:            var(--ifm-color-content);
+  --ifm-font-color-secondary:       var(--ifm-color-content-secondary);
 
   /* Custom tokens */
-  --xs-surface-2:               #f4f4f3;
+  --xs-surface-2:               #f4f4f4;
   --xs-border:                  rgba(17, 17, 17, 0.09);
   --xs-border-strong:           rgba(17, 17, 17, 0.14);
-  --xs-text-faint:              #9a9aa1;
+  --xs-control-border:          #737373;
+  --xs-text-faint:              #626262;
+  --xs-action-bg:               #ff4f00;
+  --xs-action-hover:            #ff6b2b;
+  --xs-action-ink:              #171717;
+  --xs-radius-panel:            10px;
+  --xs-radius-control:          6px;
+  --xs-code-bg:                 #0e0e0e;
+  --xs-code-bar:                #151515;
+  --xs-code-text:               #e7e7e7;
   --xs-accent-soft:             rgba(255, 79, 0, 0.07);
   --xs-accent-line:             rgba(255, 79, 0, 0.32);
   --xs-inline-bg:               rgba(255, 79, 0, 0.06);
@@ -78,45 +91,55 @@ html {
   --ifm-navbar-height:          57px;
   --ifm-navbar-background-color: rgba(255, 255, 255, 0.82);
   --ifm-navbar-shadow:          0 1px 0 rgba(17, 17, 17, 0.09);
-  --ifm-navbar-link-color:      #5c5c63;
-  --ifm-navbar-link-hover-color: #111113;
+  --ifm-navbar-link-color:      var(--ifm-color-content-secondary);
+  --ifm-navbar-link-hover-color: var(--ifm-heading-color);
 
   /* Sidebar */
   --doc-sidebar-width:          296px;
-  --ifm-menu-color:             #5c5c63;
-  --ifm-menu-color-active:      #e64700;
+  --ifm-menu-color:             var(--ifm-color-content-secondary);
+  --ifm-menu-color-active:      var(--ifm-color-primary);
   --ifm-menu-color-background-active: rgba(255, 79, 0, 0.07);
   --ifm-menu-color-background-hover:  rgba(17, 17, 17, 0.045);
 
   /* TOC */
   --ifm-toc-border-color:       rgba(17, 17, 17, 0.09);
-  --ifm-toc-link-color:         #5c5c63;
+  --ifm-toc-link-color:         var(--ifm-color-content-secondary);
 
   /* Code */
   --docusaurus-highlighted-code-line-bg: rgba(255, 79, 0, 0.08);
+  --ifm-pre-background:        var(--xs-code-bg);
+  --ifm-pre-color:             var(--xs-code-text);
+  --ifm-pre-border-radius:     var(--xs-radius-panel);
 
   /* Footer — match the page body background */
   --ifm-footer-background-color: var(--ifm-background-color);
-  --ifm-footer-color:           #5c5c63;
-  --ifm-footer-link-color:      #5c5c63;
+  --ifm-footer-color:           var(--ifm-color-content-secondary);
+  --ifm-footer-link-color:      var(--ifm-color-content-secondary);
   --ifm-footer-link-hover-color: var(--ifm-color-primary);
-  --ifm-footer-title-color:     #111113;
+  --ifm-footer-title-color:     var(--ifm-heading-color);
 
   /* Link */
-  --ifm-link-color:             #e64700;
-  --ifm-link-hover-color:       #cc3e00;
+  --ifm-link-color:             var(--ifm-color-primary);
+  --ifm-link-hover-color:       var(--ifm-color-primary-dark);
 
   /* Borders */
-  --ifm-color-emphasis-200:     rgba(17, 17, 17, 0.07);
-  --ifm-color-emphasis-300:     rgba(17, 17, 17, 0.09);
-  --ifm-color-emphasis-400:     rgba(17, 17, 17, 0.14);
+  --ifm-color-emphasis-100:     #f4f4f4;
+  --ifm-color-emphasis-200:     #e5e5e5;
+  --ifm-color-emphasis-300:     #d5d5d5;
+  --ifm-color-emphasis-400:     #aaaaaa;
+  --ifm-color-emphasis-500:     #737373;
+  --ifm-color-emphasis-600:     #626262;
+  --ifm-color-emphasis-700:     #525252;
+  --ifm-color-emphasis-800:     #383838;
+  --ifm-color-emphasis-900:     #242424;
 
   /* Table */
   --ifm-table-border-color:     rgba(17, 17, 17, 0.09);
   --ifm-table-stripe-background: rgba(17, 17, 17, 0.025);
 
   /* Card */
-  --ifm-card-border-radius:     11px;
+  --ifm-card-border-radius:     var(--xs-radius-panel);
+  --ifm-global-radius:          var(--xs-radius-control);
 
   /* Home-page graphics.
    * s1/s2 are the validated two-series data palette (validate_palette.js
@@ -142,17 +165,18 @@ html {
   --ifm-color-primary-lightest: #ffb38a;
 
   /* Colors */
-  --ifm-background-color:           #0c0c0d;
-  --ifm-background-surface-color:   #141416;
-  --ifm-color-content:              #e7e7e4;
-  --ifm-color-content-secondary:    #9c9c98;
+  --ifm-background-color:           #171717;
+  --ifm-background-surface-color:   #1d1d1d;
+  --ifm-color-content:              #ffffff;
+  --ifm-color-content-secondary:    #c5c5c5;
   --ifm-heading-color:              #ffffff;
 
   /* Custom tokens */
-  --xs-surface-2:               #1a1a1d;
+  --xs-surface-2:               #141414;
   --xs-border:                  rgba(255, 255, 255, 0.085);
   --xs-border-strong:           rgba(255, 255, 255, 0.15);
-  --xs-text-faint:              #6a6a67;
+  --xs-control-border:          #737373;
+  --xs-text-faint:              #8a8a8a;
   --xs-accent-soft:             rgba(255, 107, 43, 0.13);
   --xs-accent-line:             rgba(255, 107, 43, 0.4);
   --xs-inline-bg:               rgba(255, 255, 255, 0.06);
@@ -165,28 +189,28 @@ html {
   --xs-warn-text:               #fcd34d;
 
   /* Navbar */
-  --ifm-navbar-background-color: rgba(14, 14, 16, 0.78);
+  --ifm-navbar-background-color: rgba(23, 23, 23, 0.88);
   --ifm-navbar-shadow:          0 1px 0 rgba(255, 255, 255, 0.085);
-  --ifm-navbar-link-color:      #9c9c98;
+  --ifm-navbar-link-color:      var(--ifm-color-content-secondary);
   --ifm-navbar-link-hover-color: #ffffff;
 
   /* Sidebar */
-  --ifm-menu-color:             #9c9c98;
+  --ifm-menu-color:             var(--ifm-color-content-secondary);
   --ifm-menu-color-active:      #ff6b2b;
   --ifm-menu-color-background-active: rgba(255, 107, 43, 0.13);
   --ifm-menu-color-background-hover:  rgba(255, 255, 255, 0.05);
 
   /* TOC */
   --ifm-toc-border-color:       rgba(255, 255, 255, 0.085);
-  --ifm-toc-link-color:         #9c9c98;
+  --ifm-toc-link-color:         var(--ifm-color-content-secondary);
 
   /* Code */
   --docusaurus-highlighted-code-line-bg: rgba(255, 107, 43, 0.15);
 
   /* Footer — match the page body background */
   --ifm-footer-background-color: var(--ifm-background-color);
-  --ifm-footer-color:           #9c9c98;
-  --ifm-footer-link-color:      #9c9c98;
+  --ifm-footer-color:           var(--ifm-color-content-secondary);
+  --ifm-footer-link-color:      var(--ifm-color-content-secondary);
   --ifm-footer-link-hover-color: var(--ifm-color-primary);
   --ifm-footer-title-color:     #ffffff;
 
@@ -195,9 +219,15 @@ html {
   --ifm-link-hover-color:       #ff8047;
 
   /* Borders */
-  --ifm-color-emphasis-200:     rgba(255, 255, 255, 0.06);
-  --ifm-color-emphasis-300:     rgba(255, 255, 255, 0.085);
-  --ifm-color-emphasis-400:     rgba(255, 255, 255, 0.15);
+  --ifm-color-emphasis-100:     #141414;
+  --ifm-color-emphasis-200:     #292929;
+  --ifm-color-emphasis-300:     #383838;
+  --ifm-color-emphasis-400:     #737373;
+  --ifm-color-emphasis-500:     #8a8a8a;
+  --ifm-color-emphasis-600:     #9c9c9c;
+  --ifm-color-emphasis-700:     #c5c5c5;
+  --ifm-color-emphasis-800:     #e7e7e7;
+  --ifm-color-emphasis-900:     #ffffff;
 
   /* Table */
   --ifm-table-border-color:     rgba(255, 255, 255, 0.085);
@@ -218,10 +248,36 @@ html {
   -webkit-backdrop-filter: saturate(160%) blur(12px);
 }
 
+/* The drawer is opaque even when the desktop navbar is translucent. */
+.navbar-sidebar,
+.navbar-sidebar__brand,
+.navbar-sidebar__items,
+.navbar-sidebar__item {
+  background: var(--ifm-background-surface-color);
+}
+
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 3px;
+}
+
+.button--primary:not(.button--outline) {
+  --ifm-button-background-color: var(--xs-action-bg);
+  --ifm-button-border-color: var(--xs-action-ink);
+  color: var(--xs-action-ink);
+}
+
+.button--primary:not(.button--outline):hover {
+  --ifm-button-background-color: var(--xs-action-hover);
+  --ifm-button-border-color: var(--xs-action-ink);
+  color: var(--xs-action-ink);
+}
+
 .navbar__title {
-  font-weight: 600;
-  font-size: 15.5px;
-  letter-spacing: -0.01em;
+  font-family: var(--ifm-heading-font-family);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.025em;
   color: var(--ifm-heading-color);
   white-space: nowrap;
 }
@@ -234,7 +290,7 @@ html {
 .navbar__link {
   font-size: 14.5px;
   font-weight: 500;
-  border-radius: 7px;
+  border-radius: var(--xs-radius-control);
   transition: color 0.15s, background 0.15s;
 }
 
@@ -294,7 +350,7 @@ html {
 
 .menu__list-item-collapsible .menu__caret {
   color: var(--xs-text-faint);
-  border-radius: 6px;
+  border-radius: var(--xs-radius-control);
   background: transparent !important;
 }
 
@@ -309,7 +365,7 @@ html {
 /* Sidebar links */
 .menu__link {
   font-size: 14.5px;
-  border-radius: 7px;
+  border-radius: var(--xs-radius-control);
   transition: color 0.15s, background 0.15s;
 }
 
@@ -415,7 +471,7 @@ h3 {
 
 /* ─── Inline code ─────────────────────────────────────────────── */
 
-.markdown code:not([class*='codeBlock']):not([class*='prism']) {
+.markdown :not(pre) > code:not([class*='codeBlock']):not([class*='prism']) {
   font-family: var(--ifm-font-family-monospace);
   font-size: 0.85em;
   background: var(--xs-inline-bg);
@@ -435,21 +491,21 @@ h3 {
  * code-block chrome from double-bordering the box or breaking gutter alignment. */
 .theme-code-block:not(.openapi-explorer__code-block-container) {
   border: 1px solid var(--xs-border-strong);
-  border-radius: 11px;
+  border-radius: var(--xs-radius-panel);
   overflow: hidden;
   margin-bottom: 24px;
 }
 
 div[class*='codeBlockContainer'] {
-  background: #0d0f12 !important;
-  border-radius: 11px;
+  background: var(--xs-code-bg) !important;
+  border-radius: var(--xs-radius-panel);
   overflow: hidden;
 }
 
 div[class*='codeBlockTitle'] {
-  background: #15171b !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07) !important;
-  color: #8b949e !important;
+  background: var(--xs-code-bar) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #c5c5c5 !important;
   font-family: var(--ifm-font-family-monospace);
   font-size: 12px;
   font-weight: 500;
@@ -458,11 +514,12 @@ div[class*='codeBlockTitle'] {
 }
 
 div[class*='codeBlockContent'] {
-  background: #0d0f12 !important;
+  background: var(--xs-code-bg) !important;
 }
 
 .prism-code:not(.openapi-explorer__code-block) {
-  background: #0d0f12 !important;
+  background: var(--xs-code-bg) !important;
+  color: var(--xs-code-text);
   font-family: var(--ifm-font-family-monospace);
   font-size: 13.5px !important;
   line-height: 1.75 !important;
@@ -470,26 +527,26 @@ div[class*='codeBlockContent'] {
   border-radius: 0 !important;
 }
 
-button[class*='copyButton'] {
-  color: #8b949e;
+/* Keep copy controls discoverable with a pointer, touch or keyboard. */
+.theme-code-block div[class*='buttonGroup'] > button {
+  opacity: 1;
+  color: var(--xs-code-text);
+  background: var(--xs-code-bar);
+  border: 1px solid var(--xs-control-border);
+  border-radius: var(--xs-radius-control);
 }
 
-button[class*='copyButton']:hover {
-  color: #e7e7e4;
-  background: rgba(255, 255, 255, 0.08);
+.theme-code-block div[class*='buttonGroup'] > button:hover {
+  color: #ffffff;
+  background: #292929;
 }
 
-/* Code block language label row */
-div[class*='buttonGroup'] {
-  background: #15171b;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-}
 
 /* ─── Tables ──────────────────────────────────────────────────── */
 
 .markdown table {
   border: 1px solid var(--xs-border);
-  border-radius: 10px;
+  border-radius: var(--xs-radius-panel);
   border-collapse: separate;
   border-spacing: 0;
   overflow: hidden;
@@ -497,6 +554,14 @@ div[class*='buttonGroup'] {
   margin-bottom: 18px;
   display: table;
   width: 100%;
+}
+
+@media (max-width: 996px) {
+  .markdown table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
 }
 
 .markdown table thead tr {
@@ -525,7 +590,7 @@ div[class*='buttonGroup'] {
 /* ─── Admonitions ─────────────────────────────────────────────── */
 
 .admonition {
-  border-radius: 9px;
+  border-radius: var(--xs-radius-panel);
   border-left-width: 3px;
   padding: 15px 18px;
   margin-bottom: 24px;
@@ -677,7 +742,7 @@ article.docItemCol {
 
 .pagination-nav__link {
   border: 1px solid var(--xs-border);
-  border-radius: 11px;
+  border-radius: var(--xs-radius-panel);
   transition: border-color 0.15s, background 0.15s;
 }
 
@@ -713,36 +778,367 @@ article.docItemCol {
   border-top: 1px solid var(--xs-border);
 }
 
-[data-theme='dark'] .footer {
-  border-top: 1px solid rgba(255, 79, 0, 0.2);
-}
-
 /* ─── Mermaid diagrams ────────────────────────────────────────── */
 
 .docusaurus-mermaid-container {
   background: var(--ifm-background-surface-color);
   border: 1px solid var(--xs-border);
-  border-radius: 12px;
+  border-radius: var(--xs-radius-panel);
   padding: 24px;
   margin-bottom: 22px;
   overflow-x: auto;
 }
 
-/* ─── Search bar ──────────────────────────────────────────────── */
 
-/* Search sits in the right-hand navbar group, just before the Portal link. */
-.navbar__search-input {
-  font-family: var(--ifm-font-family-base);
-  font-size: 13.5px;
-  background: var(--xs-surface-2);
-  border: 1px solid var(--xs-border);
-  color: var(--ifm-color-content-secondary);
-  border-radius: 8px;
-  min-width: 200px;
+/* ─── Native DocSearch ────────────────────────────────────────── */
+
+/* DocSearch 4 uses these roles for its trigger, dialog and every result state.
+ * Match the vendor's html[data-theme] specificity so dark defaults cannot win. */
+html:root,
+html[data-theme] {
+  --docsearch-primary-color: var(--ifm-color-primary);
+  --docsearch-soft-primary-color: var(--xs-accent-soft);
+  --docsearch-subtle-color: var(--xs-border-strong);
+  --docsearch-text-color: var(--ifm-color-content);
+  --docsearch-secondary-text-color: var(--ifm-color-content-secondary);
+  --docsearch-background-color: var(--xs-surface-2);
+  --docsearch-focus-color: var(--ifm-color-primary);
+  --docsearch-highlight-color: var(--ifm-color-primary);
+  --docsearch-muted-color: var(--xs-text-faint);
+  --docsearch-muted-color-darker: var(--xs-border-strong);
+  --docsearch-icon-color: var(--ifm-color-content-secondary);
+  --docsearch-container-background: rgba(0, 0, 0, 0.72);
+  --docsearch-border-radius: var(--xs-radius-control);
+  --docsearch-search-button-background: var(--ifm-background-surface-color);
+  --docsearch-search-button-text-color: var(--ifm-color-content-secondary);
+  --docsearch-modal-background: var(--ifm-background-surface-color);
+  --docsearch-modal-shadow: 0 16px 48px rgba(0, 0, 0, 0.32);
+  --docsearch-searchbox-background: var(--ifm-background-color);
+  --docsearch-searchbox-focus-background: var(--ifm-background-color);
+  --docsearch-hit-color: var(--ifm-color-content);
+  --docsearch-hit-highlight-color: var(--xs-accent-soft);
+  --docsearch-hit-background: var(--xs-surface-2);
+  --docsearch-key-background: var(--xs-surface-2);
+  --docsearch-key-color: var(--ifm-color-content-secondary);
+  --docsearch-key-pressed-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.2);
+  --docsearch-footer-background: var(--xs-surface-2);
+  --docsearch-footer-shadow: none;
+  --docsearch-error-color: #b42318;
 }
 
-[data-theme='dark'] .navbar__search-input {
-  background: #1a1a1d;
+html[data-theme='dark'] {
+  --docsearch-error-color: #ff9a91;
+}
+
+.DocSearch-Button {
+  font-family: var(--ifm-font-family-base);
+  border: 1px solid var(--xs-control-border);
+  border-radius: var(--xs-radius-control);
+}
+
+.DocSearch-Button:hover,
+.DocSearch-Button:focus-visible {
+  background: var(--ifm-background-surface-color);
+  color: var(--ifm-color-content);
+  box-shadow: 0 0 0 2px var(--ifm-color-primary);
+}
+
+.DocSearch-Container {
+  font-family: var(--ifm-font-family-base);
+  color: var(--docsearch-text-color);
+}
+
+.DocSearch-Form {
+  border-bottom-color: var(--xs-control-border);
+}
+
+.DocSearch-Form:focus-within {
+  box-shadow: inset 0 -2px 0 var(--docsearch-focus-color);
+}
+
+.DocSearch-Button-Key,
+.DocSearch-Commands-Key {
+  background: var(--docsearch-key-background);
+  color: var(--docsearch-key-color);
+  border: 1px solid var(--xs-control-border);
+  border-radius: 4px;
+  box-shadow: none;
+}
+
+.DocSearch-Hit[aria-selected='true'] a {
+  box-shadow: inset 3px 0 0 var(--docsearch-highlight-color);
+}
+
+.DocSearch-Hit-path,
+.DocSearch-Help,
+.DocSearch-NoResults-Help,
+.DocSearch-ErrorScreen,
+.DocSearch-NoResults {
+  color: var(--docsearch-secondary-text-color);
+}
+
+.DocSearch-Hit-action-button:hover,
+.DocSearch-Hit-action-button:focus-visible {
+  background: var(--docsearch-background-color);
+}
+
+.DocSearch-Hit-action-button:hover path,
+.DocSearch-Hit-action-button:focus-visible path {
+  fill: currentColor;
+}
+
+.DocSearch-Container :is(button, a, input):focus-visible {
+  outline: 2px solid var(--docsearch-focus-color);
+  outline-offset: 2px;
+}
+
+/* Keep the library's edge-to-edge mobile dialog and viewport sizing intact. */
+@media (min-width: 769px) {
+  .DocSearch-Modal {
+    border-radius: var(--xs-radius-panel);
+  }
+
+  .DocSearch-Form {
+    border-radius: var(--xs-radius-panel) var(--xs-radius-panel) 0 0;
+  }
+
+  .DocSearch-Footer {
+    border-radius: 0 0 var(--xs-radius-panel) var(--xs-radius-panel);
+  }
+}
+
+/* ─── Native OpenAPI explorer ─────────────────────────────────── */
+
+html:root,
+html[data-theme] {
+  --openapi-card-background-color: var(--ifm-background-surface-color) !important;
+  --openapi-card-border-radius: var(--xs-radius-panel);
+  --openapi-input-background: var(--ifm-background-color);
+  --openapi-input-border: var(--ifm-color-primary);
+  --openapi-explorer-border-color: var(--xs-border-strong);
+  --openapi-code-tab-border-color: var(--xs-control-border);
+  --openapi-monaco-border-color: var(--xs-control-border);
+}
+
+/* The plugin also uses pre roles for forms, schema panels and security
+ * summaries. Restore reading surfaces here, then opt actual code wells in. */
+html[data-theme] .theme-api-markdown {
+  --ifm-pre-background: var(--ifm-background-surface-color);
+  --ifm-pre-color: var(--ifm-color-content);
+}
+
+html[data-theme] .openapi__method-endpoint {
+  background: var(--ifm-background-surface-color);
+  color: var(--ifm-color-content);
+}
+
+html[data-theme] .openapi-security__details > pre {
+  color: var(--ifm-color-content);
+}
+
+html[data-theme] .openapi-schema__name {
+  color: var(--ifm-color-content-secondary);
+  opacity: 1;
+}
+
+html[data-theme] .openapi__method-endpoint .badge:not(.badge--primary),
+html[data-theme] .theme-api-markdown .badge--info {
+  color: var(--xs-action-ink);
+}
+
+/* GET uses the primary fill, whose light reading variant is darker. */
+html[data-theme='light'] .openapi__method-endpoint .badge--primary {
+  color: #ffffff;
+}
+
+html[data-theme='dark'] .openapi__method-endpoint .badge--primary {
+  color: var(--xs-action-ink);
+}
+
+html[data-theme] .openapi-explorer__request-form,
+html[data-theme] .openapi-explorer__response-container,
+html[data-theme] .openapi-explorer__server-container,
+html[data-theme] .openapi-security__summary-container {
+  background: var(--ifm-background-surface-color);
+  color: var(--ifm-color-content);
+  border-radius: var(--xs-radius-panel);
+}
+
+html[data-theme] .openapi-explorer__request-form,
+html[data-theme] .openapi-explorer__response-container,
+html[data-theme] .openapi-tabs__code-container:not(.openapi-tabs__code-container-inner),
+html[data-theme] .openapi-explorer__request-form:hover,
+html[data-theme] .openapi-explorer__response-container:hover,
+html[data-theme] .openapi-tabs__code-container:not(.openapi-tabs__code-container-inner):hover {
+  box-shadow: none;
+}
+
+html[data-theme] .openapi-explorer__request-header-container,
+html[data-theme] .openapi-explorer__response-title-container {
+  background: var(--xs-surface-2);
+  color: var(--ifm-color-content);
+}
+
+html[data-theme] .openapi-explorer__expand-details-btn,
+html[data-theme] .openapi-explorer__response-clear-btn {
+  color: var(--ifm-color-content-secondary);
+  border-radius: var(--xs-radius-control);
+}
+
+html[data-theme] .openapi-explorer__request-btn {
+  background: var(--xs-action-bg);
+  color: var(--xs-action-ink);
+  border: 1px solid var(--xs-action-ink);
+  border-radius: var(--xs-radius-control);
+}
+
+html[data-theme] .openapi-explorer__request-btn:hover,
+html[data-theme] .openapi-explorer__request-btn:active {
+  background: var(--xs-action-hover);
+  color: var(--xs-action-ink);
+}
+
+html[data-theme] .openapi-explorer__form-item-input,
+html[data-theme] .openapi-explorer__multi-select-input,
+html[data-theme] .openapi-explorer__select-input {
+  background-color: var(--openapi-input-background);
+  color: var(--ifm-color-content);
+  border: 1px solid var(--xs-control-border);
+  border-radius: var(--xs-radius-control);
+}
+
+html[data-theme] .openapi-explorer__form-item-input::placeholder {
+  color: var(--xs-text-faint);
+  opacity: 1;
+}
+
+html[data-theme] .openapi-explorer__floating-btn button {
+  background: var(--ifm-background-surface-color);
+  color: var(--ifm-color-content);
+  border: 1px solid var(--xs-control-border);
+  border-radius: var(--xs-radius-control);
+  opacity: 1;
+  visibility: visible;
+}
+
+html[data-theme] :is(
+  .openapi-explorer__form-item-input,
+  .openapi-explorer__multi-select-input,
+  .openapi-explorer__select-input
+):focus {
+  border-color: var(--ifm-color-primary);
+  outline: 2px solid var(--ifm-color-primary);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+html[data-theme] :is(
+  .openapi-explorer__form-item-input,
+  .openapi-explorer__multi-select-input
+).error {
+  border-color: var(--openapi-required);
+}
+
+html[data-theme] .openapi-explorer__dropzone {
+  color: var(--ifm-color-content);
+  border-radius: var(--xs-radius-control);
+}
+
+html[data-theme] .openapi-explorer__dropzone:hover {
+  background: var(--xs-accent-soft);
+}
+
+/* Dark wells in both reading modes; only chrome changes, never token colours
+ * or the vendor's sticky table-cell line-number layout. */
+html[data-theme] .openapi-tabs__code-container,
+html[data-theme] .openapi-explorer__code-block-container,
+html[data-theme] .openapi-explorer__playground-container,
+html[data-theme] .openapi-explorer__expand-modal-content {
+  --ifm-pre-background: var(--xs-code-bg);
+  --ifm-pre-color: var(--xs-code-text);
+  --prism-background-color: var(--xs-code-bg);
+  --prism-color: var(--xs-code-text);
+  --ifm-font-color-secondary: #c5c5c5;
+  --ifm-tabs-color: #c5c5c5;
+  --ifm-tabs-color-active: #ff6b2b;
+  --ifm-tabs-color-active-border: #ff6b2b;
+  --bash-background-color: #c5c5c5;
+  --bash-border-radius: 20px;
+  background: var(--xs-code-bg);
+  color: var(--xs-code-text);
+  border-radius: var(--xs-radius-panel);
+  box-shadow: none;
+}
+
+html[data-theme] .openapi-explorer__code-block,
+html[data-theme] .openapi-explorer__playground-editor {
+  --ifm-pre-background: var(--xs-code-bg);
+  background: var(--xs-code-bg) !important;
+  color: var(--xs-code-text) !important;
+}
+
+html[data-theme] .openapi-explorer__playground-container {
+  border: 1px solid var(--xs-control-border);
+}
+
+html[data-theme] .openapi-explorer__code-block-title,
+html[data-theme] .openapi-tabs__code-list-container {
+  background: var(--xs-code-bar);
+  color: #c5c5c5;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+html[data-theme] .openapi-explorer__code-block-code-line-number {
+  color: #9c9c9c;
+}
+
+html[data-theme] .openapi-explorer__code-block-btn-group button,
+html[data-theme] .theme-code-block:hover .openapi-explorer__code-block-btn-group button {
+  background: var(--xs-code-bar);
+  color: var(--xs-code-text);
+  border: 1px solid var(--xs-control-border);
+  border-radius: var(--xs-radius-control);
+  opacity: 1;
+}
+
+html[data-theme] .openapi-tabs__code-container .openapi-tabs__code-item span {
+  color: #c5c5c5;
+}
+
+html[data-theme] .openapi-tabs__code-container .openapi-tabs__code-item {
+  border-radius: var(--xs-radius-control);
+}
+
+html[data-theme] .openapi-tabs__code-item--variant,
+html[data-theme] .openapi-tabs__code-item--sample {
+  color: var(--xs-code-text);
+}
+
+html[data-theme] .openapi-tabs__code-item--variant.active,
+html[data-theme] .openapi-tabs__code-item--sample.active {
+  border-color: var(--xs-control-border);
+}
+
+html[data-theme] .openapi-tabs__response-code-item:not(.active) {
+  opacity: 1;
+}
+
+/* Retain semantic status fills while making their small captions readable. */
+html[data-theme] .openapi-tabs__response-code-item:is(.success, .danger, .info).active {
+  color: var(--xs-action-ink);
+}
+
+html[data-theme] .openapi-tabs__response-code-item:hover:not(.active),
+html[data-theme] .openapi-tabs__mime-item:hover,
+html[data-theme] .openapi-tabs__schema-item:hover {
+  border-color: var(--xs-control-border);
+}
+
+html[data-theme] .openapi-explorer__code-block-container :is(button, [tabindex]):focus-visible,
+html[data-theme] .openapi-tabs__code-container [role='tab']:focus-visible,
+html[data-theme] .openapi-explorer__playground-editor:focus-within {
+  outline: 2px solid #ff6b2b;
+  outline-offset: 2px;
 }
 
 /* On the landing page the hero already has a prominent search box, so hide

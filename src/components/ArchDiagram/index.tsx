@@ -88,7 +88,7 @@ export default function ArchDiagram(): ReactNode {
           className={styles.svg}
           viewBox="0 0 960 580"
           role="group"
-          aria-label="xScaler architecture: instrumented apps send metrics, logs and traces through a collector into the xScaler hosted backend, managed by Fleet Management and queried back out through Grafana, Jaeger, or xScaler Insight."
+          aria-label="xScaler architecture: instrumented apps send metrics, logs and traces through a collector into the xScaler hosted platform, managed by Fleet Management and queried back out through Grafana, Jaeger, or xScaler Insight."
         >
           <defs>
             <marker id="arch-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">

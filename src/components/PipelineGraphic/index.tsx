@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import styles from './styles.module.css';
 
 /**
@@ -12,6 +13,7 @@ import styles from './styles.module.css';
  * drawing follows the site's light and dark tokens.
  */
 export default function PipelineGraphic(): ReactNode {
+  const logoUrl = useBaseUrl('/img/logo.svg');
   return (
     <svg
       className={styles.graphic}
@@ -109,9 +111,9 @@ export default function PipelineGraphic(): ReactNode {
         className={`${styles.haloRing2} ${styles.halo} ${styles.h2}`}
       />
       <circle cx="324" cy="158" r="27" className={styles.core} />
-      <path d="M313 168 320.5 154.5l4.4 8.4 3-4.8L335 168" className={styles.coreGlyph} />
+      <image href={logoUrl} x="307" y="141" width="34" height="34" aria-hidden="true" />
       <text x="324" y="217" className={styles.coreLabel} textAnchor="middle">
-        XSCALER
+        xScaler
       </text>
 
       {/* ── Insights: the emphasised destination ───────────────── */}

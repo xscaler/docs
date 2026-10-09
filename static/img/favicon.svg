@@ -1,9 +1,11 @@
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="favicon-title favicon-description">
+  <title id="favicon-title">xScaler Labs</title>
+  <desc id="favicon-description">Orange orbit and network mark on a charcoal background.</desc>
 
   <!-- Background rounded square -->
-  <rect width="32" height="32" rx="6" fill="#0D0D0D"/>
+  <rect width="32" height="32" rx="6" fill="#171717"/>
 
-  <!-- Scale the xScaler logo mark to fit in 32×32 (original viewBox 100×100, scale 0.26, offset to centre) -->
+  <!-- Scale the simplified xScaler logo mark to fit and centre it in 32×32. -->
   <g transform="translate(1.6, 1.6) scale(0.288)">
 
     <!-- Connector lines (drawn first, behind nodes) -->

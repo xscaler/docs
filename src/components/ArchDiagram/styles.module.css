@@ -6,7 +6,7 @@
   padding: 22px;
   background: var(--ifm-background-surface-color);
   border: 1px solid var(--xs-border);
-  border-radius: 14px;
+  border-radius: var(--xs-radius-panel);
 }
 
 /* Horizontal scroll on narrow viewports so labels stay legible. */
@@ -127,7 +127,7 @@
 
 .nodeBox {
   fill: var(--ifm-background-color);
-  stroke: var(--xs-border-strong);
+  stroke: var(--xs-control-border);
   stroke-width: 1.5;
   transition: stroke 0.15s, fill 0.15s, filter 0.15s;
 }
@@ -146,9 +146,13 @@
   filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.12));
 }
 
+.node:focus-visible .nodeBox {
+  stroke-width: 3;
+}
+
 .nodeLabel {
   fill: var(--ifm-heading-color);
-  font-family: var(--ifm-font-family-base);
+  font-family: var(--ifm-heading-font-family);
   font-size: 15px;
   font-weight: 600;
   dominant-baseline: middle;
